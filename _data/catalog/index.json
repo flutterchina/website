@@ -1,0 +1,115 @@
+[
+  {
+    "name": "基础组件",
+    "description": "在构建您的第一个Flutter应用程序之前，您绝对需要了解这些widget。",
+    "priority": "high",
+    "id":"basics"
+  },
+  {
+    "name": "Material Components",
+    "description": "实现了<a href=\"https://material.io/guidelines/material-design/introduction.html\">Material Design 指南</a>的视觉、效果、motion-rich的widget。",
+    "subcategories": [
+      {
+        "name": "App结构和导航"
+      },
+      {
+        "name": "按钮"
+      },
+      {
+        "name": "输入框和选择框"
+      },
+      {
+        "name": "对话框、Alert、Panel"
+      },
+      {
+        "name": "信息展示"
+      },
+      {
+        "name": "布局",
+        "description": "See also Flutter's <a href=\"/widgets/catalog/layout/\">general layout widgets</a> (such as row, column, and more)."
+      }
+    ],
+    "id":"material"
+  },
+  {
+    "name": "Cupertino(iOS风格的widget)",
+    "description": "用于当前iOS设计语言的美丽和高保真widget。",
+    "id":"cupertino"
+  },
+  {
+    "name": "Layout",
+    "description": "排列其它widget的columns、rows、grids和其它的layouts。",
+    "subcategories": [
+      {
+        "name": "拥有单个子元素的布局widget",
+        "description": "These widgets take a single child and manipulate the layout of the child."
+      },
+      {
+        "name": "拥有多个子元素的布局widget",
+        "description":"These widgets take multiple children and arrange them in different ways."
+      },
+      {
+        "name": "Layout helpers"
+      }
+    ],
+    "id":"layout"
+  },
+  {
+    "name": "Text",
+    "description": "文本显示和样式",
+    "id":"text"
+  },
+  {
+    "name": "Assets、图片、Icons",
+    "description": "管理assets, 显示图片和Icon。",
+    "id":"assets"
+  },
+  {
+    "name": "Input",
+    "description": "Material Components 和 Cupertino中获取用户输入的widget。",
+    "id":"input"
+  },
+  {
+    "name": "动画和Motion",
+    "description": "在您的应用中使用动画。查看Flutter中的<a href=\"/animations/\">动画总览</a>",
+    "id":"animation"
+  },
+  {
+    "name": "交互模型",
+    "description": "响应触摸事件并将用户路由到不同的页面视图（View）。",
+    "subcategories": [
+      {
+        "name": "触摸交互"
+      },
+      {
+        "name": "路由"
+      }
+    ],
+    "id":"interaction"
+  },
+  {
+    "name": "样式",
+    "description": "管理应用的主题，使应用能够响应式的适应屏幕尺寸或添加填充。",
+    "id":"styling"
+  },
+  {
+    "name": "绘制和效果",
+    "description": "Widget将视觉效果应用到其子组件，而不改变它们的布局、大小和位置。",
+    "id":"painting"
+  },
+  {
+    "name": "Async",
+    "description": "Flutter应用的异步模型",
+    "id":"async"
+  },
+  {
+    "name": "滚动",
+    "description": "滚动一个拥有多个子组件的父组件",
+    "id":"scrolling"
+  },
+  {
+    "name": "辅助功能",
+    "description": "给你的App添加辅助功能(这是一个正在进行的工作)",
+    "id":"accessibility"
+  },
+]

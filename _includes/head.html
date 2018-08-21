@@ -1,0 +1,52 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page.title}} {% if page.homepage != true %} - {{ site.title }} {% endif %}</title>
+  <link rel="shortcut icon" href="{{ "/images/favicon.png" | prepend: site.cdn  }}">
+  <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="keywords" content="{{page.tags}}{% if page.tags %},{% elsif page.keywords %}{{page.keywords|append: ',' }}{% endif %}{{ site.keywords }} ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <link rel="stylesheet" href="{{ "/css/lavish-bootstrap.css" | prepend: site.cdn }}">
+  <link rel="stylesheet" href="{{ "/css/main.css"}}">
+  <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  {% for css_name in page.extra_css %}
+      <link rel="stylesheet" href="{{ css_name }}">
+  {% endfor %}
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  {% if site.cdn contains "flutterchina" %}
+      <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?635fd3dde151b2be9ef7adb85fe42720";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+        function _track(p) {
+            _hmt.push(['_trackEvent', 'ad', 'click', p]);
+        }
+      </script>
+  {% endif %}
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>

@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "8.1"
+sudo: false
+before_install:
+  - rvm install 2.2.2
+  - ./tool/before_install.sh
+script: ./tool/travis.sh

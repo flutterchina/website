@@ -1,0 +1,7 @@
+name: prdeployer
+version: 0.0.1
+dependencies:
+  firebase: ^3.0.0
+  github:
+    git: git://github.com/FaisalAbid/github.dart.git
+

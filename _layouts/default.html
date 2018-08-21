@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% include head.html %}
+
+<body {% if page.url == '/' %} class="homepage" style='background-image: url("{{site.cdn}}/images/homepage/blue-triangle.png");' {% endif %}>
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+{% include header.html %}
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            {% include sidebar.html %}
+        </div>
+
+        {% if page.url == '/' %}
+        {% comment %} Homepage {% endcomment %}
+
+        <!-- Homepage Content Column -->
+        <div class="col-sm-12  main-contents">
+
+            <div class="main-contents-body">
+                {{content}}
+            </div>
+
+        </div>
+
+        {% else %}
+        {% comment %} Regular page, not homepage {% endcomment %}
+
+        <!-- Content Column -->
+        {% if page.url contains 'widgets/' %}
+        <div class="col-sm-9  main-contents">
+            {% else %}
+            <div class="col-sm-8  main-contents">
+                {% endif %}
+
+                <div class="main-contents-body">
+                    <div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">
+                    <div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">
+                        <a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>
+                        <a id="download" href="/app/gm.html">去了解</a>
+                     </div>
+                    </div>
+                    {{content}}
+                    {% if page.comment != false %}
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    {% include footer.html %}
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{site.cdn}}/js/sidebar_toggle.js"></script>
+    <script src="{{site.cdn}}/js/prism.js"></script>
+    <script src="{{site.cdn}}/js/tabs.js"></script>
+    {% if page.comment!=false %}
+      <link rel="stylesheet" href="{{site.url}}/css/gitment.css">
+      <script src="{{site.url}}/js/comment.js"></script>
+    {% endif %}
+
+</body>
+</html>

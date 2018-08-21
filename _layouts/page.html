@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="post-content">
+
+  {% unless page.hide_title %}
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/{{page.path}}" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page {{page.title}}&body=From URL: {{site.url}}/{{page.path}}&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">{{ page.title }} </h1>
+   </div>
+
+  </header>
+  {% endunless %}
+
+  {{ content }}
+</article>

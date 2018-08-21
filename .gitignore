@@ -1,0 +1,20 @@
+.firebaserc
+.DS_Store
+_site
+apks
+.sass-cache
+build
+.firebaserc
+.*swp
+node_modules
+.jekyll-metadata
+
+# Dart ignores.
+.packages
+.pub/
+pubspec.lock
+packages
+example/*.dart
+
+.idea/
+cos.js

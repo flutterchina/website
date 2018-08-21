@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "{{ "/images/flutter-mark-square-100.png" | prepend: site.cdn }}" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/app/gm.html" style="color:blue">gitme</a>
+            <a class="page-link" href="/opensource.html" style="color:blue">开源项目</a>
+            <a class="page-link" href="https://pub.dartlang.org/flutter">Packages</a>
+            <a class="page-link" href="/support/">支持</a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
