@@ -357,7 +357,7 @@ import android.os.Build.VERSION_CODES
 
 1. 选择 'File > Open...'
 
-1. 定位到您 Flutter app目录, 然后选择里面的 `android`文件夹，点击 OK
+1. 定位到您 Flutter app目录, 然后选择里面的 `iOS`文件夹，点击 OK
 
 1. 确保Xcode项目的构建没有错误。
 
