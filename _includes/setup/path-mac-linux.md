@@ -26,7 +26,7 @@ export PATH= PATH_TO_FLUTTER_GIT_DIRECTORY/flutter/bin:$PATH
 4. 运行 `source $HOME/.bash_profile` 刷新当前终端窗口.
 
 {% include note.html content="如果你使用的是zsh，终端启动时
-`~/.bash_profile` 将不会被加载，解决办法就是修改 `～/.zshrc` ，在其中添加：source ～/.bash_profile"
+`~/.bash_profile` 将不会被加载，解决办法就是修改 `~/.zshrc` ，在其中添加：source ~/.bash_profile"
  %}
 
 5.通过运行`flutter/bin`命令验证目录是否在已经在PATH中:
