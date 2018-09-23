@@ -357,7 +357,7 @@ import android.os.Build.VERSION_CODES
 
 1. 选择 'File > Open...'
 
-1. 定位到您 Flutter app目录, 然后选择里面的 `android`文件夹，点击 OK
+1. 定位到您 Flutter app目录, 然后选择里面的 `ios`文件夹，点击 OK
 
 1. 确保Xcode项目的构建没有错误。
 
@@ -437,7 +437,7 @@ import android.os.Build.VERSION_CODES
 
 1. 选择 'File > Open...'
 
-1. 定位到您 Flutter app目录, 然后选择里面的 `android`文件夹，点击 OK
+1. 定位到您 Flutter app目录, 然后选择里面的 `ios`文件夹，点击 OK
 
 1. 确保Xcode项目的构建没有错误。
 
@@ -468,7 +468,7 @@ import android.os.Build.VERSION_CODES
 
 接下来，我们添加Swift代码，使用iOS电池API来获取电池电量。此代码与您在本机iOS应用程序中编写的代码完全相同。
 
-将以下新方法天骄到`AppDelegate.swift`底部
+将以下新方法添加到`AppDelegate.swift`底部
 
 ```swift
 private func receiveBatteryLevel(result: FlutterResult) {
