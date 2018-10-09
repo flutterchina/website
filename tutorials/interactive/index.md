@@ -130,11 +130,6 @@ Widget的状态可以通过多种方式进行管理，但在我们的示例中�
 <a name="step-2"></a>
 ### Step 2: 创建StatefulWidget子类
 
-The FavoriteWidget class manages its own state, so it overrides
-`createState()` to create the State object.
-The framework calls `createState()` when it wants to build the widget.
-In this example, `createState()` creates an instance of _FavoriteWidgetState,
-which you'll implement in the next step.
 FavoriteWidget类管理自己的状态，因此它重写`createState()`来创建状态对象。
 框架会在构建widget时调用`createState()`。在这个例子中，`createState()`创建_FavoriteWidgetState的实例，您将在下一步中实现该实例。
 
@@ -336,12 +331,6 @@ The only file you need is
 <a name="self-managed"></a>
 ### widget管理自己的状态
 
-Sometimes it makes the most sense for the widget to manage its state internally.
-For example,
-[ListView](https://docs.flutter.io/flutter/widgets/ListView-class.html)
-automatically scrolls when its content exceeds the render box. Most
-developers using ListView don't want to manage ListView's
-scrolling behavior, so ListView itself manages its scroll offset.
 有时，widget在内部管理其状态是最好的。例如， 当[ListView](https://docs.flutter.io/flutter/widgets/ListView-class.html)的内容超过渲染框时，
 ListView自动滚动。大多数使用ListView的开发人员不想管理ListView的滚动行为，因此ListView本身管理其滚动偏移量。
 
@@ -427,7 +416,7 @@ class MyApp extends StatelessWidget {
 例如，[IconButton](https://docs.flutter.io/flutter/material/IconButton-class.html)允许您将图标视为可点按的按钮。
 IconButton是一个无状态的小部件，因为我们认为父widget需要知道该按钮是否被点击来采取相应的处理。
 
-在以下示例中，TapboxB通过回调将其状态导出到其父项。由于TapboxB不管理任何状态，因此它的子类为StatelessWidget。
+在以下示例中，TapboxB通过回调将其状态导出到其父项。由于TapboxB不管理任何状态，因此它的父类为StatelessWidget。
 
 ParentWidgetState 类:
 

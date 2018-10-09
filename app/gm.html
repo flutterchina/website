@@ -9,9 +9,9 @@
     <meta name="keywords" content="gitme, github客户端">
     <meta name="baidu-site-verification" content="oeLolPaTVU"/>
     <meta name="sogou_site_verification" content="xhNTjenszq"/>
-    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery_lazyload@1.9.3/jquery.lazyload.min.js"></script>
     <script>
         //-cdn.flutterchina.club
 
@@ -38,11 +38,10 @@
         $(function () {
             var ua=navigator.userAgent.toLocaleLowerCase();
             var isPC=ua.indexOf("android")===-1&&ua.indexOf("iphone")===-1;
-            if(!isPC){
+            if(!isPC||screen.width<460){
                 location.replace("./gmd.html")
-            }else{
-
             }
+
             $(".git-btn").click(function () {
                 $("#mask").show();
             })
@@ -200,7 +199,7 @@
     <div style="background: #fff; width: 400px; margin: 300px auto; position: relative; border-radius: 3px">
     <span id="close" class="glyphicon glyphicon-remove"></span>
     <div class="qrcode-d">
-        <img src="//cdn.flutterchina.club/images/gitme/qrcode.png" width="180px" style="margin:0px auto" >
+        <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/qrcode.png" width="180px" style="margin:0px auto" >
         <div style="padding: 25px 0px 35px; color: black; font-size: 15px; text-align: center">
             iOS/Android 扫码下载
         </div>
@@ -212,7 +211,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="line-height:40px">
             <a href="https://flutterchina.club" style="padding: 8px 15px; text-decoration: none">
-                <img style="width:50px " src="//cdn.flutterchina.club/images/gitme/180bai.png">
+                <img style="width:50px " src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/180bai.png">
             </a>
             <span style="font-size: 20px; position: relative; top: 4px; left: -5px; color:#555; font-weight: 300">gitme</span>
         </div>
@@ -227,9 +226,9 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div style="background:url(//cdn.flutterchina.club/images/gitme/bg.jpg); background-size: cover;  position: relative">
+<div style="background:url(https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/bg.jpg); background-size: cover;  position: relative">
     <div class="qrcode">
-        <img src="//cdn.flutterchina.club/images/gitme/qrcode.png" width="150px" >
+        <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/qrcode.png" width="150px" >
         <div style="padding: 5px; font-size: 13px; text-align: center">
             iOS/Android 扫码下载
         </div>
@@ -237,7 +236,7 @@
     <div class="container" style='text-align: center;'>
         <div class="box">
             <div style="font-size: 20px; font-weight: 300; letter-spacing: 2px;">
-                <img src="//cdn.flutterchina.club/images/gitme/180.png" id="logo">
+                <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/180.png" id="logo">
             </div>
 
             <div style="font-size: 20px; font-weight: 300; letter-spacing: 2px; padding:20px 0 30px ; color:#fff">
@@ -263,7 +262,7 @@
             <p>Github账号登录后，您可以在主页看到您的项目、动态、以及Issue列表。项目的star、fork、语言等信息一目了然。</p>
         </div>
         <div class="chip" style="background: #222; left: 20px; bottom: 50px"></div>
-        <img data-original="//cdn.flutterchina.club/images/gitme/home.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
+        <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/home.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
     </div>
 </div>
 </div>
@@ -272,7 +271,7 @@
         <div class="chip" style="left: 50px; top: 290px; background: white"></div>
         <div class="chip" style="right: 90px; top: 50px"></div>
         <div class="section">
-            <img data-original="//cdn.flutterchina.club/images/gitme/repo.png"  style="width: 250px; float: left; margin-top: 60px;">
+            <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/repo.png"  style="width: 250px; float: left; margin-top: 60px;">
             <div class="intro" style="margin-right: 0; margin-left: 300px; color: white">
                 <div class="tit" style="color: white">项目主页</div>
                 <p>项目主页包含了项目简介、互动、分支、源码、文档、等各种信息。</p>
@@ -292,7 +291,7 @@
                 <p>您可以在手机上新建或关闭Issue，并且可以对Issue进行评论、编辑、点赞等操作。</p>
                 <p>现在，您也可以管理Label了！</p>
             </div>
-            <img data-original="//cdn.flutterchina.club/images/gitme/issue.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
+            <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/issue.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
         </div>
     </div>
 </div>
@@ -302,27 +301,27 @@
         <div class="tit" style="color: white; padding: 50px 0;">更多功能，等你发现</div>
         <div id="scrollview">
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/setting.jpg" >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/setting.jpg" >
                 <div>配置、主题、语言</div>
             </div>
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/search.jpeg" >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/search.jpeg" >
                 <div>搜索</div>
             </div>
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/hot.jpeg" >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/hot.jpeg" >
                 <div>编程语言项目热度排行榜</div>
             </div>
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/labels.jpeg"  >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/labels.jpeg"  >
                 <div>Label管理</div>
             </div>
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/codelist.jpeg"  >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/codelist.jpeg"  >
                 <div>分支源码浏览</div>
             </div>
             <div>
-                <img data-original="//cdn.flutterchina.club/images/gitme/codeview.jpeg"  >
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/codeview.jpeg"  >
                 <div>查看源码</div>
             </div>
         </div>
@@ -335,13 +334,13 @@
         <div class="tit" style=" padding: 50px 0;">觉得好？请作者喝杯咖啡</div>
         <div style="overflow: hidden; display: inline-block">
         <div style="display: inline-block; width: 200px; float: left">
-            <img src="//cdn.flutterchina.club/images/pay.jpg" style="width:220px">
+            <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/pay.jpg" style="width:220px">
             <div style="width: 200px">
                 微信扫一扫
             </div>
         </div>
         <div style="display: inline-block; width: 200px;float: left; margin-left: 50px;">
-            <img src="//cdn.flutterchina.club/images/alipay.jpg" style="width:170px; margin-top: 18px">
+            <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/alipay.jpg" style="width:170px; margin-top: 18px">
             <div style="width: 200px; margin-top: 16px">
                 支付宝扫一扫
             </div>

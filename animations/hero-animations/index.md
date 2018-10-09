@@ -60,7 +60,7 @@ keywords: Flutter英雄动画, hero动画
 
 如果视频看不到没关系，我们为您录制了Flutter Gallery示例中的一个Gif:
 
-<div style="text-align: center; padding: 30px"><img src="/images/hero.gif" style="border: #eee 1px solid"/></div>
+<div style="text-align: center; padding: 30px"><img src="{{site.cdn}}/images/hero.gif" style="border: #eee 1px solid"/></div>
 
 **Radial hero 动画**<br>
 
