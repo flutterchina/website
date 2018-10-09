@@ -10,7 +10,7 @@ hide_title: true
     <h1 class="homepage__illustration--text">
         <span> 最新版本：</span>
         &nbsp;
-        <a href="https://medium.com/flutter-io/flutter-release-preview-1-943a9b6ee65a?linkId=53249457">Flutter Preview 1.0 </a>
+        <a href="https://developers.googleblog.com/2018/09/flutter-release-preview-2-pixel-perfect.html">Flutter Preview 2.0 </a>
     </h1>
     <img src="{{site.cdn}}/images/homepage/header-illustration.png"
          class="homepage__illustration--image"
