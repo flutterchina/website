@@ -4,7 +4,7 @@ email: flutter-dev@googlegroups.com
 email_name: flutter-dev@
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://www.flutterchina.club"
-cdn: "https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/js/"
+cdn: "https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/js"
 github_username: flutter
 description: Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。
 keywords: flutter中文网, flutter中文教程, flutter中文文档
