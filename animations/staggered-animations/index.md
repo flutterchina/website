@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Staggered Animations"
+title: "交错动画"
 permalink: /animations/staggered-animations/
 ---
 
 <div class="whats-the-point" markdown="1">
 
-<b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you'll learn:</b>
+<b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你将学到什么:</b>
 
 * A staggered animation consists of sequential or overlapping
   animations.
