@@ -556,7 +556,7 @@ class MyApp extends StatelessWidget {
 
 ### Contents
 
-* [对其 widgets](#alignment)
+* [对齐 widgets](#alignment)
 * [调整 widgets](#sizing)
 * [聚集 widgets](#packing)
 * [嵌套行和列](#nesting)
