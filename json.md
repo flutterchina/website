@@ -171,12 +171,12 @@ String json = JSON.encode(user);
 ```yaml
 dependencies:
   # Your other regular dependencies here
-  json_annotation: ^0.2.2
+  json_annotation: ^2.0.0
 
 dev_dependencies:
   # Your other dev_dependencies here
-  build_runner: ^0.7.6
-  json_serializable: ^0.3.2
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.0
 ```
 
 在您的项目根文件夹中运行 `flutter packages get`  (或者在编辑器中点击 "Packages
@@ -193,38 +193,23 @@ Get") 以在项目中使用这些新的依赖项.
 {% prettify dart %} 
 import 'package:json_annotation/json_annotation.dart';
 
-/// This allows our `User` class to access private members in 
-/// the generated file. The value for this is *.g.dart, where 
-/// the star denotes the source file name.
-part '[[highlight]]user[[/highlight]].g.dart';
+// user.g.dart 将在我们运行生成命令后自动生成
+part 'user.g.dart';
 
-/// An annotation for the code generator to know that this class needs the 
-/// JSON serialization logic to be generated.
-[[highlight]]@JsonSerializable()[[/highlight]]
+///这个标注是告诉生成器，这个类是需要生成Model类的
+@JsonSerializable()
 
-/// Every json_serializable class must have the serializer mixin. 
-/// It makes the generated toJson() method to be usable for the class. 
-/// The mixin's name follows the source class, in this case, User.
-class User extends Object with _$[[highlight]]User[[/highlight]]SerializerMixin {
+class User{
   User(this.name, this.email);
 
   String name;
   String email;
-
-  /// A necessary factory constructor for creating a new User instance
-  /// from a map. We pass the map to the generated _$UserFromJson constructor. 
-  /// The constructor is named after the source class, in this case User.
-  factory User.fromJson(Map<String, dynamic> json) => _$[[highlight]]User[[/highlight]]FromJson(json);
+  //不同的类使用不同的mixin即可
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 {% endprettify %}
 
-With this setup, the source code generator will generate code for serializing
-the `name` and `email` fields from JSON and back.
-
-If needed, it is also easy to customize the naming strategy. For example, if the
-API we are working with returns objects with _snake\_case_, and we want to use
-_lowerCamelCase_ in our models, we can use the `@JsonKey` annotation with a name
-parameter:
 
 有了这个设置，源码生成器将生成用于序列化`name`和`email`字段的JSON代码。
 

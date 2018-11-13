@@ -8,18 +8,20 @@ permalink: /animations/staggered-animations/
 
 <b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你将学到什么:</b>
 
-* A staggered animation consists of sequential or overlapping
-  animations.
-* To create a staggered animation, use multiple Animation objects.
-* One AnimationController controls all of the Animations.
-* Each Animation object specifies the animation during an Interval.
 * For each property being animated, create a Tween.
+
+* 交错动画由一个动画序列或重叠的动画组成。
+* 要创建交错动画，需要使用多个动画对象。
+* 一个AnimationController控制所有动画。
+* 每个动画对象在间隔(Interval)期间指定动画。
+* 对于要执行动画的每个属性都要创建一个Tween。
+
 </div>
 
 <aside class="alert alert-info" markdown="1">
 **Terminology:**
-If the concept of tweens or tweening is new to you, see the
-[Animations in Flutter tutorial.](/tutorials/animation/)
+如果您还不清楚“补间”的概念，请参考
+[Flutter动画教程](/tutorials/animation/)
 </aside>
 
 Staggered animations are a straightforward concept: visual changes
@@ -27,6 +29,8 @@ happen as a series of operations, rather than all at once.
 The animation might be purely sequential, with one change occuring after
 the next, or it might partially or completely overlap. It might also
 have gaps, where no changes occur.
+
+所谓交错动画，直接来说就是：视觉变化发生在一系列操作中，而不是一次性发生。 动画可能是纯粹顺序的，在下一个动画之后会发生一次更改，或者可能部分或完全重叠。 它也可能有间隙，没有发生变化。
 
 This guide shows how to build a staggered animation in Flutter.
 
