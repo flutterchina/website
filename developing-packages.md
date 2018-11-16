@@ -121,9 +121,6 @@ flutter create --template=plugin -i swift -a kotlin hello
 1. 启动 Xcode
 1. 选择 'File > Open', 然后选择 `hello/example/ios/Runner.xcworkspace` 文件.
 
-The iOS platform code of your plugin is located in `Pods/Development
-Pods/hello/Classes/` in the Project Navigator.
-
 您插件的iOS平台代码位于`Pods/DevelopmentPods/hello/Classes/`中。
 
 您可以通过按下&#9654按钮来运行示例应用程序
