@@ -48,10 +48,6 @@ flutter create --template=package hello
 
 要测试软件包，请在`test`目录中添加[unit tests](https://flutter.io/testing/#unit-testing)。
 
-For additional details on how to organize the package contents, see the [Dart
-library
-package](https://www.dartlang.org/guides/libraries/create-library-packages)
-documentation.
 有关如何组织包内容的更多详细信息，请参阅[Dart library package](https://www.dartlang.org/guides/libraries/create-library-packages)文档。
 
 ## 开发插件包 {#plugin}
