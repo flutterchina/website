@@ -14,13 +14,13 @@
 ```commandline
 export PUB_HOSTED_URL=https://pub.flutter-io.cn //国内用户需要设置
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn //国内用户需要设置
-export PATH= PATH_TO_FLUTTER_GIT_DIRECTORY/flutter/bin:$PATH
+export PATH=PATH_TO_FLUTTER_GIT_DIRECTORY/flutter/bin:$PATH
 ```
 
 注意：`PATH_TO_FLUTTER_GIT_DIRECTORY` 为你flutter的路径，比如“~/document/code”
 
 ```commandline
- export PATH= ~/document/code/flutter/bin:$PATH
+ export PATH=~/document/code/flutter/bin:$PATH
 ```
 
 4. 运行 `source $HOME/.bash_profile` 刷新当前终端窗口.

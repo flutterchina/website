@@ -16,7 +16,7 @@ keywords: 从web开发到Flutter
 此页面适用于熟悉HTML和CSS语法的用户。它将HTML / CSS代码片段映射到的Flutter / Dart代码片段。
 
 这些例子假定:
-* HTML文档已HTML DOCTYPE开始, 并且所有HTML的`box-sizing`为 [border-box](https://css-tricks.com/box-sizing/),
+* HTML文档以HTML DOCTYPE开始, 并且所有HTML的`box-sizing`为 [border-box](https://css-tricks.com/box-sizing/),
 以便与Flutter模型一致.
    {% prettify css %}<!DOCTYPE html>
 
