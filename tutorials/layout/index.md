@@ -99,7 +99,7 @@ summary: 本文详细的介绍了如何使用Flutter构建用户界面，然后�
 ### Step 2: 实现标题行
 
 首先，构建标题部分左边栏。将Column（列）放入Expanded中会拉伸该列以使用该行中的所有剩余空闲空间。
-设置crossAxisAlignment属性值为CrossAxisAlignment.start，这会将将列中的子项左对齐。
+设置crossAxisAlignment属性值为CrossAxisAlignment.start，这会将该列中的子项左对齐。
 
 将第一行文本放入Container中，然后底部添加8像素填充。列中的第二个子项（也是文本）显示为灰色。
 
