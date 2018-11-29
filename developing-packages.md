@@ -23,7 +23,7 @@ Packages可以包含多种内容：
 
 * Dart包：其中一些可能包含Flutter的特定功能，因此对Flutter框架具有依赖性，仅将其用于Flutter，例如[`fluro`](https://pub.dartlang.org/packages/fluro)包。
 
-* 插件包：一中专用的Dart包，其中包含用Dart代码编写的API，以及针对Android（使用Java或Kotlin）和/或针对iOS（使用ObjC或Swift）平台的特定实现。一个具体的例子是[`battery`](https://pub.dartlang.org/packages/battery)插件包。
+* 插件包：一种专用的Dart包，其中包含用Dart代码编写的API，以及针对Android（使用Java或Kotlin）和/或针对iOS（使用ObjC或Swift）平台的特定实现。一个具体的例子是[`battery`](https://pub.dartlang.org/packages/battery)插件包。
 
 ## Developing Dart packages {#dart}
 
@@ -48,10 +48,6 @@ flutter create --template=package hello
 
 要测试软件包，请在`test`目录中添加[unit tests](https://flutter.io/testing/#unit-testing)。
 
-For additional details on how to organize the package contents, see the [Dart
-library
-package](https://www.dartlang.org/guides/libraries/create-library-packages)
-documentation.
 有关如何组织包内容的更多详细信息，请参阅[Dart library package](https://www.dartlang.org/guides/libraries/create-library-packages)文档。
 
 ## 开发插件包 {#plugin}
@@ -124,9 +120,6 @@ flutter create --template=plugin -i swift -a kotlin hello
 
 1. 启动 Xcode
 1. 选择 'File > Open', 然后选择 `hello/example/ios/Runner.xcworkspace` 文件.
-
-The iOS platform code of your plugin is located in `Pods/Development
-Pods/hello/Classes/` in the Project Navigator.
 
 您插件的iOS平台代码位于`Pods/DevelopmentPods/hello/Classes/`中。
 
