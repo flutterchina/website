@@ -445,7 +445,7 @@ class MyApp extends StatelessWidget {
 
 <br>
 
-编写应用程序时，您将使用两种类型的weights: [StatelessWidget](https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html) 和
+编写应用程序时，您将使用两种类型的widgets: [StatelessWidget](https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html) 和
  [StatefulWidget](https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html)。StatelessWidget听起来就像是一个没有状态的组件，StatelessWidget创建一次，永远不会改变其外观。 StatefulWidget根据收到的数据或用户输入动态更改状态
 
 无状态小部件和有状态小部件之间的重要区别在于StatefulWidgets具有一个State对象，该对象存储状态数据并在树重建中进行传递，因此它不会丢失。
