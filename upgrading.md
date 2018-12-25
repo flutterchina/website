@@ -6,7 +6,7 @@ summary: 更新升级Flutter
 keywords: 升级Flutter
 ---
 
-我们强烈建议跟踪flutter的`beta`分支，这是Flutter稳定分支。
+我们强烈建议跟踪flutter的`stable`分支，这是Flutter稳定分支。
 如果你需要查看最新的变化，你可以跟踪`master`分支，但注意这是开发分支，所以稳定性要低得多。
 
 要查看您当前使用的分支，请运行`flutter channel`查看。
