@@ -429,7 +429,7 @@ class RandomWordsState extends State<RandomWords> {
       [[highlight]]padding: const EdgeInsets.all(16.0),[[/highlight]]
       // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
       // 在偶数行，该函数会为单词对添加一个ListTile row.
-      // 在奇数行，该行书湖添加一个分割线widget，来分隔相邻的词对。
+      // 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
       // 注意，在小屏幕上，分割线看起来可能比较吃力。
       [[highlight]]itemBuilder: (context, i) {[[/highlight]]
         // 在每一列之前，添加一个1像素高的分隔线widget
