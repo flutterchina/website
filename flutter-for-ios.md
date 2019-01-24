@@ -972,7 +972,7 @@ MaterialApp(
 
 ### 我该怎么监听 iOS 中的生命周期事件？
 
-在 iOS 中，你可以重写 `ViewController` 中的方法来补货它的视图的生命周期，或者在 `AppDelegate` 中注册生命周期的回调函数。在 Flutter 中没有这两个概念，但你可以通过 hook `WidgetsBinding` 观察者来监听生命周期事件，并监听 `didChangeAppLifecycleState()` 的变化事件。
+在 iOS 中，你可以重写 `ViewController` 中的方法来捕获它的视图的生命周期，或者在 `AppDelegate` 中注册生命周期的回调函数。在 Flutter 中没有这两个概念，但你可以通过 hook `WidgetsBinding` 观察者来监听生命周期事件，并监听 `didChangeAppLifecycleState()` 的变化事件。
 
 可观察的生命周期事件有：
 
