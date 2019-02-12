@@ -359,7 +359,7 @@ Flutter是一个多范式编程环境。在Flutter中使用了过去几十年中
 
 ### 我在哪里可以获得支持？
 
-如果您认为遇到了错误，请将反应到我们的[issue](https://github.com/flutter/flutter/issues中总。我们鼓励您使用 [Stack Overflow](https://stackoverflow.com/tags/flutter)来处理“HOWTO”类型的问题。有关讨论，请加入我们的邮件列表 [flutter-dev@googlegroups.com](mailto:flutter-dev@googlegroups.com)。
+如果您认为遇到了错误，请将反应到我们的[issue](https://github.com/flutter/flutter/issues)中。我们鼓励您使用 [Stack Overflow](https://stackoverflow.com/tags/flutter)来处理“HOWTO”类型的问题。有关讨论，请加入我们的邮件列表 [flutter-dev@googlegroups.com](mailto:flutter-dev@googlegroups.com)。
 
 ### Flutter是开源的吗？
 
