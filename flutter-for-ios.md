@@ -386,7 +386,7 @@ Widget build(BuildContext context) {
 
 Flutter 也有类似的实现，使用了 `Navigator` 和 `Routes`。一个路由是 App 中“屏幕”或“页面”的抽象，而一个 Navigator 是管理多个路由的 [widget](https://flutter.io/flutter-for-ios/technical-overview/#everythings-a-widget) 。你可以粗略地把一个路由对应到一个 `UIViewController`。Navigator 的工作原理和 iOS 中 `UINavigationController` 非常相似，当你想跳转到新页面或者从新页面返回时，它可以 `push()` 和 `pop()` 路由。
 
-在页面之间跳转，你有一对选择：
+在页面之间跳转，你有几个选择：
 
 - 具体指定一个由路由名构成的 `Map`。（MaterialApp）
 - 直接跳转到一个路由。（WidgetApp）
