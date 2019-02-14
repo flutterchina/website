@@ -361,6 +361,7 @@ Flutter是一个多范式编程环境。在Flutter中使用了过去几十年中
 
 如果您认为遇到了 bug ，请提交到我们的[issue tracker](https://github.com/flutter/flutter/issues)。我们鼓励您使用 [Stack Overflow](https://stackoverflow.com/tags/flutter)来处理“HOWTO”类型的问题。有关讨论，请加入我们的邮件列表 [flutter-dev@googlegroups.com](mailto:flutter-dev@googlegroups.com)。
 
+
 ### Flutter是开源的吗？
 
 是的，Flutter是开源技术。你可以在[GitHub上](https://github.com/flutter/flutter)找到这个项目。
