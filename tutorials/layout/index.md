@@ -83,7 +83,7 @@ summary: 本文详细的介绍了如何使用Flutter构建用户界面，然后�
 
 <img src="images/lakes-diagram.png" alt="diagramming the rows in the lakes screenshot">
 
-接下来，绘制每一行。第一行称其为标题部分，有三个孩子：一列文字，一个星形图标和一个数字。它的第一个孩子，列，包含2行文字。
+接下来，绘制每一行。第一行称其为标题部分，有三个子项：一列文字，一个星形图标和一个数字。它的第一个子项，列，包含2行文字。
 第一列占用大量空间，所以它必须包装在Expanded widget中。
 
 <img src="images/title-section-diagram.png" alt="diagramming the widgets in the Title section">
@@ -1283,8 +1283,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ### Card
 
-Material Components 库中的Card包含相关内容块，可以由大多数类型的widget构成，但通常与ListTile一起使用。Card有一个孩子，
-但它可以是支持多个孩子的列，行，列表，网格或其他小部件。默认情况下，Card将其大小缩小为0像素。您可以使用[SizedBox](https://docs.flutter.io/flutter/widgets/SizedBox-class.html)来限制Card的大小。
+Material Components 库中的Card包含相关内容块，可以由大多数类型的widget构成，但通常与ListTile一起使用。Card有一个子项，
+但它可以是支持多个子项的列，行，列表，网格或其他小部件。默认情况下，Card将其大小缩小为0像素。您可以使用[SizedBox](https://docs.flutter.io/flutter/widgets/SizedBox-class.html)来限制Card的大小。
 
 在Flutter中，Card具有圆角和阴影，这使它有一个3D效果。更改Card的e`elevation`属性允许您控制投影效果。
 例如，将`elevation`设置为24.0，将会使Card从视觉上抬离表面并使阴影变得更加分散。
@@ -1295,7 +1295,7 @@ Material Components 库中的Card包含相关内容块，可以由大多数类�
 
 * 实现了一个 [Material Design
   card](https://material.io/guidelines/components/cards.html)
-* 接受单个孩子，但该孩子可以是Row，Column或其他包含子级列表的widget
+* 接受单个子项，但该子项可以是Row，Column或其他包含子级列表的widget
 * 显示圆角和阴影
 * Card内容不能滚动
 * Material Components 库的一个widget

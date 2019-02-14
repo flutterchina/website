@@ -180,13 +180,15 @@ Flutter能够运行大多数不会直接或间接导入dart:mirrors 或 dart:htm
 
 ### Flutter引擎有多大？
 
-截止2017年6月，我们测量了一个最小的Android版Flutter应用程序（没有Material Components，只是一个`Center`构建的单个widget的应用）的大小，并将其打包为release版，大小约为6.7MB。
+2018年12月，我们测量了一个[最小的 Flutter 应用](https://github.com/flutter/flutter/tree/75228a59dacc24f617272f7759677e242bbf74ec/examples/hello_world)（不含 Material 组件，仅有一个 `Center` 控件，使用 `flutter build apk` 构建）的下载大小，并打包为 release 版本，大小约为 4.06 MB.
 
-对于这个简单的应用程序，核心引擎大约3.3MB，框架+应用程序代码大约是1.25MB，LICENSE文件（包含在app.flx中）是55k，必需的Java代码.dex为40k，并且约有2.1MB的ICU数据。
+对于这个简单的应用，核心引擎大约为 2.7MB(已压缩)，框架和应用程序代码大约 820.6KB (已压缩)，LICENSE 文件为 53.5KB(已压缩)，必要的 Java 代码 (classes.dex) 为 61.8KB(已压缩)，此外还有大约 450.4KB(已压缩)的 ICU 数据。
 
-当然，我们建议您测量自己的应用程序，通过运行`flutter build apk`然后查看`app/outputs/apk/app-release.apk`。
+这些数据是通过 [apkanalyzer](https://developer.android.com/studio/command-line/apkanalyzer) 测量得到的，它也是 [Android Studio](https://developer.android.com/studio/build/apk-analyzer) 内置的分析工具。
 
+在 iOS 上，同一个应用的 release 版本 IPA 文件在 iPhone X 上的下载大小为 10.8MB，数据通过苹果的 App Store Connect 得到。IPA 比 APK 更大的主要原因是苹果加密了 IPA 中的二进制文件，这使得压缩的效果有所折扣（参见苹果 [QA1795](https://developer.apple.com/library/archive/qa/qa1795/_index.html) 的 [iOS App Store特定注意事项](https://developer.apple.com/library/archive/qa/qa1795/_index.html#//apple_ref/doc/uid/DTS40014195-CH1-APP_STORE_CONSIDERATIONS)章节）。
 
+当然，数据因人而异，我们也推荐你测量你自己的应用。要测量 Android 应用，请执行 `flutter build apk` 并将 APK (`build/app/outputs/apk/release/app-release.apk`) 导入 Android Studio 中以查看具体的尺寸报告。要测量 iOS 应用，将发行版的 IPA 上传到 App Store Connect 中并在那里获取尺寸报告。
 
 ## 功能
 
@@ -229,7 +231,7 @@ Hot Reload通过将更新的源代码文件注入正在运行的Dart VM（虚拟
 
 ### Flutter是否可以在web上运行？
 
-不，我们不是在提供Flutter的web版本。
+我们目前正在做一个实验性的项目 [Hummingbird](https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8)。它是一个基于 web 的 Flutter 运行时实现，利用 Dart 平台的能力编译为 JavaScript。这允许 Flutter 代码运行在标准的 web 上而无需改动。
 
 ### 我可以使用Flutter构建桌面应用程序吗？
 
@@ -251,7 +253,9 @@ Hot Reload通过将更新的源代码文件注入正在运行的Dart VM（虚拟
 
 ### 我可以扩展和自定义widget吗？
 
-当然可以！Flutter的widget系统被设计为易于定制的，而不是让每个widget提供大量的参数。Flutter拥抱**组合**：widget由较小的widget构建而成，您可以以各种方式组合，以制作自定义widget。例如，RaisedButton将一个Material widget与一个GestureDetector widget组合在一起，而不是对一个通用按钮widget进行子类化。Material widget提供了可视化设计，而GestureDetector widget提供了交互设计。
+当然可以！Flutter的widget系统被设计为易于定制的。
+
+不同于让每个widget提供大量的参数的思路，Flutter拥抱**组合**：widget由较小的widget构建而成，您可以以各种方式组合，以制作自定义widget。例如，RaisedButton将一个Material widget与一个GestureDetector widget组合在一起，而不是对一个通用按钮widget进行子类化。Material widget提供了可视化设计，而GestureDetector widget提供了交互设计。
 
 要使用自定义视觉设计创建按钮，可以将实现视觉设计的widget与提供交互设计的GestureDetector结合使用。例如，CupertinoButton遵循这种方法，将GestureDetector与其他几个实现其视觉设计的widget结合在一起。
 
@@ -291,11 +295,7 @@ Flutter支持isolates。isolates是Flutter虚拟机中的独立堆，它们可�
 
 ### 我可以在Flutter应用程序的后台运行Dart代码吗？
 
-由于在Android和iOS平台上支持后台执行的基本差异，在后台运行代码具有特定于平台的API。
-
-在Android上，[`android_alarm_manager`](https://pub.dartlang.org/packages/android_alarm_manager) 即使您的Flutter应用程序不在前台，该插件也可让您在后台运行Dart代码。
-
-在iOS上，我们目前不支持此功能。请留意[Bug 6192](https://github.com/flutter/flutter/issues/6192)的更新。
+是的，你可以在 iOS 和 Android 的后台进程里执行 Dart 代码。更多信息请阅读 Medium 文章 [Executing Dart in the Background with Flutter Plugins and Geofencing](https://medium.com/flutter-io/executing-dart-in-the-background-with-flutter-plugins-and-geofencing-2b3e40a1a124).
 
 ### 我可以在Flutter中使用JSON / XML / protobuffers...吗？
 
@@ -359,7 +359,8 @@ Flutter是一个多范式编程环境。在Flutter中使用了过去几十年中
 
 ### 我在哪里可以获得支持？
 
-如果您认为遇到了错误，请将反应到我们的[issue](https://github.com/flutter/flutter/issues中总。我们鼓励您使用 [Stack Overflow](https://stackoverflow.com/tags/flutter)来处理“HOWTO”类型的问题。有关讨论，请加入我们的邮件列表 [flutter-dev@googlegroups.com](mailto:flutter-dev@googlegroups.com)。
+如果您认为遇到了 bug ，请提交到我们的[issue tracker](https://github.com/flutter/flutter/issues)。我们鼓励您使用 [Stack Overflow](https://stackoverflow.com/tags/flutter)来处理“HOWTO”类型的问题。有关讨论，请加入我们的邮件列表 [flutter-dev@googlegroups.com](mailto:flutter-dev@googlegroups.com)。
+
 
 ### Flutter是开源的吗？
 
