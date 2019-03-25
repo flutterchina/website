@@ -59,7 +59,7 @@ summary: 本文详细的介绍了如何使用Flutter构建用户界面，然后�
 
 * 在工程根目录创建一个 `images` 文件夹.
 * 添加
- [`lake.jpg`](https://github.com/flutter/website/blob/master/_includes/code/layout/lakes/images/lake.jpg).
+ [`lake.jpg`](https://raw.githubusercontent.com/flutter/website/master/examples/layout/lakes/step5/images/lake.jpg).
   (请注意，wget不能保存此二进制文件。)
 * 更新
   [`pubspec.yaml`](https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/pubspec.yaml)
