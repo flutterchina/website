@@ -23,9 +23,6 @@ keywords: 发布Flutter应用
 * `uses-permission`: 如果您的应用程序代码不需要Internet访问，请删除`android.permission.INTERNET`权限。标准模板包含此标记是为了启用Flutter工具和正在运行的应用程序之间的通信。
 
 ## 查看构建配置
-
-Review the default [Gradle build file][gradlebuild] file `build.gradle`
-located in `<app dir>/android/app/` and verify the values are correct, especially:
 查看默认[Gradle 构建文件][gradlebuild]"build.gradle"，它位于`<app dir>/android/app/`，验证这些值是否正确，尤其是：
 
 * `defaultConfig`: 
@@ -117,6 +114,55 @@ storeFile=<location of the key store file, e.g. /Users/<user name>/key.jks>
    }
 ```
 现在，您的应用的release版本将自动进行签名。
+
+## 开启混淆
+
+默认情况下 flutter 不会开启 Android 的混淆。
+
+如果使用了第三方 Java 或 Android 库，也许你想减小 apk 文件的大小或者防止代码被逆向破解。
+
+### 配置混淆
+
+创建 `/android/app/proguard-rules.pro` 文件，并添加以下规则：
+
+```
+#Flutter Wrapper
+-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.**  { *; }
+-keep class io.flutter.util.**  { *; }
+-keep class io.flutter.view.**  { *; }
+-keep class io.flutter.**  { *; }
+-keep class io.flutter.plugins.**  { *; }
+```
+
+上述配置只混淆了 Flutter 引擎库，任何其他库（比如 Firebase）需要添加与之对应的规则。
+
+### 开启混淆/压缩
+
+打开 `/android/app/build.gradle` 文件，定位到 `buildTypes` 块。
+
+在 `release ` 配置中将 `minifyEnabled ` 和 `useProguard ` 设为 `true`，再将混淆文件指向上一步创建的文件。
+
+```
+android {
+
+    ...
+
+    buildTypes {
+
+        release {
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+```
 
 ## 构建一个发布版（release）APK
 
