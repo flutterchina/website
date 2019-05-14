@@ -8,9 +8,9 @@ hide_title: true
 ---
 <div class="homepage__illustration">
     <h1 class="homepage__illustration--text">
-        <span> 最新动态：</span>
+        <span> 最新：</span>
         &nbsp;
-        <a href="https://book.flutterchina.club/">第一本中文Flutter书籍《Flutter实战》开源 </a>
+        <a href="https://book.flutterchina.club/">阅读《Flutter实战》电子书</a>
     </h1>
     <img src="{{site.cdn}}/images/homepage/header-illustration.png"
          class="homepage__illustration--image"
