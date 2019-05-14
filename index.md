@@ -8,9 +8,9 @@ hide_title: true
 ---
 <div class="homepage__illustration">
     <h1 class="homepage__illustration--text">
-        <span> 最新版本：</span>
+        <span> 最新动态：</span>
         &nbsp;
-        <a href="https://developers.googleblog.com/2018/12/flutter-10-googles-portable-ui-toolkit.html">Flutter 1.0 已发布 </a>
+        <a href="https://book.flutterchina.club/">第一本中文Flutter书籍《Flutter实战》开源 </a>
     </h1>
     <img src="{{site.cdn}}/images/homepage/header-illustration.png"
          class="homepage__illustration--image"
