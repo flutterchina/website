@@ -12,8 +12,8 @@
 
 
 ```commandline
-export PUB_HOSTED_URL=https://pub.flutter-io.cn //国内用户需要设置
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn //国内用户需要设置
+export PUB_HOSTED_URL=https://pub.flutter-io.cn #国内用户需要设置
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn #国内用户需要设置
 export PATH=PATH_TO_FLUTTER_GIT_DIRECTORY/flutter/bin:$PATH
 ```
 
