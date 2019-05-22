@@ -333,9 +333,9 @@ body: new ListView(
 //...
 {% endprettify %}
 
-**Dart 代码:** [main.dart](https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/main.dart)<br>
-**Image:** [images](https://github.com/flutter/website/tree/master/_includes/code/layout/lakes/images)<br>
-**Pubspec:** [pubspec.yaml](https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/pubspec.yaml)
+**Dart 代码:** [main.dart](https://github.com/flutter/website/blob/master/examples/layout/lakes/interactive/lib/main.dart)<br>
+**Image:** [images](https://github.com/flutter/website/tree/master/examples/layout/lakes/interactive/images)<br>
+**Pubspec:** [pubspec.yaml](https://github.com/flutter/website/blob/master/examples/layout/lakes/interactive/pubspec.yaml)
 
 结束了！当您热重载应用程序时，就会看到和截图中相同界面。您可以参考 [给Flutter APP 添加交互](/tutorials/interactive/)来给您的应用添加交互。
 
