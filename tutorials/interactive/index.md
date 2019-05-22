@@ -267,9 +267,9 @@ class MyApp extends StatelessWidget {
 
 如果您的代码无法运行，请在IDE中查找可能的错误。[调试Flutter应用程序](/debugging/)可能会有所帮助。如果仍然无法找到问题，请根据GitHub上的示例检查代码。
 
-* [`lib/main.dart`](https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes-interactive/main.dart)
-* [`pubspec.yaml`](https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes-interactive/pubspec.yaml)&mdash;此文件没有变化
-* [`lakes.jpg`](https://github.com/flutter/website/blob/master/_includes/code/layout/lakes-interactive/images/lake.jpg)&mdash;此文件没有变化
+* [`lib/main.dart`](https://github.com/flutter/website/blob/master/examples/layout/lakes/interactive/lib/main.dart)
+* [`pubspec.yaml`](https://github.com/flutter/website/blob/master/examples/layout/lakes/interactive/pubspec.yaml)&mdash;此文件没有变化
+* [`lakes.jpg`](https://github.com/flutter/website/tree/master/examples/layout/lakes/interactive/images)&mdash;此文件没有变化
 
 ---
 
