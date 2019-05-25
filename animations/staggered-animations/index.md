@@ -24,47 +24,36 @@ permalink: /animations/staggered-animations/
 [Flutter动画教程](/tutorials/animation/)
 </aside>
 
-Staggered animations are a straightforward concept: visual changes
-happen as a series of operations, rather than all at once.
-The animation might be purely sequential, with one change occuring after
-the next, or it might partially or completely overlap. It might also
-have gaps, where no changes occur.
+交错动画的概念：由一系列操作引发的视觉变化，而不是一次性的操作。动画可能是单纯的顺序执行，比如一个动画跟在另一个动画后面执行，也可能是一部分或者所有动画都重叠起来一块执行.动画之间也可能有间隔，在这个时候什么都不会发生。
 
-所谓交错动画，直接来说就是：视觉变化发生在一系列操作中，而不是一次性发生。 动画可能是纯粹顺序的，在下一个动画之后会发生一次更改，或者可能部分或完全重叠。 它也可能有间隙，没有发生变化。
-
-This guide shows how to build a staggered animation in Flutter.
-
+下面展示了如何在flutter上构建一个交错动画
 <aside class="alert alert-info" markdown="1">
 **Examples**<br>
 
-This guide explains the basic_staggered_animation example. You can also
-refer to a more complex example, staggered_pic_selection.
+这里展示了一个基本的交错动画的案例，当然你也可以参考更复杂的案例，staggered_pic_selection。
 
-[basic_staggered_animation](https://github.com/flutter/website/tree/master/_includes/code/animation/basic_staggered_animation)
-: Shows a series of sequential and overlapping animations of a single widget.
-  Tapping the screen begins an animation that changes opacity, size,
-  shape, color, and padding.
+[basic_staggered_animation](https://github.com/flutter/website/tree/master/examples/_animation/basic_staggered_animation)
+: 在这个组件里我们展示了一组顺序执行和重叠执行的动画。点击屏幕后，动画会开始改变它的透明度，尺寸，形状，颜色和间距。
+  
+  
 
 [staggered_pic_selection](https://github.com/flutter/website/tree/master/_includes/code/animation/staggered_pic_selection)
-: Shows deleting an image from a list of images displayed in one of three sizes.
-  This example uses two [animation
-  controllers](https://docs.flutter.io/flutter/animation/AnimationController-class.html):
-  one for image selection/deselection, and one for image deletion.
-  The selection/deselection animation is staggered. (To see this effect,
-  you might need to increase the `timeDilation` value.)
-  Select one of the largest images&mdash;it shrinks as it displays a checkmark
-  inside a blue circle. Next, select one of the smallest images&mdash;the
-  large image expands as the checkmark disappears. Before the large image
-  has finished expanding, the small image shrinks to display its checkmark.
-  This staggered behavior is similar to what you might see in Google Photos.
-
+: 该案例展示了从图片列表中删除一张图片，图片的尺寸属于三种尺寸中的一种.
+  该案例使用了两个 [animation controllers](https://docs.flutter.io/flutter/animation/AnimationController-class.html):
+ 一个用于图像选择/取消选择，一个用于图像删除。
+ 选择/取消选择动画是交错动画。（为了看到这种效果，
+ 您可能需要增加`timeDilation`值。）
+ 选择一个最大的图像&mdash；当它显示选中标记时会收缩
+ 在蓝色圆圈内。接下来，选择一个最小的图像&mdash;
+ 大图像会随着选中标记的消失而扩展。在大图像
+ 已完成扩展之前，小图像将缩小以显示其选中标记。
+ 这种交错的行为类似于你在谷歌照片中看到的行为。
 </aside>
 
 * TOC Placeholder
 {:toc}
 
-The following video demonstrates the animation performed by
-basic_staggered_animation:
+接下来的视频演示了一个基本的交错动画：
 
 <!--
   Use this instead of the default YouTube embed code so that the embed
@@ -72,44 +61,42 @@ basic_staggered_animation:
 -->
 <div class="embed-container"><iframe src="https://www.youtube.com/embed/0fFvnZemmh8?rel=0" frameborder="0" allowfullscreen></iframe></div>
 
-In the video, you see the following animation of a single widget,
-which begins as a bordered blue square with slightly rounded corners.
-The square runs through changes in the following order:
+在视频中你可以看到，随后的动画变换都在同一个组件中执行，一开始是一个蓝色椭圆边框的矩形。
+该矩形按照以下顺序开始变换：
 
-1. Fades in
-1. Widens
-1. Becomes taller while moving upwards
-1. Transforms into a bordered circle
-1. Changes color to orange
+1. 淡入
+1. 变宽
+1. 向上移动时变高
+1. 变成带边框的圆形
+1. 变成橙色
 
-After running forward, the animation runs in reverse.
+交错动画正向执行后，我们又反向执行了一遍
 
 <aside class="alert alert-info" markdown="1">
-**New to Flutter?**<br>
-This page assumes you know how to create a layout using Flutter’s
-widgets.  For more information, see [Building Layouts in
+**Flutter新手？**<br>
+本页假定您知道如何使用Flutter的小部件创建布局。
+有关更多信息，请参阅在Flutter中构建布局。 [Building Layouts in
 Flutter](/tutorials/layout/).
 </aside>
 
-## Basic structure of a staggered animation
+## 交错动画的基本构成
 
 <div class="whats-the-point" markdown="1">
 
-<b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's the point?</b>
+<b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>有哪些重点?</b>
 
-* All of the animations are driven by the same
+* 所有的动画都使用同一个
   [AnimationController](https://docs.flutter.io/flutter/animation/AnimationController-class.html).
-* Regardless of how long the animation lasts in real time,
-  the controller's values must be between 0.0 and 1.0, inclusive.
-* Each animation has an
+* 无论动画最后的实际运行时间有多长，controller的输入值都控制在0.0到1.0之间.
+* 每个动画的
   [Interval](https://docs.flutter.io/flutter/animation/Interval-class.html)
-  between 0.0 and 1.0, inclusive.
-* For each property that animates in an interval, create a
+  输入值都在0.0到1.0之间.
+* 想要为每个属性定义动画过程中的值，使用
   [Tween.](https://docs.flutter.io/flutter/animation/Tween-class.html)
-  The Tween specifies the start and end values for that property.
-* The Tween produces an
+  Tween将决定该属性在动画过程中的起始值和结束值
+* Tween 可以生成一个
   [Animation](https://docs.flutter.io/flutter/animation/Animation-class.html)
-  object that is managed by the controller.
+  对象，通过传入当前负责的controller来生成.
 </div>
 
 {% comment %}
@@ -119,39 +106,37 @@ inner container around and an Opacity widget that's used to fade everything
 in and out.
 {% endcomment %}
 
-The following diagram shows the Intervals used in the
+下图显示了
 [basic_staggered_animation](https://github.com/flutter/website/tree/master/_includes/code/animation/basic_staggered_animation)
-example. You might notice the following characteristics:
+示例中使用的Intervals。
+您可能会注意到以下特征：:
 
-* The opacity changes during the first 10% of the timeline.
-* A tiny gap occurs between the change in opacity, and the change in width.
-* Nothing animates during the last 25% of the timeline.
-* Increasing the padding makes the widget appear to rise upward.
-* Increasing the border radius to 0.5, transforms the square with rounded
-  corners into a circle.
+* 不透明度在时间轴的前10％期间发生变化.
+* 在不透明度变化和宽度变化的过程中，有一点小小的间隙.
+* 在最后25％的时间线中没有任何动画.
+* 通过增加padding使组件向上出现上升.
+* 将borderRadius变化成0.5，使得矩形变换成了圆形.
 * The padding and border radius changes occur during the same exact interval,
   but they don't have to.
+* padding和borderRadius变化时interval是相同的，但是他们并不是必要的.
 
 <img src="images/StaggeredAnimationIntervals.png" alt="Diagram showing the interval specified for each motion." />
 
-To set up the animation:
+设置动画:
 
-* Create an AnimationController that manages all of the Animations.
-* Create a Tween for each property being animated.
-  * The Tween defines a range of values.
-  * The Tween's `animate` method requires the `parent` controller, and
-    produces an Animation for that property.
-* Specify the interval on the Animation's `curve` property.
+* 创建一个AnimationController管理所有的动画.
+* 为每个属性创建一个Tween.
+  * 为Tween定义一个范围值.
+  * Tween的`animate` 方法要求传入 `parent` controller, 然后才能生成一个属性动画.
+* 为动画的 `curve` 属性指定一个interval.
 
-When the controlling animation's value changes, the new animation's
-value changes, triggering the UI to update.
+当控制过程中动画的值发生改变，或者新创建动画的值发生改变的时候, 就会触发UI的更新.
 
-The following code creates a tween for the `width` property.
-It builds a
+下面的代码为“宽度”属性创建了一个tween, 它构建一个
 [CurvedAnimation](https://docs.flutter.io/flutter/animation/CurvedAnimation-class.html),
-specifying an eased curve.
-See [Curves](https://docs.flutter.io/flutter/animation/Curves-class.html)
-for other available pre-defined animation curves.
+指定了一条宽松的动画曲线.
+查看 [Curves](https://docs.flutter.io/flutter/animation/Curves-class.html)
+可以找到一些系统已经预设好的动画曲线.
 
 <!-- skip -->
 {% prettify dart %}
@@ -169,10 +154,7 @@ width = new Tween<double>(
 ),
 {% endprettify %}
 
-The `begin` and `end` values don't have to be doubles.
-The following code builds the tween for the `borderRadius` property
-(which controls the roundness of the square's corners), using
-`BorderRadius.circular()`.
+`begin` 和 `end` 值没有必要翻倍.接下来的代码将为`borderRadius`属性构建一个tween(将矩形的角变成圆角),这里使用`BorderRadius.circular()`.
 
 {% prettify dart %}
 borderRadius = new BorderRadiusTween(
@@ -189,33 +171,25 @@ borderRadius = new BorderRadiusTween(
 ),
 {% endprettify %}
 
-### Complete staggered animation
+### 完整的交错动画
 
-Like all interactive widgets, the complete animation consists
-of a widget pair: a stateless and a stateful widget.
+就像所有的交互组件一样，一个完整的动画是由无状态和有状态组件构成.
 
-The stateless widget specifies the Tweens,
-defines the Animation objects, and provides a `build()` function
-responsible for building the animating portion of the widget tree.
+无状态组件指定了Tweens，定义了动画对象，并且提供了`build()` 方法来构建组件的动画部分.
 
-The stateful widget creates the controller, plays the animation,
-and builds the non-animating portion of the widget tree.
-The animation begins when a tap is detected anywhere in the screen.
+有状态组件创建了一个controller控制器，用来控制播放动画，并且负责构建了组件的无动画部分。
+当屏幕的任何地方被点击后，动画就会开始执行。
 
 [Full code for basic_staggered_animation's main.dart](https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/basic_staggered_animation/main.dart)
 
-### Stateless widget: StaggerAnimation
+### 无状态组件: StaggerAnimation
 
-In the stateless widget, StaggerAnimation, the `build()` function instantiates an
-[AnimatedBuilder](https://docs.flutter.io/flutter/widgets/AnimatedBuilder-class.html)&mdash;a
-general purpose widget for building animations. The AnimatedBuilder
-builds a widget and configures it using the Tweens' current values.
-The example creates a function named `_buildAnimation()` (which performs
-the actual UI updates), and assigns it to its `builder` property.
-AnimatedBuilder listens to notifications from the animation controller,
-marking the widget tree dirty as values change.
-For each tick of the animation, the values are updated,
-resulting in a call to `_buildAnimation()`.
+AnimatedBuilder--一个用于构建动画的通用小部件。
+[AnimatedBuilder](https://docs.flutter.io/flutter/widgets/AnimatedBuilder-class.html)&mdash;
+AnimatedBuilder构建一个小部件并使用Tweens的当前值配置它。
+该示例创建一个名为_buildAnimation（）的函数（执行实际的UI更新），并将其分配给其构建器属性。
+AnimatedBuilder监听来自动画控制器的通知，在值发生变化时将组件树标记为dirty。
+对于动画的每个刻度，值都会更新，从而调用_buildAnimation（）。
 
 <!-- skip -->
 {% prettify dart %}
@@ -289,11 +263,10 @@ resulting in a call to `_buildAnimation()`.
 
 ### Stateful widget: StaggerDemo
 
-The stateful widget, StaggerDemo, creates the AnimationController
-(the one who rules them all), specifying a 2000 ms duration. It plays
-the animation, and builds the non-animating portion of the widget tree.
-The animation begins when a tap is detected in the screen.
-The animation runs forward, then backward.
+有状态小部件StaggerDemo创建了AnimationController（唯一的控制器用来控制组件内的动画），指定了动画续时间为2000毫秒。
+它不但负责播放动画，并构建了组件的非动画部分。
+在屏幕中检测到点击时动画开始。
+动画先正向播放，然后再反向播放。
 
 <!-- skip -->
 {% prettify dart %}
@@ -361,7 +334,7 @@ class _StaggerDemoState extends State<StaggerDemo> with TickerProviderStateMixin
 
 ## Resources
 
-The following resources might help when writing animations:
+当你编写动画时以下资源可能对你有所帮助:
 
 [Animations landing page](/animations/)
 : Lists the available documentation for Flutter animations.
