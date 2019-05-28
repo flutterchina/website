@@ -231,7 +231,7 @@ class TutorialHome extends StatelessWidget {
 我们的应用程序现在看起来已经有一些“Material”了！例如，应用栏有一个阴影，标题文本会自动继承正确的样式。我们还添加了一个浮动操作按钮，以便进行相应的操作处理。
 
 请注意，我们再次将widget作为参数传递给其他widget。该 [`Scaffold`](https://docs.flutter.io/flutter/material/Scaffold-class.html) widget
-需要许多不同的widget的作为命名参数，其中的每一个被放置在[`Scaffold`](https://docs.flutter.io/flutter/material/Scaffold-class.html)布局中相应的位置。
+需要许多不同的widget作为命名参数，其中的每一个被放置在[`Scaffold`](https://docs.flutter.io/flutter/material/Scaffold-class.html)布局中相应的位置。
 同样，[`AppBar`](https://docs.flutter.io/flutter/material/AppBar-class.html) 中，我们给参数leading、actions、title分别传一个widget。
 这种模式在整个框架中会经常出现，这也可能是您在设计自己的widget时会考虑到一点。
 
