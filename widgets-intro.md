@@ -67,7 +67,7 @@ Flutter有一套丰富、强大的基础widget，其中以下是很常用的：
  * [`Stack`](https://docs.flutter.io/flutter/widgets/Stack-class.html)：
     取代线性布局 (译者语：和Android中的LinearLayout相似)，[`Stack`](https://docs.flutter.io/flutter/widgets/Stack-class.html)允许子 widget 堆叠， 你可以使用
    [`Positioned`](https://docs.flutter.io/flutter/widgets/Positioned-class.html)
-   来定位他们相对于`Stack`的上下左右四条边的位置。Stacks是基于Web开发中的绝度定位（absolute positioning )布局模型设计的。
+   来定位他们相对于`Stack`的上下左右四条边的位置。Stacks是基于Web开发中的绝对定位（absolute positioning )布局模型设计的。
 
  * [`Container`](https://docs.flutter.io/flutter/widgets/Container-class.html)：
    [`Container`](https://docs.flutter.io/flutter/widgets/Container-class.html)
