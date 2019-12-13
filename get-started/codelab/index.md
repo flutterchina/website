@@ -11,7 +11,7 @@ permalink: /get-started/codelab/
 </figure>
 
 
-这是创建您的第一个Flutter应用程序的指南。如果您熟悉面向对象和基本编程概念（如变量、循环和条件控制），则可以完成本教程，您无需要了解Dart或拥有移动开发的经验。
+这是创建您的第一个Flutter应用程序的指南。如果您熟悉面向对象和基本编程概念（如变量、循环和条件控制），则可以完成本教程，您不需要了解Dart或拥有移动开发的经验。
 
 {% comment %}
 TODO: (maybe, but later)
