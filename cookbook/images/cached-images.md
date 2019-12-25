@@ -20,7 +20,7 @@ new CachedNetworkImage(
 
 ```dart
 new CachedNetworkImage(
-  placeholder: new CircularProgressIndicator(),
+  placeholder: (context, url) => CircularProgressIndicator(),
   imageUrl: 'https://github.com/flutter/website/blob/master/_includes/code/layout/lakes/images/lake.jpg?raw=true',
 );
 ``` 
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         ),
         body: new Center(
           child: new CachedNetworkImage(
-            placeholder: new CircularProgressIndicator(),
+            placeholder: (context, url) => CircularProgressIndicator(),
             imageUrl:
                 'https://github.com/flutter/website/blob/master/_includes/code/layout/lakes/images/lake.jpg?raw=true',
           ),
