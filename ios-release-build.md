@@ -1,8 +1,8 @@
 ---
 layout: page
-title: 发布的IOS版APP
+title: 发布的iOS版APP
 permalink: /ios-release/
-summary: 本文介绍了如何构建Flutter的IOS发布版，并将其发布到App Store或TestFlight。
+summary: 本文介绍了如何构建Flutter的iOS发布版，并将其发布到App Store或TestFlight。
 keywords: 发布Flutter应用
 ---
 
