@@ -29,7 +29,7 @@ keywords: Flutter文件读写, Flutter文件操作, Flutter读写文件, Flutter
 
 1. 在`pubspec.yaml`文件中[声明依赖](https://pub.dartlang.org/packages/path_provider#-installing-tab-)  PathProvider 插件
 
-1. 用一下代码替换 `lib/main.dart`中的:
+1. 用以下代码替换 `lib/main.dart`中的:
 
 ```dart
 import 'dart:io';
