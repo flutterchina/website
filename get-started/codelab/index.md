@@ -337,7 +337,7 @@ class RandomWordsState extends State<RandomWords> {
 {% endprettify %}
 </li>
 
-<li markdown="1"> 通过下面高亮显示的代码，将生成单词对代的码从MyApp移动到RandomWordsState中
+<li markdown="1"> 通过下面高亮显示的代码，将生成单词对的代码从MyApp移动到RandomWordsState中
 
 <!-- skip -->
 {% prettify dart %}
