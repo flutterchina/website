@@ -372,7 +372,7 @@ Flutter布局机制的核心就是widget。在Flutter中，几乎所有东西都
 
 <img src="images/sample-flutter-layout.png" alt="node tree representing the sample layout">
 
-大部分应该看起来应该像您所期望的，但你可能想了解一下Container（以粉红色显示）。
+大部分看起来应该像您所期望的，但你可能想了解一下Container（以粉红色显示）。
 Container也是一个widget，允许您自定义其子widget。如果要添加填充，边距，边框或背景色，请使用Container来设置（译者语：只有容器有这些属性）。
 
 在这个例子中，每个Text放置在Container中以添加边距。整个行也被放置在容器中以在行的周围添加填充。
