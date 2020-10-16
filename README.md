@@ -1,4 +1,5 @@
 # Flutter's website
+## (https://flutterchina.club/about/)
 
  [Flutter](https://flutter.io/)官网资源的中文翻译项目，如果发现错误或想加入翻译，可以给本项目提PR， 本项目对应的网站为Flutter中文社区官网：[https://flutterchina.club](https://flutterchina.club) ，欢迎大家一起来维护。
 
