@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design Principles  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/design-principles/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/design-principles.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Design Principles&body=From URL: https://www.flutterchina.club/design-principles.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Design Principles </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#code-review-and-checking-in-code" id="markdown-toc-code-review-and-checking-in-code">Code review and checking in code</a></li>
+  <li><a href="#handling-breaking-changes" id="markdown-toc-handling-breaking-changes">Handling breaking changes</a>    <ul>
+      <li><a href="#google-only-responsibilities" id="markdown-toc-google-only-responsibilities">Google-only responsibilities</a></li>
+    </ul>
+  </li>
+  <li><a href="#lazy-programming" id="markdown-toc-lazy-programming">Lazy programming</a></li>
+  <li><a href="#tests" id="markdown-toc-tests">Tests</a></li>
+  <li><a href="#documentation" id="markdown-toc-documentation">Documentation</a></li>
+  <li><a href="#api-design" id="markdown-toc-api-design">API design</a></li>
+  <li><a href="#bugs" id="markdown-toc-bugs">Bugs</a></li>
+  <li><a href="#regressions" id="markdown-toc-regressions">Regressions</a></li>
+  <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+  <li><a href="#conflict-resolution" id="markdown-toc-conflict-resolution">Conflict resolution</a></li>
+  <li><a href="#code-of-conduct" id="markdown-toc-code-of-conduct">Code of conduct</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Flutter is written based on some core principles that were mostly
+intuited from past experiences with other platforms such as the Web
+and Android, some of which are summarised below.</p>
+
+<p>This document is most useful if you want to contribute to Flutter, as
+then we hope you will also follow these philosophies. Please also read
+our
+<a href="https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo">style guide</a>
+for more specific guidelines regarding writing Dart code for Flutter.</p>
+
+<h2 id="code-review-and-checking-in-code">Code review and checking in code</h2>
+
+<p>Every PR must be code-reviewed before check-in, including things like
+rolling a dependency. Getting a review means that a regular Flutter
+contributor (someone with commit access) has written a comment saying
+“LGTM” on your PR, and you have addressed all their feedback. (“LGTM”
+means “Looks Good To Me”.)</p>
+
+<p>Code review serves many critical purposes. There’s the obvious
+purpose: catching errors. Even the most experienced engineers
+frequently make errors that are caught by code review. But there are
+also many other benefits of code reviews:</p>
+
+<ul>
+  <li>
+    <p>It spreads knowledge among the team. Since every line of code will
+have been read by two people, it’s more likely that once you move
+on, someone else will understand the code.</p>
+  </li>
+  <li>
+    <p>It keeps you honest. Knowing that someone will be reading your
+code, you are less tempted to cut corners and more motivated to
+write code you are proud of.</p>
+  </li>
+  <li>
+    <p>It exposes you to different modes of thinking. Your code reviewer
+has probably not thought about the problem in the same way you
+have, and so may have a fresh perspective and may find you a better
+way to solve the problem.</p>
+  </li>
+</ul>
+
+<p>We recommend you consider
+<a href="https://testing.googleblog.com/2017/06/code-health-too-many-comments-on-your.html">these suggestions</a>
+for addressing code review comments on your PR.</p>
+
+<p>If you’re working on a big patch, don’t hesitate to get reviews early,
+before you’re ready to check code in. Also, don’t hesitate to ask for
+multiple people to review your code, and don’t hesitate to provide unsolicited
+comments on other people’s PRs. The more reviews the better.</p>
+
+<p>Reviewers should carefully read the code and make sure they understand
+it. A reviewer should check the code for both high level concerns,
+such as whether the code’s structure makes sense, as well as
+readability and adherence to the <a href="https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo">Flutter style guide</a>.
+Use <a href="https://mtlynch.io/human-code-reviews-1/">these best practices</a>
+when reviewing code and providing comments.</p>
+
+<p>Reviewers should not give an LGTM unless the patch has tests that verify
+all the affected code, or unless a test would make no sense. If you
+review a patch, you are sharing the responsibility for the patch with
+its author. You should only give an LGTM if you would feel confident
+answering questions about the code.</p>
+
+<p>A reviewer may in some circumstances consider the code satisfactory
+without having fully reviewed or understood it. If a reviewer has not
+fully reviewed the code, they admit to this by saying “RSLGTM” rather
+than just “LGTM”. If you feel your code needs a real review, please
+find someone to actually review it. (“RSLGTM” means “Rubber Stamp
+Looks Good To Me”.) If you mark a patch as RSLGTM, you are still
+sharing the responsibility for the patch with its author. Reviewing a
+patch as RSLGTM should be a rare event.</p>
+
+<p>If you really need to check something in in a hurry, for example
+because everything is broken and you can fix it, then pick someone on
+the team who you want to have review the code, and then mark the PR as
+“TBR” with their name. (“TBR” means “To Be Reviewed”.) This is only to
+be used in emergencies. (Nobody being around to review your 50,000
+line patch at midnight on December 31st is not an emergency!) If
+someone marks a patch as TBR and gives your name as the reviewer, you
+should review the patch as soon as possible. If a reviewer finds
+problems with a patch marked TBR, the issues should be fixed as soon
+as possible.</p>
+
+<p>Wait for Travis to give the green light before merging a PR. Travis
+runs a bunch of precommit checks (see the tests for the
+<a href="https://github.com/flutter/flutter/blob/master/dev/bots/test.dart">framework</a>,
+the <a href="https://github.com/flutter/engine/blob/master/travis/build.sh">engine</a>,
+and the <a href="https://github.com/flutter/website/blob/master/tool/travis.sh">website</a>).
+These checks include checks on comments, so make sure you wait for the
+green light even if your patch is <em>obviously</em> fine!</p>
+
+<p>For the engine repository, Travis
+does not actually <em>build</em> the engine, so you should make sure to do
+that locally first too before checking anything in.</p>
+
+<p>Make sure all the trees and dashboards are green before checking in:
+the <a href="https://build.chromium.org/p/client.flutter/waterfall">infra waterfall</a>,
+our <a href="https://travis-ci.org/flutter/flutter/builds">travis dashboard</a>,
+our <a href="https://flutter-dashboard.appspot.com/build.html">test dashboard</a>, and
+our <a href="https://flutter-dashboard.appspot.com/benchmarks.html">benchmarks dashboard</a> (Google-only, sorry).</p>
+
+<p><strong>If the trees or dashboards are showing any regressions, only fixes
+that improve the situation are allowed to go in.</strong></p>
+
+<h2 id="handling-breaking-changes">Handling breaking changes</h2>
+
+<p>We’re attempting to stablize the APIs for the
+<a href="https://github.com/flutter/flutter/tree/master/packages">packages in the SDK</a>.
+To make a change that will require developers to change their code:</p>
+
+<ol>
+  <li>
+    <p>File an issue or create a pull request with the <code class="highlighter-rouge">prod: API break</code>
+label.</p>
+  </li>
+  <li>
+    <p>Send an e-mail to <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a> to socialize
+your proposed change. The e-mail should include the following:</p>
+
+    <ul>
+      <li>
+        <p>A subject line that clearly summarises the change and sounds like it
+matters (so that people can spot these e-mails among the noise).</p>
+      </li>
+      <li>
+        <p>A summary of each change you propose.</p>
+      </li>
+      <li>
+        <p>A link to the issue you filed in step 1, and any PRs you may have already
+posted relating to this change.</p>
+      </li>
+      <li>
+        <p>Clear mechanical steps for porting the code from the old form to the new
+form, if possible. If not possible, clear steps for figuring out how to
+port the code.</p>
+      </li>
+      <li>
+        <p>A brief justification for the change.</p>
+      </li>
+      <li>
+        <p>A sincere offer to help port code, which includes the preferred venue for
+contacting the person who made the change.</p>
+      </li>
+      <li>
+        <p>A request that people notify you if this change will be a problem,
+perhaps by discussing the change in the issue tracker on on the pull request.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>If folks agree that the benefits of changing the API outweigh the stablity
+costs, you can proceed with the normal code review process for making
+changes. You should leave some time between steps 2 and 3 (at a bare minimum
+24 hours during the work week so that people in all time zones have had a
+chance to see it, but ideally a week or so).</p>
+  </li>
+  <li>
+    <p>If you landed a breaking change, add a bullet point to the top section of
+the <a href="https://github.com/flutter/flutter/wiki/Changelog">Changelog page on the wiki</a>,
+describing your change and
+linking to your e-mail in <a href="https://groups.google.com/forum/#!forum/flutter-dev">the mailing list archives</a>.
+To figure out the correct version heading for the changelog run
+<code class="highlighter-rouge">git fetch upstream &amp;&amp; flutter --version</code>. For example, if it says
+“Flutter 0.0.23-pre.10” in the output your changelog entry should be under
+heading “Changes since 0.0.22”.</p>
+  </li>
+</ol>
+
+<p>Where possible, even “breaking” changes should be made in a backwards-compatible way,
+for example by introducing a new class and marking the old class <code class="highlighter-rouge">@deprecated</code>. When
+doing this, include a description of how to transition in the deprecation notice, for
+example:</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Deprecated</span><span class="o">(</span><span class="s">'FooInterface has been deprecated because ...; it is recommended that you transition to the new FooDelegate.'</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">FooInterface</span> <span class="o">{</span>
+  <span class="c1">/// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>If you use <code class="highlighter-rouge">@deprecated</code>, make sure to remember to actually remove the feature a few
+weeks later, do not just leave it forever!</p>
+
+<h4 id="google-only-responsibilities">Google-only responsibilities</h4>
+
+<p>If you work for Google, you have the added responsibility of updating Google’s
+internal copy of Flutter and fixing any broken call-sites reasonably quickly
+after merging the upstream change.</p>
+
+<h2 id="lazy-programming">Lazy programming</h2>
+
+<p>Write what you need and no more, but when you write it, do it right.</p>
+
+<p>Avoid implementing features you don’t need. You can’t design a feature
+without knowing what the constraints are. Implementing features “for
+completeness” results in unused code that is expensive to maintain,
+learn about, document, test, etc.</p>
+
+<p>When you do implement a feature, implement it the right way. Avoid
+workarounds. Workarounds merely kick the problem further down the
+road, but at a higher cost: someone will have to relearn the problem,
+figure out the workaround and how to dismantle it (and all the places
+that now use it), <em>and</em> implement the feature. It’s much better to
+take longer to fix a problem properly, than to be the one who fixes
+everything quickly but in a way that will require cleaning up later.</p>
+
+<p>You may hear team members say “embrace the <a href="http://www.catb.org/jargon/html/Y/yak-shaving.html">yak
+shave</a>!”. This is
+an encouragement to take on the larger effort necessary to perform a
+proper fix for a problem rather than just applying a band-aid.</p>
+
+<h2 id="tests">Tests</h2>
+
+<p><strong>Write Tests, Find Bugs</strong></p>
+
+<p>When you fix a bug, first write a test that fails, then fix the bug
+and verify the test passes.</p>
+
+<p>When you implement a new feature, write tests for it.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<p>When working on Flutter, if you find yourself asking a question about
+our systems, please place whatever answer you subsequently discover
+into the documentation in the same place where you first looked for
+the answer.</p>
+
+<p>It’s better to not document something than to document it poorly
+(because if you don’t document it, it still appears on our list of
+things to document). Feel free to remove documentation that violates
+our
+<a href="https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo">style guide</a>,
+so as to make it reappear on the list.</p>
+
+<h2 id="api-design">API design</h2>
+
+<ul>
+  <li>
+    <p>There should be no objects that represent live state that reflects
+some other state, since they are expensive to maintain. e.g. no
+<code class="highlighter-rouge">HTMLCollection</code>.</p>
+  </li>
+  <li>
+    <p>Property getters should be efficient (e.g. just returning a cached
+value, or an O(1) table lookup). If an operation is inefficient it
+should be a method instead. e.g. <code class="highlighter-rouge">document.getForms()</code>, not
+<code class="highlighter-rouge">document.forms</code>.</p>
+  </li>
+  <li>
+    <p>There should be no APIs that require synchronously completing an
+expensive operation (e.g. computing a full app layout outside of the
+layout phase).</p>
+  </li>
+  <li>
+    <p>We use a layered framework design, where each layer addresses a
+narrowly scoped problem and is then used by the next layer to solve
+a bigger problem. This is true both at a high level (widgets relies
+on rendering relies on painting) and at the level of individual
+classes and methods (e.g. in the rendering library, having one class
+for clipping and one class for opacity rather than one class that
+does both at the same time).</p>
+
+    <ul>
+      <li>
+        <p>Convenience APIs belong at the layer above the one they are
+simplifying.</p>
+      </li>
+      <li>
+        <p>Having dedicated APIs for performance reasons is fine. If one
+specific operation, say clipping a rounded rectangle, is expensive
+using the generic API but could be implemented more efficiently
+using a dedicated API, then a dedicated API is fine.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>APIs that encourage bad practices should not exist. e.g., no
+<code class="highlighter-rouge">document.write()</code>, <code class="highlighter-rouge">innerHTML</code>, <code class="highlighter-rouge">insertAdjacentHTML()</code>, etc.</p>
+
+    <ul>
+      <li>String manipulation to generate data or code that will subsequently
+be interpreted or parsed is a bad practice as it leads to code
+injection vulnerabilities.</li>
+    </ul>
+  </li>
+  <li>
+    <p>If we wrap some aspect of a service from one environment for exposure
+in another environment (for example, exposing an Android API in Dart),
+we should expose/wrap all of it, so that there’s no cognitive cliff
+when interacting with that service (where you are fine using the exposed
+API up to a point, but beyond that have to learn all about the underlying
+service).</p>
+  </li>
+</ul>
+
+<h2 id="bugs">Bugs</h2>
+
+<p>Only assign a bug to yourself when you are actively working on it. If
+you’re not working on it, leave it unassigned. Don’t assign bugs to
+people unless you know they are going to work on it. If you find
+yourself with bugs assigned that you are not going to be working on in
+the very near future, unassign the bug so that other people feel
+empowered to work on them.</p>
+
+<p>You may hear team members refer to “licking the cookie”. Assigning a
+bug to yourself, or otherwise indicating that you will work on it,
+tells others on the team to not fix it. If you then don’t work on it
+straight away, you are acting like someone who has taken a cookie,
+licked it to unappetising to other people, and then not eaten it right
+away. By extension, “unlicking the cookie” means indicating to the
+rest of the team that you are not actually going to work on the bug
+right away after all, e.g. by unassigning the bug from yourself.</p>
+
+<p>File bugs for anything that you come across that needs doing. When you
+implement something but know it’s not complete, file bugs for what you
+haven’t done. That way, we can keep track of what still needs doing.</p>
+
+<h2 id="regressions">Regressions</h2>
+
+<p>If a check-in has caused a regression on the trunk, roll back the
+check-in (even if it isn’t yours) unless doing so would take longer
+than fixing the bug. When the trunk is broken, it slows down everyone
+else on the project.</p>
+
+<p>If things are broken, the priority of everyone on the team should be
+helping the team fix the problem. Someone should own the issue, and
+they can delegate responsibilities to others on the team. Once the
+problem is resolved, write a
+<a href="https://github.com/flutter/flutter/wiki/Postmortems">post-mortem</a>.
+Postmortems are about documenting what went wrong and how to avoid the
+problem (and the entire class of problems like it) from recurring in
+the future. Postmortems are emphatically <em>not</em> about assigning blame.</p>
+
+<p>There is no shame in making mistakes.</p>
+
+<h2 id="questions">Questions</h2>
+
+<p>It’s always ok to ask questions. Our systems are large, nobody will be
+an expert in all the systems.</p>
+
+<h2 id="conflict-resolution">Conflict resolution</h2>
+
+<p>When multiple contributors disagree on the direction for a particular
+patch or the general direction of the project, the conflict should be
+resolved by communication. The people who disagree should get together,
+try to understand each other’s points of view, and work to find a design
+that addresses everyone’s concerns.</p>
+
+<p>This is usually sufficient to resolve issues. If you cannot come to an
+agreement, ask for the advice of a more senior member of the team.</p>
+
+<p>Be wary of agreement by attrition, where one person argues a point repeatedly
+until other participants give up in the interests of moving on. This is
+not conflict resolution, as it does not address everyone’s concerns. Be wary
+of agreement by compromise, where two good competing solutions are merged
+into one mediocre solution. A conflict is addressed when the participants
+agree that the final solution is <em>better</em> than all the conflicting proposals.
+Sometimes the solution is more work than either of the proposals. Please
+see the comments above where we introduce the phrase “embrace the yak shave”.</p>
+
+<h2 id="code-of-conduct">Code of conduct</h2>
+
+<p>This section is the last section in this document because it should be
+the most obvious. However, it is also the most important.</p>
+
+<p>We expect Flutter’s contributors to act professionally and respectfully, and
+we expect our social spaces to be safe and dignified environments.</p>
+
+<p>Specifically:</p>
+
+<ul>
+  <li>Respect people, their identities, their culture, and their work.</li>
+  <li>Be kind. Be courteous. Be welcoming.</li>
+  <li>Listen. Consider and acknowledge people’s points before responding.</li>
+</ul>
+
+<p>Should you experience anything that makes you feel unwelcome in Flutter’s
+community, please contact someone on the team, for instance
+<a href="mailto:ian@hixie.ch">Ian</a> or <a href="mailto:abarth@google.com">Adam</a>. We will
+not tolerate harrasment from anyone in Flutter’s community, even outside
+of Flutter’s public communication channels.</p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

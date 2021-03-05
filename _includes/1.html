@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽签</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+    $(function(){
+        //定义一个数组，用于存储姓名
+        var names=[
+            "张三",
+            "李四",
+            "诸葛亮",
+            "刘备",
+            "曹操",
+            "韩非",
+            "张良",
+            "卫庄",
+            "盖聂",
+        ];
+        var time;//定义成员变量，用于接收定时器，也是为清除定时器作准备
+        var index;//定义成员变量，用于接收生成的随机数，也是为了给input框设置value值做准备
+        //先设置按钮的可用性(在点击按钮之前，开水按钮是可用的，结束按钮是不可用的)
+        $("#start").prop("disabled",false);//"disabled"代表可不可用的属性，系统默认的属性值是不可用；
+        $("#stop").prop("disabled",true);//false代表可用，true代表不可用
+        //给开始按钮绑定事件
+        $("#start").click(function(){
+            //设置定时器
+            time=setInterval(function(){
+                //设置爱按钮的可用性
+                $("#start").prop("disabled",true);
+                $("#stop").prop("disabled",false);
+                //生成随机数
+                index=Math.floor((Math.random()*10)+1);
+                //给input框设置value值
+                $("#name").text(names[index]);
+            });
+        });
+        //给结束按钮设置绑定事件
+        $("#stop").click(function(){
+            //清除定时器
+            clearInterval(time);
+            //设置按钮状态
+            $("#start").prop("disabled",false);
+            $("#stop").prop("disabled",true);
+        });
+    });
+</script>
+<body>
+<div id="name" style="text-align: center"></div>
+<input type="button" id="start" value="开始" style="width: 70px;height: 35px; margin-left: 100px" >
+<input type="button" id="stop" value="结束" style="width: 70px;height: 35px;">
+</body>
+</html>

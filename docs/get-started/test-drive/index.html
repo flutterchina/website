@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>起步: 体验  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/get-started/test-drive/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/get-started/test-drive.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 起步: 体验&body=From URL: https://www.flutterchina.club/get-started/test-drive.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">起步: 体验 </h1>
+   </div>
+
+  </header>
+  
+
+  <p>本页介绍如何 “试驾” Flutter: 从我们的模板创建一个新的Flutter应用程序，运行它，并学习如何使用Hot Reload进行更新重载</p>
+
+<p>Flutter是一个灵活的工具包，所以请首先选择您的开发工具来编写、构建和运行您的Flutter应用程序。</p>
+
+<ul class="tabs__top-bar">
+    <li class="tab-link current" data-tab="tab-install-androidsstudio">Android Studio</li>
+    <li class="tab-link" data-tab="tab-install-vscode">VS Code</li>
+    <li class="tab-link" data-tab="tab-install-terminal">Terminal + 编辑器</li>
+</ul>
+
+<div id="tab-install-androidsstudio" class="tabs__content current">
+
+  <p><em>Android Studio:</em> 为Flutter提供完整的IDE体验.</p>
+
+  <h2 id="create-app">创建新应用</h2>
+
+  <ol>
+    <li>选择 <strong>File&gt;New Flutter Project</strong></li>
+    <li>选择 <strong>Flutter application</strong> 作为 project 类型, 然后点击 Next</li>
+    <li>输入项目名称 (如 <code class="highlighter-rouge">myapp</code>), 然后点击 Next</li>
+    <li>点击 <strong>Finish</strong></li>
+    <li>等待Android Studio安装SDK并创建项目.</li>
+  </ol>
+
+  <p>上述命令创建一个Flutter项目，项目名为myapp，其中包含一个使用<a href="https://material.io/guidelines/">Material 组件</a>的简单演示应用程序。</p>
+
+  <p>在项目目录中，您应用程序的代码位于 <code class="highlighter-rouge">lib/main.dart</code>.</p>
+
+  <h2 id="section">运行应用程序</h2>
+
+  <ol>
+    <li>定位到Android Studio 工具栏:<br />
+<img src="/images/intellij/main-toolbar.png" alt="Main IntelliJ toolbar" /></li>
+    <li>在 <strong>target selector</strong> 中, 选择一个运行该应用的Android设备.
+如果没有列出可用，请选择 <strong>Tools&gt;Android&gt;AVD Manager</strong> 并在那里创建一个</li>
+    <li>在工具栏中点击 <strong>Run图标</strong>, 或者调用菜单项 <strong>Run &gt; Run</strong>.</li>
+    <li>如果一切正常, 您应该在您的设备或模拟器上会看到启动的应用程序:<br />
+<img src="/images/flutter-starter-app-android.png" alt="Starter App on Android" /></li>
+  </ol>
+
+  <h2 id="section-1">体验热重载</h2>
+
+  <p>Flutter 可以通过 <em>热重载（hot reload）</em> 实现快速的开发周期，热重载就是无需重启应用程序就能实时加载修改后的代码，并且不会丢失状态（译者语:如果是一个web开发者，那么可以认为这和webpack的热重载是一样的）。简单的对代码进行更改，然后告诉IDE或命令行工具你需要重新加载（点击reload按钮），你就会在你的设备或模拟器上看到更改。</p>
+
+  <ol>
+    <li>将字符串<br /><code class="highlighter-rouge">'You have pushed the button this many times:'</code>
+更改为<br /><code class="highlighter-rouge">'You have clicked the button this many times:'</code></li>
+    <li>不要按“Stop”按钮; 让您的应用继续运行。</li>
+    <li>要查看您的更改, 只需调用 <strong>Save All</strong> (<code class="highlighter-rouge">cmd-s</code> / <code class="highlighter-rouge">ctrl-s</code>), 或点击
+<strong>热重载按钮</strong> (带有闪电⚡️图标的按钮).</li>
+  </ol>
+
+  <p>你就会立即看到更新后的字符串。</p>
+
+</div>
+
+<div id="tab-install-vscode" class="tabs__content">
+
+  <p><em>VS Code:</em> 轻量级编辑器，支持Flutter运行和调试.</p>
+
+  <h2 id="section-2">创建新的应用</h2>
+
+  <ol>
+    <li>启动 VS Code</li>
+    <li>调用 <strong>View&gt;Command Palette…</strong></li>
+    <li>输入 ‘flutter’, 然后选择 <strong>‘Flutter: New Project’</strong> action</li>
+    <li>输入 Project 名称 (如<code class="highlighter-rouge">myapp</code>), 然后按回车键</li>
+    <li>指定放置项目的位置，然后按蓝色的确定按钮</li>
+    <li>等待项目创建继续，并显示main.dart文件</li>
+  </ol>
+
+  <p>上述命令创建一个Flutter项目，项目名为myapp，其中包含一个使用<a href="https://material.io/guidelines/">Material 组件</a>的简单的演示应用程序。</p>
+
+  <p>在项目目录中，您的应用程序的代码位于 <code class="highlighter-rouge">lib/main.dart</code>.</p>
+
+  <h2 id="section-3">运行应用程序</h2>
+
+  <ol>
+    <li>确保在VS Code的右下角选择了目标设备</li>
+    <li>按 F5 键或调用<strong>Debug&gt;Start Debugging</strong></li>
+    <li>等待应用程序启动</li>
+    <li>如果一切正常，在应用程序建成功后，您应该在您的设备或模拟器上看到应用程序:<br />
+<img src="/images/flutter-starter-app-android.png" alt="Starter App on Android" /></li>
+  </ol>
+
+  <h2 id="section-4">体验热重载</h2>
+
+  <p>Flutter 可以通过 <em>热重载（hot reload）</em> 实现快速的开发周期，热重载就是无需重启应用程序就能实时加载修改后的代码，并且不会丢失状态（译者语:如果是一个web开发者，那么可以认为这和webpack的热重载是一样的）。简单的对代码进行更改，然后告诉IDE或命令行工具你需要重新加载（点击reload按钮），你就会在你的设备或模拟器上看到更改。</p>
+
+  <ol>
+    <li>用你喜欢的编辑器打开文件<code class="highlighter-rouge">lib/main.dart</code></li>
+    <li>将字符串<br /><code class="highlighter-rouge">'You have pushed the button this many times:'</code>
+更改为<br /><code class="highlighter-rouge">'You have clicked the button this many times:'</code></li>
+    <li>不要按“停止”按钮; 让您的应用继续运行.</li>
+    <li>要查看您的更改，请调用 <strong>Save</strong> (<code class="highlighter-rouge">cmd-s</code> / <code class="highlighter-rouge">ctrl-s</code>), 或者点击
+<strong>热重载按钮</strong> (绿色圆形箭头按钮).</li>
+  </ol>
+
+  <p>你会立即在运行的应用程序中看到更新的字符串</p>
+
+</div>
+
+<div id="tab-install-terminal" class="tabs__content">
+
+  <p><em>Terminal + 编辑器:</em> 您的编辑选择与Flutter的终端工具结合运行和构建</p>
+
+  <h2 id="section-5">创建新的应用</h2>
+
+  <ol>
+    <li>使用 <code class="highlighter-rouge">flutter create</code> 命令创建一个project:</li>
+  </ol>
+  <pre><code><span class="noselect">$ </span>flutter create myapp
+<span class="noselect">$ </span>cd myapp</code></pre>
+
+  <p>上述命令创建一个Flutte让项目，项目名为<code class="highlighter-rouge">myapp</code>，其中包含一个使用<a href="https://material.io/guidelines/">Material 组件</a>的简单演示应用程序。</p>
+
+  <p>在项目目录中，您的应用程序的代码位于 <code class="highlighter-rouge">lib/main.dart</code>.</p>
+
+  <h2 id="section-6">运行应用程序</h2>
+
+  <ul>
+    <li>检查Android设备是否在运行。如果没有显示, 请参照 <a href="/get-started/install/">设置</a>.</li>
+  </ul>
+  <pre><code><span class="noselect">$ </span>flutter devices</code></pre>
+  <ul>
+    <li>运行 <code class="highlighter-rouge">flutter run</code> 命令来运行应用程序:</li>
+  </ul>
+  <pre><code><span class="noselect">$ </span>flutter run</code></pre>
+  <ul>
+    <li>如果一切正常，在应用程序建成功后，您应该在您的设备或模拟器上看到应用程序:<br />
+ <img src="/images/flutter-starter-app-android.png" alt="Starter App on Android" /></li>
+  </ul>
+
+  <h2 id="section-7">体验热重载</h2>
+
+  <p>Flutter 可以通过 <em>热重载（hot reload）</em> 实现快速的开发周期，热重载就是无需重启应用程序就能实时加载修改后的代码，并且不会丢失状态（译者语:如果是一个web开发者，那么可以认为这和webpack的热重载是一样的）。简单的对代码进行更改，然后告诉IDE或命令行工具你需要重新加载（点击reload按钮），你就会在你的设备或模拟器上看到更改。</p>
+
+  <ol>
+    <li>打开文件<code class="highlighter-rouge">lib/main.dart</code></li>
+    <li>将字符串<br /><code class="highlighter-rouge">'You have pushed the button this many times:'</code>
+更改为<br /><code class="highlighter-rouge">'You have clicked the button this many times:'</code></li>
+    <li>不要按“停止”按钮; 让您的应用继续运行.</li>
+    <li>要查看您的更改，请调用 <strong>Save</strong> (<code class="highlighter-rouge">cmd-s</code> / <code class="highlighter-rouge">ctrl-s</code>), 或者点击
+<strong>热重载按钮</strong> (带有闪电图标的按钮).</li>
+  </ol>
+
+  <p>你会立即在运行的应用程序中看到更新的字符串</p>
+
+</div>
+
+<h2 id="下一步">下一步</h2>
+
+<p>让我们通过创建一个小应用来学习一些Flutter的核心的概念。</p>
+
+<p><a href="/get-started/codelab/">下一步: 编写您的第一个Flutter应用程序</a></p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

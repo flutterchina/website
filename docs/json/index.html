@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON和序列化  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="本文介绍了如何在Flutter中使用json、如何自动对JSON数据序列化和反序列化">
+  <meta name="keywords" content="Flutter中使用JSON,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/json/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/json.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page JSON和序列化&body=From URL: https://www.flutterchina.club/json.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">JSON和序列化 </h1>
+   </div>
+
+  </header>
+  
+
+  <p>很难想象移动应用程序不需要与Web服务器通信或在某个时刻存储结构化数据。
+在编写需要联网的应用程序时，我们很可能迟早需要使用JSON。</p>
+
+<p>在本教程中，我们将探讨如何在Flutter中使用JSON。我们回顾一下在不同情况下使用的JSON解决方案以及原因。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#哪种json序列化方法适合我" id="markdown-toc-哪种json序列化方法适合我">哪种JSON序列化方法适合我？</a>    <ul>
+      <li><a href="#小项目手动序列化" id="markdown-toc-小项目手动序列化">小项目手动序列化</a></li>
+      <li><a href="#在大中型项目中使用代码生成" id="markdown-toc-在大中型项目中使用代码生成">在大中型项目中使用代码生成</a></li>
+    </ul>
+  </li>
+  <li><a href="#flutter中是否有gson--jackson--moshi" id="markdown-toc-flutter中是否有gson--jackson--moshi">Flutter中是否有GSON / Jackson / Moshi？</a></li>
+  <li><a href="#使用-dartconvert手动序列化json" id="markdown-toc-使用-dartconvert手动序列化json">使用 dart:convert手动序列化JSON</a>    <ul>
+      <li><a href="#内连序列化json" id="markdown-toc-内连序列化json">内连序列化JSON</a></li>
+      <li><a href="#在模型类中序列化json" id="markdown-toc-在模型类中序列化json">在模型类中序列化JSON</a></li>
+    </ul>
+  </li>
+  <li><a href="#使用代码生成库序列化json" id="markdown-toc-使用代码生成库序列化json">使用代码生成库序列化JSON</a>    <ul>
+      <li><a href="#在项目中设置json_serializable" id="markdown-toc-在项目中设置json_serializable">在项目中设置json_serializable</a></li>
+      <li><a href="#以json_serializable的方式创建model类" id="markdown-toc-以json_serializable的方式创建model类">以json_serializable的方式创建model类</a></li>
+      <li><a href="#运行代码生成程序" id="markdown-toc-运行代码生成程序">运行代码生成程序</a>        <ul>
+          <li><a href="#一次性生成" id="markdown-toc-一次性生成">一次性生成</a></li>
+          <li><a href="#持续生成" id="markdown-toc-持续生成">持续生成</a></li>
+        </ul>
+      </li>
+      <li><a href="#使用json_serializable模型" id="markdown-toc-使用json_serializable模型">使用json_serializable模型</a></li>
+    </ul>
+  </li>
+  <li><a href="#一些参考" id="markdown-toc-一些参考">一些参考</a></li>
+</ul>
+
+<h2 id="哪种json序列化方法适合我">哪种JSON序列化方法适合我？</h2>
+
+<p>本文介绍了使用JSON的两个常规策略：</p>
+
+<ul>
+  <li>手动序列化和反序列化</li>
+  <li>通过代码生成自动序列化和反序列化</li>
+</ul>
+
+<p>不同的项目具有不同的复杂度和场景。对于较小项目，使用代码生成器可能会过度。对于具有多个JSON model的复杂应用程序，手动序列化可能会比较重复，并会很容易出错。</p>
+
+<h3 id="小项目手动序列化">小项目手动序列化</h3>
+
+<p>手动JSON序列化是指使使用<code class="highlighter-rouge">dart:convert</code>中内置的JSON解码器。它将原始JSON字符串传递给JSON.decode() 方法，然后在返回的<code class="highlighter-rouge">Map&lt;String, dynamic&gt;</code>中查找所需的值。
+它没有外部依赖或其它的设置，对于小项目很方便。</p>
+
+<p>当您的项目变大时，手动编写序列化逻辑可能变得难以管理且容易出错。如果您在访问未提供的JSON字段时输入了一个错误的字段，则您的代码将会在运行时会引发错误。</p>
+
+<p>如果您的项目中JSON model并不多，并且希望快速测试一下，那么手动序列化可能会很方便。有关手动序列化的示例，请参考<a href="#manual-serialization">这里</a>。</p>
+
+<h3 id="在大中型项目中使用代码生成">在大中型项目中使用代码生成</h3>
+
+<p>代码生成功能的JSON序列化是指通过外部库为您自动生成序列化模板。它需要一些初始设置，并运行一个文件观察器，从您的model类生成代码。
+例如，<a href="https://pub.dartlang.org/packages/json_serializable">json_serializable</a>和<a href="https://pub.dartlang.org/packages/built_value">built_value</a>就是这样的库。</p>
+
+<p>这种方法适用于较大的项目。不需要手写，如果访问JSON字段时拼写错误，这会在编译时捕获的。代码生成的不利之处在于它涉及到一些初始设置。另外，生成的源文件可能会在项目导航器会显得混乱。</p>
+
+<p>当您有一个中型或大型项目时，您可能想要使用代码生成JSON序列化。要查看基于代码生成JSON序列化的示例，请参见<a href="#code-generation">这里</a>。</p>
+
+<h2 id="flutter中是否有gson--jackson--moshi">Flutter中是否有GSON / Jackson / Moshi？</h2>
+
+<p>简单的回答是没有.</p>
+
+<p>这样的库需要使用运行时反射，这在Flutter中是禁用的。运行时反射会干扰Dart的_tree shaking_。使用_tree shaking_，我们可以在发版时“去除”未使用的代码。这可以显着优化应用程序的大小。</p>
+
+<p>由于反射会默认使用所有代码，因此_tree shaking_会很难工作。这些工具无法知道哪些widget在运行时未被使用，因此冗余代码很难剥离。使用反射时，应用尺寸无法轻松的进行优化。</p>
+
+<aside class="alert alert-info">
+  <p><strong>dartson呢?</strong></p>
+
+  <p><a href="https://pub.dartlang.org/packages/dartson">dartson</a> 使用了运行时反射 runtime，所以不能在Flutter中使用它.</p>
+</aside>
+
+<p>虽然我们不能在Flutter中使用运行时反射，但有些库为我们提供了类似易于使用的API，但它们是基于代码生成的。这种方法在<a href="#code-generation">代码生成库</a>部分有更详细的介绍。</p>
+
+<p><a name="manual-serialization"></a></p>
+<h2 id="使用-dartconvert手动序列化json">使用 dart:convert手动序列化JSON</h2>
+
+<p>Flutter中基本的JSON序列化非常简单。Flutter有一个内置<code class="highlighter-rouge">dart:convert</code>库，其中包含一个简单的JSON编码器和解码器。</p>
+
+<p>以下是一个简单的user model的示例JSON。</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>有了<code class="highlighter-rouge">dart:convert</code>，我们可以用两种方式来序列化这个JSON model。我们来看看这两种方法：</p>
+
+<h3 id="内连序列化json">内连序列化JSON</h3>
+
+<p>通过查看<a href="https://api.dartlang.org/stable/1.24.3/dart-convert/JsonCodec-class.html">dart：转换JSON文档</a>，我们发现可以通过调用<code class="highlighter-rouge">JSON.decode</code>方法来解码JSON ，使用JSON字符串作为参数。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">json</span><span class="o">);</span>
+
+<span class="n">print</span><span class="o">(</span><span class="s">'Howdy, </span><span class="si">${user['name']}</span><span class="s">!'</span><span class="o">);</span>
+<span class="n">print</span><span class="o">(</span><span class="s">'We sent the verification link to </span><span class="si">${user['email']}</span><span class="s">.'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>不幸的是，JSON.decode()仅返回一个<code class="highlighter-rouge">Map&lt;String, dynamic&gt;</code>，这意味着我们直到运行时才知道值的类型。
+通过这种方法，我们失去了大部分静态类型语言特性：类型安全、自动补全和最重要的编译时异常。这样一来，我们的代码可能会变得非常容易出错。</p>
+
+<p>例如，当我们访问<code class="highlighter-rouge">name</code>或<code class="highlighter-rouge">email</code>字段时，我们输入的很快，导致字段名打错了。但由于这个JSON在map结构中，所以编译器不知道这个错误的字段名(译者语：所以编译时不会报错)。</p>
+
+<h3 id="在模型类中序列化json">在模型类中序列化JSON</h3>
+
+<p>我们可以通过引入一个简单的模型类(model class)来解决前面提到的问题，我们称之为<code class="highlighter-rouge">User</code>。在User类内部，我们有：</p>
+
+<ul>
+  <li>一个<code class="highlighter-rouge">User.fromJson</code> 构造函数, 用于从一个map构造出一个 <code class="highlighter-rouge">User</code>实例
+map structure</li>
+  <li>一个<code class="highlighter-rouge">toJson</code> 方法, 将 <code class="highlighter-rouge">User</code> 实例转化为一个map.</li>
+</ul>
+
+<p>这样，调用代码现在可以具有类型安全、自动补全字段（name和email）以及编译时异常。如果我们将拼写错误或字段视为<code class="highlighter-rouge">int</code>类型而不是<code class="highlighter-rouge">String</code>，
+那么我们的应用程序就不会通过编译，而不是在运行时崩溃。</p>
+
+<p><strong>user.dart</strong></p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">email</span><span class="o">;</span>
+
+  <span class="n">User</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">email</span><span class="o">);</span>
+
+  <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">json</span><span class="o">)</span>
+      <span class="o">:</span> <span class="n">name</span> <span class="o">=</span> <span class="n">json</span><span class="o">[</span><span class="s">'name'</span><span class="o">],</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">json</span><span class="o">[</span><span class="s">'email'</span><span class="o">];</span>
+
+  <span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">toJson</span><span class="o">()</span> <span class="o">=&gt;</span>
+    <span class="o">{</span>
+      <span class="s">'name'</span><span class="o">:</span> <span class="n">name</span><span class="o">,</span>
+      <span class="s">'email'</span><span class="o">:</span> <span class="n">email</span><span class="o">,</span>
+    <span class="o">};</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>现在，序列化逻辑移到了模型本身内部。采用这种新方法，我们可以非常容易地反序列化user。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span> <span class="n">userMap</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">json</span><span class="o">);</span>
+<span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">userMap</span><span class="o">);</span>
+
+<span class="n">print</span><span class="o">(</span><span class="s">'Howdy, </span><span class="si">${user.name}</span><span class="s">!'</span><span class="o">);</span>
+<span class="n">print</span><span class="o">(</span><span class="s">'We sent the verification link to </span><span class="si">${user.email}</span><span class="s">.'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>要序列化一个user，我们只是将该<code class="highlighter-rouge">User</code>对象传递给该<code class="highlighter-rouge">JSON.encode</code>方法。我们不需要手动调用<code class="highlighter-rouge">toJson</code>这个方法，因为<code class="highlighter-rouge">JSON.encode</code>已经为我们做了。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>这样，调用代码就不用担心JSON序列化了。但是，model类还是必须的。在生产应用程序中，我们希望确保序列化正常工作。在实践中，<code class="highlighter-rouge">User.fromJson</code>和<code class="highlighter-rouge">User.toJson</code>方法都需要单元测试到位，以验证正确的行为。</p>
+
+<p>另外，实际场景中，JSON对象很少会这么简单，嵌套的JSON对象并不罕见。</p>
+
+<p>如果有什么能为我们自动处理JSON序列化，那将会非常好。幸运的是，有！</p>
+
+<p><a name="code-generation"></a></p>
+<h2 id="使用代码生成库序列化json">使用代码生成库序列化JSON</h2>
+
+<p>尽管还有其他库可用，但在本教程中，我们使用了<a href="https://pub.dartlang.org/packages/json_serializable">json_serializable package</a>包。
+它是一个自动化的源代码生成器，可以为我们生成JSON序列化模板。</p>
+
+<p>由于序列化代码不再由我们手写和维护，我们将运行时产生JSON序列化异常的风险降至最低。</p>
+
+<h3 id="在项目中设置json_serializable">在项目中设置json_serializable</h3>
+
+<p>要包含<code class="highlighter-rouge">json_serializable</code>到我们的项目中，我们需要一个常规和两个开发依赖项。简而言之，开发依赖项是不包含在我们的应用程序源代码中的依赖项。</p>
+
+<p>通过<a href="https://github.com/dart-lang/json_serializable/blob/master/example/pubspec.yaml">此链接</a>可以查看这些所需依赖项的最新版本 。</p>
+
+<p><strong>pubspec.yaml</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="c1"># Your other regular dependencies here</span>
+  <span class="na">json_annotation</span><span class="pi">:</span> <span class="s">^2.0.0</span>
+
+<span class="na">dev_dependencies</span><span class="pi">:</span>
+  <span class="c1"># Your other dev_dependencies here</span>
+  <span class="na">build_runner</span><span class="pi">:</span> <span class="s">^1.0.0</span>
+  <span class="na">json_serializable</span><span class="pi">:</span> <span class="s">^2.0.0</span>
+</code></pre></div></div>
+
+<p>在您的项目根文件夹中运行 <code class="highlighter-rouge">flutter packages get</code>  (或者在编辑器中点击 “Packages
+Get”) 以在项目中使用这些新的依赖项.</p>
+
+<h3 id="以json_serializable的方式创建model类">以json_serializable的方式创建model类</h3>
+
+<p>让我们看看如何将我们的<code class="highlighter-rouge">User</code>类转换为一个<code class="highlighter-rouge">json_serializable</code>。为了简单起见，我们使用前面示例中的简化JSON model。</p>
+
+<p><strong>user.dart</strong></p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:json_annotation/json_annotation.dart&#39;;
+
+// user.g.dart 将在我们运行生成命令后自动生成
+part &#39;user.g.dart&#39;;
+
+///这个标注是告诉生成器，这个类是需要生成Model类的
+@JsonSerializable()
+
+class User{
+  User(this.name, this.email);
+
+  String name;
+  String email;
+  //不同的类使用不同的mixin即可
+  factory User.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$UserFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$UserToJson(this);
+}</code></pre>
+
+<p>有了这个设置，源码生成器将生成用于序列化<code class="highlighter-rouge">name</code>和<code class="highlighter-rouge">email</code>字段的JSON代码。</p>
+
+<p>如果需要，自定义命名策略也很容易。例如，如果我们正在使用的API返回带有_snake_case_的对象，但我们想在我们的模型中使用_lowerCamelCase_，
+那么我们可以使用@JsonKey标注：</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// Tell json_serializable that "registration_date_millis" should be</span>
+<span class="c1">/// mapped to this property.</span>
+<span class="nd">@JsonKey</span><span class="o">(</span><span class="nl">name:</span> <span class="s">'registration_date_millis'</span><span class="o">)</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">registrationDateMillis</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="运行代码生成程序">运行代码生成程序</h3>
+
+<p><code class="highlighter-rouge">json_serializable</code>第一次创建类时，您会看到与下图类似的错误。</p>
+
+<p><img src="/images/json/ide_warning.png" alt="IDE warning when the generated code for a model class does not exist
+yet." /></p>
+
+<p>这些错误是完全正常的，这是因为model类的生成代码还不存在。为了解决这个问题，我们必须运行代码生成器来为我们生成序列化模板。</p>
+
+<p>There are two ways of running the code generator.
+有两种运行代码生成器的方法：</p>
+
+<h4 id="一次性生成">一次性生成</h4>
+
+<p>通过在我们的项目根目录下运行<code class="highlighter-rouge">flutter packages pub run build_runner build</code>，我们可以在需要时为我们的model生成json序列化代码。
+这触发了一次性构建，它通过我们的源文件，挑选相关的并为它们生成必要的序列化代码。</p>
+
+<p>虽然这非常方便，但如果我们不需要每次在model类中进行更改时都要手动运行构建命令的话会更好。</p>
+
+<h4 id="持续生成">持续生成</h4>
+
+<p>使用_watcher_可以使我们的源代码生成的过程更加方便。它会监视我们项目中文件的变化，并在需要时自动构建必要的文件。我们可以通过<code class="highlighter-rouge">flutter packages pub run
+build_runner watch</code>在项目根目录下运行来启动_watcher_。</p>
+
+<p>只需启动一次观察器，然后并让它在后台运行，这是安全的。</p>
+
+<h3 id="使用json_serializable模型">使用json_serializable模型</h3>
+
+<p>要通过<code class="highlighter-rouge">json_serializable</code>方式反序列化JSON字符串，我们不需要对先前的代码进行任何更改。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span> <span class="n">userMap</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">json</span><span class="o">);</span>
+<span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">userMap</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>序列化也一样。调用API与之前相同。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">JSON</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>有了<code class="highlighter-rouge">json_serializable</code>，我们可以在<code class="highlighter-rouge">User</code>类上忘记任何手动的JSON序列化 。源代码生成器创建一个名为<code class="highlighter-rouge">user.g.dart</code>的文件，它具有所有必需的序列化逻辑。
+现在，我们不必编写自动化测试来确保序列化的正常工作 - 这个库会确保序列化工作正常。</p>
+
+<h2 id="一些参考">一些参考</h2>
+
+<ul>
+  <li><a href="https://api.dartlang.org/stable/1.24.3/dart-convert/JsonCodec-class.html">Json编解码文档</a></li>
+  <li><a href="https://pub.dartlang.org/packages/json_serializable">The json_serializable package in Pub</a></li>
+  <li><a href="https://github.com/dart-lang/json_serializable/blob/master/example/lib/example.dart">json_serializable examples in GitHub</a></li>
+  <li><a href="https://github.com/flutter/flutter/issues/1150">Discussion about dart:mirrors in Flutter</a></li>
+</ul>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

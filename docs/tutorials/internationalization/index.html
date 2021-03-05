@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>国际化Flutter App  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="本文介绍了如何对Flutter应用进行国际化和多语言支持如果您的应用可能会给另一种语言的用户使用，那么您需要“国际化”它。这意味着您在编写应用程序时需要为应用程序支持的每种语言环境...">
+  <meta name="keywords" content="Flutter国际化, Flutter多语言支持,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/tutorials/internationalization/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/tutorials/international/index.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 国际化Flutter App&body=From URL: https://www.flutterchina.club/tutorials/international/index.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">国际化Flutter App </h1>
+   </div>
+
+  </header>
+  
+
+  
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你将会学到什么:</b></p>
+
+  <ul>
+    <li>如何跟踪设备的区域(locale)设置（用户的首选语言）</li>
+    <li>如何管理特定于区域环境(locale)的应用程序值.</li>
+    <li>如何使应用程序支持多区域环境</li>
+  </ul>
+
+</div>
+
+<p>如果您的应用可能会给另一种语言的用户使用，那么您需要“国际化”它。这意味着您在编写应用程序时需要为应用程序支持的每种语言环境，
+设置“本地化”的一些值，如文本和布局。Flutter提供一些widgets和类，以帮助实现国际化，而Flutter的库本身也是国际化的。</p>
+
+<p>接下来的教程主要是根据Flutter MaterialApp类编写的，因为大多数应用程序都是这样编写的。根据较低级别的WidgetsApp类编写的应用程序也可以使用相同的类和逻辑进行国际化。</p>
+
+<h3 id="内容">内容</h3>
+
+<ul>
+  <li><a href="#setting-up">设置一个国际化的应用程序: flutter_localizations package</a></li>
+  <li><a href="#tracking-locale">跟踪区域设置: Locale类和Localizations widget</a></li>
+  <li><a href="#loading-and-retrieving">加载和获取本地化的值</a></li>
+  <li><a href="#using-bundles">使用打包好的LocalizationsDelegates</a></li>
+  <li><a href="#defining-class">为应用的本地化资源定义一个类</a></li>
+  <li><a href="#specifying-supportedlocales">指定应用的supportedLocales参数</a></li>
+  <li><a href="#alternative-class">指定本地化资源的另一个类</a></li>
+  <li><a href="#dart-tools">附录: 使用 Dart intl 工具</a></li>
+</ul>
+
+<aside class="alert alert-info">
+  <p><strong>国际化APP的例子</strong><br /></p>
+
+  <p>如果您想通过阅读国际化Flutter应用程序的代码开始，下面是两个小例子。第一个旨在尽可能简单，第二个使用<a href="https://pub.dartlang.org/packages/intl">intl</a>包提供的API和工具。
+如果您没用过Dart的intl包，请参阅<a href="#dart-tools">使用Dart intl 工具</a>。</p>
+
+  <ul>
+    <li><a href="https://github.com/flutter/website/tree/master/_includes/code/internationalization/minimal/">简单的国际化应用</a></li>
+    <li><a href="https://github.com/flutter/website/tree/master/_includes/code/internationalization/intl/">基于 <code class="highlighter-rouge">intl</code> 包的国际化应用</a></li>
+  </ul>
+</aside>
+
+<p><a name="setting-up"></a></p>
+<h2 id="设置一个国际化的应用程序-the-flutter_localizations-package">设置一个国际化的应用程序: the flutter_localizations package</h2>
+
+<p>默认情况下，Flutter仅提供美国英语本地化。要添加对其他语言的支持，应用程序必须指定其他MaterialApp属性，并包含一个名为的单独包-“flutter_localizations”。
+截至2017年10月，该软件包支持15种语言。</p>
+
+<p>要使用flutter_localizations，请将该包作为依赖项添加到您的<code class="highlighter-rouge">pubspec.yaml</code>文件中：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-yaml language-yaml"><code>dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter</code></pre>
+
+<p>接下来，导入flutter_localizations库，并指定MaterialApp的<code class="highlighter-rouge">localizationsDelegates</code>和<code class="highlighter-rouge">supportedLocales</code>：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:flutter_localizations/flutter_localizations.dart&#39;;
+
+new MaterialApp(
+ localizationsDelegates: [
+   // ... app-specific localization delegate[s] here
+   GlobalMaterialLocalizations.delegate,
+   GlobalWidgetsLocalizations.delegate,
+ ],
+ supportedLocales: [
+    const Locale(&#39;en&#39;, &#39;US&#39;), // English
+    const Locale(&#39;he&#39;, &#39;IL&#39;), // Hebrew
+    // ... other locales the app supports
+  ],
+  // ...
+)</code></pre>
+
+<p>基于WidgetsApp的应用程序类似，只是不需要<code class="highlighter-rouge">GlobalMaterialLocalizations.delegate</code>。</p>
+
+<p><code class="highlighter-rouge">localizationsDelegates</code>列表中的元素是生成本地化值集合的工厂。<code class="highlighter-rouge">GlobalMaterialLocalizations.delegate</code> 为Material Components库提供了本地化的字符串和其他值。
+<code class="highlighter-rouge">GlobalWidgetsLocalizations.delegate</code>定义widget默认的文本方向，从左到右或从右到左。</p>
+
+<p>有关这些应用程序属性的更多信息，它们所依赖的类型以及如何国际化Flutter应用程序，这些都可以在下面找到。</p>
+
+<p><a name="tracking-locale"></a></p>
+<h2 id="跟踪区域设置-locale类和localizations-widget">跟踪区域设置: Locale类和Localizations widget</h2>
+
+<p>该<a href="https://docs.flutter.io/flutter/dart-ui/Locale-class.html"><code class="highlighter-rouge">Locale</code></a>类是用来识别用户的语言环境。
+移动设备支持通过系统设置菜单为所有应用程序设置区域。国际化应用程序通过显示区域设置特定的值进行响应。
+例如，如果用户将设备的语言环境从英语切换到法语，则显示“Hello World”的文本widget将用“Bonjour le monde”重建。</p>
+
+<p><a href="https://docs.flutter.io/flutter/widgets/Localizations-class.html"><code class="highlighter-rouge">Localizations</code></a>小部件定义其子项的区域设置以及子项依赖的本地化资源。
+如果系统的语言环境发生变化，<a href="https://docs.flutter.io/flutter/widgets/WidgetsApp-class.html">WidgetsApp</a>将创建一个Localizations widget并重建它。</p>
+
+<p>您始终可以通过以下方式查找应用的当前区域设置：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>Locale myLocale = Localizations.localeOf(context);</code></pre>
+
+<p><a name="loading-and-retrieving"></a></p>
+<h2 id="加载和获取本地化的值">加载和获取本地化的值</h2>
+
+<p>Localizations widget用于加载和查找包含本地化值的集合的对象。应用程序通过<a href="https://docs.flutter.io/flutter/widgets/Localizations/of.html"><code class="highlighter-rouge">Localizations.of(context,type)</code></a>来引用这些对象。
+如果设备的区域设置发生更改，则Localizations widget会自动加载新区域设置的值，然后重新构建使用它们的widget。
+发生这种情况是因为Localizations像<a href="https://docs.flutter.io/flutter/widgets/InheritedWidget-class.html">InheritedWidget</a>一样工作 。
+当build函数引用了继承的widget时，会创建对继承的widget的隐式依赖关系。当继承的widget发生更改（Localizations widget的区域设置发生更改时），将重建其依赖的上下文。</p>
+
+<p>本地化值由Localizations widget的 <a href="https://docs.flutter.io/flutter/widgets/LocalizationsDelegate-class.html">LocalizationsDelegate</a>s 列表加载 。
+每个委托必须定义一个异步load() 方法，以生成封装了一系列本地化值的对象。通常这些对象为每个本地化值定义一个方法。</p>
+
+<p>在大型应用程序中，不同的模块或软件包可能会与自己的本地化捆绑在一起。
+这就是Localizations widget管理对象表的原因，每个LocalizationsDelegate都有一个(对象表)。
+要检索由LocalizationsDelegate<code class="highlighter-rouge">load</code>方法之一产生的对象，可以指定一个BuildContext和对象的类型。</p>
+
+<p>例如，Material Component widgets的本地化字符串由<a href="https://docs.flutter.io/flutter/material/MaterialLocalizations-class.html">MaterialLocalizations</a>类定义。
+此类的实例由<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html">MaterialApp</a>类提供的LocalizationDelegate创建。
+它们可以通过<code class="highlighter-rouge">Localizations.of</code>被获取到：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>Localizations.of&lt;MaterialLocalizations&gt;(context, MaterialLocalizations);</code></pre>
+
+<p>这个特殊的<code class="highlighter-rouge">Localizations.of()</code>表达式经常使用，所以MaterialLocalizations类提供了一个方便的简写：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>static MaterialLocalizations of(BuildContext context) {
+  return Localizations.of&lt;MaterialLocalizations&gt;(context, MaterialLocalizations);
+}
+
+/// References to the localized values defined by MaterialLocalizations
+/// are typically written like this:
+
+tooltip: MaterialLocalizations.of(context).backButtonTooltip,</code></pre>
+
+<p><a name="using-bundles"></a></p>
+<h2 id="使用打包好的localizationsdelegates">使用打包好的LocalizationsDelegates</h2>
+
+<p>为了尽可能小而且简单，flutter软件包中仅提供美国英语值的MaterialLocalizations和WidgetsLocalizations接口的实现。
+这些实现类分别称为DefaultMaterialLocalizations和DefaultWidgetsLocalizations。
+除非与应用程序的localizationsDelegates参数指定了相同基本类型的不同delegate，否则它们会自动包含 。</p>
+
+<p>flutter_localizations软件包包含称为GlobalMaterialLocalizations和GlobalWidgetsLocalizations的本地化接口的多语言实现。
+国际化的应用程序必须按照<a href="#setting-up">设置国际化应用程序</a>中的说明为这些类指定本地化代理 。</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:flutter_localizations/flutter_localizations.dart&#39;;
+
+new MaterialApp(
+ localizationsDelegates: [
+   // ... app-specific localization delegate[s] here
+   GlobalMaterialLocalizations.delegate,
+   GlobalWidgetsLocalizations.delegate,
+ ],
+ supportedLocales: [
+    const Locale(&#39;en&#39;, &#39;US&#39;), // English
+    const Locale(&#39;fr&#39;, &#39;CA&#39;), // canadian French
+    // ... other locales the app supports
+  ],
+  // ...
+)</code></pre>
+
+<p>全局本地化delegates构造相应类的特定于语言环境的实例。例如，<code class="highlighter-rouge">GlobalMaterialLocalizations.delegate</code>是一个产生GlobalMaterialLocalizations实例的LocalizationsDelegate。</p>
+
+<p>截至2017年10月，国际化代理的类支持约<a href="https://github.com/flutter/flutter/tree/master/packages/flutter_localizations/lib/src/l10n">15种语言</a></p>
+
+<p><a name="defining-class"></a></p>
+<h2 id="为应用的本地化资源定义一个类">为应用的本地化资源定义一个类</h2>
+
+<p>将所有这些放在一起用于国际化应用程序通常从封装应用程序本地化值的类开始。下面的例子是这些类的典型例子。</p>
+
+<p>这个示例的<a href="https://github.com/flutter/website/tree/master/_includes/code/internationalization/intl/">完整源代码</a></p>
+
+<p>本示例基于<a href="https://pub.dartlang.org/packages/intl">intl</a>包提供的API和工具 。<a href="#alternative-class">指定本地化资源的另一个类</a>描述了一个不依赖于intl包的示例。</p>
+
+<p>DemoLocalizations类包含应用程序的字符串（仅用于示例），该字符串被翻译为应用程序支持的语言环境。
+使用Dart的<a href="https://pub.dartlang.org/packages/intl">intl 包</a>生成的函数<code class="highlighter-rouge">initializeMessages()</code>来加载翻译的字符串，并使用<a href="https://www.dartdocs.org/documentation/intl/0.15.1/intl/Intl/message.html"><code class="highlighter-rouge">Intl.message()</code></a>查找它们。</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class DemoLocalizations {
+  static Future&lt;DemoLocalizations&gt; load(Locale locale) {
+    final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    final String localeName = Intl.canonicalizedLocale(name);
+    return initializeMessages(localeName).then((Null _) {
+      Intl.defaultLocale = localeName;
+      return new DemoLocalizations();
+    });
+  }
+
+  static DemoLocalizations of(BuildContext context) {
+    return Localizations.of&lt;DemoLocalizations&gt;(context, DemoLocalizations);
+  }
+
+  String get title {
+    return Intl.message(
+      &#39;Hello World&#39;,
+      name: &#39;title&#39;,
+      desc: &#39;Title for the Demo application&#39;,
+    );
+  }
+}</code></pre>
+
+<p>基于intl包的类导入生成的message目录，该目录提供<code class="highlighter-rouge">initializeMessages()</code>函数和每个语言环境的后备存储<code class="highlighter-rouge">Intl.message()</code>。
+message目录由一个<a href="#dart-tools">intl工具</a>生成，该工具分析包含Intl.message()调用的类的源代码。在这个示例中，这是DemoLocalizations类。</p>
+
+<p><a name="specifying-supportedlocales"></a></p>
+<h2 id="指定应用程序的supportedlocales参数">指定应用程序的supportedLocales参数</h2>
+
+<p>虽然Flutter的Material Components library包含对大约16种语言的支持，但默认情况下仅提供英文。
+开发人员需要决定支持哪种语言，因为工具库支持与应用程序不同的一组语言环境是没有意义的。</p>
+
+<p>MaterialApp<a href="https://docs.flutter.io/flutter/material/MaterialApp/supportedLocales.html"><code class="highlighter-rouge">supportedLocales</code></a>参数限制语言环境更改。
+当用户更改其设备上的区域设置时，新区域如果是列表的成员，则应用程序的<code class="highlighter-rouge">Localizations</code> widget 就适用于该区域。如
+果找不到设备区域设置的精确匹配项（译者语：指语言和地区同时匹配，如中文，中国），则使用第一个匹配区域设置<a href="https://docs.flutter.io/flutter/dart-ui/Locale/languageCode.html"><code class="highlighter-rouge">languageCode</code></a>（译者语：只设置语言，而不指定地区）。
+如果失败，则<code class="highlighter-rouge">supportedLocales</code>使用列表的第一个元素 。</p>
+
+<p>就之前的DemoApp示例而言，该应用只接受美国英语或加拿大法语语言环境，并将美国英语（列表中的第一个语言环境）替换为其他任何内容。</p>
+
+<p>可以提供一个<a href="https://docs.flutter.io/flutter/widgets/LocaleResolutionCallback.html"><code class="highlighter-rouge">localeResolutionCallback</code></a>，在应用获取用户设置的语言区域时会被回调。
+例如，要让您的应用程序无条件接受用户选择的任何区域设置：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class DemoApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+       localeResolutionCallback(Locale locale, Iterable&lt;Locale&gt; supportedLocales) {
+         return locale;
+       }
+       // ...
+    );
+  }
+}</code></pre>
+
+<p><a name="alternative-class"></a></p>
+<h2 id="指定本地化资源的另一个类">指定本地化资源的另一个类</h2>
+
+<p>之前的DemoApp示例是根据Dart<code class="highlighter-rouge">intl</code>包定义的。为了简单起见，开发人员可以选择自己的方法来管理本地化值，也可以与不同的i18n框架进行集成。
+这个示例的<a href="https://github.com/flutter/website/tree/master/_includes/code/internationalization/minimal/">完整源代码</a></p>
+
+<p>在此版本的DemoApp中，包含应用程序本地化的类DemoLocalizations将直接在每种语言Map中包含其所有的翻译：</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class DemoLocalizations {
+  DemoLocalizations(this.locale);
+
+  final Locale locale;
+
+  static DemoLocalizations of(BuildContext context) {
+    return Localizations.of&lt;DemoLocalizations&gt;(context, DemoLocalizations);
+  }
+
+  static Map&lt;String, Map&lt;String, String&gt;&gt; _localizedValues = {
+    &#39;en&#39;: {
+      &#39;title&#39;: &#39;Hello World&#39;,
+    },
+    &#39;es&#39;: {
+      &#39;title&#39;: &#39;Hola Mundo&#39;,
+    },
+  };
+
+  String get title {
+    return _localizedValues[locale.languageCode][&#39;title&#39;];
+  }
+}</code></pre>
+
+<p>在<a href="https://github.com/flutter/website/tree/master/_includes/code/internationalization/minimal/">简单的国际化应用</a>中，
+DemoLocalizationsDelegate略有不同。它的load方法返回一个<a href="https://docs.flutter.io/flutter/foundation/SynchronousFuture-class.html">SynchronousFuture</a>， 因为不需要进行异步加载。</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class DemoLocalizationsDelegate extends LocalizationsDelegate&lt;DemoLocalizations&gt; {
+  const DemoLocalizationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) =&gt; [&#39;en&#39;, &#39;es&#39;].contains(locale.languageCode);
+
+  @override
+  Future&lt;DemoLocalizations&gt; load(Locale locale) {
+    return new SynchronousFuture&lt;DemoLocalizations&gt;(new DemoLocalizations(locale));
+  }
+
+  @override
+  bool shouldReload(DemoLocalizationsDelegate old) =&gt; false;
+}</code></pre>
+
+<p><a name="dart-tools"></a></p>
+<h2 id="附录-使用dart-intl工具">附录: 使用Dart intl工具</h2>
+
+<p>在使用Dart <a href="https://pub.dartlang.org/packages/intl"><code class="highlighter-rouge">intl</code></a>包构建API之前， 您需要查看<code class="highlighter-rouge">intl</code>包的文档。以下是根据intl软件包本地化应用程序的过程摘要。</p>
+
+<p>示例程序依赖于一个生成的源文件<code class="highlighter-rouge">l10n/messages_all.dart</code> ，它定义了应用程序使用的所有本地化字符串。</p>
+
+<p>重新构建 <code class="highlighter-rouge">l10n/messages_all.dart</code> 需要两个步骤.</p>
+
+<ol>
+<li>
+    <p>将应用程序的根目录作为当前目录，从<code class="highlighter-rouge">lib/main.dart</code>生成<code class="highlighter-rouge">l10n/intl_messages.arb</code></p>
+
+    <pre class="prettyprint highlighter-rouge highlight lang-sh language-sh"><code>$ flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/i10n lib/main.dart</code></pre>
+
+    <p>该<code class="highlighter-rouge">intl_messages.arb</code>文件是一个JSON格式的map，拥有一个在<code class="highlighter-rouge">main.dart</code>中定义的<code class="highlighter-rouge">Intl.message()</code>函数入口。
+此文件作为英语和西班牙语翻译的一个模板，<code class="highlighter-rouge">intl_en.arb</code>和<code class="highlighter-rouge">intl_es.arb</code>。这些翻译是由您，开发人员创建的。</p>
+  </li>
+
+<li>
+    <p>使用应用程序的根目录作为当前目录，为每个<code class="highlighter-rouge">intl_&lt;locale&gt;.arb</code>文件生成<code class="highlighter-rouge">intl_messages_&lt;locale&gt;.dart</code>，并在<code class="highlighter-rouge">intl_messages_all.dart</code>中导入所有message文件：</p>
+
+    <pre class="prettyprint highlighter-rouge highlight lang-sh language-sh"><code>$ flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n \
+   --no-use-deferred-loading lib/main.dart lib/l10n/intl_*.arb</code></pre>
+
+    <p>DemoLocalizations类使用生成的<code class="highlighter-rouge">initializeMessages()</code> 函数（定义在<code class="highlighter-rouge">intl_messages_all.dart</code>）来加载本地化的message并使用<code class="highlighter-rouge">Intl.message()</code>来查找它们。</p>
+  </li>
+
+</ol>
+
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

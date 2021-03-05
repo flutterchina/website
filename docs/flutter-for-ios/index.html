@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter for iOS 开发者  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="本文档适用于IOS开发人员，可以将您现有的iOS知识应用于使用Flutter构建移动应用程序。如果您了解IOS框架的基础知识，那么您可以将此文档用作Flutter开发的一个开端">
+  <meta name="keywords" content="Flutter Android,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/flutter-for-ios/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/flutter-for-ios.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Flutter for iOS 开发者&body=From URL: https://www.flutterchina.club/flutter-for-ios.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Flutter for iOS 开发者 </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#flutter-for-ios-开发者" id="markdown-toc-flutter-for-ios-开发者">Flutter for iOS 开发者</a>    <ul>
+      <li><a href="#views" id="markdown-toc-views">Views</a>        <ul>
+          <li><a href="#uiview-相当于-flutter-中的什么" id="markdown-toc-uiview-相当于-flutter-中的什么">UIView 相当于 Flutter 中的什么？</a></li>
+          <li><a href="#我怎么来更新-widgets" id="markdown-toc-我怎么来更新-widgets">我怎么来更新 Widgets？</a></li>
+          <li><a href="#我怎么对-widget-布局我的-storyboard-在哪" id="markdown-toc-我怎么对-widget-布局我的-storyboard-在哪">我怎么对 widget 布局？我的 Storyboard 在哪？</a></li>
+          <li><a href="#我怎么在我的约束中添加或移除组件" id="markdown-toc-我怎么在我的约束中添加或移除组件">我怎么在我的约束中添加或移除组件？</a></li>
+          <li><a href="#我怎么对-widget-做动画" id="markdown-toc-我怎么对-widget-做动画">我怎么对 widget 做动画？</a></li>
+          <li><a href="#我该怎么绘图" id="markdown-toc-我该怎么绘图">我该怎么绘图？</a></li>
+          <li><a href="#widget-的透明度在哪里" id="markdown-toc-widget-的透明度在哪里">Widget 的透明度在哪里？</a></li>
+          <li><a href="#我怎么创建自定义的-widgets" id="markdown-toc-我怎么创建自定义的-widgets">我怎么创建自定义的 widgets？</a></li>
+        </ul>
+      </li>
+      <li><a href="#导航" id="markdown-toc-导航">导航</a>        <ul>
+          <li><a href="#我怎么在不同页面之间跳转" id="markdown-toc-我怎么在不同页面之间跳转">我怎么在不同页面之间跳转？</a></li>
+          <li><a href="#我怎么跳转到其他-app" id="markdown-toc-我怎么跳转到其他-app">我怎么跳转到其他 App？</a></li>
+        </ul>
+      </li>
+      <li><a href="#线程和异步" id="markdown-toc-线程和异步">线程和异步</a>        <ul>
+          <li><a href="#我怎么编写异步的代码" id="markdown-toc-我怎么编写异步的代码">我怎么编写异步的代码？</a></li>
+          <li><a href="#你是怎么把工作放到后台线程的" id="markdown-toc-你是怎么把工作放到后台线程的">你是怎么把工作放到后台线程的？</a></li>
+          <li><a href="#我怎么发起网络请求" id="markdown-toc-我怎么发起网络请求">我怎么发起网络请求？</a></li>
+          <li><a href="#我怎么展示一个长时间运行的任务的进度" id="markdown-toc-我怎么展示一个长时间运行的任务的进度">我怎么展示一个长时间运行的任务的进度？</a></li>
+        </ul>
+      </li>
+      <li><a href="#工程结构本地化依赖和资源" id="markdown-toc-工程结构本地化依赖和资源">工程结构、本地化、依赖和资源</a>        <ul>
+          <li><a href="#我怎么在-flutter-中引入-image-assets多分辨率怎么办" id="markdown-toc-我怎么在-flutter-中引入-image-assets多分辨率怎么办">我怎么在 Flutter 中引入 image assets？多分辨率怎么办？</a></li>
+          <li><a href="#我在哪里放置字符串我怎么做本地化" id="markdown-toc-我在哪里放置字符串我怎么做本地化">我在哪里放置字符串？我怎么做本地化？</a></li>
+          <li><a href="#cocoapods-相当于什么我该如何添加依赖" id="markdown-toc-cocoapods-相当于什么我该如何添加依赖">Cocoapods 相当于什么？我该如何添加依赖？</a></li>
+        </ul>
+      </li>
+      <li><a href="#viewcontrollers" id="markdown-toc-viewcontrollers">ViewControllers</a>        <ul>
+          <li><a href="#viewcontroller-相当于-flutter-中的什么" id="markdown-toc-viewcontroller-相当于-flutter-中的什么">ViewController 相当于 Flutter 中的什么？</a></li>
+          <li><a href="#我该怎么监听-ios-中的生命周期事件" id="markdown-toc-我该怎么监听-ios-中的生命周期事件">我该怎么监听 iOS 中的生命周期事件？</a></li>
+        </ul>
+      </li>
+      <li><a href="#布局" id="markdown-toc-布局">布局</a>        <ul>
+          <li><a href="#uitableview-和-uicollectionview-相当于-flutter-中的什么" id="markdown-toc-uitableview-和-uicollectionview-相当于-flutter-中的什么">UITableView 和 UICollectionView 相当于 Flutter 中的什么？</a></li>
+          <li><a href="#我怎么知道列表的哪个元素被点击了" id="markdown-toc-我怎么知道列表的哪个元素被点击了">我怎么知道列表的哪个元素被点击了？</a></li>
+          <li><a href="#我怎么动态地更新-listview" id="markdown-toc-我怎么动态地更新-listview">我怎么动态地更新 ListView？</a></li>
+          <li><a href="#scrollview-相当于-flutter-里的什么" id="markdown-toc-scrollview-相当于-flutter-里的什么">ScrollView 相当于 Flutter 里的什么？</a></li>
+        </ul>
+      </li>
+      <li><a href="#手势检测及触摸事件处理" id="markdown-toc-手势检测及触摸事件处理">手势检测及触摸事件处理</a>        <ul>
+          <li><a href="#我怎么给-flutter-的-widget-添加一个点击监听者" id="markdown-toc-我怎么给-flutter-的-widget-添加一个点击监听者">我怎么给 Flutter 的 widget 添加一个点击监听者？</a></li>
+          <li><a href="#我怎么处理-widget-上的其他手势" id="markdown-toc-我怎么处理-widget-上的其他手势">我怎么处理 widget 上的其他手势？</a></li>
+        </ul>
+      </li>
+      <li><a href="#主题和文字" id="markdown-toc-主题和文字">主题和文字</a>        <ul>
+          <li><a href="#我怎么给-app-设置主题" id="markdown-toc-我怎么给-app-设置主题">我怎么给 App 设置主题？</a></li>
+          <li><a href="#我怎么给-text-widget-设置自定义字体" id="markdown-toc-我怎么给-text-widget-设置自定义字体">我怎么给 Text widget 设置自定义字体？</a></li>
+          <li><a href="#我怎么给我的-text-widget-设置样式" id="markdown-toc-我怎么给我的-text-widget-设置样式">我怎么给我的 Text widget 设置样式？</a></li>
+        </ul>
+      </li>
+      <li><a href="#表单输入" id="markdown-toc-表单输入">表单输入</a>        <ul>
+          <li><a href="#flutter-中表单怎么工作我怎么拿到用户的输入" id="markdown-toc-flutter-中表单怎么工作我怎么拿到用户的输入">Flutter 中表单怎么工作？我怎么拿到用户的输入？</a></li>
+          <li><a href="#text-field-中的-placeholder-相当于什么" id="markdown-toc-text-field-中的-placeholder-相当于什么">Text field 中的 placeholder 相当于什么？</a></li>
+          <li><a href="#我怎么展示验证错误信息" id="markdown-toc-我怎么展示验证错误信息">我怎么展示验证错误信息？</a></li>
+        </ul>
+      </li>
+      <li><a href="#和硬件第三方服务以及平台交互" id="markdown-toc-和硬件第三方服务以及平台交互">和硬件、第三方服务以及平台交互</a>        <ul>
+          <li><a href="#我怎么和平台以及平台的原生代码交互" id="markdown-toc-我怎么和平台以及平台的原生代码交互">我怎么和平台，以及平台的原生代码交互？</a></li>
+          <li><a href="#我怎么访问-gps-传感器" id="markdown-toc-我怎么访问-gps-传感器">我怎么访问 GPS 传感器？</a></li>
+          <li><a href="#我怎么访问摄像头" id="markdown-toc-我怎么访问摄像头">我怎么访问摄像头？</a></li>
+          <li><a href="#我怎么登录-facebook" id="markdown-toc-我怎么登录-facebook">我怎么登录 Facebook？</a></li>
+          <li><a href="#我怎么使用-firebase-特性" id="markdown-toc-我怎么使用-firebase-特性">我怎么使用 Firebase 特性？</a></li>
+          <li><a href="#我怎创建自己的原生集成层" id="markdown-toc-我怎创建自己的原生集成层">我怎创建自己的原生集成层？</a></li>
+        </ul>
+      </li>
+      <li><a href="#数据库和本地存储" id="markdown-toc-数据库和本地存储">数据库和本地存储</a>        <ul>
+          <li><a href="#我怎么在-flutter-中访问-userdefaults" id="markdown-toc-我怎么在-flutter-中访问-userdefaults">我怎么在 Flutter 中访问 UserDefaults？</a></li>
+          <li><a href="#coredata-相当于-flutter-中的什么" id="markdown-toc-coredata-相当于-flutter-中的什么">CoreData 相当于 Flutter 中的什么？</a></li>
+        </ul>
+      </li>
+      <li><a href="#通知" id="markdown-toc-通知">通知</a>        <ul>
+          <li><a href="#我怎么推送通知" id="markdown-toc-我怎么推送通知">我怎么推送通知？</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="flutter-for-ios-开发者">Flutter for iOS 开发者</h1>
+
+<p>本文档适用那些希望将现有 iOS 经验应用于 Flutter 的开发者。如果你拥有 iOS 开发基础，那么你可以使用这篇文档开始学习 Flutter 的开发。</p>
+
+<p>开发 Flutter 时，你的 iOS 经验和技能将会大有裨益，因为 Flutter 依赖于移动操作系统的众多功能和配置。Flutter 是用于为移动设备构建用户界面的全新方式，但它也有一个插件系统用于和 iOS（及 Android）进行非 UI 任务的通信。如果你是 iOS 开发专家，则你不必将 Flutter 彻底重新学习一遍。</p>
+
+<p>你可以将此文档作为 cookbook，通过跳转并查找与你的需求最相关的问题。</p>
+
+<h2 id="views">Views</h2>
+
+<h3 id="uiview-相当于-flutter-中的什么">UIView 相当于 Flutter 中的什么？</h3>
+
+<p>在 iOS 中，构建 UI 的过程中将大量使用 view 对象。这些对象都是 <code class="highlighter-rouge">UIView</code> 的实例。它们可以用作容器来承载其他的 UIView，最终构成你的界面布局。</p>
+
+<p>在 Flutter 中，你可以粗略地认为 <code class="highlighter-rouge">Widget</code> 相当于 <code class="highlighter-rouge">UIView</code> 。Widget 和 iOS 中的控件并不完全等价，但当你试图去理解 Flutter 是如何工作的时候，你可以认为它们是“声明和构建 UI 的方法”。</p>
+
+<p>然而，Widget 和 UIView 还是有些区别的。首先，widgets 拥有不同的生存时间：它们一直存在且保持不变，直到当它们需要被改变。当 widgets 和它们的状态被改变时，Flutter 会构建一颗新的 widgets 树。作为对比，iOS 中的 views 在改变时并不会被重新创建。但是与其说 views 是可变的实例，不如说它们被绘制了一次，并且直到使用 <code class="highlighter-rouge">setNeedsDisplay()</code> 之后才会被重新绘制。</p>
+
+<p>此外，不像 UIView，由于不可变性，Flutter 的 widgets 非常轻量。这是因为它们本身并不是什么控件，也不会被直接绘制出什么，而只是 UI 的描述。</p>
+
+<p>Flutter 包含了 <a href="https://material.io/develop/flutter/">Material 组件</a>库。这些 widgets 遵循了 <a href="https://material.io/design/">Material 设计规范</a>。MD 是一个灵活的设计系统，并且为包括 iOS 在内的<a href="https://material.io/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines">所有系统进行了优化</a>。</p>
+
+<p>但是用 Flutter 实现任何的设计语言都非常的灵活和富有表现力。在 iOS 平台，你可以使用 <a href="https://flutter.io/widgets/cupertino/">Cupertino widgets</a> 来构建遵循了 <a href="https://developer.apple.com/design/resources/">Apple’s iOS design language</a> 的界面。</p>
+
+<h3 id="我怎么来更新-widgets">我怎么来更新 Widgets？</h3>
+
+<p>在 iOS 上更新 views，只需要直接改变它们就可以了。在 Flutter 中，widgets 是不可变的，而且不能被直接更新。你需要去操纵 widget 的 state。</p>
+
+<p>这也正是有状态的和无状态的 widget 这一概念的来源。一个 <code class="highlighter-rouge">StatelessWidget</code> 正如它听起来一样，是一个没有附加状态的 widget。</p>
+
+<p><code class="highlighter-rouge">StatelessWidget</code> 在你构建初始化后不再进行改变的界面时非常有用。</p>
+
+<p>举个例子，你可能会用一个 <code class="highlighter-rouge">UIImageView</code> 来展示你的 logo <code class="highlighter-rouge">image</code> 。如果这个 logo 在运行时不会改变，那么你就可以在 Flutter 中使用 <code class="highlighter-rouge">StatelessWidget</code> 。</p>
+
+<p>如果你希望在发起 HTTP 请求时，依托接收到的数据动态的改变 UI，请使用 <code class="highlighter-rouge">StatefulWidget</code>。当 HTTP 请求结束后，通知 Flutter 框架 widget 的 <code class="highlighter-rouge">State</code> 更新了，好让系统来更新 UI。</p>
+
+<p>有状态和无状态的 widget 之间一个非常重要的区别是，<code class="highlighter-rouge">StatefulWidget</code> 拥有一个 <code class="highlighter-rouge">State</code> 对象来存储它的状态数据，并在 widget 树重建时携带着它，因此状态不会丢失。</p>
+
+<p>如果你有疑惑，请记住以下规则：如果一个 widget 在它的 <code class="highlighter-rouge">build</code> 方法之外改变（例如，在运行时由于用户的操作而改变），它就是有状态的。如果一个 widget 在一次 build 之后永远不变，那它就是无状态的。但是，即便一个 widget 是有状态的，包含它的父亲 widget 也可以是无状态的，只要父 widget 本身不响应这些变化。</p>
+
+<p>下面的例子展示了如何使用一个 <code class="highlighter-rouge">StatelessWidget</code> 。一个常见的 <code class="highlighter-rouge">StatelessWidget</code> 是 <code class="highlighter-rouge">Text</code> widget。如果你查看 Text 的实现，你会发现它是 StatelessWidget 的子类。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Text</span><span class="o">(</span>
+  <span class="s">'I like Flutter!'</span><span class="o">,</span>
+  <span class="nl">style:</span> <span class="n">TextStyle</span><span class="o">(</span><span class="nl">fontWeight:</span> <span class="n">FontWeight</span><span class="o">.</span><span class="na">bold</span><span class="o">),</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>阅读上面的代码，你可能会注意到 <code class="highlighter-rouge">Text</code> widget 并不显示地携带任何状态。它通过传入给它的构造器的数据来渲染，除此之外再无其他。</p>
+
+<p>但是，如果你希望 <code class="highlighter-rouge">I like Flutter </code>在点击 <code class="highlighter-rouge">FloatingActionButton</code> 时动态的改变呢？</p>
+
+<p>为了实现这个，用 <code class="highlighter-rouge">StatefulWidget</code> 包裹 <code class="highlighter-rouge">Text</code> widget，并在用户点击按钮时更新它。</p>
+
+<p>举个例子：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Default placeholder text</span>
+  <span class="kt">String</span> <span class="n">textToShow</span> <span class="o">=</span> <span class="s">"I Like Flutter"</span><span class="o">;</span>
+  <span class="kt">void</span> <span class="n">_updateText</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="c1">// update the text</span>
+      <span class="n">textToShow</span> <span class="o">=</span> <span class="s">"Flutter is Awesome!"</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span><span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="n">textToShow</span><span class="o">)),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">onPressed:</span> <span class="n">_updateText</span><span class="o">,</span>
+        <span class="nl">tooltip:</span> <span class="s">'Update Text'</span><span class="o">,</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">update</span><span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么对-widget-布局我的-storyboard-在哪">我怎么对 widget 布局？我的 Storyboard 在哪？</h3>
+
+<p>在 iOS 中，你可能会用 Storyboard 文件来组织 views，并对它们设置约束，或者，你可能在 view controller 中使用代码来设置约束。在 Flutter 中，你通过编写一个 widget 树来声明你的布局。</p>
+
+<p>下面这个例子展示了如何展示一个带有 padding 的简单 widget：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+    <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+    <span class="o">),</span>
+    <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">CupertinoButton</span><span class="o">(</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span> <span class="n">_pressedCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span> <span class="o">});</span>
+        <span class="o">},</span>
+        <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Hello'</span><span class="o">),</span>
+        <span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">only</span><span class="o">(</span><span class="nl">left:</span> <span class="mf">10.0</span><span class="o">,</span> <span class="nl">right:</span> <span class="mf">10.0</span><span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>你可以给任何的 widget 添加 padding，这很像 iOS 中约束的功能。</p>
+
+<p>你可以在 <a href="https://flutter.io/widgets/layout/">widget catalog</a> 中查看 Flutter 提供的布局。</p>
+
+<h3 id="我怎么在我的约束中添加或移除组件">我怎么在我的约束中添加或移除组件？</h3>
+
+<p>在 iOS 中，你在父 view 中调用 <code class="highlighter-rouge">addSubview()</code> 或在子 view 中调用 <code class="highlighter-rouge">removeFromSuperview()</code> 来动态地添加或移除子 views。在 Flutter 中，由于 widget 不可变，所以没有和 <code class="highlighter-rouge">addSubview()</code> 直接等价的东西。作为替代，你可以向 parent 传入一个返回 widget 的函数，并用一个布尔值来控制子 widget 的创建。</p>
+
+<p>下面这个例子展示了在点击 <code class="highlighter-rouge">FloatingActionButton</code> 时如何动态地切换两个 widgets：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Default value for toggle</span>
+  <span class="kt">bool</span> <span class="n">toggle</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="kt">void</span> <span class="n">_toggle</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">toggle</span> <span class="o">=</span> <span class="o">!</span><span class="n">toggle</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+  <span class="n">_getToggleChild</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">toggle</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Toggle One'</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">CupertinoButton</span><span class="o">(</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{},</span>
+        <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Toggle Two'</span><span class="o">),</span>
+      <span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">_getToggleChild</span><span class="o">(),</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">onPressed:</span> <span class="n">_toggle</span><span class="o">,</span>
+        <span class="nl">tooltip:</span> <span class="s">'Update Text'</span><span class="o">,</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">update</span><span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么对-widget-做动画">我怎么对 widget 做动画？</h3>
+
+<p>在 iOS 中，你通过调用 <code class="highlighter-rouge">animate(withDuration:animations:)</code> 方法来给一个 view 创建动画。在 Flutter 中，使用动画库来包裹 widgets，而不是创建一个动画 widget。</p>
+
+<p>在 Flutter 中，使用 <code class="highlighter-rouge">AnimationController</code> 。这是一个可以暂停、寻找、停止、反转动画的 <code class="highlighter-rouge">Animation&lt;double&gt;</code> 类型。它需要一个 <code class="highlighter-rouge">Ticker</code> 当 vsync 发生时来发送信号，并且在每帧运行时创建一个介于 0 和 1 之间的线性插值（interpolation）。你可以创建一个或多个的 <code class="highlighter-rouge">Animation</code> 并附加给一个 controller。</p>
+
+<p>例如，你可能会用 <code class="highlighter-rouge">CurvedAnimation</code> 来实现一个 interpolated 曲线。在这个场景中，controller 是动画过程的“主人”，而 <code class="highlighter-rouge">CurvedAnimation</code> 计算曲线，并替代 controller 默认的线性模式。</p>
+
+<p>当构建 widget 树时，你会把 <code class="highlighter-rouge">Animation</code> 指定给一个 widget 的动画属性，比如 <code class="highlighter-rouge">FadeTransition</code> 的 opacity，并告诉控制器开始动画。</p>
+
+<p>下面这个例子展示了在点击 <code class="highlighter-rouge">FloatingActionButton</code> 之后，如何使用 <code class="highlighter-rouge">FadeTransition</code> 来让 widget 淡出到 logo 图标：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Fade Demo'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">MyFadeTest</span><span class="o">(</span><span class="nl">title:</span> <span class="s">'Fade Demo'</span><span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">MyFadeTest</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">MyFadeTest</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">title</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_MyFadeTest</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_MyFadeTest</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_MyFadeTest</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyFadeTest</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">TickerProviderStateMixin</span> <span class="o">{</span>
+  <span class="n">AnimationController</span> <span class="n">controller</span><span class="o">;</span>
+  <span class="n">CurvedAnimation</span> <span class="n">curve</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">AnimationController</span><span class="o">(</span><span class="nl">duration:</span> <span class="kd">const</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">2000</span><span class="o">),</span> <span class="nl">vsync:</span> <span class="k">this</span><span class="o">);</span>
+    <span class="n">curve</span> <span class="o">=</span> <span class="n">CurvedAnimation</span><span class="o">(</span><span class="nl">parent:</span> <span class="n">controller</span><span class="o">,</span> <span class="nl">curve:</span> <span class="n">Curves</span><span class="o">.</span><span class="na">easeIn</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="n">widget</span><span class="o">.</span><span class="na">title</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">Container</span><span class="o">(</span>
+          <span class="nl">child:</span> <span class="n">FadeTransition</span><span class="o">(</span>
+            <span class="nl">opacity:</span> <span class="n">curve</span><span class="o">,</span>
+            <span class="nl">child:</span> <span class="n">FlutterLogo</span><span class="o">(</span>
+              <span class="nl">size:</span> <span class="mf">100.0</span><span class="o">,</span>
+            <span class="o">)</span>
+          <span class="o">)</span>
+        <span class="o">)</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">tooltip:</span> <span class="s">'Fade'</span><span class="o">,</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">brush</span><span class="o">),</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="n">controller</span><span class="o">.</span><span class="na">forward</span><span class="o">();</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">dispose</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">controller</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>更多信息，请参阅 <a href="https://flutter.io/widgets/animation/">Animation &amp; Motion widgets</a>， <a href="https://flutter.io/tutorials/animation">Animations tutorial</a> 以及 <a href="https://flutter.io/animations/">Animations overview</a>。</p>
+
+<h3 id="我该怎么绘图">我该怎么绘图？</h3>
+
+<p>在 iOS 上，你通过 <code class="highlighter-rouge">CoreGraphics</code> 来在屏幕上绘制线条和形状。Flutter 有一套基于 <code class="highlighter-rouge">Canvas</code> 类的不同的 API，还有 <code class="highlighter-rouge">CustomPaint</code> 和 <code class="highlighter-rouge">CustomPainter</code> 这两个类来帮助你绘图。后者实现你在 canvas 上的绘图算法。</p>
+
+<p>想要学习如何实现一个笔迹画笔，请参考 Collin 在 <a href="https://stackoverflow.com/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter">StackOverflow</a> 上的回答。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SignaturePainter</span> <span class="kd">extends</span> <span class="n">CustomPainter</span> <span class="o">{</span>
+  <span class="n">SignaturePainter</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">points</span><span class="o">);</span>
+
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Offset</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">;</span>
+
+  <span class="kt">void</span> <span class="n">paint</span><span class="o">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="o">,</span> <span class="n">Size</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">var</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">Paint</span><span class="o">()</span>
+      <span class="o">..</span><span class="na">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="o">.</span><span class="na">black</span>
+      <span class="o">..</span><span class="na">strokeCap</span> <span class="o">=</span> <span class="n">StrokeCap</span><span class="o">.</span><span class="na">round</span>
+      <span class="o">..</span><span class="na">strokeWidth</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="na">drawLine</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">],</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">shouldRepaint</span><span class="o">(</span><span class="n">SignaturePainter</span> <span class="n">other</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">other</span><span class="o">.</span><span class="na">points</span> <span class="o">!=</span> <span class="n">points</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Signature</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SignatureState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">SignatureState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SignatureState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">Signature</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="n">List</span><span class="o">&lt;</span><span class="n">Offset</span><span class="o">&gt;</span> <span class="n">_points</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Offset</span><span class="o">&gt;[];</span>
+
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">GestureDetector</span><span class="o">(</span>
+      <span class="nl">onPanUpdate:</span> <span class="o">(</span><span class="n">DragUpdateDetails</span> <span class="n">details</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+          <span class="n">RenderBox</span> <span class="n">referenceBox</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">findRenderObject</span><span class="o">();</span>
+          <span class="n">Offset</span> <span class="n">localPosition</span> <span class="o">=</span>
+          <span class="n">referenceBox</span><span class="o">.</span><span class="na">globalToLocal</span><span class="o">(</span><span class="n">details</span><span class="o">.</span><span class="na">globalPosition</span><span class="o">);</span>
+          <span class="n">_points</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">_points</span><span class="o">)..</span><span class="na">add</span><span class="o">(</span><span class="n">localPosition</span><span class="o">);</span>
+        <span class="o">});</span>
+      <span class="o">},</span>
+      <span class="nl">onPanEnd:</span> <span class="o">(</span><span class="n">DragEndDetails</span> <span class="n">details</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">_points</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">null</span><span class="o">),</span>
+      <span class="nl">child:</span> <span class="n">CustomPaint</span><span class="o">(</span><span class="nl">painter:</span> <span class="n">SignaturePainter</span><span class="o">(</span><span class="n">_points</span><span class="o">),</span> <span class="nl">size:</span> <span class="n">Size</span><span class="o">.</span><span class="na">infinite</span><span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="widget-的透明度在哪里">Widget 的透明度在哪里？</h3>
+
+<p>在 iOS 中，什么东西都会有一个 .opacity 或是 .alpha 的属性。在 Flutter 中，你需要给 widget 包裹一个 Opacity widget 来做到这一点。</p>
+
+<h3 id="我怎么创建自定义的-widgets">我怎么创建自定义的 widgets？</h3>
+
+<p>在 iOS 中，你编写 <code class="highlighter-rouge">UIView</code> 的子类，或使用已经存在的 view 来重载并实现方法，以达到特定的功能。在 Flutter 中，你会组合（<a href="https://flutter.io/technical-overview/#everythings-a-widget">composing</a>）多个小的 widgets 来构建一个自定义的 widget（而不是扩展它）。</p>
+
+<p>举个例子，如果你要构建一个 <code class="highlighter-rouge">CustomButton</code> ，并在构造器中传入它的 label？那就组合 <code class="highlighter-rouge">RaisedButton</code> 和 label，而不是扩展 <code class="highlighter-rouge">RaisedButton</code>。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CustomButton</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">label</span><span class="o">;</span>
+
+  <span class="n">CustomButton</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">label</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">RaisedButton</span><span class="o">(</span><span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{},</span> <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="n">label</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>然后就像你使用其他任何 Flutter 的 widget 一样，使用你的 CustomButton：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Center</span><span class="o">(</span>
+    <span class="nl">child:</span> <span class="n">CustomButton</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="导航">导航</h2>
+
+<h3 id="我怎么在不同页面之间跳转">我怎么在不同页面之间跳转？</h3>
+
+<p>在 iOS 中，你可以使用管理了 view controller 栈的 <code class="highlighter-rouge">UINavigationController</code> 来在不同的 view controller 之间跳转。</p>
+
+<p>Flutter 也有类似的实现，使用了 <code class="highlighter-rouge">Navigator</code> 和 <code class="highlighter-rouge">Routes</code>。一个路由是 App 中“屏幕”或“页面”的抽象，而一个 Navigator 是管理多个路由的 <a href="https://flutter.io/flutter-for-ios/technical-overview/#everythings-a-widget">widget</a> 。你可以粗略地把一个路由对应到一个 <code class="highlighter-rouge">UIViewController</code>。Navigator 的工作原理和 iOS 中 <code class="highlighter-rouge">UINavigationController</code> 非常相似，当你想跳转到新页面或者从新页面返回时，它可以 <code class="highlighter-rouge">push()</code> 和 <code class="highlighter-rouge">pop()</code> 路由。</p>
+
+<p>在页面之间跳转，你有几个选择：</p>
+
+<ul>
+  <li>具体指定一个由路由名构成的 <code class="highlighter-rouge">Map</code>。（MaterialApp）</li>
+  <li>直接跳转到一个路由。（WidgetApp）</li>
+</ul>
+
+<p>下面是构建一个 Map 的例子：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">MaterialApp</span><span class="o">(</span>
+    <span class="nl">home:</span> <span class="n">MyAppHome</span><span class="o">(),</span> <span class="c1">// becomes the route named '/'</span>
+    <span class="nl">routes:</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="n">WidgetBuilder</span><span class="o">&gt;</span> <span class="o">{</span>
+      <span class="s">'/a'</span><span class="o">:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">MyPage</span><span class="o">(</span><span class="nl">title:</span> <span class="s">'page A'</span><span class="o">),</span>
+      <span class="s">'/b'</span><span class="o">:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">MyPage</span><span class="o">(</span><span class="nl">title:</span> <span class="s">'page B'</span><span class="o">),</span>
+      <span class="s">'/c'</span><span class="o">:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">MyPage</span><span class="o">(</span><span class="nl">title:</span> <span class="s">'page C'</span><span class="o">),</span>
+    <span class="o">},</span>
+  <span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>通过把路由的名字 <code class="highlighter-rouge">push</code> 给一个 <code class="highlighter-rouge">Navigator</code> 来跳转：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Navigator</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">pushNamed</span><span class="o">(</span><span class="s">'/b'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Navigator</code> 类不仅用来处理 Flutter 中的路由，还被用来获取你刚 push 到栈中的路由返回的结果。通过 <code class="highlighter-rouge">await</code>等待路由返回的结果来达到这点。</p>
+
+<p>举个例子，要跳转到“位置”路由来让用户选择一个地点，你可能要这么做：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span> <span class="n">coordinates</span> <span class="o">=</span> <span class="n">await</span> <span class="n">Navigator</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">pushNamed</span><span class="o">(</span><span class="s">'/location'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>之后，在 location 路由中，一旦用户选择了地点，携带结果一起 <code class="highlighter-rouge">pop()</code> 出栈：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Navigator</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">pop</span><span class="o">({</span><span class="s">"lat"</span><span class="o">:</span><span class="mf">43.821757</span><span class="o">,</span><span class="s">"long"</span><span class="o">:-</span><span class="mf">79.226392</span><span class="o">});</span>
+</code></pre></div></div>
+
+<h3 id="我怎么跳转到其他-app">我怎么跳转到其他 App？</h3>
+
+<p>在 iOS 中，要跳转到其他 App，你需要一个特定的 URL Scheme。对系统级别的 App 来说，这个 scheme 取决于 App。为了在 Flutter 中实现这个功能，你可以创建一个原生平台的整合层，或者使用现有的 <a href="https://flutter.io/flutter-for-ios/#plugins">plugin</a>，例如 <a href="https://pub.dartlang.org/packages/url_launcher">url_launcher</a>。</p>
+
+<h2 id="线程和异步">线程和异步</h2>
+
+<h3 id="我怎么编写异步的代码">我怎么编写异步的代码？</h3>
+
+<p>Dart 是单线程执行模型，但是它支持 <code class="highlighter-rouge">Isolate</code>（一种让 Dart 代码运行在其他线程的方式）、事件循环和异步编程。除非你自己创建一个 <code class="highlighter-rouge">Isolate</code> ，否则你的 Dart 代码永远运行在 UI 线程，并由 event loop 驱动。Flutter 的 event loop 和 iOS 中的 main loop 相似——<code class="highlighter-rouge">Looper</code> 是附加在主线程上的。</p>
+
+<p>Dart 的单线程模型并不意味着你写的代码一定是阻塞操作，从而卡住 UI。相反，使用 Dart 语言提供的异步工具，例如 <code class="highlighter-rouge">async</code> / <code class="highlighter-rouge">await</code> ，来实现异步操作。</p>
+
+<p>举个例子，你可以使用 <code class="highlighter-rouge">async</code> / <code class="highlighter-rouge">await</code> 来让 Dart 帮你做一些繁重的工作，编写网络请求代码而不会挂起 UI：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">;</span>
+  <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+  <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+    <span class="n">widgets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">);</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>一旦 <code class="highlighter-rouge">await</code> 到网络请求完成，通过调用 <code class="highlighter-rouge">setState()</code> 来更新 UI，这会触发 widget 子树的重建，并更新相关数据。</p>
+
+<p>下面的例子展示了异步加载数据，并用 <code class="highlighter-rouge">ListView</code> 展示出来：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:convert'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:http/http.dart'</span> <span class="k">as</span> <span class="n">http</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">List</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+
+    <span class="n">loadData</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">ListView</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span>
+          <span class="nl">itemCount:</span> <span class="n">widgets</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
+          <span class="nl">itemBuilder:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">getRow</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+          <span class="o">}));</span>
+  <span class="o">}</span>
+
+  <span class="n">Widget</span> <span class="n">getRow</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Padding</span><span class="o">(</span>
+      <span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span>
+      <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">${widgets[i]["title"]}</span><span class="s">"</span><span class="o">)</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">;</span>
+    <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">widgets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>更多关于在后台工作的信息，以及 Flutter 和 iOS 的区别，请参考下一章节。</p>
+
+<h3 id="你是怎么把工作放到后台线程的">你是怎么把工作放到后台线程的？</h3>
+
+<p>由于 Flutter 是单线程并且跑着一个 event loop 的（就像 Node.js 那样），你不必为线程管理或是开启后台线程而操心。如果你正在做 I/O 操作，如访问磁盘或网络请求，安全地使用 <code class="highlighter-rouge">async</code> / <code class="highlighter-rouge">await</code> 就完事了。如果，在另外的情况下，你需要做让 CPU 执行繁忙的计算密集型任务，你需要使用 <code class="highlighter-rouge">Isolate</code> 来避免阻塞 event loop。</p>
+
+<p>对于 I/O 操作，通过关键字 <code class="highlighter-rouge">async</code>，把方法声明为异步方法，然后通过<code class="highlighter-rouge">await</code>关键字等待该异步方法执行完成(译者语：这和javascript中是相同的)：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">;</span>
+  <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+  <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+    <span class="n">widgets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">);</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>这就是对诸如网络请求或数据库访问等 I/O 操作的典型做法。</p>
+
+<p>然而，有时候你需要处理大量的数据，这会导致你的 UI 挂起。在 Flutter 中，使用 <code class="highlighter-rouge">Isolate</code> 来发挥多核心 CPU 的优势来处理那些长期运行或是计算密集型的任务。</p>
+
+<p>Isolates 是分离的运行线程，并且不和主线程的内存堆共享内存。这意味着你不能访问主线程中的变量，或者使用 <code class="highlighter-rouge">setState()</code> 来更新 UI。正如它们的名字一样，Isolates 不能共享内存。</p>
+
+<p>下面的例子展示了一个简单的 isolate，是如何把数据返回给主线程来更新 UI 的：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="n">ReceivePort</span> <span class="n">receivePort</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+  <span class="n">await</span> <span class="n">Isolate</span><span class="o">.</span><span class="na">spawn</span><span class="o">(</span><span class="n">dataLoader</span><span class="o">,</span> <span class="n">receivePort</span><span class="o">.</span><span class="na">sendPort</span><span class="o">);</span>
+
+  <span class="c1">// The 'echo' isolate sends its SendPort as the first message</span>
+  <span class="n">SendPort</span> <span class="n">sendPort</span> <span class="o">=</span> <span class="n">await</span> <span class="n">receivePort</span><span class="o">.</span><span class="na">first</span><span class="o">;</span>
+
+  <span class="n">List</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">await</span> <span class="n">sendReceive</span><span class="o">(</span><span class="n">sendPort</span><span class="o">,</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">);</span>
+
+  <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+    <span class="n">widgets</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="c1">// The entry point for the isolate</span>
+<span class="kd">static</span> <span class="nf">dataLoader</span><span class="p">(</span><span class="n">SendPort</span> <span class="n">sendPort</span><span class="o">)</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="c1">// Open the ReceivePort for incoming messages.</span>
+  <span class="n">ReceivePort</span> <span class="n">port</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+
+  <span class="c1">// Notify any other isolates what port this isolate listens to.</span>
+  <span class="n">sendPort</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">port</span><span class="o">.</span><span class="na">sendPort</span><span class="o">);</span>
+
+  <span class="n">await</span> <span class="k">for</span> <span class="o">(</span><span class="kd">var</span> <span class="n">msg</span> <span class="k">in</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="n">SendPort</span> <span class="n">replyTo</span> <span class="o">=</span> <span class="n">msg</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+    <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+    <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+    <span class="c1">// Lots of JSON to parse</span>
+    <span class="n">replyTo</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">Future</span> <span class="nf">sendReceive</span><span class="p">(</span><span class="n">SendPort</span> <span class="n">port</span><span class="o">,</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">ReceivePort</span> <span class="n">response</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+  <span class="n">port</span><span class="o">.</span><span class="na">send</span><span class="o">([</span><span class="n">msg</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">sendPort</span><span class="o">]);</span>
+  <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">first</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>这里，<code class="highlighter-rouge">dataLoader()</code> 是一个运行于自己独立执行线程上的 <code class="highlighter-rouge">Isolate</code>。在 isolate 里，你可以执行 CPU 密集型任务（例如解析一个庞大的 json），或是计算密集型的数学操作，如加密或信号处理等。</p>
+
+<p>你可以运行下面的完整例子：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:convert'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:http/http.dart'</span> <span class="k">as</span> <span class="n">http</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'dart:isolate'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">List</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="n">loadData</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="n">showLoadingDialog</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">widgets</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">getBody</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">showLoadingDialog</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">getProgressDialog</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">getListView</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">getProgressDialog</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Center</span><span class="o">(</span><span class="nl">child:</span> <span class="n">CircularProgressIndicator</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+        <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+          <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+        <span class="o">),</span>
+        <span class="nl">body:</span> <span class="n">getBody</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="n">ListView</span> <span class="n">getListView</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">ListView</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span>
+      <span class="nl">itemCount:</span> <span class="n">widgets</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
+      <span class="nl">itemBuilder:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">getRow</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+      <span class="o">});</span>
+
+  <span class="n">Widget</span> <span class="n">getRow</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Padding</span><span class="o">(</span><span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span> <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">${widgets[i]["title"]}</span><span class="s">"</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="n">ReceivePort</span> <span class="n">receivePort</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+    <span class="n">await</span> <span class="n">Isolate</span><span class="o">.</span><span class="na">spawn</span><span class="o">(</span><span class="n">dataLoader</span><span class="o">,</span> <span class="n">receivePort</span><span class="o">.</span><span class="na">sendPort</span><span class="o">);</span>
+
+    <span class="c1">// The 'echo' isolate sends its SendPort as the first message</span>
+    <span class="n">SendPort</span> <span class="n">sendPort</span> <span class="o">=</span> <span class="n">await</span> <span class="n">receivePort</span><span class="o">.</span><span class="na">first</span><span class="o">;</span>
+
+    <span class="n">List</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">await</span> <span class="n">sendReceive</span><span class="o">(</span><span class="n">sendPort</span><span class="o">,</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">);</span>
+
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">widgets</span> <span class="o">=</span> <span class="n">msg</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+<span class="c1">// the entry point for the isolate</span>
+  <span class="kd">static</span> <span class="n">dataLoader</span><span class="o">(</span><span class="n">SendPort</span> <span class="n">sendPort</span><span class="o">)</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="c1">// Open the ReceivePort for incoming messages.</span>
+    <span class="n">ReceivePort</span> <span class="n">port</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+
+    <span class="c1">// Notify any other isolates what port this isolate listens to.</span>
+    <span class="n">sendPort</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">port</span><span class="o">.</span><span class="na">sendPort</span><span class="o">);</span>
+
+    <span class="n">await</span> <span class="k">for</span> <span class="o">(</span><span class="kd">var</span> <span class="n">msg</span> <span class="k">in</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">msg</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+      <span class="n">SendPort</span> <span class="n">replyTo</span> <span class="o">=</span> <span class="n">msg</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+
+      <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+      <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+      <span class="c1">// Lots of JSON to parse</span>
+      <span class="n">replyTo</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">));</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">Future</span> <span class="n">sendReceive</span><span class="o">(</span><span class="n">SendPort</span> <span class="n">port</span><span class="o">,</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ReceivePort</span> <span class="n">response</span> <span class="o">=</span> <span class="n">ReceivePort</span><span class="o">();</span>
+    <span class="n">port</span><span class="o">.</span><span class="na">send</span><span class="o">([</span><span class="n">msg</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">sendPort</span><span class="o">]);</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">first</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么发起网络请求">我怎么发起网络请求？</h3>
+
+<p>在 Flutter 中，使用流行的 <a href="https://pub.dartlang.org/packages/http">http package</a> 做网络请求非常简单。它把你可能需要自己做的网络请求操作抽象了出来，让发起请求变得简单。</p>
+
+<p>要使用 <code class="highlighter-rouge">http</code> 包，在 <code class="highlighter-rouge">pubspec.yaml</code> 中把它添加为依赖：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies:
+  ...
+  http: ^0.11.3+16
+</code></pre></div></div>
+
+<p>发起网络请求，在 <code class="highlighter-rouge">http.get()</code> 这个 <code class="highlighter-rouge">async</code> 方法中使用 <code class="highlighter-rouge">await</code> ：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:convert'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:http/http.dart'</span> <span class="k">as</span> <span class="n">http</span><span class="o">;</span>
+<span class="o">[...]</span>
+  <span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">;</span>
+    <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">widgets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么展示一个长时间运行的任务的进度">我怎么展示一个长时间运行的任务的进度？</h3>
+
+<p>在 iOS 中，在后台运行耗时任务时你会使用 <code class="highlighter-rouge">UIProgressView</code>。</p>
+
+<p>在 Flutter 中，使用一个 <code class="highlighter-rouge">ProgressIndicator</code> widget。通过一个布尔 flag 来控制是否展示进度。在任务开始时，告诉 Flutter 更新状态，并在结束后隐去。</p>
+
+<p>在下面的例子中，build 函数被拆分成三个函数。如果 <code class="highlighter-rouge">showLoadingDialog()</code> 是 <code class="highlighter-rouge">true</code> （当 <code class="highlighter-rouge">widgets.length == 0</code> 时），则渲染 <code class="highlighter-rouge">ProgressIndicator</code>。否则，当数据从网络请求中返回时，渲染 <code class="highlighter-rouge">ListView</code> 。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:convert'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:http/http.dart'</span> <span class="k">as</span> <span class="n">http</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">List</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="n">loadData</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="n">showLoadingDialog</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">widgets</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">getBody</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">showLoadingDialog</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">getProgressDialog</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">getListView</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">getProgressDialog</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Center</span><span class="o">(</span><span class="nl">child:</span> <span class="n">CircularProgressIndicator</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+        <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+          <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+        <span class="o">),</span>
+        <span class="nl">body:</span> <span class="n">getBody</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="n">ListView</span> <span class="n">getListView</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">ListView</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span>
+      <span class="nl">itemCount:</span> <span class="n">widgets</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
+      <span class="nl">itemBuilder:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">getRow</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+      <span class="o">});</span>
+
+  <span class="n">Widget</span> <span class="n">getRow</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Padding</span><span class="o">(</span><span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span> <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">${widgets[i]["title"]}</span><span class="s">"</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="n">loadData</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">dataURL</span> <span class="o">=</span> <span class="s">"https://jsonplaceholder.typicode.com/posts"</span><span class="o">;</span>
+    <span class="n">http</span><span class="o">.</span><span class="na">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">http</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">dataURL</span><span class="o">);</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">widgets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="工程结构本地化依赖和资源">工程结构、本地化、依赖和资源</h2>
+
+<h3 id="我怎么在-flutter-中引入-image-assets多分辨率怎么办">我怎么在 Flutter 中引入 image assets？多分辨率怎么办？</h3>
+
+<p>iOS 把 images 和 assets 作为不同的东西，而 Flutter 中只有 assets。被放到 iOS 中 <code class="highlighter-rouge">Images.xcasset</code> 文件夹下的资源在 Flutter 中被放到了 assets 文件夹中。assets 可以是任意类型的文件，而不仅仅是图片。例如，你可以把 json 文件放置到 <code class="highlighter-rouge">my-assets</code> 文件夹中。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-assets/data.json
+</code></pre></div></div>
+
+<p>在 <code class="highlighter-rouge">pubspec.yaml</code> 文件中声明 assets：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assets:
+ - my-assets/data.json
+</code></pre></div></div>
+
+<p>然后在代码中使用 <a href="https://docs.flutter.io/flutter/services/AssetBundle-class.html"><code class="highlighter-rouge">AssetBundle</code></a> 来访问它：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span> <span class="kd">show</span> <span class="n">Future</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:flutter/services.dart'</span> <span class="kd">show</span> <span class="n">rootBundle</span><span class="o">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">loadAsset</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">await</span> <span class="n">rootBundle</span><span class="o">.</span><span class="na">loadString</span><span class="o">(</span><span class="s">'my-assets/data.json'</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>对于图片，Flutter 像 iOS 一样，遵循了一个简单的基于像素密度的格式。Image assets 可能是 <code class="highlighter-rouge">1.0x</code> <code class="highlighter-rouge">2.0x</code> <code class="highlighter-rouge">3.0x</code> 或是其他的任何倍数。这些所谓的 <a href="https://docs.flutter.io/flutter/dart-ui/Window/devicePixelRatio.html"><code class="highlighter-rouge">devicePixelRatio</code></a> 传达了物理像素到单个逻辑像素的比率。</p>
+
+<p>Assets 可以被放置到任何属性文件夹中——Flutter 并没有预先定义的文件结构。在 <code class="highlighter-rouge">pubspec.yaml</code> 文件中声明 assets （和位置），然后 Flutter 会把他们识别出来。</p>
+
+<p>举个例子，要把一个叫 <code class="highlighter-rouge">my_icon.png</code> 的图片放到 Flutter 工程中，你可能想要把存储它的文件夹叫做 <code class="highlighter-rouge">images</code>。把基础图片（1.0x）放置到 <code class="highlighter-rouge">images</code> 文件夹中，并把其他变体放置在子文件夹中，并接上合适的比例系数：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images/my_icon.png       // Base: 1.0x image
+images/2.0x/my_icon.png  // 2.0x image
+images/3.0x/my_icon.png  // 3.0x image
+</code></pre></div></div>
+
+<p>接着，在 <code class="highlighter-rouge">pubspec.yaml</code> 文件夹中声明这些图片：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assets:
+ - images/my_icon.jpeg
+</code></pre></div></div>
+
+<p>你可以用 <code class="highlighter-rouge">AssetImage</code> 来访问这些图片：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="nf">AssetImage</span><span class="p">(</span><span class="s">"images/a_dot_burr.jpeg"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>或者在 <code class="highlighter-rouge">Image</code> widget 中直接使用：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="na">asset</span><span class="o">(</span><span class="s">"images/my_image.png"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>更多细节，参见 <a href="https://flutter.io/assets-and-images">Adding Assets and Images in Flutter</a>。</p>
+
+<h3 id="我在哪里放置字符串我怎么做本地化">我在哪里放置字符串？我怎么做本地化？</h3>
+
+<p>不像 iOS 拥有一个 <code class="highlighter-rouge">Localizable.strings</code> 文件，Flutter 目前并没有一个用于处理字符串的系统。目前，最佳实践是把你的文本拷贝到静态区，并在这里访问。例如：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Strings</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kt">String</span> <span class="n">welcomeMessage</span> <span class="o">=</span> <span class="s">"Welcome To Flutter"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>并且这样访问你的字符串：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Text</span><span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">welcomeMessage</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>默认情况下，Flutter 只支持美式英语字符串。如果你要支持其他语言，请引入 <code class="highlighter-rouge">flutter_localizations</code> 包。你可能也要引入  <a href="https://pub.dartlang.org/packages/intl"><code class="highlighter-rouge">intl</code></a> 包来支持其他的 i10n 机制，比如日期/时间格式化。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies:
+  # ...
+  flutter_localizations:
+    sdk: flutter
+  intl: "^0.15.6"
+</code></pre></div></div>
+
+<p>要使用 <code class="highlighter-rouge">flutter_localizations</code> 包，还需要在 app widget 中指定 <code class="highlighter-rouge">localizationsDelegates</code> 和 <code class="highlighter-rouge">supportedLocales</code>。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter_localizations/flutter_localizations.dart'</span><span class="o">;</span>
+
+<span class="n">MaterialApp</span><span class="o">(</span>
+ <span class="nl">localizationsDelegates:</span> <span class="o">[</span>
+   <span class="c1">// Add app-specific localization delegate[s] here</span>
+   <span class="n">GlobalMaterialLocalizations</span><span class="o">.</span><span class="na">delegate</span><span class="o">,</span>
+   <span class="n">GlobalWidgetsLocalizations</span><span class="o">.</span><span class="na">delegate</span><span class="o">,</span>
+ <span class="o">],</span>
+ <span class="nl">supportedLocales:</span> <span class="o">[</span>
+    <span class="kd">const</span> <span class="n">Locale</span><span class="o">(</span><span class="s">'en'</span><span class="o">,</span> <span class="s">'US'</span><span class="o">),</span> <span class="c1">// English</span>
+    <span class="kd">const</span> <span class="n">Locale</span><span class="o">(</span><span class="s">'he'</span><span class="o">,</span> <span class="s">'IL'</span><span class="o">),</span> <span class="c1">// Hebrew</span>
+    <span class="c1">// ... other locales the app supports</span>
+  <span class="o">],</span>
+  <span class="c1">// ...</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>这些代理包括了实际的本地化值，并且 <code class="highlighter-rouge">supportedLocales</code> 定义了 App 支持哪些地区。上面的例子使用了一个 <code class="highlighter-rouge">MaterialApp</code> ，所以它既有 <code class="highlighter-rouge">GlobalWidgetsLocalizations</code> 用于基础 widgets，也有 <code class="highlighter-rouge">MaterialWidgetsLocalizations</code> 用于 Material wigets 的本地化。如果你使用 <code class="highlighter-rouge">WidgetsApp</code> ，则无需包括后者。注意，这两个代理虽然包括了“默认”值，但如果你想让你的 App 本地化，你仍需要提供一或多个代理作为你的 App 本地化副本。</p>
+
+<p>当初始化时，<code class="highlighter-rouge">WidgetsApp</code> 或 <code class="highlighter-rouge">MaterialApp</code> 会使用你指定的代理为你创建一个  <a href="https://docs.flutter.io/flutter/widgets/Localizations-class.html"><code class="highlighter-rouge">Localizations</code></a> widget。<code class="highlighter-rouge">Localizations</code> widget 可以随时从当前上下文中访问设备的地点，或者使用 <a href="https://docs.flutter.io/flutter/dart-ui/Window/locale.html"><code class="highlighter-rouge">Window.locale</code></a>。</p>
+
+<p>要访问本地化文件，使用 <code class="highlighter-rouge">Localizations.of()</code> 方法来访问提供代理的特定本地化类。如需翻译，使用  <a href="https://pub.dartlang.org/packages/intl_translation"><code class="highlighter-rouge">intl_translation</code></a> 包来取出翻译副本到 <a href="https://code.google.com/p/arb/wiki/ApplicationResourceBundleSpecification">arb</a> 文件中。把它们引入 App 中，并用 <code class="highlighter-rouge">intl</code> 来使用它们。</p>
+
+<p>更多 Flutter 中国际化和本地化的细节，请访问 <a href="https://flutter.io/tutorials/internationalization">internationalization guide</a> ，那里有不使用 <code class="highlighter-rouge">intl</code> 包的示例代码。</p>
+
+<p>注意，在 Flutter 1.0 beta 2 之前，在 Flutter 中定义的 assets 不能在原生一侧被访问。原生定义的资源在 Flutter 中也不可用，因为它们在独立的文件夹中。</p>
+
+<h3 id="cocoapods-相当于什么我该如何添加依赖">Cocoapods 相当于什么？我该如何添加依赖？</h3>
+
+<p>在 iOS 中，你把依赖添加到 <code class="highlighter-rouge">Podfile</code> 中。Flutter 使用 Dart 构建系统和 Pub 包管理器来处理依赖。这些工具将本机 Android 和 iOS 包装应用程序的构建委派给相应的构建系统。</p>
+
+<p>如果你的 Flutter 工程中的 iOS 文件夹中拥有 Podfile，请仅在你为每个平台集成时使用它。总体来说，使用 <code class="highlighter-rouge">pubspec.yaml</code> 来在 Flutter 中声明外部依赖。一个可以找到优秀 Flutter 包的地方是 <a href="https://pub.dartlang.org/flutter/packages/">Pub</a>。</p>
+
+<h2 id="viewcontrollers">ViewControllers</h2>
+
+<h3 id="viewcontroller-相当于-flutter-中的什么">ViewController 相当于 Flutter 中的什么？</h3>
+
+<p>在 iOS 中，一个 ViewController 代表了用户界面的一部分，最常用于一个屏幕，或是其中一部分。它们被组合在一起用于构建复杂的用户界面，并帮助你拆分 App 的 UI。在 Flutter 中，这一任务回落到了 widgets 中。就像在界面导航部分提到的一样，一个屏幕也是被 widgets 来表示的，因为“万物皆 widget！”。使用 <code class="highlighter-rouge">Navigator</code> 在 <code class="highlighter-rouge">Route</code> 之间跳转，或者渲染相同数据的不同状态。</p>
+
+<h3 id="我该怎么监听-ios-中的生命周期事件">我该怎么监听 iOS 中的生命周期事件？</h3>
+
+<p>在 iOS 中，你可以重写 <code class="highlighter-rouge">ViewController</code> 中的方法来捕获它的视图的生命周期，或者在 <code class="highlighter-rouge">AppDelegate</code> 中注册生命周期的回调函数。在 Flutter 中没有这两个概念，但你可以通过 hook <code class="highlighter-rouge">WidgetsBinding</code> 观察者来监听生命周期事件，并监听 <code class="highlighter-rouge">didChangeAppLifecycleState()</code> 的变化事件。</p>
+
+<p>可观察的生命周期事件有：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">inactive</code> - 应用处于不活跃的状态，并且不会接受用户的输入。这个事件仅工作在 iOS 平台，在 Android 上没有等价的事件。</li>
+  <li><code class="highlighter-rouge">paused</code> - 应用暂时对用户不可见，虽然不接受用户输入，但是是在后台运行的。</li>
+  <li><code class="highlighter-rouge">resumed</code> - 应用可见，也响应用户的输入。</li>
+  <li><code class="highlighter-rouge">suspending</code> - 应用暂时被挂起，在 iOS 上没有这一事件。</li>
+</ul>
+
+<p>更多关于这些状态的细节和含义，请参见  <a href="https://docs.flutter.io/flutter/dart-ui/AppLifecycleState-class.html"><code class="highlighter-rouge">AppLifecycleStatus</code> documentation</a> 。</p>
+
+<h2 id="布局">布局</h2>
+
+<h3 id="uitableview-和-uicollectionview-相当于-flutter-中的什么">UITableView 和 UICollectionView 相当于 Flutter 中的什么？</h3>
+
+<p>在 iOS 中，你可能用 UITableView 或 UICollectionView 来展示一个列表。在 Flutter 中，你可以用 <code class="highlighter-rouge">ListView</code> 来达到相似的实现。在 iOS 中，你通过代理方法来确定行数，每一个 index path 的单元格，以及单元格的尺寸。</p>
+
+<p>由于 Flutter 中 widget 的不可变特性，你需要向 <code class="highlighter-rouge">ListView</code> 传递一个 widget 列表，Flutter 会确保滚动是快速且流畅的。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">ListView</span><span class="o">(</span><span class="nl">children:</span> <span class="n">_getListData</span><span class="o">()),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">_getListData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Padding</span><span class="o">(</span><span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span> <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">$i</span><span class="s">"</span><span class="o">)));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">widgets</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么知道列表的哪个元素被点击了">我怎么知道列表的哪个元素被点击了？</h3>
+
+<p>iOS 中，你通过 <code class="highlighter-rouge">tableView:didSelectRowAtIndexPath:</code> 代理方法来实现。在 Flutter 中，使用传递进来的 widget 的 touch handle：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">ListView</span><span class="o">(</span><span class="nl">children:</span> <span class="n">_getListData</span><span class="o">()),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">_getListData</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">GestureDetector</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">Padding</span><span class="o">(</span>
+          <span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span>
+          <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">$i</span><span class="s">"</span><span class="o">),</span>
+        <span class="o">),</span>
+        <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="n">print</span><span class="o">(</span><span class="s">'row tapped'</span><span class="o">);</span>
+        <span class="o">},</span>
+      <span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">widgets</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么动态地更新-listview">我怎么动态地更新 ListView？</h3>
+
+<p>在 iOS 中，你改变列表的数据，并通过 <code class="highlighter-rouge">reloadData()</code> 方法来通知 table 或是 collection view。</p>
+
+<p>在 Flutter 中，如果你想通过 <code class="highlighter-rouge">setState()</code> 方法来更新 widget 列表，你会很快发现你的数据展示并没有变化。这是因为当 <code class="highlighter-rouge">setState()</code> 被调用时，Flutter 渲染引擎会去检查 widget 树来查看是否有什么地方被改变了。当它得到你的 <code class="highlighter-rouge">ListView</code> 时，它会使用一个 <code class="highlighter-rouge">==</code> 判断，并且发现两个 <code class="highlighter-rouge">ListView</code> 是相同的。没有什么东西是变了的，因此更新不是必须的。</p>
+
+<p>一个更新 <code class="highlighter-rouge">ListView</code> 的简单方法是，在 <code class="highlighter-rouge">setState()</code> 中创建一个新的 list，并把旧 list 的数据拷贝给新的 list。虽然这样很简单，但当数据集很大时，并不推荐这样做：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">List</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getRow</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">ListView</span><span class="o">(</span><span class="nl">children:</span> <span class="n">widgets</span><span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">Widget</span> <span class="n">getRow</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">GestureDetector</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">Padding</span><span class="o">(</span>
+        <span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span>
+        <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">$i</span><span class="s">"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+          <span class="n">widgets</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">widgets</span><span class="o">);</span>
+          <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getRow</span><span class="o">(</span><span class="n">widgets</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+          <span class="n">print</span><span class="o">(</span><span class="s">'row </span><span class="si">$i</span><span class="s">'</span><span class="o">);</span>
+        <span class="o">});</span>
+      <span class="o">},</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>一个推荐的、高效的且有效的做法是，使用 <code class="highlighter-rouge">ListView.Builder</code> 来构建列表。这个方法在你想要构建动态列表，或是列表拥有大量数据时会非常好用。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="n">SampleApp</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">List</span> <span class="n">widgets</span> <span class="o">=</span> <span class="o">[];</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getRow</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">ListView</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span>
+        <span class="nl">itemCount:</span> <span class="n">widgets</span><span class="o">.</span><span class="na">length</span><span class="o">,</span>
+        <span class="nl">itemBuilder:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">getRow</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">Widget</span> <span class="n">getRow</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">GestureDetector</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">Padding</span><span class="o">(</span>
+        <span class="nl">padding:</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">10.0</span><span class="o">),</span>
+        <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Row </span><span class="si">$i</span><span class="s">"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+          <span class="n">widgets</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getRow</span><span class="o">(</span><span class="n">widgets</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+          <span class="n">print</span><span class="o">(</span><span class="s">'row </span><span class="si">$i</span><span class="s">'</span><span class="o">);</span>
+        <span class="o">});</span>
+      <span class="o">},</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>与创建一个 “ListView” 不同，创建一个 <code class="highlighter-rouge">ListView.builder</code> 接受两个主要参数：列表的初始长度，和一个 <code class="highlighter-rouge">ItemBuilder</code> 方法。</p>
+
+<p><code class="highlighter-rouge">ItemBuilder</code> 方法和 <code class="highlighter-rouge">cellForItemAt</code> 代理方法非常类似，它接受一个位置，并且返回在这个位置上你希望渲染的 cell。</p>
+
+<p>最后，也是最重要的，注意 <code class="highlighter-rouge">onTap()</code> 函数里并没有重新创建一个 list，而是 <code class="highlighter-rouge">.add</code> 了一个 widget。</p>
+
+<h3 id="scrollview-相当于-flutter-里的什么">ScrollView 相当于 Flutter 里的什么？</h3>
+
+<p>在 iOS 中，你给 view 包裹上 <code class="highlighter-rouge">ScrollView</code> 来允许用户在需要时滚动你的内容。</p>
+
+<p>在 Flutter 中，最简单的方法是使用 <code class="highlighter-rouge">ListView</code> widget。它表现得既和 iOS 中的 <code class="highlighter-rouge">ScrollView</code> 一致，也能和 <code class="highlighter-rouge">TableView</code> 一致，因为你可以给它的 widget 做垂直排布：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">ListView</span><span class="o">(</span>
+    <span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+      <span class="n">Text</span><span class="o">(</span><span class="s">'Row One'</span><span class="o">),</span>
+      <span class="n">Text</span><span class="o">(</span><span class="s">'Row Two'</span><span class="o">),</span>
+      <span class="n">Text</span><span class="o">(</span><span class="s">'Row Three'</span><span class="o">),</span>
+      <span class="n">Text</span><span class="o">(</span><span class="s">'Row Four'</span><span class="o">),</span>
+    <span class="o">],</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>更多关于在 Flutter 总如何排布 widget 的文档，请参阅 <a href="https://flutter.io/widgets/layout/">layout tutorial</a>。</p>
+
+<h2 id="手势检测及触摸事件处理">手势检测及触摸事件处理</h2>
+
+<h3 id="我怎么给-flutter-的-widget-添加一个点击监听者">我怎么给 Flutter 的 widget 添加一个点击监听者？</h3>
+
+<p>在 iOS 中，你给一个 view 添加 <code class="highlighter-rouge">GestureRecognizer</code> 来处理点击事件。在 Flutter 中，有两种方法来添加点击监听者：</p>
+
+<ol>
+  <li>
+    <p>如果 widget 本身支持事件监测，直接传递给它一个函数，并在这个函数里实现响应方法。例如，<code class="highlighter-rouge">RaisedButton</code> widget 拥有一个 <code class="highlighter-rouge">RaisedButton</code> 参数：</p>
+
+    <div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">RaisedButton</span><span class="o">(</span>
+    <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+      <span class="n">print</span><span class="o">(</span><span class="s">"click"</span><span class="o">);</span>
+    <span class="o">},</span>
+    <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Button"</span><span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>如果 widget 本身不支持事件监测，则在外面包裹一个 GestureDetector，并给它的 onTap 属性传递一个函数：</p>
+
+    <div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">GestureDetector</span><span class="o">(</span>
+          <span class="nl">child:</span> <span class="n">FlutterLogo</span><span class="o">(</span>
+            <span class="nl">size:</span> <span class="mf">200.0</span><span class="o">,</span>
+          <span class="o">),</span>
+          <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+            <span class="n">print</span><span class="o">(</span><span class="s">"tap"</span><span class="o">);</span>
+          <span class="o">},</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="我怎么处理-widget-上的其他手势">我怎么处理 widget 上的其他手势？</h3>
+
+<p>使用 <code class="highlighter-rouge">GestureDetector</code> 你可以监听更广阔范围内的手势，比如：</p>
+
+<ul>
+  <li>Tapping
+    <ul>
+      <li><code class="highlighter-rouge">onTapDown</code> — 在特定位置轻触手势接触了屏幕。</li>
+      <li><code class="highlighter-rouge">onTapUp</code> — 在特定位置产生了一个轻触手势，并停止接触屏幕。</li>
+      <li><code class="highlighter-rouge">onTap</code> — 产生了一个轻触手势。</li>
+      <li><code class="highlighter-rouge">onTapCancel</code> — 触发了 <code class="highlighter-rouge">onTapDown</code> 但没能触发 tap。</li>
+    </ul>
+  </li>
+  <li>Double tapping
+    <ul>
+      <li><code class="highlighter-rouge">onDoubleTap</code> — 用户在同一个位置快速点击了两下屏幕。</li>
+    </ul>
+  </li>
+  <li>Long pressing
+    <ul>
+      <li><code class="highlighter-rouge">onLongPress</code> — 用户在同一个位置长时间接触屏幕。</li>
+    </ul>
+  </li>
+  <li>Vertical dragging
+    <ul>
+      <li><code class="highlighter-rouge">onVerticalDragStart</code> — 接触了屏幕，并且可能会垂直移动。</li>
+      <li><code class="highlighter-rouge">onVerticalDragUpdate</code> — 接触了屏幕，并继续在垂直方向移动。</li>
+      <li><code class="highlighter-rouge">onVerticalDragEnd</code> — 之前接触了屏幕并垂直移动，并在停止接触屏幕前以某个垂直的速度移动。</li>
+    </ul>
+  </li>
+  <li>Horizontal dragging
+    <ul>
+      <li><code class="highlighter-rouge">onHorizontalDragStart</code> — 接触了屏幕，并且可能会水平移动。</li>
+      <li><code class="highlighter-rouge">onHorizontalDragUpdate</code> — 接触了屏幕，并继续在水平方向移动。</li>
+      <li><code class="highlighter-rouge">onHorizontalDragEnd</code> — 之前接触屏幕并水平移动的触摸点与屏幕分离。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>下面这个例子展示了一个 <code class="highlighter-rouge">GestureDetector</code> 是如何在双击时旋转 Flutter 的 logo 的：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AnimationController</span> <span class="n">controller</span><span class="o">;</span>
+<span class="n">CurvedAnimation</span> <span class="n">curve</span><span class="o">;</span>
+
+<span class="nd">@override</span>
+<span class="kt">void</span> <span class="nf">initState</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">controller</span> <span class="o">=</span> <span class="n">AnimationController</span><span class="o">(</span><span class="nl">duration:</span> <span class="kd">const</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">2000</span><span class="o">),</span> <span class="nl">vsync:</span> <span class="k">this</span><span class="o">);</span>
+  <span class="n">curve</span> <span class="o">=</span> <span class="n">CurvedAnimation</span><span class="o">(</span><span class="nl">parent:</span> <span class="n">controller</span><span class="o">,</span> <span class="nl">curve:</span> <span class="n">Curves</span><span class="o">.</span><span class="na">easeIn</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">GestureDetector</span><span class="o">(</span>
+          <span class="nl">child:</span> <span class="n">RotationTransition</span><span class="o">(</span>
+            <span class="nl">turns:</span> <span class="n">curve</span><span class="o">,</span>
+            <span class="nl">child:</span> <span class="n">FlutterLogo</span><span class="o">(</span>
+              <span class="nl">size:</span> <span class="mf">200.0</span><span class="o">,</span>
+            <span class="o">)),</span>
+          <span class="nl">onDoubleTap:</span> <span class="o">()</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">controller</span><span class="o">.</span><span class="na">isCompleted</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">controller</span><span class="o">.</span><span class="na">reverse</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">controller</span><span class="o">.</span><span class="na">forward</span><span class="o">();</span>
+            <span class="o">}</span>
+          <span class="o">},</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="主题和文字">主题和文字</h2>
+
+<h3 id="我怎么给-app-设置主题">我怎么给 App 设置主题？</h3>
+
+<p>Flutter 实现了一套漂亮的 MD 组件，并且开箱可用。它接管了一大堆你需要的样式和主题。</p>
+
+<p>为了充分发挥你的 App 中 MD 组件的优势，声明一个顶级 widget，MaterialApp，用作你的 App 入口。MaterialApp 是一个便利组件，包含了许多 App 通常需要的 MD 风格组件。它通过一个 WidgetsApp 添加了 MD 功能来实现。</p>
+
+<p>但是 Flutter 足够地灵活和富有表现力来实现任何其他的设计语言。在 iOS 上，你可以用 <a href="https://docs.flutter.io/flutter/cupertino/cupertino-library.html">Cupertino library</a> 来制作遵守  <a href="https://developer.apple.com/ios/human-interface-guidelines/overview/themes/">Human Interface Guidelines</a> 的界面。查看这些 widget 的集合，请参阅 <a href="https://flutter.io/widgets/cupertino/">Cupertino widgets gallery</a>。</p>
+
+<p>你也可以在你的 App 中使用 WidgetApp，它提供了许多相似的功能，但不如 <code class="highlighter-rouge">MaterialApp</code> 那样强大。</p>
+
+<p>对任何子组件定义颜色和样式，可以给 <code class="highlighter-rouge">MaterialApp</code> widget 传递一个 <code class="highlighter-rouge">ThemeData</code> 对象。举个例子，在下面的代码中，primary swatch 被设置为蓝色，并且文字的选中颜色是红色：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+        <span class="nl">textSelectionColor:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">red</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么给-text-widget-设置自定义字体">我怎么给 Text widget 设置自定义字体？</h3>
+
+<p>在 iOS 中，你在项目中引入任意的 <code class="highlighter-rouge">ttf</code> 文件，并在 <code class="highlighter-rouge">info.plist</code> 中设置引用。在 Flutter 中，在文件夹中放置字体文件，并在 <code class="highlighter-rouge">pubspec.yaml</code> 中引用它，就像添加图片那样。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonts:
+   - family: MyCustomFont
+     fonts:
+       - asset: fonts/MyCustomFont.ttf
+       - style: italic
+</code></pre></div></div>
+
+<p>然后在你的 <code class="highlighter-rouge">Text</code> widget 中指定字体：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+    <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+    <span class="o">),</span>
+    <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span>
+        <span class="s">'This is a custom font text'</span><span class="o">,</span>
+        <span class="nl">style:</span> <span class="n">TextStyle</span><span class="o">(</span><span class="nl">fontFamily:</span> <span class="s">'MyCustomFont'</span><span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="我怎么给我的-text-widget-设置样式">我怎么给我的 Text widget 设置样式？</h3>
+
+<p>除了字体以外，你也可以给 Text widget 的样式元素设置自定义值。<code class="highlighter-rouge">Text</code> widget 接受一个  <code class="highlighter-rouge">TextStyle</code> 对象，你可以指定许多参数，比如：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">color</code></li>
+  <li><code class="highlighter-rouge">decoration</code></li>
+  <li><code class="highlighter-rouge">decorationColor</code></li>
+  <li><code class="highlighter-rouge">decorationStyle</code></li>
+  <li><code class="highlighter-rouge">fontFamily</code></li>
+  <li><code class="highlighter-rouge">fontSize</code></li>
+  <li><code class="highlighter-rouge">fontStyle</code></li>
+  <li><code class="highlighter-rouge">fontWeight</code></li>
+  <li><code class="highlighter-rouge">hashCode</code></li>
+  <li><code class="highlighter-rouge">height</code></li>
+  <li><code class="highlighter-rouge">inherit</code></li>
+  <li><code class="highlighter-rouge">letterSpacing</code></li>
+  <li><code class="highlighter-rouge">textBaseline</code></li>
+  <li><code class="highlighter-rouge">wordSpacing</code></li>
+</ul>
+
+<h2 id="表单输入">表单输入</h2>
+
+<h3 id="flutter-中表单怎么工作我怎么拿到用户的输入">Flutter 中表单怎么工作？我怎么拿到用户的输入？</h3>
+
+<p>我们已经提到 Flutter 使用不可变的 widget，并且状态是分离的，你可能会好奇在这种情境下怎么处理用户的输入。在 iOS 中，你经常在需要提交数据时查询组件当前的状态或动作，但这在 Flutter 中是怎么工作的呢？</p>
+
+<p>在表单处理的实践中，就像在 Flutter 中任何其他的地方一样，要通过特定的 widgets。如果你有一个 <code class="highlighter-rouge">TextField</code> 或是 <code class="highlighter-rouge">TextFormField</code>，你可以通过 <a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html"><code class="highlighter-rouge">TextEditingController</code></a> 来获得用户输入：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">_MyFormState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyForm</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Create a text controller and use it to retrieve the current value.</span>
+  <span class="c1">// of the TextField!</span>
+  <span class="kd">final</span> <span class="n">myController</span> <span class="o">=</span> <span class="n">TextEditingController</span><span class="o">();</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">dispose</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Clean up the controller when disposing of the Widget.</span>
+    <span class="n">myController</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Retrieve Text Input'</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Padding</span><span class="o">(</span>
+        <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">16.0</span><span class="o">),</span>
+        <span class="nl">child:</span> <span class="n">TextField</span><span class="o">(</span>
+          <span class="nl">controller:</span> <span class="n">myController</span><span class="o">,</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="c1">// When the user presses the button, show an alert dialog with the</span>
+        <span class="c1">// text the user has typed into our text field.</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">showDialog</span><span class="o">(</span>
+            <span class="nl">context:</span> <span class="n">context</span><span class="o">,</span>
+            <span class="nl">builder:</span> <span class="o">(</span><span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+              <span class="k">return</span> <span class="n">AlertDialog</span><span class="o">(</span>
+                <span class="c1">// Retrieve the text the user has typed in using our</span>
+                <span class="c1">// TextEditingController</span>
+                <span class="nl">content:</span> <span class="n">Text</span><span class="o">(</span><span class="n">myController</span><span class="o">.</span><span class="na">text</span><span class="o">),</span>
+              <span class="o">);</span>
+            <span class="o">},</span>
+          <span class="o">);</span>
+        <span class="o">},</span>
+        <span class="nl">tooltip:</span> <span class="s">'Show me the value!'</span><span class="o">,</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">text_fields</span><span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>你可以在这里获得更多信息，或是完整的代码列表： <a href="https://flutter.io/cookbook/forms/retrieve-input/">Retrieve the value of a text field</a>，来自 <a href="https://flutter.io/cookbook/">Flutter Cookbook</a> 。</p>
+
+<h3 id="text-field-中的-placeholder-相当于什么">Text field 中的 placeholder 相当于什么？</h3>
+
+<p>在 Flutter 中，你可以轻易地通过向 Text widget 的装饰构造器参数重传递 <code class="highlighter-rouge">InputDecoration</code> 来展示“小提示”，或是占位符文字：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+  <span class="nl">child:</span> <span class="n">TextField</span><span class="o">(</span>
+    <span class="nl">decoration:</span> <span class="n">InputDecoration</span><span class="o">(</span><span class="nl">hintText:</span> <span class="s">"This is a hint"</span><span class="o">),</span>
+  <span class="o">),</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="我怎么展示验证错误信息">我怎么展示验证错误信息？</h3>
+
+<p>就像展示“小提示”一样，向 Text widget 的装饰器构造器参数中传递一个 <code class="highlighter-rouge">InputDecoration</code>。</p>
+
+<p>然而，你并不想在一开始就显示错误信息。相反，当用户输入了验证信息，更新状态，并传入一个新的 <code class="highlighter-rouge">InputDecoration</code> 对象：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="s">'Sample App'</span><span class="o">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">(</span>
+        <span class="nl">primarySwatch:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">,</span>
+      <span class="o">),</span>
+      <span class="nl">home:</span> <span class="n">SampleAppPage</span><span class="o">(),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SampleAppPage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">SampleAppPage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_SampleAppPageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_SampleAppPageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_SampleAppPageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">SampleAppPage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">String</span> <span class="n">_errorText</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Sample App"</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">TextField</span><span class="o">(</span>
+          <span class="nl">onSubmitted:</span> <span class="o">(</span><span class="kt">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+              <span class="k">if</span> <span class="o">(!</span><span class="n">isEmail</span><span class="o">(</span><span class="n">text</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">_errorText</span> <span class="o">=</span> <span class="s">'Error: This is not an email'</span><span class="o">;</span>
+              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">_errorText</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+              <span class="o">}</span>
+            <span class="o">});</span>
+          <span class="o">},</span>
+          <span class="nl">decoration:</span> <span class="n">InputDecoration</span><span class="o">(</span><span class="nl">hintText:</span> <span class="s">"This is a hint"</span><span class="o">,</span> <span class="nl">errorText:</span> <span class="n">_getErrorText</span><span class="o">()),</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">_getErrorText</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">_errorText</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">bool</span> <span class="n">isEmail</span><span class="o">(</span><span class="kt">String</span> <span class="n">em</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">emailRegexp</span> <span class="o">=</span>
+        <span class="sx">r'^(([^&lt;&gt;()[\]\\.,;:\s@\"]+(\.[^&lt;&gt;()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'</span><span class="o">;</span>
+
+    <span class="n">RegExp</span> <span class="n">regExp</span> <span class="o">=</span> <span class="n">RegExp</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">regExp</span><span class="o">.</span><span class="na">hasMatch</span><span class="o">(</span><span class="n">em</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="和硬件第三方服务以及平台交互">和硬件、第三方服务以及平台交互</h2>
+
+<h3 id="我怎么和平台以及平台的原生代码交互">我怎么和平台，以及平台的原生代码交互？</h3>
+
+<p>Flutter 的代码并不直接在平台之下运行，相反，Dart 代码构建的 Flutter 应用在设备上以原生的方式运行，却“侧步躲开了”平台提供的 SDK。这意味着，例如，你在 Dart 中发起一个网络请求，它就直接在 Dart 的上下文中运行。你并不会用上平常在 iOS 或 Android 上使用的原生 API。你的 Flutter 程序仍然被原生平台的 <code class="highlighter-rouge">ViewController</code> 管理作一个 view，但是你并不会直接访问 <code class="highlighter-rouge">ViewController</code> 自身，或是原生框架。</p>
+
+<p>但这并不意味着 Flutter 不能和原生 API，或任何你编写的原生代码交互。Flutter 提供了 <a href="https://flutter.io/platform-channels/">platform channels</a> ，来和管理你的 Flutter view 的 ViewController 通信和交互数据。平台管道本质上是一个异步通信机制，桥接了 Dart 代码和宿主 ViewController，以及它运行于的 iOS 框架。你可以用平台管道来执行一个原生的函数，或者是从设备的传感器中获取数据。</p>
+
+<p>除了直接使用平台管道之外，你还可以使用一系列预先制作好的 <a href="https://flutter.io/using-packages/">plugins</a>。例如，你可以直接使用插件来访问相机胶卷或是设备的摄像头，而不必编写你自己的集成层代码。你可以在 <a href="https://pub.dartlang.org/">Pub</a> 上找到插件，这是一个 Dart 和 Flutter 的开源包仓库。其中一些包可能会支持集成 iOS 或 Android，或两者均可。</p>
+
+<p>如果你在 Pub 上找不到符合你需求的插件，你可以<a href="https://flutter.io/developing-packages/">自己编写</a> ，并且<a href="https://flutter.io/developing-packages/#publish">发布在 Pub 上</a>。</p>
+
+<h3 id="我怎么访问-gps-传感器">我怎么访问 GPS 传感器？</h3>
+
+<p>使用 <a href="https://pub.dartlang.org/packages/location"><code class="highlighter-rouge">location</code></a> 社区插件。</p>
+
+<h3 id="我怎么访问摄像头">我怎么访问摄像头？</h3>
+
+<p><a href="https://pub.dartlang.org/packages/image_picker"><code class="highlighter-rouge">image_picker</code></a> 在访问摄像头时非常常用。</p>
+
+<h3 id="我怎么登录-facebook">我怎么登录 Facebook？</h3>
+
+<p>登录 Facebook 可以使用 <a href="https://pub.dartlang.org/packages/flutter_facebook_login"><code class="highlighter-rouge">flutter_facebook_login</code></a> 社区插件。</p>
+
+<h3 id="我怎么使用-firebase-特性">我怎么使用 Firebase 特性？</h3>
+
+<p>大多数 Firebase 特性被  <a href="https://pub.dartlang.org/flutter/packages?q=firebase">first party plugins</a> 包含了。这些第一方插件由 Flutter 团队维护：</p>
+
+<ul>
+  <li><a href="https://pub.dartlang.org/packages/firebase_admob"><code class="highlighter-rouge">firebase_admob</code></a> for Firebase AdMob</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_analytics"><code class="highlighter-rouge">firebase_analytics</code></a> for Firebase Analytics</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_auth"><code class="highlighter-rouge">firebase_auth</code></a> for Firebase Auth</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_core"><code class="highlighter-rouge">firebase_core</code></a> for Firebase’s Core package</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_database"><code class="highlighter-rouge">firebase_database</code></a> for Firebase RTDB</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_storage"><code class="highlighter-rouge">firebase_storage</code></a> for Firebase Cloud Storage</li>
+  <li><a href="https://pub.dartlang.org/packages/firebase_messaging"><code class="highlighter-rouge">firebase_messaging</code></a> for Firebase Messaging (FCM)</li>
+  <li><a href="https://pub.dartlang.org/packages/cloud_firestore"><code class="highlighter-rouge">cloud_firestore</code></a> for Firebase Cloud Firestore</li>
+</ul>
+
+<p>你也可以在 Pub 上找到 Firebase 的第三方插件。</p>
+
+<h3 id="我怎创建自己的原生集成层">我怎创建自己的原生集成层？</h3>
+
+<p>如果有一些 Flutter 和社区插件遗漏的平台相关的特性，可以根据  <a href="https://flutter.io/developing-packages/">developing packages and plugins</a> 页面构建自己的插件。</p>
+
+<p>Flutter 的插件结构，简要来说，就像 Android 中的 Event bus。你发送一个消息，并让接受者处理并反馈结果给你。在这种情况下，接受者就是在 Android 或 iOS 上的原生代码。</p>
+
+<h2 id="数据库和本地存储">数据库和本地存储</h2>
+
+<h3 id="我怎么在-flutter-中访问-userdefaults">我怎么在 Flutter 中访问 UserDefaults？</h3>
+
+<p>在 iOS 中，你可以使用属性列表来存储键值对的集合，即我们熟悉的 UserDefaults。</p>
+
+<p>在 Flutter 中，可以使用  <a href="https://pub.dartlang.org/packages/shared_preferences">Shared Preferences plugin</a> 来达到相似的功能。它包裹了 <code class="highlighter-rouge">UserDefaluts</code> 以及 Android 上等价的 <code class="highlighter-rouge">SharedPreferences</code> 的功能。</p>
+
+<h3 id="coredata-相当于-flutter-中的什么">CoreData 相当于 Flutter 中的什么？</h3>
+
+<p>在 iOS 中，你通过 CoreData 来存储结构化的数据。这是一个 SQL 数据库的上层封装，让查询和关联模型变得更加简单。</p>
+
+<p>在 Flutter 中，使用 <a href="https://pub.dartlang.org/packages/sqflite">SQFlite</a> 插件来实现这个功能。</p>
+
+<h2 id="通知">通知</h2>
+
+<h3 id="我怎么推送通知">我怎么推送通知？</h3>
+
+<p>在 iOS 中，你需要向苹果开发者平台中注册来允许推送通知。</p>
+
+<p>在 Flutter 中，使用 <code class="highlighter-rouge">firebase_messaging</code> 插件来实现这一功能。</p>
+
+<p>更多使用 Firebase Cloud Messaging API 的信息，请参阅 <a href="https://pub.dartlang.org/packages/firebase_messaging"><code class="highlighter-rouge">firebase_messaging</code></a> 插件文档。</p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>
