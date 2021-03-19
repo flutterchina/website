@@ -33,7 +33,7 @@ keywords: Flutter响应事件, Flutter监听事件
   * [父组件管理state](#parent-managed)
   * [混合管理state](#mix-and-match)
 * [其它交互式widgets](#other-interactive-widgets)
-  * [标砖widgets](#standard-widgets)
+  * [标准widgets](#standard-widgets)
   * [Material Components](#material-components)
 * [资源](#resources)
 
