@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>测试 Flutter App  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/testing/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/testing.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 测试 Flutter App&body=From URL: https://www.flutterchina.club/testing.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">测试 Flutter App </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#介绍" id="markdown-toc-介绍">介绍</a></li>
+  <li><a href="#单元测试" id="markdown-toc-单元测试">单元测试</a></li>
+  <li><a href="#widget-测试" id="markdown-toc-widget-测试">Widget 测试</a></li>
+  <li><a href="#集成测试" id="markdown-toc-集成测试">集成测试</a>    <ul>
+      <li><a href="#添加flutter_driver依赖项" id="markdown-toc-添加flutter_driver依赖项">添加flutter_driver依赖项</a></li>
+      <li><a href="#创建指令化的flutter应用程序" id="markdown-toc-创建指令化的flutter应用程序">创建指令化的Flutter应用程序</a></li>
+      <li><a href="#编写集成测试" id="markdown-toc-编写集成测试">编写集成测试</a></li>
+      <li><a href="#运行集成测试" id="markdown-toc-运行集成测试">运行集成测试</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="介绍">介绍</h2>
+
+<p>应用的功能越多，手动测试的难度就越大。一套完整的自动化测试将帮助您确保您的应用在发布之前正确执行，同时保留您的功能和错误修复速度。</p>
+
+<p>有很多种自动化测试。这些总结如下：</p>
+
+<ul>
+  <li><strong>单元测试</strong>：测试单一功能、方法或类。例如，被测单元的外部依赖性通常被模拟出来，如<a href="https://github.com/fibulwinter/dart-mockito/blob/master/README.md"><code class="highlighter-rouge">package:mockito</code></a>。
+单元测试通常不会读取/写入磁盘、渲染到屏幕，也不会从运行测试的进程外部接收用户操作。单元测试的目标是在各种条件下验证逻辑单元的正确性。</li>
+  <li><strong>widget 测试</strong>：(在其它UI框架称为 <em>组件测试</em>) 测试的单个widget。测试widget涉及多个类，并且需要提供适当的widget生命周期上下文的测试环境。
+例如，它应该能够接收和响应用户操作和事件，执行布局并实例化子widget。widget测试因此比单元测试更全面。
+然而，就像一个单元测试一样，一个widget测试的环境被一个比完整的UI系统简单得多的实现所取代。小部件测试的目标是验证小部件的UI如预期的那样的外观和交互。</li>
+  <li><a href="https://en.wikipedia.org/wiki/Integration_testing"><strong>集成测试</strong></a>：
+测试一个完整的应用程序或应用程序的很大一部分。通常，集成测试可以在真实设备或OS仿真器上运行，例如iOS Simulator或Android Emulator。
+被测试的应用程序通常与测试驱动程序代码隔离，以避免结果偏差。集成测试的目标是验证应用程序作为一个整体正确运行，它所组成的所有widget如预期的那样相互集成。
+您还可以使用集成测试来验证应用的性能。</li>
+</ul>
+
+<p>这里是一个表格，总结了在不同类型测试之间进行选择的权衡：</p>
+
+<table class="flutter-table">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>单元测试</th>
+      <th>widget测试</th>
+      <th>集成测试</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Confidence</strong></td>
+      <td>Low</td>
+      <td>Higher</td>
+      <td>Highest</td>
+    </tr>
+    <tr>
+      <td><strong>维护成本</strong></td>
+      <td>Low</td>
+      <td>Higher</td>
+      <td>Highest</td>
+    </tr>
+    <tr>
+      <td><strong>依赖</strong></td>
+      <td>Few</td>
+      <td>More</td>
+      <td>Lots</td>
+    </tr>
+    <tr>
+      <td><strong>执行速度</strong></td>
+      <td>Quick</td>
+      <td>Slower</td>
+      <td>Slowest</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>提示</strong>: 作为一个经验法则，经过充分测试的应用程序具有非常多的单元和widget测试，通过代码覆盖(<a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a>)进行跟踪，以及覆盖所有重要使用场景的大量集成测试。</p>
+
+<h2 id="单元测试">单元测试</h2>
+
+<p>某些Flutter库，如<code class="highlighter-rouge">dart:ui</code>在独立的Dart VM附带的Dart SDK的中是不可用。该<code class="highlighter-rouge">flutter test</code>命令允许您在本地Dart VM中运行测试，使用无头版(不会显示UI)的Flutter引擎。
+使用这个命令你可以运行任何测试，不管它是否依赖于Flutter的库。</p>
+
+<p>使用<code class="highlighter-rouge">package:test</code>，编写一个Flutter单元测试。编写单元测试使用的<code class="highlighter-rouge">package:test</code>文档在<a href="https://github.com/dart-lang/test/blob/master/README.md">这里</a>。</p>
+
+<p>例如:</p>
+
+<p>将此文件添加到 <code class="highlighter-rouge">test/unit_test.dart</code>:</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:test/test.dart&#39;;
+
+void main() {
+  test(&#39;my first unit test&#39;, () {
+    <span class="nocode highlight">var answer = 42;</span>
+    expect(answer, 42);
+  });
+}</code></pre>
+
+<p>另外，您必须将以下内容添加到您的<code class="highlighter-rouge">pubspec.yaml</code>：</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dev_dependencies</span><span class="pi">:</span>
+  <span class="na">flutter_test</span><span class="pi">:</span>
+    <span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+</code></pre></div></div>
+
+<p>即使你的测试本身没有明确导入<code class="highlighter-rouge">flutter_test</code>，也需要这样做 ，因为测试框架本身在后台也使用了它。</p>
+
+<p>要运行测试，从您的项目目录（而不是从<code class="highlighter-rouge">test</code>子目录）运行 <code class="highlighter-rouge">flutter test test/unit_test.dart</code></p>
+
+<p>要运行所有测试，请从项目目录运行<code class="highlighter-rouge">flutter test</code></p>
+
+<h2 id="widget-测试">Widget 测试</h2>
+
+<p>您以类似于单元测试的方式实现widget测试。要在测试中执行与widget的交互，请使用Flutter提供的<a href="https://docs.flutter.io/flutter/flutter_test/WidgetTester-class.html"><code class="highlighter-rouge">WidgetTester</code></a>。
+例如，您可以发送点击和滚动手势。您还可以使用<a href="https://docs.flutter.io/flutter/flutter_test/WidgetTester-class.html"><code class="highlighter-rouge">WidgetTester</code></a>在widget树中查找子widget、读取文本、验证widget属性的值是否正确。</p>
+
+<p>例子:</p>
+
+<p>将此文件添加到<code class="highlighter-rouge">test/widget_test.dart</code>：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:flutter_test/flutter_test.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">testWidgets</span><span class="o">(</span><span class="s">'my first widget test'</span><span class="o">,</span> <span class="o">(</span><span class="n">WidgetTester</span> <span class="n">tester</span><span class="o">)</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="c1">// You can use keys to locate the widget you need to test</span>
+    <span class="kd">var</span> <span class="n">sliderKey</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UniqueKey</span><span class="o">();</span>
+    <span class="kd">var</span> <span class="n">value</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+
+    <span class="c1">// Tells the tester to build a UI based on the widget tree passed to it</span>
+    <span class="n">await</span> <span class="n">tester</span><span class="o">.</span><span class="na">pumpWidget</span><span class="o">(</span>
+      <span class="k">new</span> <span class="n">StatefulBuilder</span><span class="o">(</span>
+        <span class="nl">builder:</span> <span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">,</span> <span class="n">StateSetter</span> <span class="n">setState</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="k">new</span> <span class="n">MaterialApp</span><span class="o">(</span>
+            <span class="nl">home:</span> <span class="k">new</span> <span class="n">Material</span><span class="o">(</span>
+              <span class="nl">child:</span> <span class="k">new</span> <span class="n">Center</span><span class="o">(</span>
+                <span class="nl">child:</span> <span class="k">new</span> <span class="n">Slider</span><span class="o">(</span>
+                  <span class="nl">key:</span> <span class="n">sliderKey</span><span class="o">,</span>
+                  <span class="nl">value:</span> <span class="n">value</span><span class="o">,</span>
+                  <span class="nl">onChanged:</span> <span class="o">(</span><span class="kt">double</span> <span class="n">newValue</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+                      <span class="n">value</span> <span class="o">=</span> <span class="n">newValue</span><span class="o">;</span>
+                    <span class="o">});</span>
+                  <span class="o">},</span>
+                <span class="o">),</span>
+              <span class="o">),</span>
+            <span class="o">),</span>
+          <span class="o">);</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+    <span class="n">expect</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">equals</span><span class="o">(</span><span class="mf">0.0</span><span class="o">));</span>
+
+    <span class="c1">// Taps on the widget found by key</span>
+    <span class="n">await</span> <span class="n">tester</span><span class="o">.</span><span class="na">tap</span><span class="o">(</span><span class="n">find</span><span class="o">.</span><span class="na">byKey</span><span class="o">(</span><span class="n">sliderKey</span><span class="o">));</span>
+
+    <span class="c1">// Verifies that the widget updated the value correctly</span>
+    <span class="n">expect</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">equals</span><span class="o">(</span><span class="mf">0.5</span><span class="o">));</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>运行 <code class="highlighter-rouge">flutter test test/widget_test.dart</code>.</p>
+
+<p>查看所有可用于widget测试的<a href="https://docs.flutter.io/flutter/flutter_test/flutter_test-library.html"><code class="highlighter-rouge">package:flutter_test</code> API</a></p>
+
+<p>为了帮助调试widget测试，您可以使用<a href="https://docs.flutter.io/flutter/widgets/debugDumpApp.html"><code class="highlighter-rouge">debugDumpApp()</code></a> 函数来可视化测试的UI状态，
+或者只是简单的在您的首选运行时环境（例如模拟器或设备）中运行<code class="highlighter-rouge">flutter run test/widget_test.dart</code>以查看您的测试运行。
+在运行<code class="highlighter-rouge">flutter run</code>的测试的会话期间，您还可以交互式地点击Flutter工具的部分屏幕来打印建议的<a href="https://docs.flutter.io/flutter/flutter_test/CommonFinders-class.html"><code class="highlighter-rouge">Finder</code></a>。</p>
+
+<h2 id="集成测试">集成测试</h2>
+
+<blockquote>
+  <p>如果您熟悉Selenium/WebDriver（web），Espresso(Android)或UI Automation(iOS)，那么Flutter Driver就是Flutter与这些集成测试工具的等价物。
+此外，Flutter Driver还提供API以记录测试执行的操作的性能跟踪（又名时间轴）。</p>
+</blockquote>
+
+<p>Flutter的Driver是:</p>
+
+<ul>
+  <li>一个命令行工具 <code class="highlighter-rouge">flutter drive</code></li>
+  <li>一个包 <code class="highlighter-rouge">package:flutter_driver</code> (<a href="https://docs.flutter.io/flutter/flutter_driver/FlutterDriver-class.html">API</a>)</li>
+</ul>
+
+<p>这两者允许你:</p>
+
+<ul>
+  <li>为集成测试创建指令化的应用程序</li>
+  <li>写一个测试</li>
+  <li>运行测试</li>
+</ul>
+
+<h3 id="添加flutter_driver依赖项">添加flutter_driver依赖项</h3>
+
+<p>要使用<code class="highlighter-rouge">flutter_driver</code>，您必须将以下块添加到您的<code class="highlighter-rouge">pubspec.yaml</code>：</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dev_dependencies</span><span class="pi">:</span>
+  <span class="na">flutter_driver</span><span class="pi">:</span>
+    <span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+</code></pre></div></div>
+
+<h3 id="创建指令化的flutter应用程序">创建指令化的Flutter应用程序</h3>
+
+<p>一个指令化的应用程序是一个Flutter应用程序，它启用了Flutter Driver 扩展。启用扩展请调用<code class="highlighter-rouge">enableFlutterDriverExtension()</code>。</p>
+
+<p>例：</p>
+
+<p>假设你有一个入口点的应用程序<code class="highlighter-rouge">my_app/lib/main.dart</code>。要创建它的指令化版本，请在<code class="highlighter-rouge">my_app/test_driver/</code>下创建一个Dart文件。
+在您正在测试的功能之后命名它; 接下来定位到<code class="highlighter-rouge">my_app/test_driver/user_list_scrolling.dart</code>：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 这一行导入扩展</span>
+<span class="kn">import</span> <span class="s">'package:flutter_driver/driver_extension.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// 启用扩展</span>
+  <span class="n">enableFlutterDriverExtension</span><span class="o">();</span>
+
+  <span class="c1">// Call the `main()` of your app or call `runApp` with whatever widget</span>
+  <span class="c1">// you are interested in testing.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="编写集成测试">编写集成测试</h3>
+
+<p>集成测试是一个简单的<code class="highlighter-rouge">package:test</code>测试，它使用Flutter Driver API告诉应用程序执行什么操作，然后验证应用程序是否执行了此操作。</p>
+
+<p>例子:</p>
+
+<p>为了有意思起见，我们也让我们的测试记录下性能跟踪(performance timeline)。我们创建一个<code class="highlighter-rouge">user_list_scrolling_test.dart</code>测试文件位于<code class="highlighter-rouge">my_app/test_driver/</code>下：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+
+<span class="c1">// Imports the Flutter Driver API</span>
+<span class="kn">import</span> <span class="s">'package:flutter_driver/flutter_driver.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:test/test.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">group</span><span class="o">(</span><span class="s">'scrolling performance test'</span><span class="o">,</span> <span class="o">()</span> <span class="o">{</span>
+    <span class="n">FlutterDriver</span> <span class="n">driver</span><span class="o">;</span>
+
+    <span class="n">setUpAll</span><span class="o">(()</span> <span class="n">async</span> <span class="o">{</span>
+      <span class="c1">// 连接app</span>
+      <span class="n">driver</span> <span class="o">=</span> <span class="n">await</span> <span class="n">FlutterDriver</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+    <span class="o">});</span>
+
+    <span class="n">tearDownAll</span><span class="o">(()</span> <span class="n">async</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">driver</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 关闭连接</span>
+        <span class="n">driver</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="n">test</span><span class="o">(</span><span class="s">'measure'</span><span class="o">,</span> <span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+      <span class="c1">// 记录闭包中的performance timeline</span>
+      <span class="n">Timeline</span> <span class="n">timeline</span> <span class="o">=</span> <span class="n">await</span> <span class="n">driver</span><span class="o">.</span><span class="na">traceAction</span><span class="o">(()</span> <span class="n">async</span> <span class="o">{</span>
+        <span class="c1">// Find the scrollable user list</span>
+        <span class="n">SerializableFinder</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">find</span><span class="o">.</span><span class="na">byValueKey</span><span class="o">(</span><span class="s">'user-list'</span><span class="o">);</span>
+
+        <span class="c1">// Scroll down 5 times</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="c1">// Scroll 300 pixels down, for 300 millis</span>
+          <span class="n">await</span> <span class="n">driver</span><span class="o">.</span><span class="na">scroll</span><span class="o">(</span>
+              <span class="n">userList</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="o">-</span><span class="mf">300.0</span><span class="o">,</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">300</span><span class="o">));</span>
+
+          <span class="c1">// Emulate a user's finger taking its time to go back to the original</span>
+          <span class="c1">// position before the next scroll</span>
+          <span class="n">await</span> <span class="k">new</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">Null</span><span class="o">&gt;.</span><span class="na">delayed</span><span class="o">(</span><span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">500</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Scroll up 5 times</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="n">await</span> <span class="n">driver</span><span class="o">.</span><span class="na">scroll</span><span class="o">(</span>
+              <span class="n">userList</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">300.0</span><span class="o">,</span> <span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">300</span><span class="o">));</span>
+          <span class="n">await</span> <span class="k">new</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">Null</span><span class="o">&gt;.</span><span class="na">delayed</span><span class="o">(</span><span class="k">new</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">500</span><span class="o">));</span>
+        <span class="o">}</span>
+      <span class="o">});</span>
+
+      <span class="c1">// The `timeline` object contains all the performance data recorded during</span>
+      <span class="c1">// the scrolling session. It can be digested into a handful of useful</span>
+      <span class="c1">// aggregate numbers, such as "average frame build time".</span>
+      <span class="n">TimelineSummary</span> <span class="n">summary</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimelineSummary</span><span class="o">.</span><span class="na">summarize</span><span class="o">(</span><span class="n">timeline</span><span class="o">);</span>
+      <span class="n">summary</span><span class="o">.</span><span class="na">writeSummaryToFile</span><span class="o">(</span><span class="s">'stocks_scroll_perf'</span><span class="o">,</span> <span class="nl">pretty:</span> <span class="kc">true</span><span class="o">);</span>
+      <span class="n">summary</span><span class="o">.</span><span class="na">writeTimelineToFile</span><span class="o">(</span><span class="s">'stocks_scroll_perf'</span><span class="o">,</span> <span class="nl">pretty:</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="运行集成测试">运行集成测试</h3>
+
+<p>要在Android设备上运行测试，请通过USB将设备连接到计算机并启用USB调试。然后运行以下命令：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flutter drive --target=my_app/test_driver/user_list_scrolling.dart
+</code></pre></div></div>
+
+<p>该命令将:</p>
+
+<ul>
+  <li>构建 <code class="highlighter-rouge">--target</code> 应用，并将其安装在设备上</li>
+  <li>启动应用</li>
+  <li>运行<code class="highlighter-rouge">my_app/test_driver/</code>下的<code class="highlighter-rouge">user_list_scrolling_test.dart</code></li>
+</ul>
+
+<p>您可能想知道该命令如何找到正确的测试文件。<code class="highlighter-rouge">flutter drive</code> 命令使用一种约定来查找与<code class="highlighter-rouge">--target</code>应用程序在同一目录中具有相同文件名但是具有<code class="highlighter-rouge">_test</code>后缀的测试文件。</p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

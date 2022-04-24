@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>教程：Flutter中的动画  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter动画教程，介绍了Flutter中的补间(Tween)动画、hero动画、交错动画等。">
+  <meta name="keywords" content="Flutter动画教程,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/tutorials/animation/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/tutorials/animation/index.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 教程：Flutter中的动画&body=From URL: https://www.flutterchina.club/tutorials/animation/index.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">教程：Flutter中的动画 </h1>
+   </div>
+
+  </header>
+  
+
+  <div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你会学到什么：</b></p>
+
+  <ul>
+    <li>如何使用动画库中的基础类将动画添加到widget</li>
+    <li>何时使用AnimatedWidget与AnimatedBuilder.</li>
+  </ul>
+
+</div>
+
+<p>本教程向您展示如何在Flutter中构建动画。在介绍动画库中的一些基本概念、类和方法之后，它会引导您完成5个动画示例，向您介绍动画库的不同内容。</p>
+
+<ul id="markdown-toc">
+  <li><a href="#基本的动画概念和类" id="markdown-toc-基本的动画概念和类">基本的动画概念和类</a>    <ul>
+      <li><a href="#animationdouble" id="markdown-toc-animationdouble">Animation&lt;double&gt;</a></li>
+      <li><a href="#curvedanimation" id="markdown-toc-curvedanimation">CurvedAnimation</a></li>
+      <li><a href="#animationcontroller" id="markdown-toc-animationcontroller">AnimationController</a></li>
+      <li><a href="#tween" id="markdown-toc-tween">Tween</a>        <ul>
+          <li><a href="#tweenanimate" id="markdown-toc-tweenanimate">Tween.animate</a></li>
+        </ul>
+      </li>
+      <li><a href="#动画通知" id="markdown-toc-动画通知">动画通知</a></li>
+    </ul>
+  </li>
+  <li><a href="#动画示例" id="markdown-toc-动画示例">动画示例</a>    <ul>
+      <li><a href="#渲染动画" id="markdown-toc-渲染动画">渲染动画</a></li>
+      <li><a href="#用animatedwidget简化" id="markdown-toc-用animatedwidget简化">用AnimatedWidget简化</a></li>
+      <li><a href="#监视动画的过程" id="markdown-toc-监视动画的过程">监视动画的过程</a></li>
+      <li><a href="#用animatedbuilder重构" id="markdown-toc-用animatedbuilder重构">用AnimatedBuilder重构</a></li>
+      <li><a href="#并行动画" id="markdown-toc-并行动画">并行动画</a></li>
+    </ul>
+  </li>
+  <li><a href="#下一步" id="markdown-toc-下一步">下一步</a></li>
+</ul>
+
+<h2 id="基本的动画概念和类">基本的动画概念和类</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>Animation对象是Flutter动画库中的一个核心类，它生成指导动画的值。</li>
+    <li>Animation对象知道动画的当前状态（例如，它是开始、停止还是向前或向后移动），但它不知道屏幕上显示的内容。</li>
+    <li>AnimationController管理Animation。</li>
+    <li>CurvedAnimation 将过程抽象为一个非线性曲线.</li>
+    <li>Tween在正在执行动画的对象所使用的数据范围之间生成值。例如，Tween可能会生成从红到蓝之间的色值，或者从0到255。</li>
+    <li>使用Listeners和StatusListeners监听动画状态改变。</li>
+  </ul>
+
+</div>
+
+<p>Flutter中的动画系统基于<a href="https://docs.flutter.io/flutter/animation/Animation-class.html"><code class="highlighter-rouge">Animation</code></a>对象的，widget可以在<code class="highlighter-rouge">build</code>函数中读取<a href="https://docs.flutter.io/flutter/animation/Animation-class.html"><code class="highlighter-rouge">Animation</code></a>对象的当前值，
+并且可以监听动画的状态改变。</p>
+
+<p><a name="animation-class"></a></p>
+<h3 id="animationdouble">Animation&lt;double&gt;</h3>
+
+<p>在Flutter中，Animation对象本身和UI渲染没有任何关系。Animation是一个抽象类，它拥有其当前值和状态（完成或停止）。其中一个比较常用的Animation类是Animation&lt;double&gt;。</p>
+
+<p>Flutter中的Animation对象是一个在一段时间内依次生成一个区间之间值的类。Animation对象的输出可以是线性的、曲线的、一个步进函数或者任何其他可以设计的映射。
+根据Animation对象的控制方式，动画可以反向运行，甚至可以在中间切换方向。</p>
+
+<p>Animation还可以生成除double之外的其他类型值，如：Animation&lt;Color&gt; 或 Animation&lt;Size&gt;。</p>
+
+<p>Animation对象有状态。可以通过访问其<code class="highlighter-rouge">value</code>属性获取动画的当前值。</p>
+
+<p>Animation对象本身和UI渲染没有任何关系。</p>
+
+<h3 id="curvedanimation">CurvedAnimation</h3>
+
+<p>CurvedAnimation 将动画过程定义为一个非线性曲线.</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final CurvedAnimation curve =
+    new CurvedAnimation(parent: controller, curve: Curves.easeIn);</code></pre>
+
+<aside class="alert alert-success">
+  <p><strong>注:</strong>
+<a href="https://docs.flutter.io/flutter/animation/Curves-class.html">Curves</a>
+类类定义了许多常用的曲线，也可以创建自己的，例如：</p>
+
+  <!-- skip -->
+  <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class ShakeCurve extends Curve {
+  @override
+  double transform(double t) {
+    return math.sin(t * math.PI * 2);
+  }
+}</code></pre>
+</aside>
+
+<p>CurvedAnimation和AnimationController（在下一节中介绍）都是Animation&lt;double&gt;类型。CurvedAnimation包装它正在修改的对象 - 您不需要子类AnimationController来实现曲线</p>
+
+<h3 id="animationcontroller">AnimationController</h3>
+
+<p>AnimationController是一个特殊的Animation对象，在屏幕刷新的每一帧，就会生成一个新的值。默认情况下，AnimationController在给定的时间段内会线性的生成从0.0到1.0的数字。
+例如，下面代码创建一个Animation对象，但不会启动它运行：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final AnimationController controller = new AnimationController(
+    duration: const Duration(milliseconds: 2000), vsync: this);</code></pre>
+
+<p>AnimationController派生自Animation&lt;double&gt;，因此可以在需要Animation对象的任何地方使用。
+但是，AnimationController具有控制动画的其他方法。例如，<code class="highlighter-rouge">.forward()</code>方法可以启动动画。数字的产生与屏幕刷新有关，因此每秒钟通常会产生60个数字，在生成每个数字后，每个Animation对象调用添加的Listener对象。</p>
+
+<p>当创建一个AnimationController时，需要传递一个<code class="highlighter-rouge">vsync</code>参数，存在<code class="highlighter-rouge">vsync</code>时会防止屏幕外动画（译者语：动画的UI不在当前屏幕时）消耗不必要的资源。
+通过将SingleTickerProviderStateMixin添加到类定义中，可以将stateful对象作为<code class="highlighter-rouge">vsync</code>的值。你可以在GitHub的<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart">animate1</a>中看到这个例子 。</p>
+
+<blockquote>
+  <p>译者语：<code class="highlighter-rouge">vsync</code>对象会绑定动画的定时器到一个可视的widget，所以当widget不显示时，动画定时器将会暂停，当widget再次显示时，动画定时器重新恢复执行，这样就可以避免动画相关UI不在当前屏幕时消耗资源。
+如果要使用自定义的State对象作为<code class="highlighter-rouge">vsync</code>时，请包含<code class="highlighter-rouge">TickerProviderStateMixin</code>。</p>
+</blockquote>
+
+<aside class="alert alert-success">
+  <p><strong>注意</strong>：
+在某些情况下，值(position，值动画的当前值)可能会超出AnimationController的0.0-1.0的范围。例如，<code class="highlighter-rouge">fling()</code>函数允许您提供速度(velocity)、力量(force)、position(通过Force对象)。位置(position)可以是任何东西，因此可以在0.0到1.0范围之外。
+CurvedAnimation生成的值也可以超出0.0到1.0的范围。根据选择的曲线，CurvedAnimation的输出可以具有比输入更大的范围。例如，Curves.elasticIn等弹性曲线会生成大于或小于默认范围的值。</p>
+</aside>
+
+<h3 id="tween">Tween</h3>
+
+<p>默认情况下，AnimationController对象的范围从0.0到1.0。如果您需要不同的范围或不同的数据类型，则可以使用Tween来配置动画以生成不同的范围或数据类型的值。例如，以下示例，Tween生成从-200.0到0.0的值：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final Tween doubleTween = new Tween&lt;double&gt;(begin: -200.0, end: 0.0);</code></pre>
+
+<p>Tween是一个无状态(stateless)对象，需要<code class="highlighter-rouge">begin</code>和<code class="highlighter-rouge">end</code>值。Tween的唯一职责就是定义从输入范围到输出范围的映射。输入范围通常为0.0到1.0，但这不是必须的。</p>
+
+<p>Tween继承自Animatable&lt;T&gt;，而不是继承自Animation&lt;T&gt;。Animatable与Animation相似，不是必须输出double值。例如，ColorTween指定两种颜色之间的过渡。</p>
+
+<!--- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final Tween colorTween =
+    new ColorTween(begin: Colors.transparent, end: Colors.black54);</code></pre>
+
+<p>Tween对象不存储任何状态。相反，它提供了<code class="highlighter-rouge">evaluate(Animation&lt;double&gt; animation)</code>方法将映射函数应用于动画当前值。
+Animation对象的当前值可以通过<code class="highlighter-rouge">value()</code>方法取到。<code class="highlighter-rouge">evaluate</code>函数还执行一些其它处理，例如分别确保在动画值为0.0和1.0时返回开始和结束状态。</p>
+
+<h4 id="tweenanimate">Tween.animate</h4>
+
+<p>要使用Tween对象，请调用其<code class="highlighter-rouge">animate()</code>方法，传入一个控制器对象。例如，以下代码在500毫秒内生成从0到255的整数值。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final AnimationController controller = new AnimationController(
+    duration: const Duration(milliseconds: 500), vsync: this);
+Animation&lt;int&gt; alpha = new IntTween(begin: 0, end: 255).animate(controller);</code></pre>
+
+<p>注意<code class="highlighter-rouge">animate()</code>返回的是一个Animation，而不是一个Animatable。</p>
+
+<p>以下示例构建了一个控制器、一条曲线和一个Tween：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final AnimationController controller = new AnimationController(
+    duration: const Duration(milliseconds: 500), vsync: this);
+final Animation curve =
+    new CurvedAnimation(parent: controller, curve: Curves.easeOut);
+Animation&lt;int&gt; alpha = new IntTween(begin: 0, end: 255).animate(curve);</code></pre>
+
+<p><a name="monitoring"></a></p>
+<h3 id="动画通知">动画通知</h3>
+
+<p>一个Animation对象可以拥有Listeners和StatusListeners监听器，可以用<code class="highlighter-rouge">addListener()</code>和<code class="highlighter-rouge">addStatusListener()</code>来添加。
+只要动画的值发生变化，就会调用监听器。一个Listener最常见的行为是调用setState()来触发UI重建。动画开始、结束、向前移动或向后移动（如AnimationStatus所定义）时会调用StatusListener。
+下一节中有一个<code class="highlighter-rouge">addListener()</code>方法的例子。<a href="#monitoring">监视动画的进度</a>展示了如何调用<code class="highlighter-rouge">addStatusListener()</code>。</p>
+
+<hr />
+
+<h2 id="动画示例">动画示例</h2>
+
+<p>本节将向您介绍5个动画示例。每个部分都提供了该示例源代码的链接。</p>
+
+<h3 id="渲染动画">渲染动画</h3>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么?</b></p>
+
+  <ul>
+    <li>如何通过<code class="highlighter-rouge">addListener()</code>和<code class="highlighter-rouge">setState()</code>给widget添加基础的动画。</li>
+    <li>每次动画生成一个新数字时，监听函数都会调用<code class="highlighter-rouge">setState()</code>。</li>
+    <li>如何使用必需的<code class="highlighter-rouge">vsync</code>参数定义AnimatedController</li>
+    <li>了解Dart语言中的 <code class="highlighter-rouge">..</code>语法。</li>
+  </ul>
+
+</div>
+
+<p>到目前为止，您已经学会了如何随着时间的推移生成一系列数字，但没有任何东西被渲染到屏幕上。
+要使用Animation&lt;&gt;对象进行渲染，请将Animation对象存储为Widget的成员，然后使用其<code class="highlighter-rouge">value</code>值来决定如何绘制。</p>
+
+<p>考虑下面的应用程序，它绘制Flutter logo时没有动画：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:flutter/material.dart&#39;;
+
+class LogoApp extends StatefulWidget {
+  _LogoAppState createState() =&gt; new _LogoAppState();
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; {
+  Widget build(BuildContext context) {
+    return new Center(
+      child: new Container(
+        margin: new EdgeInsets.symmetric(vertical: 10.0),
+        height: 300.0,
+        width: 300.0,
+        child: new FlutterLogo(),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(new LogoApp());
+}</code></pre>
+
+<p>修改以上代码，通过一个逐渐放大的动画显示logo。定义AnimationController时，必须传入一个<code class="highlighter-rouge">vsync</code>对象。该<code class="highlighter-rouge">vsync</code>参数在上面<a href="#animationcontroller">AnimationController</a>部分有介绍了 。</p>
+
+<p>高亮部分为修改的代码:</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code><span class="nocode highlight">import &#39;package:flutter/animation.dart&#39;;</span>
+import &#39;package:flutter/material.dart&#39;;
+
+class LogoApp extends StatefulWidget {
+  _LogoAppState createState() =&gt; new _LogoAppState();
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; <span class="nocode highlight">with SingleTickerProviderStateMixin</span> {
+  <span class="nocode highlight">Animation&lt;double&gt; animation;</span>
+  <span class="nocode highlight">AnimationController controller;</span>
+
+  <span class="nocode highlight">initState() {</span>
+    <span class="nocode highlight">super.initState();</span>
+    <span class="nocode highlight">controller = new AnimationController(</span>
+        <span class="nocode highlight">duration: const Duration(milliseconds: 2000), vsync: this);</span>
+    <span class="nocode highlight">animation = new Tween(begin: 0.0, end: 300.0).animate(controller)</span>
+      <span class="nocode highlight">..addListener(() {</span>
+        <span class="nocode highlight">setState(() {</span>
+          <span class="nocode highlight">// the state that has changed here is the animation object’s value</span>
+        <span class="nocode highlight">});</span>
+      <span class="nocode highlight">});</span>
+    <span class="nocode highlight">controller.forward();</span>
+  <span class="nocode highlight">}</span>
+
+  Widget build(BuildContext context) {
+    return new Center(
+      child: new Container(
+        margin: new EdgeInsets.symmetric(vertical: 10.0),
+        height: <span class="nocode highlight">animation.value,</span>
+        width: <span class="nocode highlight">animation.value,</span>
+        child: new FlutterLogo(),
+      ),
+    );
+  }
+
+  <span class="nocode highlight">dispose() {</span>
+    <span class="nocode highlight">controller.dispose();</span>
+    <span class="nocode highlight">super.dispose();</span>
+  }
+}
+
+void main() {
+  runApp(new LogoApp());
+}</code></pre>
+
+<p>该<code class="highlighter-rouge">addListener()</code>函数调用了<code class="highlighter-rouge">setState()</code>，所以每次动画生成一个新的数字时，当前帧被标记为脏(dirty)，这会导致widget的<code class="highlighter-rouge">build()</code>方法再次被调用。
+在<code class="highlighter-rouge">build()</code>中，改变container大小，因为它的高度和宽度现在使用的是<code class="highlighter-rouge">animation.value</code>。动画完成时释放控制器(调用<code class="highlighter-rouge">dispose()</code>方法)以防止内存泄漏。</p>
+
+<p><a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart">animate1.</a>
+通过简单的修改，您已经在Flutter中创建了第一个动画！这个例子的源代码<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart">animate1.</a>
+、</p>
+<aside class="alert alert-success">
+  <p><strong>Dart语言技巧：</strong>
+您可能不熟悉Dart级联符号(两个点)，如<code class="highlighter-rouge">..addListener()</code>，这种语法意味着使用<code class="highlighter-rouge">animate()</code>的返回值来调用<code class="highlighter-rouge">addListener()</code>方法。考虑下面的例子：</p>
+
+  <!-- skip -->
+  <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code><span class="nocode highlight">animation = tween.animate(controller)</span>
+          <span class="nocode highlight">..addListener(()</span> {
+            setState(() {
+              // the animation object’s value is the changed state
+            });
+          });</code></pre>
+
+  <p>上面的代码等价于:</p>
+
+  <!-- skip -->
+  <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code><span class="nocode highlight">animation = tween.animate(controller);</span>
+<span class="nocode highlight">animation.addListener(()</span> {
+            setState(() {
+              // the animation object’s value is the changed state
+            });
+          });</code></pre>
+
+  <p>您可以在<a href="https://www.dartlang.org/guides/language/language-tour">Dart语言之旅</a> 中了解更多关于级联符号的信息。</p>
+</aside>
+
+<h3 id="用animatedwidget简化">用AnimatedWidget简化</h3>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>如何使用AnimatedWidget助手类（而不是<code class="highlighter-rouge">addListener()</code>和<code class="highlighter-rouge">setState()</code>）来给widget添加动画</li>
+    <li>使用AnimatedWidget创建一个可重用动画的widget。要从widget中分离出动画过渡，请使用<a href="#refactoring-with-animatedbuilder">AnimatedBuilder</a>。</li>
+    <li>Flutter API提供的关于AnimatedWidget的示例包括：AnimatedBuilder、AnimatedModalBarrier、DecoratedBoxTransition、FadeTransition、PositionedTransition、RelativePositionedTransition、RotationTransition、ScaleTransition、SizeTransition、SlideTransition。</li>
+  </ul>
+
+</div>
+
+<p>AnimatedWidget类允许您从<code class="highlighter-rouge">setState()</code>调用中的动画代码中分离出widget代码。AnimatedWidget不需要维护一个State对象来保存动画。</p>
+
+<p>在下面的重构示例中，LogoApp现在继承自AnimatedWidget而不是StatefulWidget。AnimatedWidget在绘制时使用动画的当前值。LogoApp仍然管理着AnimationController和Tween。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>// Demonstrate a simple animation with AnimatedWidget
+
+import &#39;package:flutter/animation.dart&#39;;
+import &#39;package:flutter/material.dart&#39;;
+
+class AnimatedLogo extends AnimatedWidget {
+  AnimatedLogo({Key key, Animation&lt;double&gt; animation})
+      : super(key: key, listenable: animation);
+
+  Widget build(BuildContext context) {
+    final Animation&lt;double&gt; animation = listenable;
+    return new Center(
+      child: new Container(
+        margin: new EdgeInsets.symmetric(vertical: 10.0),
+        height: animation.value,
+        width: animation.value,
+        child: new FlutterLogo(),
+      ),
+    );
+  }
+}
+
+class LogoApp extends StatefulWidget {
+  _LogoAppState createState() =&gt; new _LogoAppState();
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation&lt;double&gt; animation;
+
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    animation = new Tween(begin: 0.0, end: 300.0).animate(controller);
+    controller.forward();
+  }
+
+  Widget build(BuildContext context) {
+    return new AnimatedLogo(animation: animation);
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+
+void main() {
+  runApp(new LogoApp());
+}</code></pre>
+
+<p>LogoApp将Animation对象传递给基类并用<code class="highlighter-rouge">animation.value</code>设置容器的高度和宽度，因此它的工作原理与之前完全相同。</p>
+
+<blockquote>
+  <p>译者语：和animate1中不同的是，AnimatedWidget(基类)中会自动调用<code class="highlighter-rouge">addListener()</code>和<code class="highlighter-rouge">setState()</code>。</p>
+</blockquote>
+
+<p>你可以 在GitHub上找到这个例子的源代码<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate2/main.dart">animate2</a>。</p>
+
+<h3 id="监视动画的过程">监视动画的过程</h3>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>使用<code class="highlighter-rouge">addStatusListener</code>来处理动画状态更改的通知，例如启动、停止或反转方向。</li>
+    <li>当动画完成或返回其开始状态时，通过反转方向来无限循环运行动画</li>
+  </ul>
+
+</div>
+
+<p>知道动画何时改变状态通常很有用的，如完成、前进或倒退。你可以通过<code class="highlighter-rouge">addStatusListener()</code>来得到这个通知。
+以下代码修改<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart">animate1</a>示例，以便它监听动态状态更改并打印更新。
+下面高亮显示的部分为修改的：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _LogoAppState extends State&lt;LogoApp&gt; with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation&lt;double&gt; animation;
+
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    animation = new Tween(begin: 0.0, end: 300.0).animate(controller)
+      <span class="nocode highlight">..addStatusListener((state) =&gt; print(&quot;$state&quot;));</span>
+    controller.forward();
+  }
+  //...
+}</code></pre>
+
+<p>运行此代码将输出以下内容：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-sh language-sh"><code>AnimationStatus.forward
+AnimationStatus.completed</code></pre>
+
+<p>接下来，使用<code class="highlighter-rouge">addStatusListener()</code>在开始或结束时反转动画。这产生了循环效果：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _LogoAppState extends State&lt;LogoApp&gt; with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation&lt;double&gt; animation;
+
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    animation = new Tween(begin: 0.0, end: 300.0).animate(controller);
+
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+    controller.forward();
+  }
+  //...
+}</code></pre>
+
+<p>你可以在GitHub上找到这个例子的源代码<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate3/main.dart">animate3</a>。</p>
+
+<h3 id="用animatedbuilder重构">用AnimatedBuilder重构</h3>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>AnimatedBuilder了解如何渲染过渡.</li>
+    <li>An AnimatedBuilder 不知道如何渲染widget，也不知道如何管理Animation对象。</li>
+    <li>使用AnimatedBuilder将动画描述为另一个widget的<code class="highlighter-rouge">build</code>方法的一部分。如果你只是想用可复用的动画定义一个widget，请使用AnimatedWidget。</li>
+    <li>Flutter API中AnimatedBuilder的示例包括: BottomSheet、ExpansionTile、
+PopupMenu、ProgressIndicator、RefreshIndicator、Scaffold、SnackBar、TabBar、TextField。</li>
+  </ul>
+
+</div>
+
+<p><a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate3/main.dart">animate3</a>示例中的代码存在的一个问题：
+更改动画需要更改显示logo的widget。更好的解决方案是将职责分离：</p>
+
+<ul>
+  <li>显示logo</li>
+  <li>定义Animation对象</li>
+  <li>渲染过渡效果</li>
+</ul>
+
+<p>您可以借助AnimatedBuilder类完成此分离。AnimatedBuilder是渲染树中的一个独立的类。
+与AnimatedWidget类似，AnimatedBuilder自动监听来自Animation对象的通知，并根据需要将该控件树标记为脏(dirty)，因此不需要手动调用<code class="highlighter-rouge">addListener()</code>。</p>
+
+<p><a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate5/main.dart">animate5</a>示例的widget树如下所示：</p>
+
+<p><img src="images/AnimatedBuilder-WidgetTree.png" alt="A widget tree with Container pointing to ContainerTransition, pointing to AnimatedBuilder, pointing to (AnonymousBuilder), pointing to LogoWidget." /></p>
+
+<p>从widget树的底部开始，渲染logo的代码直接明了：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class LogoWidget extends StatelessWidget {
+  // Leave out the height and width so it fills the animating parent
+  build(BuildContext context) {
+    return new Container(
+      margin: new EdgeInsets.symmetric(vertical: 10.0),
+      child: new FlutterLogo(),
+    );
+  }
+}</code></pre>
+
+<p>图中的中间三个块都在GrowTransition的<code class="highlighter-rouge">build()</code>方法中创建。GrowTransition本身是无状态的，并拥有定义过渡动画所需的最终变量集合。
+<code class="highlighter-rouge">build()</code>函数创建并返回AnimatedBuilder，它将（匿名构建器）方法和LogoWidget对象作为参数。渲染转换的工作实际上发生在（匿名构建器）方法中，
+该方法创建一个适当大小的Container来强制缩放LogoWidget。</p>
+
+<p>下面的代码中有一个的问迷惑的题是，<code class="highlighter-rouge">child</code>看起来像被指定了两次。但实际发生的事情是，将外部引用child传递给AnimatedBuilder，AnimatedBuilder将其传递给匿名构造器，
+然后将该对象用作其子对象。最终的结果是AnimatedBuilder插入到渲染树中的两个widget之间。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class GrowTransition extends StatelessWidget {
+  GrowTransition({this.child, this.animation});
+
+  final Widget child;
+  final Animation&lt;double&gt; animation;
+
+  Widget build(BuildContext context) {
+    return new Center(
+      child: new AnimatedBuilder(
+          animation: animation,
+          builder: (BuildContext context, Widget child) {
+            return new Container(
+                height: animation.value, width: animation.value, child: child);
+          },
+          child: child),
+    );
+  }
+}</code></pre>
+
+<p>最后，初始化动画的代码与第一个示例<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate1/main.dart">animate1.</a>非常相似。
+<code class="highlighter-rouge">initState()</code>方法创建一个AnimationController和一个Tween，然后通过<code class="highlighter-rouge">animate()</code>绑定它们。魔术发生在<code class="highlighter-rouge">build()</code>方法中，该方法返回一个带有LogoWidget作为子对象的GrowTransition对象，以及一个用于驱动过渡的动画对象。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class LogoApp extends StatefulWidget {
+  _LogoAppState createState() =&gt; new _LogoAppState();
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; with TickerProviderStateMixin {
+  Animation animation;
+  AnimationController controller;
+
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    final CurvedAnimation curve =
+        new CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    animation = new Tween(begin: 0.0, end: 300.0).animate(curve);
+    controller.forward();
+  }
+
+  Widget build(BuildContext context) {
+    return new GrowTransition(child: new LogoWidget(), animation: animation);
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+
+void main() {
+  runApp(new LogoApp());
+}</code></pre>
+
+<p>你可以 在GitHub上找到这个例子的源代码<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate4/main.dart">animate4</a>。</p>
+
+<h3 id="并行动画">并行动画</h3>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li><a href="https://docs.flutter.io/flutter/animation/Curves-class.html">Curves</a>
+类定义常用动画曲线的数组，你可以通过<a href="https://docs.flutter.io/flutter/animation/CurvedAnimation-class.html">CurvedAnimation</a> 使用。</li>
+  </ul>
+
+</div>
+
+<p>在本节中，您将基于[监视动画过程](#monitoring](<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate3/main.dart">animate3</a>中的示例进行构建，
+该示例使用AnimatedWidget循环的进行放大和缩小，现在考虑一下如何再添加一个在透明和不透明之间循环的动画。</p>
+
+<aside class="alert alert-success">
+  <p><strong>注意：</strong>此示例展示了如何在同一个动画控制器上使用多个Tween，其中每个Tween管理动画中的不同效果。
+本示例仅用于示例，如果您在生产代码中需要使用不透明度和大小变化的Tween，则可能会使用<a href="https://docs.flutter.io/flutter/widgets/FadeTransition-class.html">FadeTransition</a>和<a href="https://docs.flutter.io/flutter/widgets/SizeTransition-class.html">SizeTransition</a>。</p>
+</aside>
+
+<p>每一个Tween管理动画的一种效果。例如：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>final AnimationController controller =
+    new AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
+final Animation&lt;double&gt; sizeAnimation =
+    new Tween(begin: 0.0, end: 300.0).animate(controller);
+final Animation&lt;double&gt; opacityAnimation =
+    new Tween(begin: 0.1, end: 1.0).animate(controller);</code></pre>
+
+<p>你可以通过<code class="highlighter-rouge">sizeAnimation.value</code>来获取大小，通过<code class="highlighter-rouge">opacityAnimation.value</code>来获取不透明度，但AnimatedWidget的构造函数只接受一个动画对象。
+为了解决这个问题，该示例创建了自己的Tween对象并显式计算了这些值。</p>
+
+<p>其<code class="highlighter-rouge">build</code>方法<code class="highlighter-rouge">.evaluate()</code>在父级的动画对象上调用Tween函数以计算所需的<code class="highlighter-rouge">size</code>和<code class="highlighter-rouge">opacity</code>值。</p>
+
+<p>下面高亮部分即修改的代码:</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>import &#39;package:flutter/animation.dart&#39;;
+import &#39;package:flutter/material.dart&#39;;
+
+class AnimatedLogo extends AnimatedWidget {
+  // The Tweens are static because they don&#39;t change.
+  <span class="nocode highlight">static final _opacityTween = new Tween&lt;double&gt;(begin: 0.1, end: 1.0);</span>
+  <span class="nocode highlight">static final _sizeTween = new Tween&lt;double&gt;(begin: 0.0, end: 300.0);</span>
+
+  AnimatedLogo({Key key, Animation&lt;double&gt; animation})
+      : super(key: key, listenable: animation);
+
+  Widget build(BuildContext context) {
+    final Animation&lt;double&gt; animation = listenable;
+    return new Center(
+      <span class="nocode highlight">child: new Opacity(</span>
+        <span class="nocode highlight">opacity: _opacityTween.evaluate(animation),</span>
+        child: new Container(
+          margin: new EdgeInsets.symmetric(vertical: 10.0),
+          height: <span class="nocode highlight">_sizeTween.evaluate(animation)</span>,
+          width: <span class="nocode highlight">_sizeTween.evaluate(animation)</span>,
+          child: new FlutterLogo(),
+        ),
+      ),
+    );
+  }
+}
+
+class LogoApp extends StatefulWidget {
+  _LogoAppState createState() =&gt; new _LogoAppState();
+}
+
+class _LogoAppState extends State&lt;LogoApp&gt; with TickerProviderStateMixin {
+  AnimationController controller;
+  Animation&lt;double&gt; animation;
+
+  initState() {
+    super.initState();
+    controller = new AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    animation = <span class="nocode highlight">new CurvedAnimation(parent: controller, curve: Curves.easeIn);</span>
+
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+
+    controller.forward();
+  }
+
+  Widget build(BuildContext context) {
+    return new AnimatedLogo(animation: animation);
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+
+void main() {
+  runApp(new LogoApp());
+}</code></pre>
+
+<p>你可以在GitHub上找到这个例子的源代码<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/animate5/main.dart">animate5</a>。</p>
+
+<h2 id="下一步">下一步</h2>
+
+<p>本教程为您展示了如何使用Tweens在Flutter中创建动画的基础，但还有很多其他类需要探索。您可以研究一下特定的Tween类、Material Design中特定的动画、ReverseAnimation、共享元素过渡(也称为hero动画)、物理模拟和<code class="highlighter-rouge">fling()</code>方法的动画 。查看<a href="/animations/">动画首页</a>获取最新的可用文档和示例。</p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

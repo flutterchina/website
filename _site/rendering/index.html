@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rendering in Flutter  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/rendering/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/rendering.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Rendering in Flutter&body=From URL: https://www.flutterchina.club/rendering.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Rendering in Flutter </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a>    <ul>
+      <li><a href="#base-model" id="markdown-toc-base-model">Base Model</a></li>
+      <li><a href="#parent-data" id="markdown-toc-parent-data">Parent Data</a></li>
+      <li><a href="#box-model" id="markdown-toc-box-model">Box Model</a>        <ul>
+          <li><a href="#dimensions" id="markdown-toc-dimensions">Dimensions</a></li>
+          <li><a href="#edgeinsets" id="markdown-toc-edgeinsets">EdgeInsets</a></li>
+          <li><a href="#boxconstraints" id="markdown-toc-boxconstraints">BoxConstraints</a></li>
+        </ul>
+      </li>
+      <li><a href="#bespoke-models" id="markdown-toc-bespoke-models">Bespoke Models</a></li>
+    </ul>
+  </li>
+  <li><a href="#using-the-provided-subclasses" id="markdown-toc-using-the-provided-subclasses">Using the provided subclasses</a>    <ul>
+      <li><a href="#render_boxdart" id="markdown-toc-render_boxdart">render_box.dart</a>        <ul>
+          <li><a href="#renderconstrainedbox" id="markdown-toc-renderconstrainedbox">RenderConstrainedBox</a></li>
+          <li><a href="#rendershrinkwrapwidth" id="markdown-toc-rendershrinkwrapwidth">RenderShrinkWrapWidth</a></li>
+          <li><a href="#renderopacity" id="markdown-toc-renderopacity">RenderOpacity</a></li>
+          <li><a href="#rendercolorfilter" id="markdown-toc-rendercolorfilter">RenderColorFilter</a></li>
+          <li><a href="#rendercliprect" id="markdown-toc-rendercliprect">RenderClipRect</a></li>
+          <li><a href="#renderclipoval" id="markdown-toc-renderclipoval">RenderClipOval</a></li>
+          <li><a href="#renderpadding" id="markdown-toc-renderpadding">RenderPadding</a></li>
+          <li><a href="#renderpositionedbox" id="markdown-toc-renderpositionedbox">RenderPositionedBox</a></li>
+          <li><a href="#renderimage" id="markdown-toc-renderimage">RenderImage</a></li>
+          <li><a href="#renderdecoratedbox" id="markdown-toc-renderdecoratedbox">RenderDecoratedBox</a></li>
+          <li><a href="#rendertransform" id="markdown-toc-rendertransform">RenderTransform</a></li>
+          <li><a href="#rendersizeobserver" id="markdown-toc-rendersizeobserver">RenderSizeObserver</a></li>
+          <li><a href="#rendercustompaint" id="markdown-toc-rendercustompaint">RenderCustomPaint</a></li>
+        </ul>
+      </li>
+      <li><a href="#renderblock-render_blockdart" id="markdown-toc-renderblock-render_blockdart">RenderBlock (render_block.dart)</a></li>
+      <li><a href="#renderflex-render_flexdart" id="markdown-toc-renderflex-render_flexdart">RenderFlex (render_flex.dart)</a></li>
+      <li><a href="#renderparagraph-render_paragraphdart" id="markdown-toc-renderparagraph-render_paragraphdart">RenderParagraph (render_paragraph.dart)</a></li>
+      <li><a href="#renderstack-render_stackdart" id="markdown-toc-renderstack-render_stackdart">RenderStack (render_stack.dart)</a></li>
+    </ul>
+  </li>
+  <li><a href="#writing-new-subclasses" id="markdown-toc-writing-new-subclasses">Writing new subclasses</a>    <ul>
+      <li><a href="#the-renderobject-contract" id="markdown-toc-the-renderobject-contract">The RenderObject contract</a>        <ul>
+          <li><a href="#the-parentdata-contract" id="markdown-toc-the-parentdata-contract">The ParentData contract</a></li>
+          <li><a href="#using-renderobjectwithchildmixin" id="markdown-toc-using-renderobjectwithchildmixin">Using RenderObjectWithChildMixin</a></li>
+          <li><a href="#using-containerrenderobjectmixin-and-containerparentdatamixin" id="markdown-toc-using-containerrenderobjectmixin-and-containerparentdatamixin">Using ContainerRenderObjectMixin (and ContainerParentDataMixin)</a></li>
+        </ul>
+      </li>
+      <li><a href="#the-renderbox-contract" id="markdown-toc-the-renderbox-contract">The RenderBox contract</a>        <ul>
+          <li><a href="#using-renderproxybox" id="markdown-toc-using-renderproxybox">Using RenderProxyBox</a></li>
+        </ul>
+      </li>
+      <li><a href="#the-hit-testing-contract" id="markdown-toc-the-hit-testing-contract">The Hit Testing contract</a></li>
+    </ul>
+  </li>
+  <li><a href="#performance-rules-of-thumb" id="markdown-toc-performance-rules-of-thumb">Performance rules of thumb</a></li>
+  <li><a href="#useful-debugging-tools" id="markdown-toc-useful-debugging-tools">Useful debugging tools</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The Flutter render tree is a low-level layout and painting system based on a
+retained tree of objects that inherit from <code class="highlighter-rouge">RenderObject</code>. Most
+developers using Flutter will not need to interact directly with the rendering tree.
+Instead, most developers should use
+<a href="/widgets-intro/">widgets</a>, which are built using
+the render tree.</p>
+
+<h3 id="base-model">Base Model</h3>
+
+<p>The base class for every node in the render tree is
+<code class="highlighter-rouge">RenderObject</code>, which defines the base layout model. The base
+layout mode is extremely general and can accommodate a large number of more
+concrete layout models that can co-exist in the same tree. For example, the base
+model does not commit to a fixed number of dimensions or even a cartesian
+coordinate system. In this way, a single render tree can contain render objects
+operating in three-dimensional space together with other render objects
+operating in two-dimensional space, e.g., on the face of a cube in the three-
+dimensional space. Moreover, the two-dimensional layout might be partially
+computed in cartesian coordinates and partially computed in polar coordinates.
+These distinct models can interact during layout, for example determining the
+size of the cube by the height of a block of text on the cube’s face.</p>
+
+<p>Not entirely free-wheeling, the base model does impose some structure on the
+render tree:</p>
+
+<ul>
+  <li>
+    <p>Subclasses of <code class="highlighter-rouge">RenderObject</code> must implement a <code class="highlighter-rouge">performLayout</code> function that
+takes as input a <code class="highlighter-rouge">constraints</code> object provided by its parent. <code class="highlighter-rouge">RenderObject</code>
+has no opinion about the structure of this object and different layout models
+use different types of constraints. However, whatever type they choose must
+implement <code class="highlighter-rouge">operator==</code> in such a way that <code class="highlighter-rouge">performLayout</code> produces the same
+output for two <code class="highlighter-rouge">constraints</code> objects that are <code class="highlighter-rouge">operator==</code>.</p>
+  </li>
+  <li>
+    <p>Implementations of <code class="highlighter-rouge">performLayout</code> are expected to call <code class="highlighter-rouge">layout</code> on their
+children. When calling <code class="highlighter-rouge">layout</code>, a <code class="highlighter-rouge">RenderObject</code> must use the
+<code class="highlighter-rouge">parentUsesSize</code> parameter to declare whether its <code class="highlighter-rouge">performLayout</code> function
+depends on information read from the child. If the parent doesn’t declare
+that it uses the child’s size, the edge from the parent to the child becomes
+a <em>relayout boundary</em>, which means the child (and its subtree) might undergo
+layout without the parent undergoing layout.</p>
+  </li>
+  <li>
+    <p>Subclasses of <code class="highlighter-rouge">RenderObject</code> must implement a <code class="highlighter-rouge">paint</code> function that draws a
+visual representation of the object onto a <code class="highlighter-rouge">PaintingCanvas</code>. If
+the <code class="highlighter-rouge">RenderObject</code> has children, the <code class="highlighter-rouge">RenderObject</code> is responsible for
+painting its children using the <code class="highlighter-rouge">paintChild</code> function on the
+<code class="highlighter-rouge">PaintingCanvas</code>.</p>
+  </li>
+  <li>
+    <p>Subclasses of <code class="highlighter-rouge">RenderObject</code> must call <code class="highlighter-rouge">adoptChild</code> whenever they add a
+child. Similarly, they must call <code class="highlighter-rouge">dropChild</code> whenever they remove a child.</p>
+  </li>
+  <li>
+    <p>Most subclasses of <code class="highlighter-rouge">RenderObject</code> will implement a <code class="highlighter-rouge">hitTest</code> function that
+lets clients query the render tree for objects that intersect with a given
+user input location. <code class="highlighter-rouge">RenderObject</code> itself does not impose a particular
+type signature on <code class="highlighter-rouge">hitTest</code>, but most implementations will take an argument
+of type <code class="highlighter-rouge">HitTestResult</code> (or, more likely, a model-specific subclass of
+<code class="highlighter-rouge">HitTestResult</code>) as well as an object that describes the location at which
+the user provided input (e.g., a <code class="highlighter-rouge">Point</code> for a two-dimensional cartesian
+model).</p>
+  </li>
+  <li>
+    <p>Finally, subclasses of <code class="highlighter-rouge">RenderObject</code> can override the default, do-nothing
+implemenations of <code class="highlighter-rouge">handleEvent</code> and <code class="highlighter-rouge">rotate</code> to respond to user input and
+screen rotation, respectively.</p>
+  </li>
+</ul>
+
+<p>The base model also provides two mixins for common child models:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">RenderObjectWithChildMixin</code> is useful for subclasses of <code class="highlighter-rouge">RenderObject</code> that
+have a unique child.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">ContainerRenderObjectMixin</code> is useful for subclasses of <code class="highlighter-rouge">RenderObject</code> that
+have a child list.</p>
+  </li>
+</ul>
+
+<p>Subclasses of <code class="highlighter-rouge">RenderObject</code> are not required to use either of these child
+models and are free to invent novel child models for their specific use cases.</p>
+
+<h3 id="parent-data">Parent Data</h3>
+
+<p>TODO(ianh): Describe the parent data concept.</p>
+
+<p>The <code class="highlighter-rouge">setupParentData()</code> method is automatically called for each child
+when the child’s parent is changed. However, if you need to
+preinitialize the <code class="highlighter-rouge">parentData</code> member to set its values before you add
+a node to its parent, you can preemptively call that future parent’s
+<code class="highlighter-rouge">setupParentData()</code> method with the future child as the argument.</p>
+
+<p>TODO(ianh): Discuss putting per-child configuration information for
+the parent on the child’s parentData.</p>
+
+<p>If you change a child’s parentData dynamically, you must also call
+markNeedsLayout() on the parent, otherwise the new information will
+not take effect until something else triggers a layout.</p>
+
+<h3 id="box-model">Box Model</h3>
+
+<h4 id="dimensions">Dimensions</h4>
+
+<p>All dimensions are expressed as logical pixel units. Font sizes are
+also in logical pixel units. Logical pixel units are approximately
+96dpi, but the precise value varies based on the hardware, in such a
+way as to optimize for performance and rendering quality while keeping
+interfaces roughly the same size across devices regardless of the
+hardware pixel density.</p>
+
+<p>Logical pixel units are automatically converted to device (hardware)
+pixels when painting by applying an appropriate scale factor.</p>
+
+<p>TODO(ianh): Define how you actually get the device pixel ratio if you
+need it, and document best practices around that.</p>
+
+<h4 id="edgeinsets">EdgeInsets</h4>
+
+<h4 id="boxconstraints">BoxConstraints</h4>
+
+<h3 id="bespoke-models">Bespoke Models</h3>
+
+<h2 id="using-the-provided-subclasses">Using the provided subclasses</h2>
+
+<h3 id="render_boxdart">render_box.dart</h3>
+
+<h4 id="renderconstrainedbox">RenderConstrainedBox</h4>
+
+<h4 id="rendershrinkwrapwidth">RenderShrinkWrapWidth</h4>
+
+<h4 id="renderopacity">RenderOpacity</h4>
+
+<h4 id="rendercolorfilter">RenderColorFilter</h4>
+
+<h4 id="rendercliprect">RenderClipRect</h4>
+
+<h4 id="renderclipoval">RenderClipOval</h4>
+
+<h4 id="renderpadding">RenderPadding</h4>
+
+<h4 id="renderpositionedbox">RenderPositionedBox</h4>
+
+<h4 id="renderimage">RenderImage</h4>
+
+<h4 id="renderdecoratedbox">RenderDecoratedBox</h4>
+
+<h4 id="rendertransform">RenderTransform</h4>
+
+<h4 id="rendersizeobserver">RenderSizeObserver</h4>
+
+<h4 id="rendercustompaint">RenderCustomPaint</h4>
+
+<h3 id="renderblock-render_blockdart">RenderBlock (render_block.dart)</h3>
+
+<h3 id="renderflex-render_flexdart">RenderFlex (render_flex.dart)</h3>
+
+<h3 id="renderparagraph-render_paragraphdart">RenderParagraph (render_paragraph.dart)</h3>
+
+<h3 id="renderstack-render_stackdart">RenderStack (render_stack.dart)</h3>
+
+<h2 id="writing-new-subclasses">Writing new subclasses</h2>
+
+<h3 id="the-renderobject-contract">The RenderObject contract</h3>
+
+<p>If you want to define a <code class="highlighter-rouge">RenderObject</code> that uses a new coordinate
+system, then you should inherit straight from <code class="highlighter-rouge">RenderObject</code>. Examples
+of doing this can be found in <code class="highlighter-rouge">RenderBox</code>, which deals in
+rectangles in cartesian space, and in the <a href="https://github.com/flutter/flutter/blob/master/examples/layers/rendering/src/sector_layout.dart">sector_layout.dart
+example</a>, which
+implements a toy model based on polar coordinates. The <code class="highlighter-rouge">RenderView</code>
+class, which is used internally to adapt from the host system to this
+rendering framework, is another example.</p>
+
+<p>A subclass of <code class="highlighter-rouge">RenderObject</code> must fulfill the following contract:</p>
+
+<ul>
+  <li>
+    <p>It must fulfill the <code class="highlighter-rouge">AbstractNode</code> contract when
+dealing with children. Using <code class="highlighter-rouge">RenderObjectWithChildMixin</code> or
+<code class="highlighter-rouge">ContainerRenderObjectMixin</code> can make this easier.</p>
+  </li>
+  <li>
+    <p>Information about the child managed by the parent, e.g. typically
+position information and configuration for the parent’s layout,
+should be stored on the <code class="highlighter-rouge">parentData</code> member; to this effect, a
+ParentData subclass should be defined and the <code class="highlighter-rouge">setupParentData()</code>
+method should be overridden to initialize the child’s parent data
+appropriately.</p>
+  </li>
+  <li>
+    <p>Layout constraints must be expressed in a Constraints subclass. This
+subclass must implement <code class="highlighter-rouge">operator==</code> (and <code class="highlighter-rouge">hashCode</code>).</p>
+  </li>
+  <li>
+    <p>Whenever the layout needs updating, the <code class="highlighter-rouge">markNeedsLayout()</code> method
+should be called.</p>
+  </li>
+  <li>
+    <p>Whenever the rendering needs updating without changing the layout,
+the <code class="highlighter-rouge">markNeedsPaint()</code> method should be called. (Calling
+<code class="highlighter-rouge">markNeedsLayout()</code> implies a call to <code class="highlighter-rouge">markNeedsPaint()</code>, so you
+don’t need to call both.)</p>
+  </li>
+  <li>
+    <p>The subclass must override <code class="highlighter-rouge">performLayout()</code> to perform layout based
+on the constraints given in the <code class="highlighter-rouge">constraints</code> member. Each object is
+responsible for sizing itself; positioning must be done by the
+object calling <code class="highlighter-rouge">performLayout()</code>. Whether positioning is done before
+or after the child’s layout is a decision to be made by the class.
+TODO(ianh): Document sizedByParent, performResize(), rotate</p>
+  </li>
+  <li>
+    <p>TODO(ianh): Document painting, hit testing, debug*</p>
+  </li>
+</ul>
+
+<h4 id="the-parentdata-contract">The ParentData contract</h4>
+
+<h4 id="using-renderobjectwithchildmixin">Using RenderObjectWithChildMixin</h4>
+
+<h4 id="using-containerrenderobjectmixin-and-containerparentdatamixin">Using ContainerRenderObjectMixin (and ContainerParentDataMixin)</h4>
+
+<p>This mixin can be used for classes that have a child list, to manage
+the list. It implements the list using linked list pointers in the
+<code class="highlighter-rouge">parentData</code> structure.</p>
+
+<p>TODO(ianh): Document this mixin.</p>
+
+<p>Subclasses must follow the following contract, in addition to the
+contracts of any other classes they subclass:</p>
+
+<ul>
+  <li>If the constructor takes a list of children, it must call addAll()
+with that list.</li>
+</ul>
+
+<p>TODO(ianh): Document how to walk the children.</p>
+
+<h3 id="the-renderbox-contract">The RenderBox contract</h3>
+
+<p>A <code class="highlighter-rouge">RenderBox</code> subclass is required to implement the following contract:</p>
+
+<ul>
+  <li>
+    <p>It must fulfill the <code class="highlighter-rouge">AbstractNode</code> contract when
+dealing with children. Note that using <code class="highlighter-rouge">RenderObjectWithChildMixin</code>
+or <code class="highlighter-rouge">ContainerRenderObjectMixin</code> takes care of this for you, assuming
+you fulfill their contract instead.</p>
+  </li>
+  <li>
+    <p>If it has any data to store on its children, it must define a
+BoxParentData subclass and override setupParentData() to initialize
+the child’s parent data appropriately, as in the following example.
+(If the subclass has an opinion about what type its children must
+be, e.g. the way that <code class="highlighter-rouge">RenderBlock</code> wants its children to be
+<code class="highlighter-rouge">RenderBox</code> nodes, then change the <code class="highlighter-rouge">setupParentData()</code> signature
+accordingly, to catch misuse of the method.)</p>
+  </li>
+</ul>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">class</span> <span class="nc">FooParentData</span> <span class="kd">extends</span> <span class="n">BoxParentData</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+
+  <span class="c1">// In RenderFoo</span>
+  <span class="kt">void</span> <span class="n">setupParentData</span><span class="o">(</span><span class="n">RenderObject</span> <span class="n">child</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">child</span><span class="o">.</span><span class="na">parentData</span> <span class="k">is</span><span class="o">!</span> <span class="n">FooParentData</span><span class="o">)</span>
+      <span class="n">child</span><span class="o">.</span><span class="na">parentData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FooParentData</span><span class="o">();</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The class must encapsulate a layout algorithm that has the following
+features:</li>
+</ul>
+
+<p>** It uses as input a set of constraints, described by a
+   BoxConstraints object, and a set of zero or more children, as
+   determined by the class itself, and has as output a Size (which is
+   set on the object’s own <code class="highlighter-rouge">size</code> field), and positions for each child
+   (which are set on the children’s <code class="highlighter-rouge">parentData.position</code> field).</p>
+
+<p>** The algorithm can decide the Size in one of two ways: either
+   exclusively based on the given constraints (i.e. it is effectively
+   sized entirely by its parent), or based on those constraints and
+   the dimensions of the children.</p>
+
+<p>In the former case, the class must have a sizedByParent getter that
+   returns true, and it must have a <code class="highlighter-rouge">performResize()</code> method that uses
+   the object’s <code class="highlighter-rouge">constraints</code> member to size itself by setting the
+   <code class="highlighter-rouge">size</code> member. The size must be consistent, a given set of
+   constraints must always result in the same size.</p>
+
+<p>In the latter case, it will inherit the default <code class="highlighter-rouge">sizedByParent</code>
+   getter that returns false, and it will size itself in the
+   <code class="highlighter-rouge">performLayout()</code> function described below.</p>
+
+<p>The <code class="highlighter-rouge">sizedByParent</code> distinction is purely a performance
+   optimization. It allows nodes that only set their size based on the
+   incoming constraints to skip that logic when they need to be
+   re-laid-out, and, more importantly, it allows the layout system to
+   treat the node as a <em>layout boundary</em>, which reduces the amount of
+   work that needs to happen when the node is marked as needing
+   layout.</p>
+
+<ul>
+  <li>
+    <p>The following methods must report numbers consistent with the output
+of the layout algorithm used:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">double getMinIntrinsicWidth(BoxConstraints constraints)</code> must
+ return the width that fits within the given constraints below which
+ making the width constraint smaller would not increase the
+ resulting height, or, to put it another way, the narrowest width at
+ which the box can be rendered without failing to lay the children
+ out within itself.</p>
+
+        <p>For example, the minimum intrinsic width of a piece of text like “a
+ b cd e”, where the text is allowed to wrap at spaces, would be the
+ width of “cd”.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">double getMaxIntrinsicWidth(BoxConstraints constraints)</code> must
+ return the width that fits within the given constraints above which
+ making the width constraint larger would not decrease the resulting
+ height.</p>
+
+        <p>For example, the maximum intrinsic width of a piece of text like “a
+ b cd e”, where the text is allowed to wrap at spaces, would be the
+ width of the whole “a b cd e” string, with no wrapping.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">double getMinIntrinsicHeight(BoxConstraints constraints)</code> must
+ return the height that fits within the given constraints below
+ which making the height constraint smaller would not increase the
+ resulting width, or, to put it another way, the shortest height at
+ which the box can be rendered without failing to lay the children
+ out within itself.</p>
+
+        <p>The minimum intrinsic height of a width-in-height-out algorithm,
+ like English text layout, would be the height of the text at the
+ width that would be used given the constraints. So for instance,
+ given the text “hello world”, if the constraints were such that it
+ had to wrap at the space, then the minimum intrinsic height would
+ be the height of two lines (and the appropriate line spacing). If
+ the constraints were such that it all fit on one line, then it
+ would be the height of one line.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">double getMaxIntrinsicHeight(BoxConstraints constraints)</code> must
+return the height that fits within the given constraints above
+which making the height constraint larger would not decrease the
+resulting width. If the height depends exclusively on the width,
+and the width does not depend on the height, then
+<code class="highlighter-rouge">getMinIntrinsicHeight()</code> and <code class="highlighter-rouge">getMaxIntrinsicHeight()</code> will return the
+same number given the same constraints.</p>
+
+        <p>In the case of English text, the maximum intrinsic height is the
+same as the minimum intrinsic height.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>The box must have a <code class="highlighter-rouge">performLayout()</code> method that encapsulates the
+layout algorithm that this class represents. It is responsible for
+telling the children to lay out, positioning the children, and, if
+sizedByParent is false, sizing the object.</p>
+
+    <p>Specifically, the method must walk over the object’s children, if
+any, and for each one call <code class="highlighter-rouge">child.layout()</code> with a BoxConstraints
+object as the first argument, and a second argument named
+<code class="highlighter-rouge">parentUsesSize</code> which is set to true if the child’s resulting size
+will in any way influence the layout, and omitted (or set to false)
+if the child’s resulting size is ignored. The children’s positions
+(<code class="highlighter-rouge">child.parentData.position</code>) must then be set.</p>
+
+    <p>(Calling <code class="highlighter-rouge">layout()</code> can result in the child’s own <code class="highlighter-rouge">performLayout()</code>
+method being called recursively, if the child also needs to be laid
+out. If the child’s constraints haven’t changed and the child is not
+marked as needing layout, however, this will be skipped.)</p>
+
+    <p>The parent must not set a child’s <code class="highlighter-rouge">size</code> directly. If the parent
+wants to influence the child’s size, it must do so via the
+constraints that it passes to the child’s <code class="highlighter-rouge">layout()</code> method.</p>
+
+    <p>If an object’s <code class="highlighter-rouge">sizedByParent</code> is false, then its <code class="highlighter-rouge">performLayout()</code>
+must also size the object (by setting <code class="highlighter-rouge">size</code>), otherwise, the size
+must be left untouched.</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">size</code> member must never be set to an infinite value.</p>
+  </li>
+  <li>
+    <p>The box must also implement <code class="highlighter-rouge">hitTestChildren()</code>.
+TODO(ianh): Define this better</p>
+  </li>
+  <li>
+    <p>The box must also implement <code class="highlighter-rouge">paint()</code>.
+TODO(ianh): Define this better</p>
+  </li>
+</ul>
+
+<h4 id="using-renderproxybox">Using RenderProxyBox</h4>
+
+<h3 id="the-hit-testing-contract">The Hit Testing contract</h3>
+
+<h2 id="performance-rules-of-thumb">Performance rules of thumb</h2>
+
+<ul>
+  <li>
+    <p>Avoid using transforms where mere maths would be sufficient (e.g.
+draw your rectangle at x,y rather than translating by x,y and
+drawing it at 0,0).</p>
+  </li>
+  <li>
+    <p>Avoid using save/restore on canvases.</p>
+  </li>
+</ul>
+
+<h2 id="useful-debugging-tools">Useful debugging tools</h2>
+
+<p>This is a quick way to dump the entire render tree to the console every frame.
+This can be quite useful in figuring out exactly what is going on when
+working with the render tree.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/rendering.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">RendererBinding</span><span class="o">.</span><span class="na">instance</span><span class="o">.</span><span class="na">addPersistentFrameCallback</span><span class="o">((</span><span class="n">_</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// This dumps the entire render tree every frame.</span>
+    <span class="n">debugDumpRenderTree</span><span class="o">();</span>
+  <span class="o">});</span>
+  <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

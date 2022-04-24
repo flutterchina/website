@@ -1,0 +1,13 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "bundle exec jekyll serve",
+    "cos":"node ./cos.js",
+    "uploadApk":"node ./cos.js -uploadapk"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cos-nodejs-sdk-v5": "^2.3.6"
+  }
+}

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gitme-Flutter写的github客户端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <meta name="description" content="Gitme是flutter中文网开发的一款强大的github客户端，通过它，您可以与全球2300万开发者一起成长、学习、分享代码。">
+    <meta name="keywords" content="gitme, github客户端">
+    <meta name="baidu-site-verification" content="oeLolPaTVU"/>
+    <meta name="sogou_site_verification" content="xhNTjenszq"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery_lazyload@1.9.3/jquery.lazyload.min.js"></script>
+    <script>
+        //-cdn.flutterchina.club
+
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?635fd3dde151b2be9ef7adb85fe42720";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+
+        $(function () {
+            var ua=navigator.userAgent.toLocaleLowerCase();
+            var isPC=ua.indexOf("android")===-1&&ua.indexOf("iphone")===-1;
+            if(!isPC||screen.width<460){
+                location.replace("./gmd.html")
+            }
+
+            $(".git-btn").click(function () {
+                $("#mask").show();
+            })
+            $("#close").click(function () {
+                $("#mask").hide();
+            })
+            var t=-1;
+            $("img").lazyload({effect: "fadeIn"});
+            $("#scrollview").on("scroll",function(){
+                window.scroll(0,window.scrollY+t)
+                t=t===-1? 1:-1;
+            })
+
+        });
+    </script>
+    <style>
+        #logo {
+            border-radius: 10px;
+            width: 120px;
+            margin-top: 60px;
+        }
+        .box {
+            padding-top: 70px;
+            padding-bottom: 90px;
+        }
+
+        a:hover{
+            color:dodgerblue !important;
+        }
+
+        .box p {
+            line-height: 1.65;
+        }
+
+        .tip {
+            margin: 30px auto;
+            max-width: 600px;
+            line-height: 1.65;
+        }
+
+        .fa {
+            font-size: 25px;
+        }
+
+        .btn-s {
+            padding: 12px 30px 12px 30px;
+            width: 180px;
+            margin: 10px;
+            color: #fff;
+            background:#51C3F9 ;
+            border-radius: 30px;
+            border: #333 1px solid;
+            cursor: pointer;
+            transition: all .2s;
+            display: inline-block;
+        }
+
+        .btn-s:hover {
+            background: #008BEA;
+        }
+
+        .btn-s:active {
+            background: #f5f5f5;
+        }
+
+        .git-btn {
+            padding-top: 10px;
+        }
+
+        .git-btn a {
+            color: #333;
+        }
+
+        .git-btn a:hover {
+            text-decoration: none;
+            color: #01579b;
+        }
+
+        p a:hover {
+            text-decoration: none;
+            opacity: .8;
+        }
+        .chip{
+            width: 30px;
+            height:30px;
+            background:#51C3F9 ;
+            position: absolute;
+        }
+        .section{
+            height: 514px; overflow: hidden; display: inline-block;position: relative
+        }
+        .intro{
+            float: left; margin-top: 150px; text-align: left; margin-right: 220px; width: 300px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .intro p{
+            font-size: 18px;
+        }
+        .tit{
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #scrollview{
+            overflow-y: hidden;
+            overflow-x: auto;
+            /*height: 514px;*/
+            white-space: nowrap;
+        }
+
+        #scrollview>div{
+            display: inline-block;
+            padding: 0 15px;
+            /*height: 514px;*/
+            position: relative;
+        }
+        #scrollview>div>div{
+            position: absolute;
+            bottom: 0;
+            width: 280px;
+            padding: 20px 10px;
+            background: #333;
+            opacity: .9;
+            color:white;
+        }
+        #scrollview img{
+            width: 280px;
+        }
+        .qrcode{
+            display: inline-block; background: white;
+            right: 100px;
+            padding:5px ;
+            top: 20px; position: absolute; border-radius: 3px;
+        }
+        .qrcode-d{
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        #close {
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 15px;
+        }
+
+        #close:hover {
+            color: dodgerblue;
+        }
+    </style>
+</head>
+<body style="position: relative">
+<div id="mask" style=" display:none;height: 100%; width: 100%; color: white; background: #333333; position: absolute; left: 0;top: 0;z-index: 2; opacity: .99">
+    <div style="background: #fff; width: 400px; margin: 300px auto; position: relative; border-radius: 3px">
+    <span id="close" class="glyphicon glyphicon-remove"></span>
+    <div class="qrcode-d">
+        <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/qrcode.png" width="180px" style="margin:0px auto" >
+        <div style="padding: 25px 0px 35px; color: black; font-size: 15px; text-align: center">
+            iOS/Android 扫码下载
+        </div>
+    </div>
+    </div>
+</div>
+<nav class="navbar navbar-default" style="padding: 3px; background: #fff; margin-bottom: 0">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="line-height:40px">
+            <a href="https://flutterchina.club" style="padding: 8px 15px; text-decoration: none">
+                <img style="width:50px " src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/180bai.png">
+            </a>
+            <span style="font-size: 20px; position: relative; top: 4px; left: -5px; color:#555; font-weight: 300">gitme</span>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/flutterchina/gitme/issues/4">Bug&反馈</a></li>
+                <li><a href="https://github.com/flutterchina/gitme/blob/1.1.1/zh_CH/help/change_log.md">更新记录</a></li>
+                <li><a href="https://flutterchina.club">Flutter中文网</a></li>
+                <!--<li><a href="https://github.com/flutterchina/"><i class="fa fa-github"></i></a></li>-->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div style="background:url(https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/bg.jpg); background-size: cover;  position: relative">
+    <div class="qrcode">
+        <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/qrcode.png" width="150px" >
+        <div style="padding: 5px; font-size: 13px; text-align: center">
+            iOS/Android 扫码下载
+        </div>
+    </div>
+    <div class="container" style='text-align: center;'>
+        <div class="box">
+            <div style="font-size: 20px; font-weight: 300; letter-spacing: 2px;">
+                <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/180.png" id="logo">
+            </div>
+
+            <div style="font-size: 20px; font-weight: 300; letter-spacing: 2px; padding:20px 0 30px ; color:#fff">
+                与github全球2300万开发者一起成长， 与世界分享代码。
+            </div>
+            <span style="font-size: 15px; font-weight: 300;  padding:40px 0 30px ; color:#ddd">
+                强大的github客户端
+              <span style="font-size: 10px">v1.1.0 更新于2018.8.6</span>
+            </span>
+            <div class="git-btn">
+                <div class="btn-s"><span>立即下载</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+<div class="container" style="text-align: center; height:514px; position: relative" >
+    <div class="chip" style="left: 0; top: 210px"></div>
+    <div class="chip" style="background: #222; right: 0; top: 210px"></div>
+    <div class="section">
+        <div class="intro">
+            <div class="tit">一目了然</div>
+            <p>Github账号登录后，您可以在主页看到您的项目、动态、以及Issue列表。项目的star、fork、语言等信息一目了然。</p>
+        </div>
+        <div class="chip" style="background: #222; left: 20px; bottom: 50px"></div>
+        <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/home.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
+    </div>
+</div>
+</div>
+<div style="background: #222;height:514px;">
+    <div class="container" style="text-align: center; position: relative" >
+        <div class="chip" style="left: 50px; top: 290px; background: white"></div>
+        <div class="chip" style="right: 90px; top: 50px"></div>
+        <div class="section">
+            <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/repo.png"  style="width: 250px; float: left; margin-top: 60px;">
+            <div class="intro" style="margin-right: 0; margin-left: 300px; color: white">
+                <div class="tit" style="color: white">项目主页</div>
+                <p>项目主页包含了项目简介、互动、分支、源码、文档、等各种信息。</p>
+                <p>您可在此 Star 或关注您喜欢的项目！</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="container" style="text-align: center; position: relative;height:514px;" >
+        <div class="chip" style="left: 50px; bottom: 50px;"></div>
+        <div class="chip" style="right: 90px; top: 50px; background: #222"></div>
+        <div class="section">
+            <div class="intro">
+                <div class="tit">Issue 与 Label</div>
+                <p>您可以在手机上新建或关闭Issue，并且可以对Issue进行评论、编辑、点赞等操作。</p>
+                <p>现在，您也可以管理Label了！</p>
+            </div>
+            <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/issue.png" style="width: 250px; margin-top: 60px; margin-right: 10px; float: left;">
+        </div>
+    </div>
+</div>
+
+<div style="background: #333;">
+    <div class="container" style="text-align: center; position: relative; font-weight: 300" >
+        <div class="tit" style="color: white; padding: 50px 0;">更多功能，等你发现</div>
+        <div id="scrollview">
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/setting.jpg" >
+                <div>配置、主题、语言</div>
+            </div>
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/search.jpeg" >
+                <div>搜索</div>
+            </div>
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/hot.jpeg" >
+                <div>编程语言项目热度排行榜</div>
+            </div>
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/labels.jpeg"  >
+                <div>Label管理</div>
+            </div>
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/codelist.jpeg"  >
+                <div>分支源码浏览</div>
+            </div>
+            <div>
+                <img data-original="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/gitme/codeview.jpeg"  >
+                <div>查看源码</div>
+            </div>
+        </div>
+        <div style="position: absolute; right: 0; bottom: 250px; color:white; font-size: 30px; background: #333333;padding: 10px; opacity: .95">》</div>
+    </div>
+</div>
+
+<div style="">
+    <div class="container" style="text-align: center; position: relative; font-weight: 300" >
+        <div class="tit" style=" padding: 50px 0;">觉得好？请作者喝杯咖啡</div>
+        <div style="overflow: hidden; display: inline-block">
+        <div style="display: inline-block; width: 200px; float: left">
+            <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/pay.jpg" style="width:220px">
+            <div style="width: 200px">
+                微信扫一扫
+            </div>
+        </div>
+        <div style="display: inline-block; width: 200px;float: left; margin-left: 50px;">
+            <img src="https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/alipay.jpg" style="width:170px; margin-top: 18px">
+            <div style="width: 200px; margin-top: 16px">
+                支付宝扫一扫
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="border-top: #eee 1px solid; text-align: center; margin-top: 50px">
+    <div style="padding: 50px; ">
+        <div style="">Copyright ©️ <a href="https://flutterchina.club">flutterchina.club</a> 2018. All right reserved.
+        </div>
+        <div style="font-weight: 300; letter-spacing: 2px; margin-top: 5px"><a href="/about">加入我们</a></div>
+    </div>
+</div>
+
+</body>
+</html>

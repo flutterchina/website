@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>交错动画  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/animations/staggered-animations/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/animations/staggered-animations/index.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 交错动画&body=From URL: https://www.flutterchina.club/animations/staggered-animations/index.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">交错动画 </h1>
+   </div>
+
+  </header>
+  
+
+  <div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你将学到什么:</b></p>
+
+  <ul>
+    <li>
+      <p>For each property being animated, create a Tween.</p>
+    </li>
+    <li>交错动画由一个动画序列或重叠的动画组成。</li>
+    <li>要创建交错动画，需要使用多个动画对象。</li>
+    <li>一个AnimationController控制所有动画。</li>
+    <li>每个动画对象在间隔(Interval)期间指定动画。</li>
+    <li>对于要执行动画的每个属性都要创建一个Tween。</li>
+  </ul>
+
+</div>
+
+<aside class="alert alert-info">
+  <p><strong>Terminology:</strong>
+如果您还不清楚“补间”的概念，请参考
+<a href="/tutorials/animation/">Flutter动画教程</a></p>
+</aside>
+
+<p>Staggered animations are a straightforward concept: visual changes
+happen as a series of operations, rather than all at once.
+The animation might be purely sequential, with one change occuring after
+the next, or it might partially or completely overlap. It might also
+have gaps, where no changes occur.</p>
+
+<p>所谓交错动画，直接来说就是：视觉变化发生在一系列操作中，而不是一次性发生。 动画可能是纯粹顺序的，在下一个动画之后会发生一次更改，或者可能部分或完全重叠。 它也可能有间隙，没有发生变化。</p>
+
+<p>This guide shows how to build a staggered animation in Flutter.</p>
+
+<aside class="alert alert-info">
+  <p><strong>Examples</strong><br /></p>
+
+  <p>This guide explains the basic_staggered_animation example. You can also
+refer to a more complex example, staggered_pic_selection.</p>
+
+  <dl>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/basic_staggered_animation">basic_staggered_animation</a></dt>
+    <dd>Shows a series of sequential and overlapping animations of a single widget.
+Tapping the screen begins an animation that changes opacity, size,
+shape, color, and padding.</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/staggered_pic_selection">staggered_pic_selection</a></dt>
+    <dd>Shows deleting an image from a list of images displayed in one of three sizes.
+This example uses two <a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html">animation
+controllers</a>:
+one for image selection/deselection, and one for image deletion.
+The selection/deselection animation is staggered. (To see this effect,
+you might need to increase the <code class="highlighter-rouge">timeDilation</code> value.)
+Select one of the largest images—it shrinks as it displays a checkmark
+inside a blue circle. Next, select one of the smallest images—the
+large image expands as the checkmark disappears. Before the large image
+has finished expanding, the small image shrinks to display its checkmark.
+This staggered behavior is similar to what you might see in Google Photos.</dd>
+  </dl>
+
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#basic-structure-of-a-staggered-animation" id="markdown-toc-basic-structure-of-a-staggered-animation">Basic structure of a staggered animation</a>    <ul>
+      <li><a href="#complete-staggered-animation" id="markdown-toc-complete-staggered-animation">Complete staggered animation</a></li>
+      <li><a href="#stateless-widget-staggeranimation" id="markdown-toc-stateless-widget-staggeranimation">Stateless widget: StaggerAnimation</a></li>
+      <li><a href="#stateful-widget-staggerdemo" id="markdown-toc-stateful-widget-staggerdemo">Stateful widget: StaggerDemo</a></li>
+    </ul>
+  </li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a></li>
+</ul>
+
+<p>The following video demonstrates the animation performed by
+basic_staggered_animation:</p>
+
+<!--
+  Use this instead of the default YouTube embed code so that the embed
+  is responsive.
+-->
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/0fFvnZemmh8?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>In the video, you see the following animation of a single widget,
+which begins as a bordered blue square with slightly rounded corners.
+The square runs through changes in the following order:</p>
+
+<ol>
+  <li>Fades in</li>
+  <li>Widens</li>
+  <li>Becomes taller while moving upwards</li>
+  <li>Transforms into a bordered circle</li>
+  <li>Changes color to orange</li>
+</ol>
+
+<p>After running forward, the animation runs in reverse.</p>
+
+<aside class="alert alert-info">
+  <p><strong>New to Flutter?</strong><br />
+This page assumes you know how to create a layout using Flutter’s
+widgets.  For more information, see <a href="/tutorials/layout/">Building Layouts in
+Flutter</a>.</p>
+</aside>
+
+<h2 id="basic-structure-of-a-staggered-animation">Basic structure of a staggered animation</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>What’s the point?</b></p>
+
+  <ul>
+    <li>All of the animations are driven by the same
+<a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html">AnimationController</a>.</li>
+    <li>Regardless of how long the animation lasts in real time,
+the controller’s values must be between 0.0 and 1.0, inclusive.</li>
+    <li>Each animation has an
+<a href="https://docs.flutter.io/flutter/animation/Interval-class.html">Interval</a>
+between 0.0 and 1.0, inclusive.</li>
+    <li>For each property that animates in an interval, create a
+<a href="https://docs.flutter.io/flutter/animation/Tween-class.html">Tween.</a>
+The Tween specifies the start and end values for that property.</li>
+    <li>The Tween produces an
+<a href="https://docs.flutter.io/flutter/animation/Animation-class.html">Animation</a>
+object that is managed by the controller.</li>
+  </ul>
+</div>
+
+<p>The following diagram shows the Intervals used in the
+<a href="https://github.com/flutter/website/tree/master/_includes/code/animation/basic_staggered_animation">basic_staggered_animation</a>
+example. You might notice the following characteristics:</p>
+
+<ul>
+  <li>The opacity changes during the first 10% of the timeline.</li>
+  <li>A tiny gap occurs between the change in opacity, and the change in width.</li>
+  <li>Nothing animates during the last 25% of the timeline.</li>
+  <li>Increasing the padding makes the widget appear to rise upward.</li>
+  <li>Increasing the border radius to 0.5, transforms the square with rounded
+corners into a circle.</li>
+  <li>The padding and border radius changes occur during the same exact interval,
+but they don’t have to.</li>
+</ul>
+
+<p><img src="images/StaggeredAnimationIntervals.png" alt="Diagram showing the interval specified for each motion." /></p>
+
+<p>To set up the animation:</p>
+
+<ul>
+  <li>Create an AnimationController that manages all of the Animations.</li>
+  <li>Create a Tween for each property being animated.
+    <ul>
+      <li>The Tween defines a range of values.</li>
+      <li>The Tween’s <code class="highlighter-rouge">animate</code> method requires the <code class="highlighter-rouge">parent</code> controller, and
+produces an Animation for that property.</li>
+    </ul>
+  </li>
+  <li>Specify the interval on the Animation’s <code class="highlighter-rouge">curve</code> property.</li>
+</ul>
+
+<p>When the controlling animation’s value changes, the new animation’s
+value changes, triggering the UI to update.</p>
+
+<p>The following code creates a tween for the <code class="highlighter-rouge">width</code> property.
+It builds a
+<a href="https://docs.flutter.io/flutter/animation/CurvedAnimation-class.html">CurvedAnimation</a>,
+specifying an eased curve.
+See <a href="https://docs.flutter.io/flutter/animation/Curves-class.html">Curves</a>
+for other available pre-defined animation curves.</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>width = new Tween&lt;double&gt;(
+  begin: 50.0,
+  end: 150.0,
+).animate(
+  new CurvedAnimation(
+    parent: controller,
+    curve: new Interval(
+      0.125, 0.250,
+      curve: Curves.ease,
+    ),
+  ),
+),</code></pre>
+
+<p>The <code class="highlighter-rouge">begin</code> and <code class="highlighter-rouge">end</code> values don’t have to be doubles.
+The following code builds the tween for the <code class="highlighter-rouge">borderRadius</code> property
+(which controls the roundness of the square’s corners), using
+<code class="highlighter-rouge">BorderRadius.circular()</code>.</p>
+
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>borderRadius = new BorderRadiusTween(
+  begin: new BorderRadius.circular(4.0),
+  end: new BorderRadius.circular(75.0),
+).animate(
+  new CurvedAnimation(
+    parent: controller,
+    curve: new Interval(
+      0.375, 0.500,
+      curve: Curves.ease,
+    ),
+  ),
+),</code></pre>
+
+<h3 id="complete-staggered-animation">Complete staggered animation</h3>
+
+<p>Like all interactive widgets, the complete animation consists
+of a widget pair: a stateless and a stateful widget.</p>
+
+<p>The stateless widget specifies the Tweens,
+defines the Animation objects, and provides a <code class="highlighter-rouge">build()</code> function
+responsible for building the animating portion of the widget tree.</p>
+
+<p>The stateful widget creates the controller, plays the animation,
+and builds the non-animating portion of the widget tree.
+The animation begins when a tap is detected anywhere in the screen.</p>
+
+<p><a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/animation/basic_staggered_animation/main.dart">Full code for basic_staggered_animation’s main.dart</a></p>
+
+<h3 id="stateless-widget-staggeranimation">Stateless widget: StaggerAnimation</h3>
+
+<p>In the stateless widget, StaggerAnimation, the <code class="highlighter-rouge">build()</code> function instantiates an
+<a href="https://docs.flutter.io/flutter/widgets/AnimatedBuilder-class.html">AnimatedBuilder</a>—a
+general purpose widget for building animations. The AnimatedBuilder
+builds a widget and configures it using the Tweens’ current values.
+The example creates a function named <code class="highlighter-rouge">_buildAnimation()</code> (which performs
+the actual UI updates), and assigns it to its <code class="highlighter-rouge">builder</code> property.
+AnimatedBuilder listens to notifications from the animation controller,
+marking the widget tree dirty as values change.
+For each tick of the animation, the values are updated,
+resulting in a call to <code class="highlighter-rouge">_buildAnimation()</code>.</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code><span class="nocode highlight">class StaggerAnimation extends StatelessWidget</span> {
+  StaggerAnimation({ Key key, this.controller }) :
+
+    // Each animation defined here transforms its value during the subset
+    // of the controller&#39;s duration defined by the animation&#39;s interval.
+    // For example the opacity animation transforms its value during
+    // the first 10% of the controller&#39;s duration.
+
+    <span class="nocode highlight">opacity = new Tween&lt;double&gt;</span>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      new CurvedAnimation(
+        parent: controller,
+        curve: new Interval(
+          0.0, 0.100,
+          curve: Curves.ease,
+        ),
+      ),
+    ),
+
+    // ... Other tween definitions ...
+
+    super(key: key);
+
+  <span class="nocode highlight">final Animation&lt;double&gt; controller;</span>
+  <span class="nocode highlight">final Animation&lt;double&gt; opacity;</span>
+  <span class="nocode highlight">final Animation&lt;double&gt; width;</span>
+  <span class="nocode highlight">final Animation&lt;double&gt; height;</span>
+  <span class="nocode highlight">final Animation&lt;EdgeInsets&gt; padding;</span>
+  <span class="nocode highlight">final Animation&lt;BorderRadius&gt; borderRadius;</span>
+  <span class="nocode highlight">final Animation&lt;Color&gt; color;</span>
+
+  // This function is called each the controller &quot;ticks&quot; a new frame.
+  // When it runs, all of the animation&#39;s values will have been
+  // updated to reflect the controller&#39;s current value.
+  <span class="nocode highlight">Widget _buildAnimation(BuildContext context, Widget child)</span> {
+    return new Container(
+      padding: padding.value,
+      alignment: Alignment.bottomCenter,
+      child: new Opacity(
+        opacity: opacity.value,
+        child: new Container(
+          width: width.value,
+          height: height.value,
+          decoration: new BoxDecoration(
+            color: color.value,
+            border: new Border.all(
+              color: Colors.indigo[300],
+              width: 3.0,
+            ),
+            borderRadius: borderRadius.value,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  <span class="nocode highlight">Widget build(BuildContext context)</span> {
+    return <span class="nocode highlight">new AnimatedBuilder</span>(
+      <span class="nocode highlight">builder: _buildAnimation</span>,
+      animation: controller,
+    );
+  }
+}</code></pre>
+
+<h3 id="stateful-widget-staggerdemo">Stateful widget: StaggerDemo</h3>
+
+<p>The stateful widget, StaggerDemo, creates the AnimationController
+(the one who rules them all), specifying a 2000 ms duration. It plays
+the animation, and builds the non-animating portion of the widget tree.
+The animation begins when a tap is detected in the screen.
+The animation runs forward, then backward.</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code><span class="nocode highlight">class StaggerDemo extends StatefulWidget</span> {
+  @override
+  _StaggerDemoState createState() =&gt; new _StaggerDemoState();
+}
+
+class _StaggerDemoState extends State&lt;StaggerDemo&gt; with TickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = new AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this
+    );
+  }
+
+  // ...Boilerplate...
+
+  <span class="nocode highlight">Future&lt;Null&gt; _playAnimation() async</span> {
+    try {
+      <span class="nocode highlight">await _controller.forward().orCancel;</span>
+      <span class="nocode highlight">await _controller.reverse().orCancel;</span>
+    } on TickerCanceled {
+      // the animation got canceled, probably because we were disposed
+    }
+  }
+
+  @override
+  <span class="nocode highlight">Widget build(BuildContext context)</span> {
+    timeDilation = 10.0; // 1.0 is normal animation speed.
+    return new Scaffold(
+      appBar: new AppBar(
+        title: const Text(&#39;Staggered Animation&#39;),
+      ),
+      body: new GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          _playAnimation();
+        },
+        child: new Center(
+          child: new Container(
+            width: 300.0,
+            height: 300.0,
+            decoration: new BoxDecoration(
+              color: Colors.black.withOpacity(0.1),
+              border: new Border.all(
+                color:  Colors.black.withOpacity(0.5),
+              ),
+            ),
+            child: new StaggerAnimation(
+              controller: _controller.view
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+<h2 id="resources">Resources</h2>
+
+<p>The following resources might help when writing animations:</p>
+
+<dl>
+  <dt><a href="/animations/">Animations landing page</a></dt>
+  <dd>Lists the available documentation for Flutter animations.
+If tweens are new to you, check out the
+<a href="/tutorials/animation/">Animations tutorial</a>.</dd>
+  <dt><a href="https://docs.flutter.io/">Flutter API documentation</a></dt>
+  <dd>Reference documentation for all of the Flutter libraries.
+In particular, see the <a href="https://docs.flutter.io/flutter/animation/animation-library.html">animation
+library</a>
+documentation.</dd>
+  <dt><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a></dt>
+  <dd>Demo app showcasing many Material Components and other Flutter
+features.  The <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo/shrine">Shrine
+demo</a>
+implements a hero animation.</dd>
+  <dt><a href="https://material.io/guidelines/motion/">Material motion spec</a></dt>
+  <dd>Describes motion for Material apps.</dd>
+</dl>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

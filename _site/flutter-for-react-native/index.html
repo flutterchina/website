@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter for React Native 开发者  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter中文网是中国最大的Flutter开发者交流学习平台，致力于打造Flutter开发中文社区。在这里能轻松找到代码实例、项目案例、并有专人提供最新文档翻译。">
+  <meta name="keywords" content="flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/flutter-for-react-native/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/flutter-for-react-native.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Flutter for React Native 开发者&body=From URL: https://www.flutterchina.club/flutter-for-react-native.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Flutter for React Native 开发者 </h1>
+   </div>
+
+  </header>
+  
+
+  <p>本文档适用于React Native (RN) 开发人员，可以将您现有的RN知识应用于使用Flutter构建移动应用程序。 如果您了解RN框架的基础知识，那么您可以将此文档用作Flutter开发的一个开端</p>
+
+<p>可以将此文档作为cookbook, 通过跳转并查找与您的需求最相关的问题</p>
+
+<hr />
+
+<ul id="markdown-toc">
+  <li><a href="#介绍dart-for-javascript-开发者" id="markdown-toc-介绍dart-for-javascript-开发者">介绍Dart for JavaScript 开发者</a>    <ul>
+      <li><a href="#入口点" id="markdown-toc-入口点">入口点</a></li>
+      <li><a href="#打印到控制台" id="markdown-toc-打印到控制台">打印到控制台</a></li>
+      <li><a href="#变量" id="markdown-toc-变量">变量</a>        <ul>
+          <li><a href="#创建和分配变量" id="markdown-toc-创建和分配变量">创建和分配变量</a></li>
+          <li><a href="#默认值" id="markdown-toc-默认值">默认值</a></li>
+        </ul>
+      </li>
+      <li><a href="#检查null或零" id="markdown-toc-检查null或零">检查null或零</a></li>
+      <li><a href="#functions" id="markdown-toc-functions">Functions</a></li>
+      <li><a href="#异步编程" id="markdown-toc-异步编程">异步编程</a>        <ul>
+          <li><a href="#futures" id="markdown-toc-futures">Futures</a></li>
+          <li><a href="#async-和-await" id="markdown-toc-async-和-await"><code class="highlighter-rouge">async</code> 和 <code class="highlighter-rouge">await</code></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#基础" id="markdown-toc-基础">基础</a>    <ul>
+      <li><a href="#如何创建flutter应用程序" id="markdown-toc-如何创建flutter应用程序">如何创建Flutter应用程序?</a></li>
+      <li><a href="#我如何运行我的应用程序" id="markdown-toc-我如何运行我的应用程序">我如何运行我的应用程序?</a></li>
+      <li><a href="#如何导入" id="markdown-toc-如何导入">如何导入?</a></li>
+      <li><a href="#flutter中的应用程序中什么是react-nativehello-world的等价物" id="markdown-toc-flutter中的应用程序中什么是react-nativehello-world的等价物">Flutter中的应用程序中，什么是React Native“Hello world！”的等价物?</a></li>
+      <li><a href="#如何使用组件并将其嵌套以形成组件树" id="markdown-toc-如何使用组件并将其嵌套以形成组件树">如何使用组件并将其嵌套以形成组件树?</a></li>
+      <li><a href="#如何创建可重用组件" id="markdown-toc-如何创建可重用组件">如何创建可重用组件?</a></li>
+    </ul>
+  </li>
+  <li><a href="#项目结构和资源" id="markdown-toc-项目结构和资源">项目结构和资源</a>    <ul>
+      <li><a href="#我从哪里开始编写代码" id="markdown-toc-我从哪里开始编写代码">我从哪里开始编写代码?</a></li>
+      <li><a href="#在flutter项目的目录结构是怎样的" id="markdown-toc-在flutter项目的目录结构是怎样的">在Flutter项目的目录结构是怎样的?</a></li>
+      <li><a href="#我在哪里放置我的代码和资源文件以及如何使用它们" id="markdown-toc-我在哪里放置我的代码和资源文件以及如何使用它们">我在哪里放置我的代码和资源文件以及如何使用它们?</a></li>
+      <li><a href="#如何通过网络加载图像" id="markdown-toc-如何通过网络加载图像">如何通过网络加载图像?</a></li>
+      <li><a href="#如何安装第三方包和第三方包插件" id="markdown-toc-如何安装第三方包和第三方包插件">如何安装第三方包和第三方包插件?</a></li>
+    </ul>
+  </li>
+  <li><a href="#flutter-widgets" id="markdown-toc-flutter-widgets">Flutter widgets</a></li>
+  <li><a href="#views" id="markdown-toc-views">Views</a>    <ul>
+      <li><a href="#什么是等效的视图容器" id="markdown-toc-什么是等效的视图容器">什么是等效的“视图”容器?</a></li>
+      <li><a href="#什么是flatlist或sectionlist的等价物" id="markdown-toc-什么是flatlist或sectionlist的等价物">什么是<code class="highlighter-rouge">FlatList</code>或<code class="highlighter-rouge">SectionList</code>的等价物?</a></li>
+      <li><a href="#如何使用canvas绘制或渲染" id="markdown-toc-如何使用canvas绘制或渲染">如何使用Canvas绘制或渲染?</a></li>
+    </ul>
+  </li>
+  <li><a href="#布局" id="markdown-toc-布局">布局</a>    <ul>
+      <li><a href="#如何使用小部件定义布局属性" id="markdown-toc-如何使用小部件定义布局属性">如何使用小部件定义布局属性?</a></li>
+      <li><a href="#如何分层widgets" id="markdown-toc-如何分层widgets">如何分层widgets?</a></li>
+    </ul>
+  </li>
+  <li><a href="#样式" id="markdown-toc-样式">样式</a>    <ul>
+      <li><a href="#如何设置组件的样式" id="markdown-toc-如何设置组件的样式">如何设置组件的样式?</a></li>
+      <li><a href="#我如何使用icons和colors" id="markdown-toc-我如何使用icons和colors">我如何使用<code class="highlighter-rouge">Icons</code>和<code class="highlighter-rouge">Colors</code>?</a></li>
+      <li><a href="#如何添加样式主题" id="markdown-toc-如何添加样式主题">如何添加样式主题?</a></li>
+    </ul>
+  </li>
+  <li><a href="#状态管理" id="markdown-toc-状态管理">状态管理</a>    <ul>
+      <li><a href="#statelesswidget" id="markdown-toc-statelesswidget">StatelessWidget</a></li>
+      <li><a href="#statefulwidget" id="markdown-toc-statefulwidget">StatefulWidget</a></li>
+      <li><a href="#什么是statefulwidget和statelesswidget最佳实践" id="markdown-toc-什么是statefulwidget和statelesswidget最佳实践">什么是StatefulWidget和StatelessWidget最佳实践?</a>        <ul>
+          <li><a href="#1-确定窗口小部件应该是statefulwidget还是statelesswidget" id="markdown-toc-1-确定窗口小部件应该是statefulwidget还是statelesswidget">1. 确定窗口小部件应该是StatefulWidget还是StatelessWidget</a></li>
+          <li><a href="#2-确定哪个对象管理窗口小部件的状态对于statefulwidget" id="markdown-toc-2-确定哪个对象管理窗口小部件的状态对于statefulwidget">2. 确定哪个对象管理窗口小部件的状态（对于StatefulWidget）</a></li>
+          <li><a href="#3-statefulwidget-和-stated的子类" id="markdown-toc-3-statefulwidget-和-stated的子类">3. StatefulWidget 和 Stated的子类</a></li>
+          <li><a href="#4-将statefulwidget添加到窗口小部件树中" id="markdown-toc-4-将statefulwidget添加到窗口小部件树中">4. 将StatefulWidget添加到窗口小部件树中</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#props" id="markdown-toc-props">Props</a></li>
+  <li><a href="#本地存储" id="markdown-toc-本地存储">本地存储</a>    <ul>
+      <li><a href="#如何存储应用程序全局的持久键值对" id="markdown-toc-如何存储应用程序全局的持久键值对">如何存储应用程序全局的持久键值对?</a></li>
+    </ul>
+  </li>
+  <li><a href="#路由" id="markdown-toc-路由">路由</a>    <ul>
+      <li><a href="#如何在页面之间导航" id="markdown-toc-如何在页面之间导航">如何在页面之间导航?</a></li>
+      <li><a href="#如何使用选项卡导航和抽屉导航" id="markdown-toc-如何使用选项卡导航和抽屉导航">如何使用选项卡导航和抽屉导航?</a>        <ul>
+          <li><a href="#标签导航" id="markdown-toc-标签导航">标签导航</a></li>
+          <li><a href="#抽屉导航" id="markdown-toc-抽屉导航">抽屉导航</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#手势检测和触摸事件处理" id="markdown-toc-手势检测和触摸事件处理">手势检测和触摸事件处理</a>    <ul>
+      <li><a href="#如何监听窗口小部件单击或按压事件" id="markdown-toc-如何监听窗口小部件单击或按压事件">如何监听窗口小部件单击或按压事件?</a></li>
+    </ul>
+  </li>
+  <li><a href="#发出http网络请求" id="markdown-toc-发出http网络请求">发出HTTP网络请求</a>    <ul>
+      <li><a href="#如何从api调用中获取数据" id="markdown-toc-如何从api调用中获取数据">如何从API调用中获取数据?</a></li>
+    </ul>
+  </li>
+  <li><a href="#表单输入" id="markdown-toc-表单输入">表单输入</a>    <ul>
+      <li><a href="#如何使用文本字段小部件" id="markdown-toc-如何使用文本字段小部件">如何使用文本字段小部件?</a></li>
+      <li><a href="#我如何使用表单小部件" id="markdown-toc-我如何使用表单小部件">我如何使用表单小部件?</a></li>
+    </ul>
+  </li>
+  <li><a href="#特定于平台的代码" id="markdown-toc-特定于平台的代码">特定于平台的代码</a></li>
+  <li><a href="#调试" id="markdown-toc-调试">调试</a>    <ul>
+      <li><a href="#如何访问应用内开发人员菜单" id="markdown-toc-如何访问应用内开发人员菜单">如何访问应用内开发人员菜单?</a></li>
+      <li><a href="#如何执行热重新加载" id="markdown-toc-如何执行热重新加载">如何执行热重新加载?</a></li>
+      <li><a href="#我可以使用哪些工具在flutter中调试我的应用程序" id="markdown-toc-我可以使用哪些工具在flutter中调试我的应用程序">我可以使用哪些工具在Flutter中调试我的应用程序?</a></li>
+    </ul>
+  </li>
+  <li><a href="#动画" id="markdown-toc-动画">动画</a>    <ul>
+      <li><a href="#如何添加简单的淡入动画" id="markdown-toc-如何添加简单的淡入动画">如何添加简单的淡入动画?</a></li>
+      <li><a href="#如何向卡添加滑动动画" id="markdown-toc-如何向卡添加滑动动画">如何向卡添加滑动动画?</a></li>
+    </ul>
+  </li>
+  <li><a href="#react-native和flutter-widget等效组件" id="markdown-toc-react-native和flutter-widget等效组件">React Native和Flutter Widget等效组件</a></li>
+</ul>
+<hr />
+
+<h2 id="介绍dart-for-javascript-开发者">介绍Dart for JavaScript 开发者</h2>
+
+<p>像React Native一样, Flutter使用反应式视图.然而,相比于RN转换原生控件,Flutter则编译为原生代码. Flutter控制屏幕上的每个像素,这避免了由于需要JavaScript桥接而导致的性能问题</p>
+
+<p>Dart是一种易于学习的语言，并提供以下功能:</p>
+<ul>
+  <li>提供用于构建Web的开源，可伸缩编程语言， 服务器和移动应用程序。</li>
+  <li>提供使用C风格的面向对象的单继承语言AOT编译成本机的语法。</li>
+  <li>可选地转换为JavaScript。</li>
+  <li>支持接口和抽象类。</li>
+</ul>
+
+<p>下面描述了JavaScript和Dart之间差异的一些示例。</p>
+
+<h3 id="入口点">入口点</h3>
+
+<p>JavaScript没有预定义的入口函数 - 您可以定义入口点.</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+function startHere() {
+  // Can be used as entry point
+}
+</code></pre>
+<p>在Dart中，每个app都必须有一个顶级的<code class="highlighter-rouge">main（）</code>函数作为应用程序的入口点。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+main() {
+}
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/0df636e00f348bdec2bc1c8ebc7daeb1">DartPad</a>.</p>
+
+<h3 id="打印到控制台">打印到控制台</h3>
+
+<p>要在Dart中打印到控制台，请使用<code class="highlighter-rouge">print</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+console.log("Hello world!");
+</code></pre>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+print('Hello world!');
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/cf9e652f77636224d3e37d96dcf238e5">DartPad</a>.</p>
+
+<h3 id="变量">变量</h3>
+
+<p>Dart是类型安全的 - 它使用静态类型检查和运行时的组合,检查以确保变量的值始终与变量的静态值匹配
+类型。尽管类型是必需的，但某些类型注释是可选的，因为
+Dart执行类型推断。</p>
+
+<h4 id="创建和分配变量">创建和分配变量</h4>
+
+<p>在JavaScript中，无法定义变量类型。</p>
+
+<p>在 <a href="https://www.dartlang.org/dart-2">Dart</a>中, 变量必须是明确的
+                                            类型或系统能够解析的类型。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+var name = "JavaScript";
+</code></pre>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+String name = 'dart'; // Explicitly typed as a string.
+var otherName = 'Dart'; // Inferred string.
+// Both are acceptable in Dart.
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/3f4625c16e05eec396d6046883739612">DartPad</a>。</p>
+
+<p>有关更多信息, 请参阅 <a href="https://www.dartlang.org/guides/language/sound-dart">Dart的类型系统</a>。</p>
+
+<h4 id="默认值">默认值</h4>
+
+<p>在JavaScript中，未初始化的变量是 <code class="highlighter-rouge">undefined</code>。</p>
+
+<p>在Dart中，未初始化的变量的初始值为“null”。因为数字是Dart中的对象，所以只要是带有数字类型的未初始化变量
+的值都是“null”。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+var name; // == undefined
+</code></pre>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+var name; // == null
+int x; // == null
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/57ec21faa8b6fe2326ffd74e9781a2c7">DartPad</a>。</p>
+
+<p>有关更多信息，请参阅文档 <a href="https://www.dartlang.org/guides/language/language-tour#variables">变量</a>。</p>
+
+<h3 id="检查null或零">检查null或零</h3>
+
+<p>在JavaScript中，1或任何非null对象的值被视为true。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+var myNull = null;
+if (!myNull) {
+  console.log("null is treated as false");
+}
+var zero = 0;
+if (!zero) {
+  console.log("0 is treated as false");
+}
+</code></pre>
+<p>在Dart中，只有布尔值“true”被视为true。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+var myNull = null;
+if (myNull == null) {
+  print('use "== null" to check null');
+}
+var zero = 0;
+if (zero == 0) {
+  print('use "== 0" to check zero');
+}
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/c85038ad677963cb6dc943eb1a0b72e6">DartPad</a>.</p>
+
+<h3 id="functions">Functions</h3>
+
+<p>Dart和JavaScript函数通常类似。主要区别是声明。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+function fn() {
+  return true;
+}
+</code></pre>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+fn() {
+  return true;
+}
+// can also be written as
+bool fn() {
+  return true;
+}
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/5454e8bfadf3000179d19b9bc6be9918">DartPad</a>。</p>
+
+<p>有关更多信息，请参阅文档 <a href="https://www.dartlang.org/guides/language/language-tour#functions">functions</a>。</p>
+
+<h3 id="异步编程">异步编程</h3>
+<h4 id="futures">Futures</h4>
+
+<p>与JavaScript一样，Dart支持单线程执行。在JavaScript中，Promise对象表示异步操作的最终完成（或失败）及其结果值</p>
+
+<p>Dart使用  <a href="https://www.dartlang.org/tutorials/language/futures"><code class="highlighter-rouge">Future</code></a> 对象提交到这里.</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+_getIPAddress = () =&gt; {
+  const url="https://httpbin.org/ip";
+  return fetch(url)
+    .then(response =&gt; response.json())
+    .then(responseJson =&gt; {
+      console.log(responseJson.origin);
+    })
+    .catch(error =&gt; {
+      console.error(error);
+    });
+};
+</code></pre>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+_getIPAddress() {
+  final url = 'https://httpbin.org/ip';
+  HttpRequest.request(url).then((value) {
+      print(json.decode(value.responseText)['origin']);
+  }).catchError((error) =&gt; print(error));
+}
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/b68eb981456c5eec03daa3c05ee59486">DartPad</a>。</p>
+
+<p>有关更多信息，请参阅文档 <a href="https://www.dartlang.org/tutorials/language/futures">Futures</a>。</p>
+
+<h4 id="async-和-await"><code class="highlighter-rouge">async</code> 和 <code class="highlighter-rouge">await</code></h4>
+
+<p><code class="highlighter-rouge">async</code>函数声明定义了一个异步函数。</p>
+
+<p>在JavaScript中，<code class="highlighter-rouge">async</code>函数返回一个<code class="highlighter-rouge">Promise</code>。 <code class="highlighter-rouge">await</code>运算符是用来等待’Promise’。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// JavaScript
+async _getIPAddress() {
+  const url="https://httpbin.org/ip";
+  const response = await fetch(url);
+  const json = await response.json();
+  const data = await json.origin;
+  console.log(data);
+}
+</code></pre>
+
+<p>在Dart中，<code class="highlighter-rouge">async</code>函数返回一个<code class="highlighter-rouge">Future</code>，函数的主体是稍后执行。 <code class="highlighter-rouge">await</code>运算符用于等待<code class="highlighter-rouge">Future</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+_getIPAddress() async {
+  final url = 'https://httpbin.org/ip';
+  var request = await HttpRequest.request(url);
+  String ip = json.decode(request.responseText)['origin'];
+  print(ip);
+}
+</code></pre>
+
+<p>尝试一下 <a href="https://dartpad.dartlang.org/96e845a844d8f8d91c6f5b826ef38951">DartPad</a>。</p>
+
+<p>有关更多信息，请参阅 <a href="https://www.dartlang.org/guides/language/language-tour#asynchrony-support"><code class="highlighter-rouge">async</code> and <code class="highlighter-rouge">await</code></a> 文档。</p>
+
+<h2 id="基础">基础</h2>
+<h3 id="如何创建flutter应用程序">如何创建Flutter应用程序?</h3>
+
+<p>要使用React Native创建应用程序，您将运行<code class="highlighter-rouge">create-react-native-app</code>从命令行。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight"><code>$ create-react-native-app &lt;projectname&gt;</code></pre>
+
+<p>要在Flutter中创建应用程序，请执行以下操作之一:</p>
+
+<ul>
+  <li>从命令行使用<code class="highlighter-rouge">flutter create</code>命令。确保Flutter SDK配置了环境变量。</li>
+  <li>使用安装了Flutter和Dart插件的IDE。</li>
+</ul>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight"><code>$ flutter create &lt;projectname&gt;</code></pre>
+
+<p>有关更多信息，请参阅 <a href="/get-started/">入门: 概述</a>
+教程
+引导您创建一个按钮单击计数器应用程序。创造一个Flutter 项目构建在Android上运行示例应用程序所需的所有文件
+ 和iOS设备。</p>
+
+<h3 id="我如何运行我的应用程序">我如何运行我的应用程序?</h3>
+
+<p>在React Native中，您将在项目目录中运行<code class="highlighter-rouge">npm run</code>或<code class="highlighter-rouge">yarn run</code>。</p>
+
+<p>您可以通过几种方式运行Flutter应用程序:</p>
+
+<ul>
+  <li>从项目的根目录使用<code class="highlighter-rouge">flutter run</code>。</li>
+  <li>在带有Flutter和Dart插件的IDE中使用“run”选项。</li>
+</ul>
+
+<p>您的应用在连接的设备，iOS模拟器或Android模拟器上运行。</p>
+
+<p>有关更多信息，请参阅Flutter <a href="/get-started/">入门: 概述</a> 文档。</p>
+
+<h3 id="如何导入">如何导入?</h3>
+
+<p>在React Native中，您需要导入每个必需的组件。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">//React Native
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+</code></pre>
+
+<p>在Flutter中，要使用Material Design库中的小部件，请导入<code class="highlighter-rouge">material.dart</code>包。要使用iOS样式小部件，请导入Cupertino库。要使用更基本的窗口小部件集，请导入窗口小部件库。或者，您可以编写自己的小部件库并导入它.
+<!-- skip --></p>
+<pre><code class="language-Dart">import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/my_widgets.dart';
+</code></pre>
+<p>无论您导入哪个小部件包，Dart都只会导入在您的应用中使用的小部件。</p>
+
+<p>有关更多信息，请参阅 <a href="/widgets/">Flutter Widgets 目录</a>。</p>
+
+<h3 id="flutter中的应用程序中什么是react-nativehello-world的等价物">Flutter中的应用程序中，什么是React Native“Hello world！”的等价物?</h3>
+
+<p>在React Native中，<code class="highlighter-rouge">HelloWorldApp</code>类扩展了<code class="highlighter-rouge">React.Component</code>和
+通过返回视图组件来实现render方法。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+export default class App extends React.Component {
+  render() {
+    return (
+      &lt;View style={styles.container}&gt;
+        &lt;Text&gt;Hello world!&lt;/Text&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
+</code></pre>
+
+<p>在Flutter中，您可以创建一个完全相同的“Hello world！”应用程序使用核心窗口小部件库中的Center和Text窗口小部件。Center窗口小部件成为窗口小部件树的根，并且有一个子窗口，即“Text”窗口小部件。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    Center(
+      child: Text(
+        'Hello, world!',
+        textDirection: TextDirection.ltr,
+      ),
+    ),
+  );
+}
+
+</code></pre>
+
+<p>以下图片显示了基本Flutter“Hello world！”的Android和iOS UI中的应用。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/hello_world_basic_android.png?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/hello_world_basic_iOS.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+现在您已经看到了最基本的Flutter应用程序，下一节将展示
+ 如何利用Flutter丰富的小部件库创建一个现代的，
+  优雅的应用程序。</p>
+
+<h3 id="如何使用组件并将其嵌套以形成组件树">如何使用组件并将其嵌套以形成组件树?</h3>
+
+<p>在Flutter中，几乎所有东西都是widget。</p>
+
+<p>widget是应用程序用户界面的基本构建块，您将组件组成一个层次结构，调用组件树。每个窗口widget都嵌套在父窗口widget中，并从其父窗口继承属性。甚至应用程序对象本身也是一个组件，没有单独的“应用程序”对象。相反，根组件担任此角色。</p>
+
+<p>Widget可以定义:</p>
+
+<ul>
+  <li>结构元素 - 如按钮或菜单</li>
+  <li>风格元素 - 像字体或颜色主题</li>
+  <li>类似布局的填充或对齐的一个方向</li>
+</ul>
+
+<p>以下示例使用Material库中的Widget显示“Hello world！”应用程序。在此示例中，窗口组件树嵌套在MaterialApp根窗口组件中。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
+        ),
+        body: Center(
+          child: Text('Hello world'),
+        ),
+      ),
+    );
+  }
+}
+
+</code></pre>
+
+<p>以下图片显示了使用Material Design小部件构建的“Hello world！”。您可以免费获得比基本的“Hello world！”应用程序更多的功能。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/6b18b6e158b15685.png?raw=true" style="width:275px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/2e973d40d6e82114.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>编写应用程序时，您将使用两种类型的widgets: <a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a> 和
+ <a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>。StatelessWidget听起来就像是一个没有状态的组件，StatelessWidget创建一次，永远不会改变其外观。 StatefulWidget根据收到的数据或用户输入动态更改状态</p>
+
+<p>无状态小部件和有状态小部件之间的重要区别在于StatefulWidgets具有一个State对象，该对象存储状态数据并在树重建中进行传递，因此它不会丢失。</p>
+
+<p>在简单或基本的应用程序中，嵌套widgets很容易，但随着代码库变大，应用程序变得复杂，您应该将深层嵌套的小部件分解为返回小部件或更小类的函数。创建单独的函数和小部件允许您重用应用程序中的组件。</p>
+
+<h3 id="如何创建可重用组件">如何创建可重用组件?</h3>
+
+<p>在React Native中，您将定义一个类来创建可重用的组件，然后使用props方法来设置或返回所选元素的属性和值，在下面的示例中，定义了CustomCard类，然后在父类中使用。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+class CustomCard extends React.Component {
+  render() {
+    return (
+      &lt;View&gt;
+        &lt;Text &gt; Card {this.props.index} &lt;/Text&gt;
+        &lt;Button
+          title="Press"
+          onPress={() =&gt; this.props.onPress(this.props.index)}
+        /&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+
+// Usage
+&lt;CustomCard onPress={this.onPress} index={item.key} /&gt;
+</code></pre>
+
+<p>在Flutter中，定义一个类来创建自定义widget，然后重用widget。您还可以定义和调用返回可重用小部件的函数，如以下示例中的构建函数所示。</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>// Flutter
+class CustomCard extends StatelessWidget {
+  <span class="nocode highlight">CustomCard({@required this.index, @required </span>
+     <span class="nocode highlight">this.onPress});</span>
+
+  final index;
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: &lt;Widget&gt;[
+          Text(&#39;Card $index&#39;),
+          FlatButton(
+            child: const Text(&#39;Press&#39;),
+            onPressed: this.onPress,
+          ),
+        ],
+      )
+    );
+  }
+}
+    ...
+// Usage
+CustomCard(
+  <span class="nocode highlight">index: index,</span>
+  <span class="nocode highlight">onPress: () { </span>
+    print(&#39;Card $index&#39;);
+  },
+)
+    ...</code></pre>
+
+<p>在前面的例子中,
+<code class="highlighter-rouge">CustomCard</code>类的构造函数使用Dart的大括号语法<code class="highlighter-rouge">{}</code>来配置 <a href="https://www.dartlang.org/guides/language/language-tour#optional-parameters">Optional parameters</a>。</p>
+
+<p>要使用这些字段，请从构造函数中删除花括号，或者
+将<code class="highlighter-rouge">@ required</code>添加到构造函数中。</p>
+
+<p>以下屏幕截图显示了可重用的CustomCard类的示例。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/android.png?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/iOS.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="项目结构和资源">项目结构和资源</h2>
+<h3 id="我从哪里开始编写代码">我从哪里开始编写代码?</h3>
+
+<p>从<code class="highlighter-rouge">main.dart</code>文件开始。它是在您创建时自动生成的Flutter应用程序。
+<!-- skip --></p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Dart</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">){</span>
+ <span class="n">print</span><span class="o">(</span><span class="s">"Hello, this is the main function."</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>在Flutter中，入口点文件是<code class="highlighter-rouge">'项目名称'/ lib / main.dart</code>并执行从<code class="highlighter-rouge">main</code>函数开始。</p>
+
+<h3 id="在flutter项目的目录结构是怎样的">在Flutter项目的目录结构是怎样的?</h3>
+
+<p>创建新的Flutter项目时，它会构建以下目录结构。您可以稍后自定义它，但这是您开始的地方</p>
+<pre>
+┬
+└ projectname
+  ┬
+  ├ android      - Contains Android-specific files.
+  ├ build        - Stores iOS and Android build files.
+  ├ ios          - Contains iOS-specific files.
+  ├ lib          - Contains externally accessible Dart source files.
+    ┬
+    └ src        - Contains additional source files.
+    └ main.dart  - The Flutter entry point and the start of a new app.
+                   This is generated automatically when you create a Flutter
+                    project.
+                   It's where you start writing your Dart code.
+  ├ test         - Contains automated test files.
+  └ pubspec.yaml - Contains the metadata for the Flutter app.
+                   This is equivalent to the package.json file in React Native.
+</pre>
+
+<h3 id="我在哪里放置我的代码和资源文件以及如何使用它们">我在哪里放置我的代码和资源文件以及如何使用它们?</h3>
+
+<p>Flutter源码或资源文件是与您的应用捆绑在一起并部署的文件
+并且可以在运行时访问。 Flutter应用程序可以包含以下文件类型:</p>
+<ul>
+  <li>静态数据，例如JSON文件</li>
+  <li>配置文件</li>
+  <li>图标和图片 (JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP,
+and WBMP)</li>
+</ul>
+
+<p>Flutter使用位于项目根目录的<code class="highlighter-rouge">pubspec.yaml</code>文件识别应用程序所需的资源文件。</p>
+
+<!-- skip -->
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">assets</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">assets/my_icon.png</span>
+    <span class="pi">-</span> <span class="s">assets/background.png</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">assets</code>指定的部分应包含在应用程序中的文件。
+每个assets文件都由相对于<code class="highlighter-rouge">pubspec.yaml</code>的显式路径标识, assets文件所在的位置. assets的顺序和
+                   命名以及 使用的实际目录（在这种情况下为<code class="highlighter-rouge">assets</code>）
+                          都没影响。但是，虽然assets可以放在任何应用程序目录中，但它是一个
+                          将它们放在<code class="highlighter-rouge">assets</code>目录中的最佳实践。</p>
+
+<p>在构建期间, Flutter将资源文件放入名为* asset的特殊存档中, 当应用程序从内存中读取时。当资源的路径在
+                                                    <code class="highlighter-rouge">pubspec.yaml</code>中声明时, 构建过程查找任何文件
+                                                                        相邻子目录中的相同名称. 这些文件也包含在
+                                                                                     assets包以及指定的assets。 Flutter使用assets变量时将
+                                                                                                         为您的应用选择适合分辨率的图像。</p>
+
+<p>在React Native中，您可以通过将图像文件放在源代码目录中并引用它来添加静态图像。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">&lt;Image source={require("./my-icon.png")} /&gt;
+</code></pre>
+
+<p>在Flutter中，使用<code class="highlighter-rouge">AssetImage</code>类将静态图像添加到应用程序
+widget的构建方法。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">image: AssetImage('assets/background.png'),
+</code></pre>
+
+<p>有关更多信息，请参阅 <a href="/assets-and-images/">在Flutter中添加资源和图片</a>。</p>
+
+<h3 id="如何通过网络加载图像">如何通过网络加载图像?</h3>
+
+<p>在React Native中，你可以在<code class="highlighter-rouge">Image</code>组件的<code class="highlighter-rouge">source</code> prop中指定<code class="highlighter-rouge">uri</code>
+，如果需要也提供大小。</p>
+
+<p>In Flutter, use the <code class="highlighter-rouge">Image.network</code> constructor to include an image from a URL。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+body: Image.network(
+          'https://flutter.io/images/owl.jpg',
+</code></pre>
+
+<h3 id="如何安装第三方包和第三方包插件">如何安装第三方包和第三方包插件?</h3>
+
+<p>Flutter支持使用第三方包
+由其他开发者贡献给
+Flutter和Dart生态系统。
+这使您可以快速构建应用程序而没必要
+必须从头开发一切。包含的包
+          特定于平台的代码称为包插件。</p>
+
+<p>在React Native中，你可以使用<code class="highlighter-rouge">yarn add {package-name}</code>或<code class="highlighter-rouge">npm install --save
+{package-name}</code>从命令行安装软件包。</p>
+
+<p>在Flutter中，使用以下说明安装包:</p>
+
+<ol>
+  <li>将包名称和版本添加到<code class="highlighter-rouge">pubspec.yaml</code> dependencies部分。
+下面的示例显示了如何将<code class="highlighter-rouge">google_sign_in</code> Dart包添加到
+<code class="highlighter-rouge">pubspec.yaml</code>文件。在YAML文件中工作时会检查空格，因为<strong>空格很重要</strong>!
+<!-- skip -->
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">flutter</span><span class="pi">:</span>
+<span class="err"> </span><span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+  <span class="s">google_sign_in</span><span class="pi">:</span> <span class="s">^3.0.3</span>
+</code></pre></div>    </div>
+  </li>
+  <li>使用<code class="highlighter-rouge">flutter packages get</code>从命令行安装软件包。
+如果使用IDE，它通常会为您运行<code class="highlighter-rouge">flutter packages get</code>，或者它可能
+ 提示你这样做。</li>
+  <li>将包导入您的应用代码，如下所示：
+<!-- skip -->
+    <pre><code class="language-Dart">import 'package:flutter/cupertino.dart';
+</code></pre>
+  </li>
+</ol>
+
+<p>有关更多信息，请参阅 <a href="/using-packages/">使用packages</a> and <a href="/developing-packages/">开发Packages和插件</a>。</p>
+
+<p>您可以在中找到Flutter开发人员共享的许多软件包 <a href="https://pub.dartlang.org/flutter/">Flutter Packages</a> 部分 <a href="https://pub.dartlang.org/">pub.dartlang.org</a>。</p>
+
+<h2 id="flutter-widgets">Flutter widgets</h2>
+
+<p>在Flutter中，您可以使用描述其视图内容的widgets来构建UI
+应该看起来像他们当前的配置和状态。</p>
+
+<p>Widgets通常由许多小部件组成, 嵌套的单一功能的widget产生强大的效果。例如，Container Widget包含
+                                          几个widget负责布局, 绘制, 排版, 和 测量。
+具体来说，<code class="highlighter-rouge">Container</code>小部件包括<code class="highlighter-rouge">LimitedBox</code>,
+<code class="highlighter-rouge">ConstrainedBox</code>, <code class="highlighter-rouge">Align</code>, <code class="highlighter-rouge">Padding</code>, <code class="highlighter-rouge">DecoratedBox</code>, 和 <code class="highlighter-rouge">Transform</code> widgets。
+您可以使用而不是继承“Container”来生成自定义效果
+以新颖独特的方式构建这些和其他简单的小部件。</p>
+
+<p>“Center”widget是另一种控制布局的方式，
+要使窗口小部件居中，请将其包装在“Center”窗口小部件中，然后使用布局窗口小部件进行对齐，行，列和网格。 这些布局widget没有自己的视觉表现
+。相反，他们唯一的目的是控制。其他widget的布局方向。检查相邻的widget对于理解widget是如何呈现另一个widget是很有帮助的。</p>
+
+<p>有关更多信息，请参见 <a href="/technical-overview/">Flutter框架概览</a>。</p>
+
+<p>有关小部件包中的核心部件的更多信息，请参见
+<a href="/widgets/basics/">基础 Widgets</a>, <a href="/widgets/">Widgets 目录</a>，或者
+<a href="/widgets/widgetindex/">Flutter Widget 索引</a>。</p>
+
+<h2 id="views">Views</h2>
+<h3 id="什么是等效的视图容器">什么是等效的“视图”容器?</h3>
+
+<p>在React Native中，<code class="highlighter-rouge">View</code>是一个支持<code class="highlighter-rouge">Flexbox</code>布局的容器，
+风格，触摸处理和辅助功能控件。</p>
+
+<p>在Flutter中，您可以使用Widgets库中的核心布局小部件
+ 如  <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a>, <a href="https://docs.flutter.io/flutter/widgets/Column-class.html">Column</a>, <a href="https://docs.flutter.io/flutter/widgets/Row-class.html">Row</a>, 和     <a href="https://docs.flutter.io/flutter/widgets/Center-class.html">Center</a>.</p>
+
+<p>有关更多信息，请参阅 <a href="/widgets/layout/">布局 Widget</a> 目录。</p>
+
+<h3 id="什么是flatlist或sectionlist的等价物">什么是<code class="highlighter-rouge">FlatList</code>或<code class="highlighter-rouge">SectionList</code>的等价物?</h3>
+
+<p>“List”是垂直排列的可滚动组件列表。</p>
+
+<p>在React Native中，<code class="highlighter-rouge">FlatList</code>或<code class="highlighter-rouge">SectionList</code>用于渲染简单或
+分段列表。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+&lt;FlatList
+  data={[ ... ]}
+  renderItem={({ item }) =&gt; &lt;Text&gt;{item.key}&lt;/Text&gt;}
+/&gt;
+</code></pre>
+
+<p><a href="https://docs.flutter.io/flutter/widgets/ListView-class.html"><code class="highlighter-rouge">ListView</code></a> 是Flutter最常用的滚动小部件。
+默认构造函数构造每一个子条目。 <a href="https://docs.flutter.io/flutter/widgets/ListView-class.html"><code class="highlighter-rouge">ListView</code></a> 最适合少量数据小部件。对于大型或无限列表,
+  使用 <code class="highlighter-rouge">ListView.builder</code>, 它根据需要构建其子条目且仅构建
+                            那些可见的条目。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+var data = [ ... ];
+ListView.builder(
+  itemCount: data.length,
+  itemBuilder: (context, int index) {
+    return Text(
+      data[index],
+    );
+  },
+)
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/flatlist_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/flatlist_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+要了解如何实现无限滚动列表，请参阅
+<a href="https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1/#0">编写第一个Flutter应用, Part 1</a> 。</p>
+
+<h3 id="如何使用canvas绘制或渲染">如何使用Canvas绘制或渲染?</h3>
+
+<p>在React Native中，不存在canvas组件，因此使用了诸如<code class="highlighter-rouge">react-native-canvas</code>之类的第三方库</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+handleCanvas = canvas =&gt; {
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "skyblue";
+  ctx.beginPath();
+  ctx.arc(75, 75, 50, 0, 2 * Math.PI);
+  ctx.fillRect(150, 100, 300, 300);
+  ctx.stroke();
+};
+
+render() {
+  return (
+    &lt;View&gt;
+      &lt;Canvas ref={this.handleCanvas} /&gt;
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+<p>在Flutter中，你可以使用 <a href="https://docs.flutter.io/flutter/widgets/CustomPaint-class.html"><code class="highlighter-rouge">CustomPaint</code></a>  和 <a href="https://docs.flutter.io/flutter/rendering/CustomPainter-class.html"><code class="highlighter-rouge">CustomPainter</code></a> 类去绘制到画布。</p>
+
+<p>以下示例显示如何使用<code class="highlighter-rouge">CustomPaint</code>小部件在绘制阶段绘制。
+它实现了抽象类CustomPainter，并将其传递给CustomPaint的painter属性。 CustomPaint子类必须实现<code class="highlighter-rouge">paint</code>和<code class="highlighter-rouge">shouldRepaint</code>方法。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+class MyCanvasPainter extends CustomPainter {
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint();
+    paint.color = Colors.amber;
+    canvas.drawCircle(Offset(100.0, 200.0), 40.0, paint);
+    Paint paintRect = Paint();
+    paintRect.color = Colors.lightBlue;
+    Rect rect = Rect.fromPoints(Offset(150.0, 300.0), Offset(300.0, 400.0));
+    canvas.drawRect(rect, paintRect);
+  }
+
+  bool shouldRepaint(MyCanvasPainter oldDelegate) =&gt; false;
+  bool shouldRebuildSemantics(MyCanvasPainter oldDelegate) =&gt; false;
+}
+class _MyCanvasState extends State&lt;MyCanvas&gt; {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomPaint(
+        painter: MyCanvasPainter(),
+      ),
+    );
+  }
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/canvas_android.png?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/canvas_iOS.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="布局">布局</h2>
+<h3 id="如何使用小部件定义布局属性">如何使用小部件定义布局属性?</h3>
+
+<p>在React Native中，大多数布局都可以使用传递的道具来完成
+到特定的组件。例如，你可以使用<code class="highlighter-rouge">style</code> 道具在
+<code class="highlighter-rouge">View</code>组件上以指定flexbox属性。 排版你的
+                       在列中的组件，您将指定一个支柱，如:
+<code class="highlighter-rouge">flexDirection: “column”</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+&lt;View
+  style={{
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }}
+&gt;
+</code></pre>
+
+<p>在Flutter中，布局主要由专门设计的小部件定义
+并提供布局，结合控件小部件及其样式属性。</p>
+
+<p>例如, <a href="https://docs.flutter.io/flutter/widgets/Column-class.html">列</a> 和 <a href="https://docs.flutter.io/flutter/widgets/Row-class.html">行</a> widgets 控制一个数组中的条目 并且
+分别垂直和水平对齐它们。 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a> widget 控制一个布局的样式和属性, 并且  <a href="https://docs.flutter.io/flutter/widgets/Center-class.html"><code class="highlighter-rouge">Center</code></a> widget 负责居中
+它的子widget。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+Center(
+  child: Column(
+    children: &lt;Widget&gt;[
+      Container(
+        color: Colors.red,
+        width: 100.0,
+        height: 100.0,
+      ),
+      Container(
+        color: Colors.blue,
+        width: 100.0,
+        height: 100.0,
+      ),
+      Container(
+        color: Colors.green,
+        width: 100.0,
+        height: 100.0,
+      ),
+    ],
+  ),
+)
+</code></pre>
+
+<p>Flutter在其核心小部件库中提供了各种布局小部件。 例如, <a href="https://docs.flutter.io/flutter/widgets/Padding-class.html"><code class="highlighter-rouge">Padding</code></a>, <a href="https://docs.flutter.io/flutter/widgets/Align-class.html"><code class="highlighter-rouge">Align</code></a>, 和 <a href="https://docs.flutter.io/flutter/widgets/Stack-class.html"><code class="highlighter-rouge">Stack</code></a>.</p>
+
+<p>有关完整列表，请参阅 <a href="/widgets/layout/">布局 Widget</a>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/basic_layout_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/basic_layout_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="如何分层widgets">如何分层widgets?</h3>
+
+<p>在React Native中，组件可以使用<code class="highlighter-rouge">absolute</code>定位进行分层。</p>
+
+<p>Flutter 使用<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html"><code class="highlighter-rouge">Stack</code></a> widget 控制子widget在一层。
+子widgets可以完全或者部分覆盖基础widgets。</p>
+
+<p><code class="highlighter-rouge">Stack</code>控件将其子项相对于其框的边缘定位。如果您只想重叠多个子窗口小部件，这个类很有用。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+Stack(
+  alignment: const Alignment(0.6, 0.6),
+  children: &lt;Widget&gt;[
+    CircleAvatar(
+      backgroundImage: NetworkImage(
+        "https://avatars3.githubusercontent.com/u/14101776?v=4"),
+    ),
+    Container(
+      decoration: BoxDecoration(
+          color: Colors.black45,
+      ),
+      child: Text('Flutter'),
+    ),
+  ],
+)
+</code></pre>
+
+<p>上一个示例使用 <code class="highlighter-rouge">Stack</code> 覆盖容器 (显示其“Text”在半透明的黑色背景上) 在’CircleAvatar`之上. Stack偏移文本
+使用alignment属性和Alignment定位。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/stack_android.png?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/stack_iOS.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>有关更多信息，请参阅 <a href="https://docs.flutter.io/flutter/widgets/Stack-class.html">Stack class</a> 文档。</p>
+
+<h2 id="样式">样式</h2>
+<h3 id="如何设置组件的样式">如何设置组件的样式?</h3>
+
+<p>在React Native中，内联样式和<code class="highlighter-rouge">stylesheets.create</code>用于样式
+  组件</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+&lt;View style={styles.container}&gt;
+  &lt;Text style={{ fontSize: 32, color: "cyan", fontWeight: "600" }}&gt;
+    This is a sample text
+  &lt;/Text&gt;
+&lt;/View&gt;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
+</code></pre>
+
+<p>在Flutter中，<code class="highlighter-rouge">Text</code>小部件可以使用<code class="highlighter-rouge">TextStyle</code>类的风格属性。如果要在多个位置使用相同的文本样式，
+你可以创建一个 <a href="https://docs.flutter.io/flutter/dart-ui/TextStyle-class.html"><code class="highlighter-rouge">TextStyle</code></a> 类并将其应用于各个 <code class="highlighter-rouge">Text</code> widgets。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+var textStyle = TextStyle(fontSize: 32.0, color: Colors.cyan, fontWeight:
+   FontWeight.w600);
+	...
+Center(
+  child: Column(
+    children: &lt;Widget&gt;[
+      Text(
+        'Sample text',
+        style: textStyle,
+      ),
+      Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Icon(Icons.lightbulb_outline,
+          size: 48.0, color: Colors.redAccent)
+      ),
+    ],
+  ),
+)
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/flutterstyling_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/flutterstyling_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="我如何使用icons和colors">我如何使用<code class="highlighter-rouge">Icons</code>和<code class="highlighter-rouge">Colors</code>?</h3>
+
+<p>React Native不包含对图标的支持，因此使用第三方库。</p>
+
+<p>在Flutter中，导入Material库也会引入
+  丰富的Material <a href="https://docs.flutter.io/flutter/material/Icons-class.html">icons</a> 和 <a href="https://docs.flutter.io/flutter/material/Colors-class.html">colors</a>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">Icon(Icons.lightbulb_outline, color: Colors.redAccent)
+</code></pre>
+
+<p>使用<code class="highlighter-rouge">Icons</code>类时，请务必在该项目的<code class="highlighter-rouge">pubspec.yaml</code>文件中设置<code class="highlighter-rouge">uses-material-design：true</code>。这确保显示包含在您的应用程序中图标的<code class="highlighter-rouge">MaterialIcons</code>字体。</p>
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>name: my_awesome_application
+flutter: <span class="nocode highlight">uses-material-design: true</span></code></pre>
+
+<p>Flutter的 <a href="/widgets/cupertino/">Cupertino (iOS风格)</a> 包提供高保真小部件对于当前的iOS设计语言. 要使用<code class="highlighter-rouge">CupertinoIcons</code>字体，请添加
+ 项目中<code class="highlighter-rouge">cupertino_icons</code>的依赖项
+ <code class="highlighter-rouge">pubspec.yaml</code> 文件。
+<!-- skip --></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">my_awesome_application</span>
+<span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">cupertino_icons</span><span class="pi">:</span> <span class="s">^0.1.0</span>
+</code></pre></div></div>
+
+<p>全局定制组件的颜色和样式, 使用ThemeData指定主题各个方面的默认颜色。将<code class="highlighter-rouge">MaterialApp</code>中的theme属性设置为<code class="highlighter-rouge">ThemeData</code>对象。 <a href="https://docs.flutter.io/flutter/material/Colors-class.html"><code class="highlighter-rouge">Colors</code></a>
+ 类从Material Design中提供颜色 <a href="https://material.io/guidelines/style/color.html">color palette</a>。</p>
+
+<p>以下示例将主色板设置为“blue”，将文本选择设置为“red”。
+<!-- skip --></p>
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: &#39;Sample App&#39;,
+      theme: ThemeData(
+        <span class="nocode highlight">primarySwatch: Colors.blue,</span>
+        <span class="nocode highlight">textSelectionColor: Colors.red</span>
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}</code></pre>
+
+<h3 id="如何添加样式主题">如何添加样式主题?</h3>
+
+<p>在React Native中，为样式表和组件中的组件定义了通用主题然后用于组件。</p>
+
+<p>在Flutter中, 通过在<a href="https://docs.flutter.io/flutter/material/ThemeData-class.html"><code class="highlighter-rouge">ThemeData</code></a>类中定义样式并将其传递到<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a> Widgets中的theme属性，为几乎所有内容创建统一样式。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.cyan,
+        brightness: Brightness.dark,
+      ),
+      home: StylingPage(),
+    );
+  }
+</code></pre>
+
+<p>即使不使用<code class="highlighter-rouge">MaterialApp</code>小部件，也可以应用<code class="highlighter-rouge">Theme</code>。
+ <a href="https://docs.flutter.io/flutter/material/Theme-class.html"><code class="highlighter-rouge">Theme</code></a> widget 在<code class="highlighter-rouge">data</code>参数中获取<code class="highlighter-rouge">ThemeData</code>并应用<code class="highlighter-rouge">ThemeData</code>到它的所有子窗口小部件。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart"> @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.cyan,
+        brightness: brightness,
+      ),
+      child: Scaffold(
+         backgroundColor: Theme.of(context).primaryColor,
+              ...
+              ...
+      ),
+    );
+  }
+</code></pre>
+
+<h2 id="状态管理">状态管理</h2>
+<p>状态是可以在构建窗口小部件时同步读取的信息，也可以是在窗口小部件的生命周期内可能更改的信息。
+如果要管理应用程序状态需要<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>。</p>
+
+<h3 id="statelesswidget">StatelessWidget</h3>
+
+<p>Flutter中的<code class="highlighter-rouge">StatelessWidget</code>是一个不需要状态更改的小部件 - 它没有要管理的内部状态。</p>
+
+<p>当您描述的用户界面部分不依赖于对象本身中的配置信息以及窗口小部件的<a href="https://docs.flutter.io/flutter/widgets/BuildContext-class.html"><code class="highlighter-rouge">BuildContext</code></a> 时，无状态窗口小部件非常有用。</p>
+
+<p><a href="https://docs.flutter.io/flutter/material/AboutDialog-class.html">AboutDialog</a>,  <a href="https://docs.flutter.io/flutter/material/CircleAvatar-class.html">CircleAvator</a>和 <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Text</a> 是<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a>子类的无状态小部件的示例.</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(MyStatelessWidget(text: "StatelessWidget Example to show immutable data"));
+
+class MyStatelessWidget extends StatelessWidget {
+  final String text;
+  MyStatelessWidget({Key key, this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        text,
+        textDirection: TextDirection.ltr,
+      ),
+    );
+  }
+}
+</code></pre>
+<p>在前面的示例中，您使用了<code class="highlighter-rouge">MyStatelessWidget</code>类的构造函数
+传递标记为<code class="highlighter-rouge">final</code>的<code class="highlighter-rouge">text</code>。这个类继承了<code class="highlighter-rouge">StatelessWidget</code>-它包含不可变数据</p>
+
+<p>无状态小部件的<code class="highlighter-rouge">build</code>方法通常只会在以下三种情况调用:</p>
+<ul>
+  <li>将窗口小部件插入树中时</li>
+  <li>当小部件的父级更改其配置时</li>
+  <li>当它依赖的<a href="https://docs.flutter.io/flutter/widgets/InheritedWidget-class.html"><code class="highlighter-rouge">InheritedWidget</code></a>发生变化时</li>
+</ul>
+
+<h3 id="statefulwidget">StatefulWidget</h3>
+
+<p><a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> 是一个改变状态的部件。
+使用<code class="highlighter-rouge">setState</code>方法管理<code class="highlighter-rouge">StatefulWidget</code>的状态的改变。调用<code class="highlighter-rouge">setState</code>告诉Flutter框架，某个状态发生了变化导致应用程序重新运行<code class="highlighter-rouge">build</code>方法，以便应用程序可以反映出来更改。</p>
+
+<p>状态是在构建窗口小部件时可以同步读取的信息可能会在小部件的生命周期中发生变化。这是小部件实现者的责任，确保在状态改变时及时通知状态
+变化. 使用StatefulWidget，当窗口小部件可以动态更改时。 例如, 通过键入表单或移动滑块来更改窗口小部件的状态. 或者, 它可以随时间变化 - 也许数据推送更新UI</p>
+
+<p><a href="https://docs.flutter.io/flutter/material/Checkbox-class.html">Checkbox</a>, <a href="https://docs.flutter.io/flutter/material/Radio-class.html">Radio</a>, <a href="https://docs.flutter.io/flutter/material/Slider-class.html">Slider</a>, <a href="https://docs.flutter.io/flutter/material/InkWell-class.html">InkWell</a>, <a href="https://docs.flutter.io/flutter/widgets/Form-class.html">Form</a>, 和 <a href="https://docs.flutter.io/flutter/material/TextField-class.html">TextField</a> 都是有状态的小部件<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>的子类。</p>
+
+<p>下面的示例声明了一个<code class="highlighter-rouge">StatefulWidget</code>，它需要一个<code class="highlighter-rouge">createState（）</code>方法。此方法创建管理窗口小部件状态的状态对象<code class="highlighter-rouge">_MyStatefulWidgetState</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyStatefulWidgetState createState() =&gt; _MyStatefulWidgetState();
+}
+</code></pre>
+
+<p>以下状态类_MyStatefulWidgetState实现窗口小部件的build（）方法。当状态改变时，例如，当用户切换按钮时，使用新的切换值调用setState。这会导致框架在UI中重建此窗口小部件。
+<!-- skip --></p>
+<pre><code class="language-Dart">class _MyStatefulWidgetState extends State&lt;MyStatefulWidget&gt; {
+  bool showtext=true;
+  bool toggleState=true;
+  Timer t2;
+
+  void toggleBlinkState(){
+    setState((){
+      toggleState=!toggleState;
+    });
+    var twenty = const Duration(milliseconds: 1000);
+    if(toggleState==false) {
+      t2 = Timer.periodic(twenty, (Timer t) {
+        toggleShowText();
+      });
+    } else {
+      t2.cancel();
+    }
+  }
+
+  void toggleShowText(){
+    setState((){
+      showtext=!showtext;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: &lt;Widget&gt;[
+            (showtext
+              ?(Text('This execution will be done before you can blink.'))
+              :(Container())
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 70.0),
+              child: RaisedButton(
+                onPressed: toggleBlinkState,
+                child: (toggleState
+                  ?( Text('Blink'))
+                  :(Text('Stop Blinking'))
+                )
+              )
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+
+<h3 id="什么是statefulwidget和statelesswidget最佳实践">什么是StatefulWidget和StatelessWidget最佳实践?</h3>
+
+<p>在设计窗口小部件时，需要考虑以下几点。</p>
+
+<h4 id="1-确定窗口小部件应该是statefulwidget还是statelesswidget">1. 确定窗口小部件应该是StatefulWidget还是StatelessWidget</h4>
+
+<p>在Flutter中，小部件是有状态的还是无状态的 - 取决于是否
+ 他们依赖于状态的变化。</p>
+<ul>
+  <li>
+    <p>如果窗口小部件发生更改 - 由于用户与其进行交互或数据馈送中断
+ 用户界面，那么它就是有状态的。</p>
+  </li>
+  <li>
+    <p>如果一个小部件是final或immutable修饰，那么它就是无状态。</p>
+  </li>
+</ul>
+
+<h4 id="2-确定哪个对象管理窗口小部件的状态对于statefulwidget">2. 确定哪个对象管理窗口小部件的状态（对于StatefulWidget）</h4>
+
+<p>在Flutter中，管理状态有三种主要方式：</p>
+<ul>
+  <li>每个小部件管理自己的状态</li>
+  <li>父窗口小部件管理窗口小部件的状态</li>
+  <li>混合搭配管理的方法</li>
+</ul>
+
+<p>在决定使用哪种方法时，请考虑以下原则：</p>
+<ul>
+  <li>如果部件的状态取决于用户的数据，例如已选中或未选中复选框的模式，或滑块的位置，那么最好管理状态由父窗口小部件来管理。</li>
+  <li>如果部件的状态取决于动作。例如动画，那么最好是由小部件自身来管理状态</li>
+  <li>如有疑问，请让父窗口小部件管理子窗口小部件的状态。</li>
+</ul>
+
+<h4 id="3-statefulwidget-和-stated的子类">3. StatefulWidget 和 Stated的子类</h4>
+
+<p><code class="highlighter-rouge">MyStatefulWidget</code>类管理自己的状态 - 它扩展了<code class="highlighter-rouge">StatefulWidget</code>，它覆盖<code class="highlighter-rouge">createState（）</code>方法来创建State对象，框架调用<code class="highlighter-rouge">createState（）</code>来构建小部件。在这个例子中，<code class="highlighter-rouge">createState（）</code>创建了一个<code class="highlighter-rouge">_MyStatefulWidgetState</code>的实例
+在下一个最佳实践中实施。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyStatefulWidgetState createState() =&gt; _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State&lt;MyStatefulWidget&gt; {
+
+  @override
+  Widget build(BuildContext context) {
+    ...
+  }
+}
+</code></pre>
+
+<h4 id="4-将statefulwidget添加到窗口小部件树中">4. 将StatefulWidget添加到窗口小部件树中</h4>
+
+<p>将自定义的<code class="highlighter-rouge">StatefulWidget</code>添加到应用程序构建方法中的窗口小部件树中。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">class MyStatelessWidget extends StatelessWidget {
+  // This widget is the root of your application.
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyStatefulWidget(title: 'State Change Demo'),
+    );
+  }
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/state_change_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/state_change_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="props">Props</h2>
+
+<p>在React Native中，大多数组件在使用不同的参数或属性创建时都可以自定义，称为“props”。可以使用<code class="highlighter-rouge">this.props</code>在子组件中使用这些参数。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+class CustomCard extends React.Component {
+  render() {
+    return (
+      &lt;View&gt;
+        &lt;Text&gt; Card {this.props.index} &lt;/Text&gt;
+        &lt;Button
+          title="Press"
+          onPress={() =&gt; this.props.onPress(this.props.index)}
+        /&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+class App extends React.Component {
+
+  onPress = index =&gt; {
+    console.log("Card ", index);
+  };
+
+  render() {
+    return (
+      &lt;View&gt;
+        &lt;FlatList
+          data={[ ... ]}
+          renderItem={({ item }) =&gt; (
+            &lt;CustomCard onPress={this.onPress} index={item.key} /&gt;
+          )}
+        /&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+</code></pre>
+
+<p>在Flutter中，使用参数化构造函数中接收的属性分配标记为“final”的局部变量或函数。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+class CustomCard extends StatelessWidget {
+
+  CustomCard({@required this.index, @required this.onPress});
+  final index;
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+  return Card(
+    child: Column(
+      children: &lt;Widget&gt;[
+        Text('Card $index'),
+        FlatButton(
+          child: const Text('Press'),
+          onPressed: this.onPress,
+        ),
+      ],
+    ));
+  }
+}
+    ...
+//Usage
+CustomCard(
+  index: index,
+  onPress: () {
+    print('Card $index');
+  },
+)
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/modular_android.png?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/modular_iOS.png?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="本地存储">本地存储</h2>
+
+<p>如果您不需要存储大量数据并且不需要结构，则可以使用shared_preferences，它允许您读取和写入原始数据类型的持久键值对：布尔值，浮点数，整数，长整数和字符串。</p>
+
+<h3 id="如何存储应用程序全局的持久键值对">如何存储应用程序全局的持久键值对?</h3>
+
+<p>在React Native中，使用<code class="highlighter-rouge">AsyncStorage</code>组件的<code class="highlighter-rouge">setItem</code>和<code class="highlighter-rouge">getItem</code>函数来存储和检索持久的数据。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+await AsyncStorage.setItem( "counterkey", json.stringify(++this.state.counter));
+AsyncStorage.getItem("counterkey").then(value =&gt; {
+  if (value != null) {
+    this.setState({ counter: value });
+  }
+});
+</code></pre>
+
+<p>在Flutter中，使用<a href="https://github.com/flutter/plugins/tree/master/packages/shared_preferences"><code class="highlighter-rouge">shared_preferences</code></a>插件来存储和检索持久性的键值数据。
+shared_preferences插件包含iOS上的NSUserDefaults和Android上的SharedPreferences，为简单数据提供持久存储。
+要使用该插件，请在pubspec.yaml文件中添加shared_preferences作为依赖项，然后在Dart文件中导入该包。
+<!-- skip --></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">flutter</span><span class="pi">:</span>
+    <span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+  <span class="na">shared_preferences</span><span class="pi">:</span> <span class="s">^0.3.0</span>
+</code></pre></div></div>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Dart
+import 'package:shared_preferences/shared_preferences.dart';
+</code></pre>
+
+<p>要实现持久数据，请使用SharedPreferences类提供的setter方法。 Setter方法可用于各种基本类型，例如setInt，setBool和setString。
+要读取数据，请使用SharedPreferences类提供的相应getter方法。 对于每个setter，都有一个相应的getter方法，例如getInt，getBool和getString。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">SharedPreferences prefs = await SharedPreferences.getInstance();
+_counter = prefs.getInt('counter');
+prefs.setInt('counter', ++_counter);
+setState(() {
+  _counter = _counter;
+});
+</code></pre>
+
+<h2 id="路由">路由</h2>
+
+<p>大多数应用程序包含多个用于显示不同类型信息的页面。例如，您可能有一个产品页面，显示用户可以点击产品图片的图片，以便在新页面上获得有关产品的更多信息。</p>
+
+<p>在Android中，新页面是新Activity。在iOS中，新页面是新的
+ViewControllers。在Flutter中，页面只是小部件！使用Navigator小部件导航到新的
+Flutter中的页面。</p>
+
+<h3 id="如何在页面之间导航">如何在页面之间导航?</h3>
+
+<p>在React Native中，有三个主要的导航器：StackNavigator，TabNavigator，
+和DrawerNavigator。每种方法都提供了配置和定义页面的方法。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+const MyApp = TabNavigator(
+  { Home: { screen: HomeScreen }, Notifications: { screen: tabNavScreen } },
+  { tabBarOptions: { activeTintColor: "#e91e63" } }
+);
+const SimpleApp = StackNavigator({
+  Home: { screen: MyApp },
+  stackScreen: { screen: StackScreen }
+});
+export default (MyApp1 = DrawerNavigator({
+  Home: {
+    screen: SimpleApp
+  },
+  Screen2: {
+    screen: drawerScreen
+  }
+}));
+</code></pre>
+
+<p>在Flutter中，有两个主要的小部件用于在页面之间导航：</p>
+<ul>
+  <li><a href="https://docs.flutter.io/flutter/widgets/Route-class.html">Route</a> 是一个应用程序抽象的屏幕或页面。</li>
+  <li><a href="https://docs.flutter.io/flutter/widgets/Navigator-class.html">Navigator</a> 是一个管理路由的小部件。</li>
+</ul>
+
+<p><code class="highlighter-rouge">Navigator</code>被定义为一个小部件，以栈管理的方式来管理一组部件
+navigator管理一堆Route对象，并提供管理堆栈的方法，如<a href="https://docs.flutter.io/flutter/widgets/Navigator/push.html"><code class="highlighter-rouge">Navigator.push</code></a>和<a href="https://docs.flutter.io/flutter/widgets/Navigator/pop.html"><code class="highlighter-rouge">Navigator.pop</code></a>。
+可以在<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a> 小部件中指定路由列表，也可以动态构建它们，例如，在三维动画中。以下示例指定<code class="highlighter-rouge">MaterialApp</code> 小部件中的命名路由。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+class NavigationApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+            ...
+      routes: &lt;String, WidgetBuilder&gt;{
+        '/a': (BuildContext context) =&gt; usualNavscreen(),
+        '/b': (BuildContext context) =&gt; drawerNavscreen(),
+      }
+            ...
+  );
+  }
+}
+</code></pre>
+
+<p>要导航到命名路由，<code class="highlighter-rouge">Navigator</code> 窗口小部件的<a href="https://docs.flutter.io/flutter/widgets/Navigator/of.html">of</a>方法用于指定<code class="highlighter-rouge">BuildContext</code>（窗口小部件树中窗口小部件位置的句柄）。路由的名称将传递给<code class="highlighter-rouge">pushNamed</code>函数以导航到指定的路由。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">Navigator.of(context).pushNamed('/a');
+</code></pre>
+
+<p>您还可以使用<code class="highlighter-rouge">Navigator</code>的push方法，该方法将给定<a href="https://docs.flutter.io/flutter/widgets/Route-class.html"><code class="highlighter-rouge">route</code></a>添加到导航器的历史记录中，该路由会和给定的<a href="https://docs.flutter.io/flutter/widgets/BuildContext-class.html"><code class="highlighter-rouge">context</code></a>，并转换为它。
+在以下示例中，<a href="https://docs.flutter.io/flutter/material/MaterialPageRoute-class.html"><code class="highlighter-rouge">MaterialPageRoute</code></a>窗口小部件是一种模版路由，它根据平台自适应替换整个页面。
+在以下示例中，窗口小部件是一种模版路由，它使用平台自适应替换整个页面。它需要一个<a href="https://docs.flutter.io/flutter/widgets/WidgetBuilder.html"><code class="highlighter-rouge">WidgetBuilder</code></a>作为必需参数。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)
+ =&gt; UsualNavscreen()));
+</code></pre>
+
+<h3 id="如何使用选项卡导航和抽屉导航">如何使用选项卡导航和抽屉导航?</h3>
+
+<p>在Material Design应用程序中，Flutter导航有两个主要选项：标签和抽屉。当没有足够的空间来支撑标签，抽屉式提供一个很好的选择。</p>
+
+<h4 id="标签导航">标签导航</h4>
+
+<p>在React Native中，<code class="highlighter-rouge">createBottomTabNavigator</code>和<code class="highlighter-rouge">TabNavigation</code>用于
+显示标签和标签导航。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+import { createBottomTabNavigator } from 'react-navigation';
+
+const MyApp = TabNavigator(
+  { Home: { screen: HomeScreen }, Notifications: { screen: tabNavScreen } },
+  { tabBarOptions: { activeTintColor: "#e91e63" } }
+);
+</code></pre>
+
+<p>Flutter为抽屉和标签导航提供了几个专门的小部件：</p>
+<ul>
+  <li><a href="https://docs.flutter.io/flutter/material/TabController-class.html">TabController</a>—协调选择TabBar还是TabBarView选项卡。</li>
+  <li><a href="https://docs.flutter.io/flutter/material/TabBar-class.html">TabBar</a> —显示水平的行选项卡。</li>
+  <li><a href="https://docs.flutter.io/flutter/material/Tab-class.html">Tab</a>—创建material design风格的TabBar选项卡。</li>
+  <li><a href="https://docs.flutter.io/flutter/material/TabBarView-class.html">TabBarView</a>—显示与当前选定选项卡对应的窗口小部件。</li>
+</ul>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+TabController controller=TabController(length: 2, vsync: this);
+
+TabBar(
+  tabs: &lt;Tab&gt;[
+    Tab(icon: Icon(Icons.person),),
+    Tab(icon: Icon(Icons.email),),
+  ],
+  controller: controller,
+),
+
+</code></pre>
+
+<p>需要<code class="highlighter-rouge">TabController</code> 来协调选择 <code class="highlighter-rouge">TabBar</code>还是<code class="highlighter-rouge">TabBarView</code>选项卡。
+ <code class="highlighter-rouge">TabController</code> 构造函数length参数表示tab的数量。当每帧触发状态更改时，都需要<code class="highlighter-rouge">TickerProvider</code>来触发通知。 <code class="highlighter-rouge">TickerProvider</code> 用 <code class="highlighter-rouge">vsync</code>关键字表示. 每当您创建一个新的<code class="highlighter-rouge">TabController</code>时，都将<code class="highlighter-rouge">vsync: this</code>参数传递给<code class="highlighter-rouge">TabController</code>的构造函数。
+<a href="https://docs.flutter.io/flutter/scheduler/TickerProvider-class.html">TickerProvider</a>是一个由<a href="https://docs.flutter.io/flutter/scheduler/Ticker-class.html"><code class="highlighter-rouge">Ticker</code></a> 对象的类实现的接口。
+每当帧触发时必须通知的任何对象都可以使用Tickers，但它们最常用于通过<a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html"><code class="highlighter-rouge">AnimationController</code></a>间接使用
+ <code class="highlighter-rouge">AnimationControllers</code>需要通过<code class="highlighter-rouge">TickerProvider</code>来获取他们的Ticker。
+如果要从State创建AnimationController，则可以使用<a href="https://docs.flutter.io/flutter/widgets/TickerProviderStateMixin-class.html"><code class="highlighter-rouge">TickerProviderStateMixin</code></a>或<a href="https://docs.flutter.io/flutter/widgets/SingleTickerProviderStateMixin-class.html"><code class="highlighter-rouge">SingleTickerProviderStateMixin</code></a> 类来获取合适的<code class="highlighter-rouge">TickerProvider</code>
+<a href="https://docs.flutter.io/flutter/material/Scaffold-class.html"><code class="highlighter-rouge">Scaffold</code></a> widget 包装一个新的<code class="highlighter-rouge">TabBar</code>小部件并创建两个选项卡。
+<code class="highlighter-rouge">TabBarView</code>小部件作为<code class="highlighter-rouge">Scaffold</code>小部件的<code class="highlighter-rouge">body</code>参数传递。对应于“TabBar”小部件选项卡的所有页面都是<code class="highlighter-rouge">TabBarView</code>小部件的子部件以及相同的<code class="highlighter-rouge">TabController</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+
+class _NavigationHomePageState extends State&lt;NavigationHomePage&gt; with SingleTickerProviderStateMixin {
+  TabController controller=TabController(length: 2, vsync: this);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: Material (
+        child: TabBar(
+          tabs: &lt;Tab&gt; [
+            Tab(icon: Icon(Icons.person),)
+            Tab(icon: Icon(Icons.email),),
+          ],
+          controller: controller,
+        ),
+        color: Colors.blue,
+      ),
+      body: TabBarView(
+        children: &lt;Widget&gt; [
+          home.homeScreen(),
+          tabScreen.tabScreen()
+        ],
+        controller: controller,
+      )
+    );
+  }
+}
+</code></pre>
+
+<h4 id="抽屉导航">抽屉导航</h4>
+
+<p>在React Native中，导入所需的react-navigation包，然后使用<code class="highlighter-rouge">createDrawerNavigator</code>和<code class="highlighter-rouge">DrawerNavigation</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+export default (MyApp1 = DrawerNavigator({
+  Home: {
+    screen: SimpleApp
+  },
+  Screen2: {
+    screen: drawerScreen
+  }
+}));
+</code></pre>
+
+<p>在Flutter中，我们可以将<code class="highlighter-rouge">Drawer</code>小部件与<code class="highlighter-rouge">Scaffold</code>结合使用，以使用Material Design抽屉创建布局。要向应用添加 <code class="highlighter-rouge">Drawer</code>，请将其包裹在<code class="highlighter-rouge">Scaffold</code>小部件中
+<code class="highlighter-rouge">Scaffold</code>小部件为遵循<a href="https://material.io/design/">Material Design</a>准则的应用程序提供一致的可视化结构
+它还支持特殊的Material Design组件，例如<code class="highlighter-rouge">Drawers</code>，<code class="highlighter-rouge">AppBars</code>和<code class="highlighter-rouge">SnackBars</code>。
+<code class="highlighter-rouge">Drawer</code>小部件是一个水平滑动的Material Design面板
+<code class="highlighter-rouge">Scaffold</code>的边缘，以显示应用程序中的导航链接。
+您可以提供<a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html"><code class="highlighter-rouge">Button</code></a>，<a href="https://docs.flutter.io/flutter/widgets/Text-class.html"><code class="highlighter-rouge">Text</code></a>小部件或项目列表，以显示为<code class="highlighter-rouge">Drawer</code>小部件的子项。
+在以下示例中,
+ <a href="https://docs.flutter.io/flutter/material/ListTile-class.html"><code class="highlighter-rouge">ListTile</code></a> 提供了导航功能。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+Drawer(
+  child:ListTile(
+    leading: Icon(Icons.change_history),
+    title: Text('Screen2'),
+    onTap: () {
+      Navigator.of(context).pushNamed("/b");
+    },
+  ),
+  elevation: 20.0,
+),
+</code></pre>
+
+<p><code class="highlighter-rouge">Scaffold</code>小部件还包括一个<code class="highlighter-rouge">AppBar</code>小部件，当<code class="highlighter-rouge">Drawer</code>中的抽屉可用时，它会自动显示一个适当的IconButton来显示“抽屉”。 <code class="highlighter-rouge">Scaffold</code>自动处理边缘滑动手势以显示<code class="highlighter-rouge">Drawer</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    drawer: Drawer(
+      child: ListTile(
+        leading: Icon(Icons.change_history),
+        title: Text('Screen2'),
+        onTap: () {
+          Navigator.of(context).pushNamed("/b");
+        },
+      ),
+      elevation: 20.0,
+    ),
+    appBar: AppBar(
+      title: Text("Home"),
+    ),
+    body: Container(),
+  );
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/navigation_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/navigation_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="手势检测和触摸事件处理">手势检测和触摸事件处理</h2>
+
+<p>为了监听和响应手势，Flutter支持点击，拖动和缩放。Flutter中的手势系统有两个独立的层。
+第一层包括原始指针事件，描述了它的位置和移动屏幕上的指针（如触摸，鼠标和测针移动.
+第二层包括手势，其描述由一个或多个指针移动组成的语义动作。</p>
+
+<h3 id="如何监听窗口小部件单击或按压事件">如何监听窗口小部件单击或按压事件?</h3>
+
+<p>在React Native中，使用“PanResponder”或“Touchable”组件将监听事件添加到组件中。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+&lt;TouchableOpacity
+  onPress={() =&gt; {
+    console.log("Press");
+  }}
+  onLongPress={() =&gt; {
+    console.log("Long Press");
+  }}
+&gt;
+  &lt;Text&gt;Tap or Long Press&lt;/Text&gt;
+&lt;/TouchableOpacity&gt;
+</code></pre>
+
+<p>对于更复杂的手势并将多个触摸组合到单个手势中，请使用<a href="https://facebook.github.io/react-native/docs/panresponder.html"><code class="highlighter-rouge">PanResponder</code></a>。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+class App extends Component {
+
+  componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder: (event, gestureState) =&gt;
+        !!getDirection(gestureState),
+      onPanResponderMove: (event, gestureState) =&gt; true,
+      onPanResponderRelease: (event, gestureState) =&gt; {
+        const drag = getDirection(gestureState);
+      },
+      onPanResponderTerminationRequest: (event, gestureState) =&gt; true
+    });
+  }
+
+  render() {
+    return (
+      &lt;View style={styles.container} {...this._panResponder.panHandlers}&gt;
+        &lt;View style={styles.center}&gt;
+          &lt;Text&gt;Swipe Horizontally or Vertically&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+</code></pre>
+
+<p>在Flutter中，要向窗口小部件添加单击（或按下）监听器，请使用具有<code class="highlighter-rouge">onPress: field</code>的按钮或可触摸窗口小部件。或者，通过将手势检测包装在<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html"><code class="highlighter-rouge">GestureDetector</code></a>中，将手势检测添加到任何小部件。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+GestureDetector(
+  child: Scaffold(
+    appBar: AppBar(
+      title: Text("Gestures"),
+    ),
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: &lt;Widget&gt;[
+          Text('Tap, Long Press, Swipe Horizontally or Vertically '),
+        ],
+      )
+    ),
+  ),
+  onTap: () {
+    print('Tapped');
+  },
+  onLongPress: () {
+    print('Long Pressed');
+  },
+  onVerticalDragEnd: (DragEndDetails value) {
+    print('Swiped Vertically');
+  },
+  onHorizontalDragEnd: (DragEndDetails value) {
+    print('Swiped Horizontally');
+  },
+);
+</code></pre>
+<p>有关更多信息，包括Flutter  <code class="highlighter-rouge">GestureDetector</code>回调列表，请参阅<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html#Properties">GestureDetector class</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/flutter_gestures_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/flutter_gestures_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="发出http网络请求">发出HTTP网络请求</h2>
+
+<p>获取来自互联网的数据是在大多数应用程序中是很常见的。在Flutter中，<code class="highlighter-rouge">http</code>包提供了从Internet获取数据的最简单方法。</p>
+
+<h3 id="如何从api调用中获取数据">如何从API调用中获取数据?</h3>
+
+<p>React Native为网络提供了Fetch API  - 您可以进行获取请求然后收到响应以获取数据</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+_getIPAddress = () =&gt; {
+  fetch("https://httpbin.org/ip")
+    .then(response =&gt; response.json())
+    .then(responseJson =&gt; {
+      this.setState({ _ipAddress: responseJson.origin });
+    })
+    .catch(error =&gt; {
+      console.error(error);
+    });
+};
+</code></pre>
+
+<p>Flutter使用<code class="highlighter-rouge">http</code>包。要安装<code class="highlighter-rouge">http</code>包，请将其添加到pubspec.yaml的dependencies部分。</p>
+
+<!-- skip -->
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">flutter</span><span class="pi">:</span>
+    <span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+  <span class="na">http</span><span class="pi">:</span> <span class="s">&lt;latest_version&gt;</span>
+</code></pre></div></div>
+
+<p>Flutter使用<a href="https://docs.flutter.io/flutter/dart-io/dart-io-library.html"><code class="highlighter-rouge">dart:io</code></a>核心HTTP支持客户端。要创建HTTP客户端，请导入<code class="highlighter-rouge">dart:io</code></p>
+
+<!-- skip -->
+<pre><code class="language-Dart">import 'dart:io';
+</code></pre>
+
+<p>客户端支持以下HTTP操作：GET，POST，PUT和DELETE。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+final url = Uri.https('httpbin.org', 'ip');
+final httpClient = HttpClient();
+_getIPAddress() async {
+  var request = await httpClient.getUrl(url);
+  var response = await request.close();
+  var responseBody = await response.transform(utf8.decoder).join();
+  String ip = json.decode(responseBody)['origin'];
+  setState(() {
+    _ipAddress = ip;
+  });
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/api_calls_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/api_calls_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="表单输入">表单输入</h2>
+
+<p>文本字段允许用户在您的应用中键入文本，以便它们可用于构建表单，消息传递应用程序，搜索体验等。 Flutter提供了两个核心文本字段小部件：<a href="https://docs.flutter.io/flutter/material/TextField-class.html">TextField</a>和<a href="https://docs.flutter.io/flutter/material/TextFormField-class.html">TextFormField</a>。</p>
+
+<h3 id="如何使用文本字段小部件">如何使用文本字段小部件?</h3>
+
+<p>在React Native中，要输入文本，请使用“TextInput”组件来显示文本输入框然后使用回调将值存储在变量中。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+&lt;TextInput
+  placeholder="Enter your Password"
+  onChangeText={password =&gt; this.setState({ password })}
+ /&gt;
+&lt;Button title="Submit" onPress={this.validate} /&gt;
+</code></pre>
+<p>在Flutter中，使用<a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html"><code class="highlighter-rouge">TextEditingController</code></a>类来管理<code class="highlighter-rouge">TextField</code>小部件。每当修改文本字段时，控制器都会通知其侦听器。</p>
+
+<p>监听器读取文本和选择属性以了解用户键入的内容，您可以通过控制器的<code class="highlighter-rouge">text</code>属性访问<code class="highlighter-rouge">TextField</code>中的文本</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">// Flutter
+final TextEditingController _controller = TextEditingController();
+      ...
+TextField(
+  controller: _controller,
+  decoration: InputDecoration(
+    hintText: 'Type something', labelText: "Text Field "
+  ),
+),
+RaisedButton(
+  child: Text('Submit'),
+  onPressed: () {
+    showDialog(
+      context: context,
+        child: AlertDialog(
+          title: Text('Alert'),
+          content: Text('You typed ${_controller.text}'),
+        ),
+     );
+   },
+ ),
+)
+</code></pre>
+<p>在此示例中，当用户单击“提交”按钮时，对话框将显示在文本字段中输入的当前文本。这是显示的使用提示消息的<a href="https://docs.flutter.io/flutter/material/AlertDialog-class.html"><code class="highlighter-rouge">alertDialog</code></a>小部件实现的，
+ 通过<a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html">TextEditingController</a>的<code class="highlighter-rouge">text</code>属性访问<code class="highlighter-rouge">TextField</code> 中的文本。</p>
+
+<h3 id="我如何使用表单小部件">我如何使用表单小部件?</h3>
+
+<p>在Flutter中，使用 <a href="https://docs.flutter.io/flutter/widgets/Form-class.html"><code class="highlighter-rouge">Form</code></a>窗口小部件，
+其中<a href="https://docs.flutter.io/flutter/material/TextFormField-class.html"><code class="highlighter-rouge">TextFormField</code></a>窗口小部件和提交按钮将作为子项传递。
+<code class="highlighter-rouge">TextFormField</code>小部件有一个名为<a href="https://docs.flutter.io/flutter/widgets/FormField/onSaved.html"><code class="highlighter-rouge">onSaved</code></a>的参数，
+它接受回调并在保存表单时执行。 <code class="highlighter-rouge">FormState</code>对象用于保存，重置或验证作为此<code class="highlighter-rouge">Form</code>的后代的每个<code class="highlighter-rouge">FormField</code> 。要获取<code class="highlighter-rouge">FormState</code>,
+可以将<code class="highlighter-rouge">Form.of</code>与其父类为Form的上下文一起使用，或将<code class="highlighter-rouge">GlobalKey</code>传递给Form构造函数并调用<code class="highlighter-rouge">GlobalKey.currentState</code>。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">final formKey = GlobalKey&lt;FormState&gt;();
+
+...
+
+Form(
+  key:formKey,
+  child: Column(
+    children: &lt;Widget&gt;[
+      TextFormField(
+        validator: (value) =&gt; !value.contains('@') ? 'Not a valid email.' : null,
+        onSaved: (val) =&gt; _email = val,
+        decoration: const InputDecoration(
+          hintText: 'Enter your email',
+          labelText: 'Email',
+        ),
+      ),
+      RaisedButton(
+        onPressed: _submit,
+        child: Text('Login'),
+      ),
+    ],
+  ),
+)
+</code></pre>
+
+<p>下面的例子展示了<code class="highlighter-rouge">Form.save（）</code>和<code class="highlighter-rouge">formKey</code>（它是一个<code class="highlighter-rouge">GlobalKey</code>）用于在提交时保存表单。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">void _submit() {
+  final form = formKey.currentState;
+  if (form.validate()) {
+    form.save();
+    showDialog(
+      context: context,
+      child: AlertDialog(
+        title: Text('Alert'),
+        content: Text('Email: $_email, password: $_password'),
+      )
+    );
+  }
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/input_fields_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/input_fields_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="特定于平台的代码">特定于平台的代码</h2>
+
+<p>在构建跨平台应用程序时，您希望重用尽可能多的代码。但是，跨平台可能会出现这样的情况：根据操作系统，代码有所不同。这需要通过声明特定平台来单独实现。</p>
+
+<p>在React Native中，将使用以下实现：</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+if (Platform.OS === "ios") {
+  return "iOS";
+} else if (Platform.OS === "android") {
+  return "android";
+} else {
+  return "not recognised";
+}
+</code></pre>
+<p>在Flutter中，使用以下实现：
+<!-- skip --></p>
+<pre><code class="language-Dart">// Flutter
+if (Theme.of(context).platform == TargetPlatform.iOS) {
+  return "iOS";
+} else if (Theme.of(context).platform == TargetPlatform.android) {
+  return "android";
+} else if (Theme.of(context).platform == TargetPlatform.fuchsia) {
+  return "fuchsia";
+} else {
+  return "not recognised ";
+}
+</code></pre>
+
+<h2 id="调试">调试</h2>
+
+<p>在运行应用程序之前，请使用<code class="highlighter-rouge">flutter analyze</code>验证您的代码。 Flutter分析器（它是<code class="highlighter-rouge">dartanalyzer</code>工具的包装器）检查
+您的代码并帮助识别可能的问题。如果您正在使用支持Flutter的IDE，则会自动执行此操作。</p>
+
+<h3 id="如何访问应用内开发人员菜单">如何访问应用内开发人员菜单?</h3>
+
+<p>在React Native中，可以通过摇动设备来访问开发人员菜单：⌘D 适用于iOS模拟器或 ⌘M forAndroid模拟器。</p>
+
+<p>在Flutter中，如果您使用的是IDE，则可以使用IDE工具。如果你开始
+你的应用程序使用<code class="highlighter-rouge">flutter run</code>你也可以通过在终端窗口输入<code class="highlighter-rouge">h</code>来访问菜单，或输入以下快捷方式：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Action</th>
+      <th style="text-align: center">Terminal Shortcut</th>
+      <th style="text-align: left">Debug functions and properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Widget hierarchy of the app</td>
+      <td style="text-align: center"><code class="highlighter-rouge">w</code></td>
+      <td style="text-align: left">debugDumpApp()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Rendering tree of the app</td>
+      <td style="text-align: center"><code class="highlighter-rouge">t</code></td>
+      <td style="text-align: left">debugDumpRenderTree()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Layers</td>
+      <td style="text-align: center"><code class="highlighter-rouge">L</code></td>
+      <td style="text-align: left">debugDumpLayerTree()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Accessibility</td>
+      <td style="text-align: center"><code class="highlighter-rouge">S</code> (traversal order) or<br /><code class="highlighter-rouge">U</code> (inverse hit test order)</td>
+      <td style="text-align: left">debugDumpSemantics()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To toggle the widget inspector</td>
+      <td style="text-align: center"><code class="highlighter-rouge">i</code></td>
+      <td style="text-align: left">WidgetsApp. showWidgetInspectorOverride</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To toggle the display of construction lines</td>
+      <td style="text-align: center"><code class="highlighter-rouge">p</code></td>
+      <td style="text-align: left">debugPaintSizeEnabled</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To simulate different operating systems</td>
+      <td style="text-align: center"><code class="highlighter-rouge">o</code></td>
+      <td style="text-align: left">defaultTargetPlatform</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To display the performance overlay</td>
+      <td style="text-align: center"><code class="highlighter-rouge">P</code></td>
+      <td style="text-align: left">WidgetsApp. showPerformanceOverlay</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To save a screenshot to flutter. png</td>
+      <td style="text-align: center"><code class="highlighter-rouge">s</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">To quit</td>
+      <td style="text-align: center"><code class="highlighter-rouge">q</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="如何执行热重新加载">如何执行热重新加载?</h3>
+
+<p>Flutter的热重载功能可帮助您快速轻松地实验，构建UI，添加功能，并修复错误。而不是每次你重新编译你的应用程序
+更改，您可以立即热重新加载您的应用程序。该应用程序已更新以反映您的更改，并保留应用程序的当前状态。</p>
+
+<p>在React Native中，快捷键为iOS模拟器的⌘R，并且两次点击R两次Android模拟器。</p>
+
+<p>在Flutter中，如果您使用的是IntelliJ IDE或Android Studio，则可以选择“保存”全部（⌘s/ ctrl-s），或者您可以单击工具栏上的“热重新加载”按钮。如果你使用<code class="highlighter-rouge">flutter run</code>在命令行运行应用程序，在中输入<code class="highlighter-rouge">r</code>
+终端窗口。您还可以通过在中键入“R”来执行完全重新启动
+终端窗口。</p>
+
+<h3 id="我可以使用哪些工具在flutter中调试我的应用程序">我可以使用哪些工具在Flutter中调试我的应用程序?</h3>
+
+<p>当您需要调试时，可以使用几个选项和工具Flutter的应用程序</p>
+
+<p>除了Flutter analyzer之外，<a href="https://dart-lang.github.io/observatory/"><code class="highlighter-rouge">Dart Observatory</code></a>还是一个用于分析和调试Dart应用程序的工具。</p>
+
+<p>如果您使用终端中的<code class="highlighter-rouge">flutter run</code>启动应用程序，则可以打开打印到终端窗口的Observatory URL的网页,例如:  <code class="highlighter-rouge">http://127.0.0.1:8100/</code>.</p>
+
+<p>Observatory包括对分析，检查堆，观察执行的代码行，调试内存泄漏和内存碎片的支持。有关更多信息，请参阅<a href="https://dart-lang.github.io/observatory/">Observatory</a>文档。
+当您下载并安装Dart SDK时，免费提供Observatory。</p>
+
+<p>如果您使用的是IDE，则可以使用IDE调试器调试应用程序。</p>
+
+<p>如果您使用的是IntelliJ和Android Studio，则可以使用Flutter Inspector。
+ Flutter Inspector使您更容易理解应用程序的原因
+  正在渲染它的方式。它允许您：</p>
+<ul>
+  <li>将应用程序的UI结构视为小部件树</li>
+  <li>在您的设备或模拟器上选择一个点，然后找到相应的小部件渲染那些像素</li>
+  <li>查看各个小部件的属性</li>
+  <li>快速确定布局问题其原因</li>
+</ul>
+
+<p>可以从View&gt; Tool Windows&gt; Flutter打开Flutter Inspector视图检查。仅在应用程序运行时显示内容。</p>
+
+<p>要检查特定小部件，请在中选择<strong>Toggle inspect mode</strong>操作
+工具栏，然后在连接的手机或模拟器上单击所需的小部件。该
+小部件在应用程序的UI中突出显示。您将在IntelliJ中看到窗口小部件中的层次结构以及该窗口小部件的各个属性。</p>
+
+<p>有关更多信息，请参阅  <a href="/debugging/">调试 Flutter Apps</a>.</p>
+
+<h2 id="动画">动画</h2>
+
+<p>精心设计的动画使UI感觉直观，有助于优雅应用的外观和感觉，并改善用户体验。 Flutter的动画支持可以轻松实现简单和复杂的动画。 Flutter SDK包含许多包含标准动作效果的Material Design小部件，您可以轻松自定义这些效果以个性化您的应用。</p>
+
+<p>在React Native中，动画API用于创建动画。</p>
+
+<p>在Flutter中, 使用 <a href="https://docs.flutter.io/flutter/animation/Animation-class.html"><code class="highlighter-rouge">Animation</code></a>
+类和 <a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html"><code class="highlighter-rouge">AnimationController</code></a> 类.</p>
+
+<p><code class="highlighter-rouge">Animation</code>是一个代表当前值和状态（已完成和已消失）的抽象类。
+AnimationController`类可以让你向前或向后播放动画，或停止动画并设置动画到特定值以自定义运动。</p>
+
+<h3 id="如何添加简单的淡入动画">如何添加简单的淡入动画?</h3>
+
+<p>在下面的React Native示例中，动画组件<code class="highlighter-rouge">FadeInView</code> 是使用Animated API创建。初始不透明状态，最终状态和
+定义了转换发生的持续时间。动画组件添加到<code class="highlighter-rouge">Animated</code>组件中，不透明状态<code class="highlighter-rouge">fadeAnim</code>被映射
+到我们想要动画的Text组件的不透明度，然后，调用<code class="highlighter-rouge">start（）</code>来启动动画。</p>
+
+<!-- skip -->
+<pre><code class="language-JavaScript">// React Native
+class FadeInView extends React.Component {
+  state = {
+    fadeAnim: new Animated.Value(0) // Initial value for opacity: 0
+  };
+  componentDidMount() {
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 1,
+      duration: 10000
+    }).start();
+  }
+  render() {
+    return (
+      &lt;Animated.View style={{...this.props.style, opacity: this.state.fadeAnim }} &gt;
+        {this.props.children}
+      &lt;/Animated.View&gt;
+    );
+  }
+}
+    ...
+&lt;FadeInView&gt;
+  &lt;Text&gt; Fading in &lt;/Text&gt;
+&lt;/FadeInView&gt;
+    ...
+</code></pre>
+<p>要在Flutter中创建相同的动画，请创建名为<code class="highlighter-rouge">controller</code>的<a href="https://docs.flutter.io/flutter/animation/AnimationController-class.html"><code class="highlighter-rouge">AnimationController</code></a>
+对象并指定持续时间。默认情况下，<code class="highlighter-rouge">AnimationController</code>在给定的持续时间内线性生成范围从0.0到1.0的值。
+只要运行应用程序的设备准备好显示新帧，动画控制器就会生成一个新值。通常，此速率约为每秒60个值。</p>
+
+<p>定义<code class="highlighter-rouge">AnimationController</code>时，必须传入<code class="highlighter-rouge">vsync</code>对象。该
+<code class="highlighter-rouge">vsync</code>的存在可以防止屏幕外动画消耗不必要的动画
+资源。您可以通过添加将有状态对象用作<code class="highlighter-rouge">vsync</code>到<code class="highlighter-rouge">TickerProviderStateMixin</code>类定义。一个<code class="highlighter-rouge">AnimationController</code>
+需要一个TickerProvider，它使用<code class="highlighter-rouge">vsync</code>参数配置构造函数。</p>
+
+<p><a href="https://docs.flutter.io/flutter/animation/Tween-class.html"><code class="highlighter-rouge">Tween</code></a>描述开始值和结束值之间的插值或从输入范围到输出范围的映射。若要将<code class="highlighter-rouge">Tween</code>对象与动画一起使用
+，请调用<code class="highlighter-rouge">Tween</code>对象的<code class="highlighter-rouge">animate</code>方法并将其传递给要修改的<code class="highlighter-rouge">Animation</code>对象。</p>
+
+<p>对于此示例，使用<a href="https://docs.flutter.io/flutter/widgets/FadeTransition-class.html"><code class="highlighter-rouge">FadeTransition</code></a>小部件，
+并将<code class="highlighter-rouge">opacity</code>属性映射到<code class="highlighter-rouge">animation</code> 对象。</p>
+
+<p>要启动动画，请使用<code class="highlighter-rouge">controller.forward()</code>。
+也可以使用控制器执行其他操作，例如<code class="highlighter-rouge">fling()</code>或<code class="highlighter-rouge">repeat()</code>。对于此示例，<a href="https://docs.flutter.io/flutter/material/FlutterLogo-class.html"><code class="highlighter-rouge">FlutterLogo</code></a>
+小部件在<code class="highlighter-rouge">FadeTransition</code>小部件中使用。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">
+// Flutter
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(Center(child: LogoFade()));
+}
+
+class LogoFade extends StatefulWidget {
+  _LogoFadeState createState() =&gt; _LogoFadeState();
+}
+
+class _LogoFadeState extends State&lt;LogoFade&gt; with TickerProviderStateMixin {
+  Animation animation;
+  AnimationController controller;
+
+  initState() {
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 3000), vsync: this);
+    final CurvedAnimation curve =
+    CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    animation = Tween(begin: 0.0, end: 1.0).animate(curve);
+    controller.forward();
+  }
+
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: animation,
+      child: Container(
+        height: 300.0,
+        width: 300.0,
+        child: FlutterLogo(),
+      ),
+    );
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/flutter_fade_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/flutter_fade_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="如何向卡添加滑动动画">如何向卡添加滑动动画?</h3>
+
+<p>在React Native中，使用<code class="highlighter-rouge">PanResponder</code>或第三方库
+滑动动画。</p>
+
+<p>在Flutter中，要添加滑动动画，请使用<a href="https://docs.flutter.io/flutter/widgets/Dismissible-class.html"><code class="highlighter-rouge">Dismissible</code></a>窗口小部件并嵌套子窗口小部件。</p>
+
+<!-- skip -->
+<pre><code class="language-Dart">child: Dismissible(
+  key: key,
+  onDismissed: (DismissDirection dir) {
+    cards.removeLast();
+  },
+  child: Container(
+    ...
+  ),
+),
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Android</th>
+      <th style="text-align: center">iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/images/card_swipe_android.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+      <td style="text-align: center"><img src="/images/card_swipe_iOS.gif?raw=true" style="width:300px;" alt="Loading" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h2 id="react-native和flutter-widget等效组件">React Native和Flutter Widget等效组件</h2>
+
+<p>下表列出了常用的React Native组件，这些组件映射到相应的Flutter窗口小部件和常用窗口小部件属性。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>React Native Component</th>
+      <th>Flutter Widget</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/button.html">Button</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html">Raised Button</a></td>
+      <td>一个基本的凸起按钮。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onPressed [required]</td>
+      <td>点击或以其他方式激活按钮时的回调。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Child</td>
+      <td>按钮的标签.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/button.html">Button</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/FlatButton-class.html">Flat Button</a></td>
+      <td>一个基本的平面按钮。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onPressed [required]</td>
+      <td>点击或以其他方式激活按钮时的回调</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Child</td>
+      <td>按钮的标签.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/scrollview.html">ScrollView</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/ListView-class.html">ListView</a></td>
+      <td>可线性排列的小部件可滚动列表</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>children</td>
+      <td>( &lt;Widget&gt; [ ]) 要显示的子窗口小部件列表。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>controller</td>
+      <td>[ <a href="https://docs.flutter.io/flutter/widgets/ScrollController-class.html">Scroll Controller</a> ] 可用于控制可滚动窗口小部件的对象</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>itemExtent</td>
+      <td>[ double ] 如果为非null，则强制子项在滚动方向上具有给定范围。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>scroll Direction</td>
+      <td>[ <a href="https://docs.flutter.io/flutter/painting/Axis-class.html">Axis</a> ] 滚动视图滚动的轴。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/flatlist.html">FlatList</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/ListView/ListView.builder.html">ListView. builder()</a></td>
+      <td>根据需要创建的线性小部件数组的构造函数。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>itemBuilder [required]</td>
+      <td>[<a href="https://docs.flutter.io/flutter/widgets/IndexedWidgetBuilder.html"> Indexed Widget Builder</a>] 帮助按需建立子项. 只有索引大于或等于零且小于itemCount才会调用此回调。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>itemCount</td>
+      <td>[ int ] 提高了ListView估计最大滚动范围的能力。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Image-class.html">Image</a></td>
+      <td><a href="https://facebook.github.io/react-native/docs/image.html">Image</a></td>
+      <td>显示图像的小部件。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>image [required]</td>
+      <td>要显示的图像。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Image. asset</td>
+      <td>提供了几种构造函数，用于指定图像的各种方式</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>width, height, color, alignment</td>
+      <td>图像的样式和布局。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>fit</td>
+      <td>将图像刻入布局期间分配的空间.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/modal.html">Modal</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/ModalRoute-class.html">ModalRoute</a></td>
+      <td>阻止与先前路由交互的路由.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>animation</td>
+      <td>驱动路线过渡和前一路线前进过渡的动画</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/activityindicator.html">Activity Indicator</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html">Circular Progress Indicator</a></td>
+      <td>显示沿圆圈进度的小部件。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>strokeWidth</td>
+      <td>用于绘制圆的线条的宽度。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>backgroundColor</td>
+      <td>进度指示器的背景颜色。默认情况下，当前主题.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/activityindicator.html">Activity Indicator</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/LinearProgressIndicator-class.html">Linear Progress Indicator</a></td>
+      <td>显示沿圆圈进度的小部件。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>value</td>
+      <td>此进度指示器的值.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/refreshcontrol.html">Refresh Control</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/RefreshIndicator-class.html">Refresh Indicator</a></td>
+      <td>支持Material“下滑刷新”成语的小部件.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>color</td>
+      <td>进度指示器的前景色</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onRefresh</td>
+      <td>当用户拖动刷新指示器足以证明他们希望应用程序刷新时调用的函数.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/view.html">View</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a></td>
+      <td>围绕子窗口小部件的窗口小部件</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/view.html">View</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Column-class.html">Column</a></td>
+      <td>一个窗口小部件，用于在垂直数组中显示其子项</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/view.html">View</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Row-class.html">Row</a></td>
+      <td>一个小部件，用于在水平数组中显示其子项.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/view.html">View</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Center-class.html">Center</a></td>
+      <td>A widget that centers its child within itself.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/view.html">View</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Padding-class.html">Padding</a></td>
+      <td>一个小部件，通过给定的填充来保护其子级。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>padding [required]</td>
+      <td>[ EdgeInsets ] 插入孩子的空间量</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/touchableopacity.html">Touchable Opacity</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html">Gesture Detector</a></td>
+      <td>检测手势的小部件。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onTap</td>
+      <td>点击发生时的回调</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onDoubleTap</td>
+      <td>当快速连续两次在同一位置发生敲击时的回调。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.flutter.io/flutter/services/TextInput-class.html">Text Input</a></td>
+      <td><a href="https://facebook.github.io/react-native/docs/textinput.html">Text Input</a></td>
+      <td>系统文本输入控件的界面。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>controller</td>
+      <td>[ <a href="https://docs.flutter.io/flutter/widgets/TextEditingController-class.html">Text Editing Controller</a> ] 用于访问和修改文本。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/text.html">Text</a></td>
+      <td><a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Text</a></td>
+      <td>Text小部件，显示具有单个样式的文本字符串.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>data</td>
+      <td>[ String ] 要显示的文本。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>textDirection</td>
+      <td>[ <a href="https://docs.flutter.io/flutter/dart-ui/TextAlign-class.html">Text Align</a> ] 文本流动的方向.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/switch.html">Switch</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/Switch-class.html">Switch</a></td>
+      <td>A material design switch.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>value [required]</td>
+      <td>[ boolean ] 此开关是打开还是关闭</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onChanged [required]</td>
+      <td>[ callback ] 当用户打开或关闭开关时调用。</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://facebook.github.io/react-native/docs/slider.html">Slider</a></td>
+      <td><a href="https://docs.flutter.io/flutter/material/Slider-class.html">Slider</a></td>
+      <td>用于从一系列值中进行选择.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>value [required]</td>
+      <td>[ double ] 滑块的当前值.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>onChanged [required]</td>
+      <td>当用户为滑块选择新值时调用。</td>
+    </tr>
+  </tbody>
+</table>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

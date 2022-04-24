@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter Hero动画  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Hero指的是可以在路由(页面)之间“飞行”的widget，可以跨页面进行对象共享，这是一个非常棒的特性...">
+  <meta name="keywords" content="Flutter英雄动画, hero动画,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/animations/hero-animations/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/animations/hero-animations/index.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Flutter Hero动画&body=From URL: https://www.flutterchina.club/animations/hero-animations/index.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Flutter Hero动画 </h1>
+   </div>
+
+  </header>
+  
+
+  <div class="whats-the-point">
+
+  <p> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你会学到什么：</p>
+  <ul>
+    <li>Hero指的是可以在路由(页面)之间“飞行”的widget。</li>
+    <li>使用Flutter的Hero widget创建hero动画。</li>
+    <li>将 hero从一个路由飞到另一个路由。</li>
+    <li>将 hero 的形状从圆形转换为矩形，同时将其从一个路由飞到另一个路由的过程中进行动画处理。</li>
+    <li>Flutter中的Hero widget实现了通常称为 <em>共享元素转换</em> 或 <em>共享元素动画</em>的动画风格。</li>
+  </ul>
+
+</div>
+
+<p>你可能多次看过 hero 动画。例如，路由显示代表待售物品的缩略图列表。选择一个条目会将其跳转到一个新路由，新页面中包含更多详细信息和“购买”按钮。 在Flutter中将图片从一个路由飞到另一个路由称为<strong>hero动画</strong>，尽管相同的动作有时也称为 <em>共享元素转换</em>。</p>
+
+<p>本指南演示如何构建标准 hero 动画，以及在“飞行”过程中将图片从圆形转换为方形的 hero 动画。</p>
+
+<aside class="alert alert-info">
+  <p><strong>例子</strong><br /></p>
+
+  <p>本指南的这些链接中提供了各种风格的 hero 动画的示例：</p>
+
+  <ul>
+    <li><a href="#standard-hero-animation-code">标准的 hero 动画</a></li>
+    <li><a href="#radial-hero-animation-code">Radial hero 动画 </a></li>
+  </ul>
+
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#hero动画的基本结构" id="markdown-toc-hero动画的基本结构">Hero动画的基本结构</a></li>
+  <li><a href="#在幕后" id="markdown-toc-在幕后">在幕后</a>    <ul>
+      <li><a href="#基本类" id="markdown-toc-基本类">基本类</a></li>
+    </ul>
+  </li>
+  <li><a href="#标准-hero-动画" id="markdown-toc-标准-hero-动画">标准 hero 动画</a>    <ul>
+      <li><a href="#发生了什么" id="markdown-toc-发生了什么">发生了什么?</a></li>
+      <li><a href="#photohero-类" id="markdown-toc-photohero-类">PhotoHero 类</a></li>
+      <li><a href="#heroanimation-类" id="markdown-toc-heroanimation-类">HeroAnimation 类</a></li>
+    </ul>
+  </li>
+  <li><a href="#radial-hero-动画" id="markdown-toc-radial-hero-动画">Radial hero 动画</a>    <ul>
+      <li><a href="#发生了什么-1" id="markdown-toc-发生了什么-1">发生了什么?</a></li>
+      <li><a href="#photo-类" id="markdown-toc-photo-类">Photo 类</a></li>
+      <li><a href="#radialexpansion类" id="markdown-toc-radialexpansion类">RadialExpansion类</a></li>
+    </ul>
+  </li>
+  <li><a href="#资源" id="markdown-toc-资源">资源</a></li>
+</ul>
+
+<aside class="alert alert-info">
+  <p><strong>刚接触Flutter?</strong><br />本页假定您知道如何使用Flutter的 widget创建布局。有关更多信息，请参阅 <a href="/tutorials/layout/">在Flutter中构建布局</a>。</p>
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>术语:</strong>
+一个 <a href="/routing-and-navigation/"><em>Route</em></a> 在Flutter中代表一个页面，以后再Flutter中提到页面时指的就是路由。</p>
+</aside>
+
+<p>你可以在 Flutter中用 Hero widget中创建这个动画。当 hero 通过动画从源页面飞到目标页面时，目标页面（不包括 hero ）逐渐淡入视野。通常， hero 是用户界面的一小部分，如图片，它通常在两个页面都有。从用户的角度来看， hero 在页面之间“飞翔”。本指南介绍如何创建以下 hero 动画：</p>
+
+<p><strong>标准 hero 动画</strong><br /></p>
+
+<p>一个<em>标准的 hero 动画</em>将一个 hero 从一个页面飞到一个新的页面，通常会以不同尺寸降落在不同位置。我们看一个视频（youtube上，需要翻墙）：</p>
+
+<p>该视频以慢速录制，显示了一个典型示例。在页面中心轻击脚蹼，将它们飞到新的蓝色页面的左上角，尺寸更小。在蓝色页面中轻击脚蹼（或使用设备返回键）将脚蹼飞回原来页面。</p>
+
+<!--
+  Use this instead of the default YouTube embed code so that the embed
+  is reposnisve.
+-->
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/CEcFnqRDfgw?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>如果视频看不到没关系，我们为您录制了Flutter Gallery示例中的一个Gif:</p>
+
+<div style="text-align: center; padding: 30px"><img src="/images/hero.gif" style="border: #eee 1px solid" /></div>
+
+<p><strong>Radial hero 动画</strong><br /></p>
+
+<p>在Radial(径向) hero 动画中，在 hero 在页面之间“飞行”的同时，其形状从圆形变为矩形。我们看一个视频（youtube上的，需要翻墙）：</p>
+
+<p>该视频以慢速录制，显示了径向 hero 动画的示例。在开始时，一行三个圆形图片出现在页面底部。点击任何一个圆形图片都会将图片飞到一个以正方形显示它的新页面。点击正方形图片将 hero 飞回原页面，并以圆形显示。</p>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/LWKENpwDKiM?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+
+<p>在详细来了解<a href="/animations/hero-animations/#standard-hero-animations">标准</a> 或<a href="/animations/hero-animations/#radial-hero-animations">radial</a> hero 动画之前 ，请阅读 hero 动画的<a href="/animations/hero-animations/#basic-structure">基本结构</a> 以了解如何构建 hero 动画代码，并了解了解Flutter如何<a href="/animations/hero-animations/#behind-the-scenes">在幕后</a>执行 hero 动画。</p>
+
+<p><a name="basic-structure"></a></p>
+<h2 id="hero动画的基本结构">Hero动画的基本结构</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a> <strong>重点是什么?</strong></b></p>
+
+  <ul>
+    <li>在不同路由中使用两个 hero  widget，但使用匹配的标签来实现动画。</li>
+    <li>导航器管理包含应用程序路由的栈。</li>
+    <li>从导航器栈中推入或弹出路由会触发动画。</li>
+    <li>Flutter框架会计算一个<a href="https://docs.flutter.io/flutter/animation/RectTween-class.html">补间矩形</a> ，用于定义在从源路由“飞行”到目标路由时 hero 的边界。在“飞行”过程中， hero 会移动到应用程序上的一个叠加层，以便它出现在两个页面之上。</li>
+  </ul>
+
+</div>
+
+<aside class="alert alert-info">
+  <p><strong>术语:</strong>如果您对补间(tweens)的概念还不了解，请参阅 <a href="/tutorials/animation/">Flutter 动画教程</a>。</p>
+</aside>
+
+<p>hero 动画是使用两个 <a href="https://docs.flutter.io/flutter/widgets/Hero-class.html">Hero</a>  widget实现的：一个描述源路由中的 widget，另一个描述目标路由中的 widget。从用户的角度来看， hero 似乎是共享的，只有开发者需要了解这个实现细节。</p>
+
+<aside class="alert alert-info">
+  <p><strong>关于对话框的注意事项:</strong></p>
+
+  <p>hero 从一个PageRoute飞到另一个。对话框（例如，通过<code class="highlighter-rouge">showDialog()</code>显示的）使用的事PopupRoutes，它们不是PageRoutes。至少现在，你不能将 hero 飞到一个对话框。有关将来的开发（以及可能的解决方法），请关注此 <a href="https://github.com/flutter/flutter/issues/10667">issue</a> 。</p>
+
+</aside>
+
+<p>hero 动画代码具有以下结构:</p>
+
+<ol>
+  <li>定义一个起始 hero  widget，称为*源 hero *。 hero 指定其图形表示（通常是图片）和识别标记，并且位于源路由定义的当前显示的 widget树中。</li>
+  <li>定义一个结束的 hero  widget，称为*目标 hero *。这位 hero 也指定了它的图形表示，以及与源 hero 相同的标记。重要的是<strong>两个 hero  widget都使用相同的标签创建</strong>，通常是代表底层数据的对象。为了获得最佳效果， hero 应该有几乎相同的 widget树。</li>
+  <li>创建一个包含目标 hero 的路由。目标路由定义了动画结束时的 widget树。</li>
+  <li>通过导航器将目标路由入栈来触发动画。Navigator推送和弹出操作会为每对 hero 配对，并在源路由和目标路由中使用匹配的标签触发 hero 动画。</li>
+</ol>
+
+<p>Flutter计算从起点到终点对 hero 界限进行动画处理的补间（生成每一帧大小和位置），并在叠加层中执行动画。</p>
+
+<p>下一节将详细的介绍整个过程。</p>
+
+<h2 id="在幕后">在幕后</h2>
+
+<p>以下描述了Flutter如何执行从一个路由飞到另一个路由的转换。</p>
+
+<p><img src="images/hero-transition-0.png" alt="Before the transition the source hero appears in the source route" /></p>
+
+<p>在转换之前，源 hero 会在源路由的 widget树中等待。目标路由尚不存在，叠加层为空。</p>
+
+<hr />
+
+<p><img src="images/hero-transition-1.png" alt="The transition begins" /></p>
+
+<p>将路由push到导航器(即跳转到新页面)时会触发动画。在t = 0.0时，Flutter执行以下操作：</p>
+
+<ul>
+  <li>使用Material motion规范中所述的曲线运动计算目标 hero 的路径。现在Flutter知道 hero 在哪里结束。</li>
+  <li>将目标 hero 放置在叠加层中，与源 hero 的位置和大小相同。将 hero 添加到叠加层会更改其Z序，以使其出现在所有路由的顶部</li>
+  <li>将源 hero 移出路由。</li>
+</ul>
+
+<hr />
+
+<p><img src="images/hero-transition-2.png" alt="The hero flies in the overlay to its final position and size" /></p>
+
+<p>当 hero “飞行”时，其矩形边界使用 hero 的 <a href="https://docs.flutter.io/flutter/widgets/CreateRectTween.html"><code class="highlighter-rouge">createRectTween</code></a>属性中指定的 <a href="https://docs.flutter.io/flutter/animation/Tween-class.html">Tween </a>进行动画。默认情况下，Flutter使用<a href="https://docs.flutter.io/flutter/material/MaterialRectArcTween-class.html">MaterialRectArcTween</a>的一个实例，该实例沿曲线路径对矩形的对角进行动画处理。（有关使用不同的补间动画的示例，请参阅 <a href="/animations/hero-animations/#radial-hero-animations">径向 hero </a>动画。）</p>
+
+<hr />
+
+<p><img src="images/hero-transition-3.png" alt="When the transition is complete, the hero is moved from the overlay to the destination route" /></p>
+
+<p>“飞行”完成时:</p>
+
+<ul>
+  <li>Flutter将 hero  widget从叠加层移动到目标路由。叠加层现在是空的。</li>
+  <li>目标 hero 出现在目标路由的最终位置。</li>
+  <li>源 hero 恢复到其路由。</li>
+</ul>
+
+<hr />
+
+<p>Pop路由(返回时)执行相同的过程，将 hero 的动画设置恢复到其在源路由中的大小和位置。</p>
+
+<h3 id="基本类">基本类</h3>
+
+<p>本指南中的示例使用以下类来实现 hero 动画：</p>
+
+<dl>
+  <dt><a href="https://docs.flutter.io/flutter/widgets/Hero-class.html">Hero</a></dt>
+  <dd>从源路由飞到目标路由的 widget。为源路由定义一个 hero ，为目标路由定义另一个 hero ，并为每个标签分配相同的标签。Flutter为具有匹配标签的 hero 配对。</dd>
+  <dt><a href="https://docs.flutter.io/flutter/material/InkWell-class.html">Inkwell</a></dt>
+  <dd>指定点击 hero 时发生的情况。InkWell的<code class="highlighter-rouge">onTap()</code>方法构建新路由并将其push到导航器的栈。</dd>
+  <dt><a href="https://docs.flutter.io/flutter/widgets/Navigator-class.html">Navigator</a></dt>
+  <dd>导航器管理一个路由栈。从导航器栈中push或pop路由会触发动画(打开新页或返回上一页)。</dd>
+  <dt><a href="https://docs.flutter.io/flutter/widgets/Route-class.html">Route</a></dt>
+  <dd>指定一个路由或页面。除了最基本的应用之外，大多数应用都有多条路由。</dd>
+</dl>
+
+<h2 id="标准-hero-动画">标准 hero 动画</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span><strong>重点是什么？</strong></a></b></p>
+
+  <ul>
+    <li>使用MaterialPageRoute、CupertinoPageRoute指定路由，或使用PageRouteBuilder构建自定义路由。本节中的示例使用MaterialPageRoute。</li>
+    <li>通过将目标图片包装到SizedBox中来过渡结束时的图片大小。</li>
+    <li>将目标图片放入布局 widget中，更改图片的位置。这个示例使用Container。</li>
+  </ul>
+
+</div>
+
+<p><a name="standard-hero-animation-code"></a></p>
+<aside class="alert alert-info">
+  <p><strong>标准 hreo动画的代码</strong><br /></p>
+
+  <p>以下每个示例都演示了将图片从一个路由飞到另一个路由。本指南将详细介绍第一个示例。<br /><br /></p>
+
+  <dl>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/hero_animation/">hero_animation</a></dt>
+    <dd>将 hero 代码封装在自定义的PhotoHero widget中。如 Material motion规范中所述，沿着曲线路径来给 hero 执行动画。</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/basic_hero_animation/">basic_hero_animation</a></dt>
+    <dd>直接使用 hero  widget。本指南中未介绍这个示例，仅供您参考。</dd>
+  </dl>
+
+</aside>
+
+<h3 id="发生了什么">发生了什么?</h3>
+
+<p>使用Flutter的 hero  widget可以轻松地将图片从一个路由飞到另一个路由。使用MaterialPageRoute指定新路由时，图片将沿着弯曲的路径“飞行”，如<a href="https://material.io/guidelines/motion/movement.html">Material Design运动规范所述</a>。</p>
+
+<p><a href="/get-started/test-drive/">创建一个新的Flutter示例</a>并使用<a href="https://github.com/flutter/website/tree/master/_includes/code/animation/hero_animation/">GitHub目录中</a>的文件进行更新。</p>
+
+<p>运行示例:</p>
+
+<ul>
+  <li>点击主页路由的图片，将其放到一个新的路由上，在不同的位置和比例显示相同的照片。</li>
+  <li>通过点击图片或使用设备的返回键返回到前一路由。</li>
+  <li>您可以使用该<code class="highlighter-rouge">timeDilation</code> 属性进一步减缓过渡。</li>
+</ul>
+
+<h3 id="photohero-类">PhotoHero 类</h3>
+
+<p>自定义的PhotoHero类在点击时维护 hero 及其大小、图片和行为。PhotoHero构建了以下 widget树：</p>
+
+<p><img src="images/photohero-class.png" alt="widget tree for the PhotoHero class" /></p>
+
+<p>代码如下：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class PhotoHero extends StatelessWidget {
+  const PhotoHero({ Key key, this.photo, this.onTap, this.width }) : super(key: key);
+
+  final String photo;
+  final VoidCallback onTap;
+  final double width;
+
+  Widget build(BuildContext context) {
+    return new SizedBox(
+      width: width,
+      child: new Hero(
+        tag: photo,
+        child: new Material(
+          color: Colors.transparent,
+          child: new InkWell(
+            onTap: onTap,
+            child: new Image.asset(
+              photo,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+<p>重要信息:</p>
+
+<ul>
+  <li>InkWell包裹图片，来轻松给源和目标 hero 添加点击事件。</li>
+  <li>使用透明色定义“Material” widget可使图片在飞向目标时看到背景。</li>
+  <li>SizedBox在动画的开始和结束处指定 hero 的大小。</li>
+  <li>将图片的<code class="highlighter-rouge">fit</code>属性设置为<code class="highlighter-rouge">BoxFit.contain</code>，可以确保图片在转换过程中尽可能大而不改变其长宽比。</li>
+</ul>
+
+<h3 id="heroanimation-类">HeroAnimation 类</h3>
+
+<p>HeroAnimation类创建源和目标PhotoHeroes，并设置过渡。然后将它作为应用程序MaterialApp的home属性，启动程序时则首先会显示它。</p>
+
+<p>代码如下：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class HeroAnimation extends StatelessWidget {
+  Widget build(BuildContext context) {
+    <span class="nocode highlight">timeDilation = 5.0; // 1.0 means normal animation speed.</span>
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: const Text(&#39;Basic Hero Animation&#39;),
+      ),
+      body: new Center(
+        <span class="nocode highlight">child: new PhotoHero(</span>
+          photo: &#39;images/flippers-alpha.png&#39;,
+          width: 300.0,
+          <span class="nocode highlight">onTap: ()</span> {
+            <span class="nocode highlight">Navigator.of(context).push(new MaterialPageRoute&lt;Null&gt;(</span>
+              <span class="nocode highlight">builder: (BuildContext context)</span> {
+                return new Scaffold(
+                  appBar: new AppBar(
+                    title: const Text(&#39;Flippers Page&#39;),
+                  ),
+                  body: new Container(
+                    // The blue background emphasizes that it&#39;s a new route.
+                    color: Colors.lightBlueAccent,
+                    padding: const EdgeInsets.all(16.0),
+                    alignment: Alignment.topLeft,
+                    <span class="nocode highlight">child: new PhotoHero(</span>
+                      photo: &#39;images/flippers-alpha.png&#39;,
+                      width: 100.0,
+                      <span class="nocode highlight">onTap: ()</span> {
+                        <span class="nocode highlight">Navigator.of(context).pop();</span>
+                      },
+                    ),
+                  ),
+                );
+              }
+            ));
+          },
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+<p>重要信息：</p>
+
+<ul>
+  <li>当用户点击包含源 hero 的InkWell时，代码将使用MaterialPageRoute创建目标路由。将目标路由push到导航栈会触发动画。</li>
+  <li>该Container将PhotoHero放置在目标路由AppBar下方的左上角。</li>
+  <li>目标PhotoHero 的<code class="highlighter-rouge">onTap()</code>方法会pop出导航栈(返回)，触发将Hero飞回原路由的动画。</li>
+  <li>在调试时使用<code class="highlighter-rouge">timeDilation</code>属性来减缓动画。</li>
+</ul>
+
+<hr />
+
+<h2 id="radial-hero-动画">Radial hero 动画</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span><strong>重点是什么？</strong></a></b></p>
+
+  <ul>
+    <li><em>径向变换</em> 动画会将圆形转换为方形。</li>
+    <li>在将 hero 从源路由“飞行”到目路由时，径向* hero *动画执行径向变换</li>
+    <li>MaterialRectCenterArcTween定义补间动画。</li>
+    <li>使用PageRouteBuilder构建目标路由。</li>
+  </ul>
+</div>
+
+<p>将 hero 从一个路由转移到另一个路由时，将其从圆形转换为矩形形状是平滑的效果，您可以使用 hero  widget实现。为了实现这一点，代码为两个剪辑形状：圆形和方形的<strong>相交部分</strong>提供动画。在整个动画中，圆形剪辑（和图片）从<code class="highlighter-rouge">minRadius</code>放大到<code class="highlighter-rouge">maxRadius</code>，而方形剪辑大小保持不变。同时，图片从源路由中的位置飞到目标路由中的位置。有关此过渡的视觉示例，请参阅Material motion规范中的<a href="https://material.io/guidelines/motion/transforming-material.html#transforming-material-radial-transformation">径向变换</a>。</p>
+
+<p>这个动画可能看起来很复杂（而且确实如此），但您可以 <strong>根据需要来自定义这些示例</strong>，它们会为您完成这些繁重的工作。</p>
+
+<p><a name="radial-hero-animation-code"></a></p>
+<aside class="alert alert-info">
+  <p><strong>Radial hero 动画代码</strong><br /></p>
+
+  <p>以下每个示例都演示了径向 hero 动画。本指南将介绍第一个示例。<br /></p>
+
+  <dl>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/radial_hero_animation">radial_hero_animation</a></dt>
+    <dd>Material motion 规范中描述的径向 hero 动画。</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/basic_radial_hero_transition">basic_radial_hero_animation</a></dt>
+    <dd>径向 hero 动画最简单的例子。目标页面没有Scaffold、 Card、Column或Text。本指南中未描述供参考的基本示例。</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/_includes/code/animation/radial_hero_animation_animate_rectclip">radial_hero_animation_animate_rectclip</a></dt>
+    <dd>通过添加剪辑矩形大小的动画来扩展radial_hero_animaton示例。本指南中未介绍此更高级的示例，仅供您参考。</dd>
+  </dl>
+
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>提示:</strong>径向 hero 动画涉及圆形与正方形的相交。即使通过<code class="highlighter-rouge">timeDilation</code>放慢动画速度，也很难看清楚，因此您可以考虑 在开发过程中启用Flutter的<a href="/debugging/#visual-debugging">可视化调试模式</a>。</p>
+</aside>
+
+<h3 id="发生了什么-1">发生了什么?</h3>
+
+<p>下图显示了动画开始时（<code class="highlighter-rouge">t = 0.0</code>）和结束时（<code class="highlighter-rouge">t = 1.0</code>）的剪辑图片。</p>
+
+<p><img src="images/radial-hero-animation.png" alt="visual diagram of radial transformation from beginning to end" /></p>
+
+<p>蓝色渐变（表示图片）表示剪辑形状相交的位置。在转换开始时，相交的部分是一个圆形剪辑（<a href="https://docs.flutter.io/flutter/widgets/ClipOval-class.html">ClipOval</a>）。在转换过程中，ClipOval从<code class="highlighter-rouge">minRadius</code>过渡到<code class="highlighter-rouge">maxRadius</code>，而<a href="https://docs.flutter.io/flutter/widgets/ClipRect-class.html">ClipRect</a> 保持固定大小。在转换结束时，圆形和矩形剪辑的交集产生与 hero  widget大小相同的矩形。换句话说，在过渡结束时，图片不再被剪切。</p>
+
+<p>参照<a href="/get-started/test-drive/">创建一个新的Flutter示例</a>并使用<a href="https://github.com/flutter/website/tree/master/_includes/code/animation/radial_hero_animation">GitHub目录中</a>的文件进行更新运行。</p>
+
+<p>运行示例：</p>
+
+<ul>
+  <li>点击三个圆形缩略图中的一个，将图片作为新路由中间的大正方形，然后遮蔽原始路由。</li>
+  <li>通过点击图片或使用设备的返回键，返回到前一路由。</li>
+  <li>您可以使用<code class="highlighter-rouge">timeDilation</code> 属性减缓过渡。</li>
+</ul>
+
+<h3 id="photo-类">Photo 类</h3>
+
+<p>Photo类构建保存图片的 widget树：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class Photo extends StatelessWidget {
+  Photo({ Key key, this.photo, this.color, this.onTap }) : super(key: key);
+
+  final String photo;
+  final Color color;
+  final VoidCallback onTap;
+
+  Widget build(BuildContext context) {
+    return <span class="nocode highlight">new Material(</span>
+      // Slightly opaque color appears where the image has transparency.
+      <span class="nocode highlight">color: Theme.of(context).primaryColor.withOpacity(0.25),</span>
+      child: <span class="nocode highlight">new InkWell(</span>
+        onTap: <span class="nocode highlight">onTap,</span>
+        child: <span class="nocode highlight">new Image.asset(</span>
+            photo,
+            fit: BoxFit.contain,
+          )
+      ),
+    );
+  }
+}</code></pre>
+
+<p>重要信息：</p>
+
+<ul>
+  <li>Inkwell捕获点击手势，在“飞行”过程中，InkWell在其第一个Material上产生点击水波效果。</li>
+  <li>Material widget有颜色(主题色，不透透明度为0.25)，因此图片的透明部分会用此颜色呈现。这确保了即使对于具有透明度的图片也很容易看到圆形到正方形的过渡。</li>
+  <li>Photo类在它的 widget树中不包括Hero。为了使动画起作用， hero 包装RadialExpansion widget，该 widget包装 hero 。</li>
+</ul>
+
+<h3 id="radialexpansion类">RadialExpansion类</h3>
+
+<p>RadialExpansion widget，作为该示例的核心，构建了在转换过程中剪切图片的 widget树。剪切后的形状是由一个圆形剪辑（“飞行”期间放大）与一个矩形剪辑（大小始终保持不变）相交而成的。</p>
+
+<p>它构建了以下 widget树:</p>
+
+<p><img src="images/radial-expansion-class.png" alt="widget tree for the RadialExpansion widget" /></p>
+
+<p>代码如下：</p>
+
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class RadialExpansion extends StatelessWidget {
+  RadialExpansion({
+    Key key,
+    this.maxRadius,
+    this.child,
+  }) : <span class="nocode highlight">clipRectSize = 2.0 * (maxRadius / math.SQRT2),</span>
+       super(key: key);
+
+  final double maxRadius;
+  final clipRectSize;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {&lt;/span&gt;
+    return <span class="nocode highlight">new ClipOval(</span>
+      child: <span class="nocode highlight">new Center(</span>
+        child: <span class="nocode highlight">new SizedBox(</span>
+          width: clipRectSize,
+          height: clipRectSize,
+          child: <span class="nocode highlight">new ClipRect(</span>
+            child: <span class="nocode highlight">child,</span>  // Photo
+          ),
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+<p>重要信息：</p>
+
+<ul>
+  <li>
+    <p>hero 包装RadialExpansion widget。</p>
+  </li>
+  <li>
+    <p>当 hero “飞行”时，其大小发生变化，并且由于它限制了其孩子的大小，RadialExpansion widget更改其自身大小以匹配。</p>
+  </li>
+  <li>
+    <p>RadialExpansion动画由两个重叠的剪辑创建。</p>
+  </li>
+  <li>
+    <p>该示例使用<a href="https://docs.flutter.io/flutter/material/MaterialRectCenterArcTween-class.html">MaterialRectCenterArcTween</a>定义了Tween。 hero 动画的默认“飞行”路径使用 hero 的边角作为插值(过渡的属性)。该方法会影响 hero 在径向转换过程中的长宽比，因此新的“飞行”路径使用MaterialRectCenterArcTween来使用每个 hero 的中心点作为Tween的插值。</p>
+
+    <p>代码如下：</p>
+
+    <div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="n">RectTween</span> <span class="nf">_createRectTween</span><span class="p">(</span><span class="n">Rect</span> <span class="n">begin</span><span class="o">,</span> <span class="n">Rect</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">MaterialRectCenterArcTween</span><span class="o">(</span><span class="nl">begin:</span> <span class="n">begin</span><span class="o">,</span> <span class="nl">end:</span> <span class="n">end</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>hero 的“飞行”路径仍然沿着弧线，但图片的长宽比保持不变。</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="资源">资源</h2>
+
+<p>编写动画时以下资源可能会有所帮助：</p>
+
+<dl>
+  <dt><a href="/animations/">Flutter动画</a></dt>
+  <dd>列出了Flutter动画的可用文档。如果您还不了解补间动画，请查看 <a href="/tutorials/animation/">Animations tutorial</a>.</dd>
+  <dt><a href="https://docs.flutter.io/">Flutter API文档</a></dt>
+  <dd>所有Flutter库的参考文档。详情请参阅<a href="https://docs.flutter.io/flutter/animation/animation-library.html">动画库</a> 。</dd>
+  <dt><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a></dt>
+  <dd>Flutter演示程序。展示了许多Material Design widget和其他Flutter功能。其中的<a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo/shrine">Shrine示例</a> 实现了hero动画。</dd>
+  <dt><a href="https://material.io/guidelines/motion/">Material motion 规范</a></dt>
+  <dd>描述Material Design应用程序的动作效果。</dd>
+</dl>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

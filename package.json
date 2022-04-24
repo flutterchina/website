@@ -2,11 +2,17 @@
   "name": "website",
   "version": "0.0.1",
   "scripts": {
-    "start": "bundle exec jekyll serve",
-    "cos":"node ./cos.js",
-    "uploadApk":"node ./cos.js -uploadapk"
+    "build": "bundle exec jekyll serve",
+    "cos": "node ./cos.js",
+    "uploadApk": "node ./cos.js -uploadapk",
+    "start": "node app.js",
+    "gzip":"cd _site && gzip -rk * "
   },
-  "dependencies": {},
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0"
+  },
   "devDependencies": {
     "cos-nodejs-sdk-v5": "^2.3.6"
   }

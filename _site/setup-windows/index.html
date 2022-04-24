@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>入门: 在Windows上搭建Flutter开发环境  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="在Windows上搭建Flutter开发环境">
+  <meta name="keywords" content="在Windows上搭建Flutter开发环境,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/setup-windows/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/get-started/setup_windows.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 入门: 在Windows上搭建Flutter开发环境&body=From URL: https://www.flutterchina.club/get-started/setup_windows.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">入门: 在Windows上搭建Flutter开发环境 </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#使用镜像" id="markdown-toc-使用镜像">使用镜像</a></li>
+  <li><a href="#系统要求" id="markdown-toc-系统要求">系统要求</a></li>
+  <li><a href="#获取flutter-sdk" id="markdown-toc-获取flutter-sdk">获取Flutter SDK</a>    <ul>
+      <li><a href="#更新环境变量" id="markdown-toc-更新环境变量">更新环境变量</a></li>
+      <li><a href="#运行-flutter-doctor" id="markdown-toc-运行-flutter-doctor">运行 flutter doctor</a></li>
+    </ul>
+  </li>
+  <li><a href="#编辑器设置" id="markdown-toc-编辑器设置">编辑器设置</a></li>
+  <li><a href="#android设置" id="markdown-toc-android设置">Android设置</a>    <ul>
+      <li><a href="#安装android-studio" id="markdown-toc-安装android-studio">安装Android Studio</a></li>
+      <li><a href="#设置您的android设备" id="markdown-toc-设置您的android设备">设置您的Android设备</a></li>
+      <li><a href="#设置android模拟器" id="markdown-toc-设置android模拟器">设置Android模拟器</a></li>
+    </ul>
+  </li>
+  <li><a href="#下一步" id="markdown-toc-下一步">下一步</a></li>
+</ul>
+
+<h2 id="使用镜像">使用镜像</h2>
+
+<p>由于在国内访问Flutter有时可能会受到限制，Flutter官方为中国开发者搭建了临时镜像，大家可以将如下环境变量加入到用户环境变量中：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+</code></pre></div></div>
+
+<p><strong>注意：</strong> 此镜像为临时镜像，并不能保证一直可用，读者可以参考详情请参考 <a href="https://github.com/flutter/flutter/wiki/Using-Flutter-in-China">Using Flutter in China</a> 以获得有关镜像服务器的最新动态。</p>
+
+<h2 id="系统要求">系统要求</h2>
+
+<p>要安装并运行Flutter，您的开发环境必须满足以下最低要求:</p>
+
+<ul>
+  <li><strong>操作系统</strong>: Windows 7 或更高版本 (64-bit)</li>
+  <li><strong>磁盘空间</strong>: 400 MB (不包括Android Studio的磁盘空间).</li>
+  <li><strong>工具</strong>: Flutter 依赖下面这些命令行工具.
+    <ul>
+      <li>
+        <p><a href="https://git-scm.com/download/win">Git for Windows</a> (Git命令行工具)</p>
+
+        <p>如果已安装Git for Windows，请确保命令提示符或PowerShell中运行 <code class="highlighter-rouge">git</code> 命令，不然在后面运行<code class="highlighter-rouge">flutter doctor</code>时将出现<code class="highlighter-rouge">Unable to find git in your PATH</code>错误, 此时需要手动添加<code class="highlighter-rouge">C:\Program Files\Git\bin</code>至<code class="highlighter-rouge">Path</code>系统环境变量中。</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="获取flutter-sdk">获取Flutter SDK</h2>
+
+<ol>
+  <li>
+    <p>去flutter官网下载其最新可用的安装包，<a href="https://flutter.io/sdk-archive/#windows">点击下载</a> ；</p>
+
+    <p>注意，Flutter的渠道版本会不停变动，请以Flutter官网为准。另外，在中国大陆地区，要想正常获取安装包列表或下载安装包，可能需要翻墙，读者也可以去Flutter github项目下去<a href="https://github.com/flutter/flutter/releases">下载安装包</a> 。</p>
+  </li>
+  <li>
+    <p>将安装包zip解压到你想安装Flutter SDK的路径（如：<code class="highlighter-rouge">C:\src\flutter</code>；注意，<strong>不要</strong>将flutter安装到需要一些高权限的路径如<code class="highlighter-rouge">C:\Program Files\</code>）。</p>
+  </li>
+  <li>
+    <p>在Flutter安装目录的<code class="highlighter-rouge">flutter</code>文件下找到<code class="highlighter-rouge">flutter_console.bat</code>，双击运行并启动<strong>flutter命令行</strong>，接下来，你就可以在Flutter命令行运行flutter命令了。</p>
+  </li>
+</ol>
+<div class="alert alert-info" style="margin-top:-5px">
+  <p><strong>注意：</strong> 由于一些<code class="highlighter-rouge">flutter</code>命令需要联网获取数据，如果您是在国内访问，由于众所周知的原因，直接访问很可能不会成功。
+ 上面的<code class="highlighter-rouge">PUB_HOSTED_URL</code>和<code class="highlighter-rouge">FLUTTER_STORAGE_BASE_URL</code>是google为国内开发者搭建的临时镜像。详情请参考 <a href="https://github.com/flutter/flutter/wiki/Using-Flutter-in-China">Using Flutter in China</a></p>
+</div>
+
+<p>上述命令为当前终端窗口临时设置PATH变量。要将Flutter永久添加到路径中，请参阅<a href="#更新环境变量">更新路径</a>。</p>
+
+<p>要更新现有版本的Flutter，请参阅<a href="/upgrading/">升级Flutter</a>。</p>
+
+<h3 id="更新环境变量">更新环境变量</h3>
+
+<p>要在终端运行 <code class="highlighter-rouge">flutter</code> 命令， 你需要添加以下环境变量到系统PATH：</p>
+
+<ul>
+  <li>转到 “控制面板&gt;用户帐户&gt;用户帐户&gt;更改我的环境变量”</li>
+  <li>在“用户变量”下检查是否有名为“Path”的条目:
+    <ul>
+      <li>如果该条目存在, 追加 <code class="highlighter-rouge">flutter\bin</code>的全路径，使用 <code class="highlighter-rouge">;</code> 作为分隔符.</li>
+      <li>如果条目不存在, 创建一个新用户变量 <code class="highlighter-rouge">Path</code> ，然后将 <code class="highlighter-rouge">flutter\bin</code>的全路径作为它的值.</li>
+    </ul>
+  </li>
+  <li>在“用户变量”下检查是否有名为”PUB_HOSTED_URL”和”FLUTTER_STORAGE_BASE_URL”的条目，如果没有，也添加它们。</li>
+</ul>
+
+<p>重启Windows以应用此更改</p>
+
+<h3 id="运行-flutter-doctor">运行 flutter doctor</h3>
+
+<p>打开一个新的命令提示符或PowerShell窗口并运行以下命令以查看是否需要安装任何依赖项来完成安装：</p>
+
+<pre><code class="language-commandline"> flutter doctor
+</code></pre>
+<p class="alert-warning">在命令提示符或PowerShell窗口中运行此命令。目前，Flutter不支持像Git Bash这样的第三方shell。</p>
+
+<p>该命令检查您的环境并在终端窗口中显示报告。Dart SDK已经在捆绑在Flutter里了，没有必要单独安装Dart。
+仔细检查命令行输出以获取可能需要安装的其他软件或进一步需要执行的任务（以粗体显示）</p>
+
+<p>例如:</p>
+<pre>
+[-] Android toolchain - develop for Android devices
+    • Android SDK at D:\Android\sdk
+    <strong>✗ Android SDK is missing command line tools; download from https://goo.gl/XxQghQ</strong>
+    • Try re-installing or updating your Android SDK,
+      visit https://flutter.io/setup/#android-setup for detailed instructions.
+</pre>
+
+<p>第一次运行一个flutter命令（如flutter doctor）时，它会下载它自己的依赖项并自行编译。以后再运行就会快得多。</p>
+
+<p>以下各部分介绍如何执行这些任务并完成设置过程。你会看到在<code class="highlighter-rouge">flutter doctor</code>输出中，
+如果你选择使用IDE，我们提供了，IntelliJ IDEA，Android Studio和VS Code的插件，
+请参阅<a href="/get-started/editor/">编辑器设置</a> 以了解安装Flutter和Dart插件的步骤。</p>
+
+<p>一旦你安装了任何缺失的依赖，再次运行<code class="highlighter-rouge">flutter doctor</code>命令来验证你是否已经正确地设置了。</p>
+
+<p class="alert-warning">该flutter工具使用Google Analytics匿名报告功能使用情况统计信息和基本崩溃报告。
+这些数据用于帮助改进Flutter工具。Analytics不是一运行或在运行涉及<code class="highlighter-rouge">flutter config</code>的任何命令时就发送，
+因此您可以在发送任何数据之前退出分析。要禁用报告，请执行<code class="highlighter-rouge">flutter config --no-analytics</code>并显示当前设置，然后执行<code class="highlighter-rouge">flutter config</code>。
+请参阅<a href="https://www.google.com/intl/en/policies/privacy/">Google的隐私政策</a>。</p>
+
+<h2 id="编辑器设置">编辑器设置</h2>
+
+<p>使用 <code class="highlighter-rouge">flutter</code> 命令行工具，您可以使用任何编辑器来开发Flutter应用程序。输入<code class="highlighter-rouge">flutter help</code>在提示符下查看可用的工具。</p>
+
+<p>我们建议使用我们的插件来获得<a href="/using-ide/">丰富的IDE体验</a>，支持编辑，运行和调试Flutter应用程序。请参阅<a href="/get-started/editor/">编辑器设置</a>了解详细步骤</p>
+
+<h2 id="android设置">Android设置</h2>
+
+<h3 id="安装android-studio">安装Android Studio</h3>
+
+<p>要为Android开发Flutter应用，您可以使用Mac，Windows或Linux（64位）机器.</p>
+
+<p>Flutter需要安装和配置Android Studio:</p>
+
+<ol>
+  <li>
+    <p>下载并安装 <a href="https://developer.android.com/studio/index.html">Android Studio</a>.</p>
+  </li>
+  <li>
+    <p>启动Android Studio，然后执行“Android Studio安装向导”。这将安装最新的Android SDK，Android SDK平台工具和Android SDK构建工具，这是Flutter为Android开发时所必需的</p>
+  </li>
+</ol>
+
+<h3 id="设置您的android设备">设置您的Android设备</h3>
+
+<p>要准备在Android设备上运行并测试您的Flutter应用，您需要安装Android 4.1（API level 16）或更高版本的Android设备.</p>
+
+<ol>
+  <li>在您的设备上启用 <strong>开发人员选项</strong> 和 <strong>USB调试</strong> 。详细说明可在<a href="https://developer.android.com/studio/debug/dev-options.html">Android文档</a>中找到。</li>
+  <li>使用USB将手机插入电脑。如果您的设备出现提示，请授权您的计算机访问您的设备。</li>
+  <li>在终端中，运行 <code class="highlighter-rouge">flutter devices</code> 命令以验证Flutter识别您连接的Android设备。</li>
+  <li>运行启动您的应用程序 <code class="highlighter-rouge">flutter run</code>。</li>
+</ol>
+
+<p>默认情况下，Flutter使用的Android SDK版本是基于你的 <code class="highlighter-rouge">adb</code> 工具版本。
+如果您想让Flutter使用不同版本的Android SDK，则必须将该 <code class="highlighter-rouge">ANDROID_HOME</code> 环境变量设置为SDK安装目录。</p>
+
+<h3 id="设置android模拟器">设置Android模拟器</h3>
+
+<p>要准备在Android模拟器上运行并测试您的Flutter应用，请按照以下步骤操作：</p>
+
+<ol>
+  <li>在您的机器上启用 <a href="https://developer.android.com/studio/run/emulator-acceleration.html">VM acceleration</a> .</li>
+  <li>启动 <strong>Android Studio&gt;Tools&gt;Android&gt;AVD Manager</strong> 并选择 <strong>Create Virtual Device</strong>.</li>
+  <li>选择一个设备并选择 <strong>Next</strong>。</li>
+  <li>为要模拟的Android版本选择一个或多个系统映像，然后选择 <strong>Next</strong>. 建议使用 <em>x86</em> 或 <em>x86_64</em> image .</li>
+  <li>在 Emulated Performance下, 选择 <strong>Hardware - GLES 2.0</strong> 以启用
+<a href="https://developer.android.com/studio/run/emulator-acceleration.html">硬件加速</a>.</li>
+  <li>
+    <p>验证AVD配置是否正确，然后选择 <strong>Finish</strong>。</p>
+
+    <p>有关上述步骤的详细信息，请参阅 <a href="https://developer.android.com/studio/run/managing-avds.html">Managing AVDs</a>.</p>
+  </li>
+  <li>在 Android Virtual Device Manager中, 点击工具栏的 <strong>Run</strong>。模拟器启动并显示所选操作系统版本或设备的启动画面.</li>
+  <li>运行 <code class="highlighter-rouge">flutter run</code> 启动您的设备. 连接的设备名是 <code class="highlighter-rouge">Android SDK built for &lt;platform&gt;</code>,其中 <em>platform</em> 是芯片系列, 如 x86.</li>
+</ol>
+
+<h2 id="下一步">下一步</h2>
+
+<p><a href="/get-started/editor/">下一步: 配置编辑器</a></p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

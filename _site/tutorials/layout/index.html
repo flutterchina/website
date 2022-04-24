@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>在Flutter中构建布局  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="本文详细的介绍了如何使用Flutter构建用户界面，然后会通过几个小例子带您一步步的构建出用户UI">
+  <meta name="keywords" content="Flutter布局,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/tutorials/layout/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/tutorials/layout/index.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page 在Flutter中构建布局&body=From URL: https://www.flutterchina.club/tutorials/layout/index.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">在Flutter中构建布局 </h1>
+   </div>
+
+  </header>
+  
+
+  
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>你会学到:</b></p>
+
+  <ul>
+    <li>Flutter的布局机制如何工作.</li>
+    <li>如何垂直和水平布局widget.</li>
+    <li>如何构建一个Flutter布局.</li>
+  </ul>
+
+</div>
+
+<p>这是在Flutter中构建布局的指南。首先，您将构建以下屏幕截图的布局。然后回过头，
+本指南将解释Flutter的布局方法，并说明如何在屏幕上放置一个widget。在讨论如何水平和垂直放置widget之后，会介绍一些最常见的布局widget：</p>
+
+<p><img src="images/lakes.jpg" style="border:1px solid black" alt="finished lakes app that you'll build in 'Building a Layout'" /></p>
+
+<ul>
+  <li><a href="#building">构建布局</a>
+    <ul>
+      <li><a href="#step-0">第0步: 设置</a></li>
+      <li><a href="#step-1">第一步: 绘制布局图</a></li>
+      <li><a href="#step-2">第二步: 实现标题行</a></li>
+      <li><a href="#step-3">第三步: 实现button行</a></li>
+      <li><a href="#step-4">第四步: 实现文本部分</a></li>
+      <li><a href="#step-5">第五步: 实现图片部分</a></li>
+      <li><a href="#step-6">第六步: 整合</a></li>
+    </ul>
+  </li>
+  <li><a href="#approach">Flutter的布局方法</a></li>
+  <li><a href="#lay-out-a-widget">放置一个widget</a></li>
+  <li><a href="#rows-and-columns">水平或垂直排列多个widget</a>
+    <ul>
+      <li><a href="#alignment">对齐 widget</a></li>
+      <li><a href="#sizing">调整 widget</a></li>
+      <li><a href="#packing">打包 widget</a></li>
+      <li><a href="#nesting">嵌套行和列</a></li>
+    </ul>
+  </li>
+  <li><a href="#common-layout-widgets">通用布局 widget</a>
+    <ul>
+      <li><a href="#standard-widgets">标准 widget</a></li>
+      <li><a href="#material-components">Material Components</a></li>
+    </ul>
+  </li>
+  <li><a href="#resources">资料</a></li>
+</ul>
+
+<p><a name="building"></a></p>
+<h2 id="构建布局">构建布局</h2>
+
+<p>如果你想对布局机制有一个“全貌”的理解，请参考<a href="#approach">Flutter的布局方法</a></p>
+
+<p><a name="step-0"></a></p>
+<h3 id="第0步-设置">第0步: 设置</h3>
+
+<p>首先, 获取代码:</p>
+
+<ul>
+  <li>确保您已经安装好了 <a href="/get-started/install/">set up</a> 您的Flutter环境.</li>
+  <li><a href="/get-started/test-drive/#create-app">创建一个基本的Flutter应用程序</a>.</li>
+</ul>
+
+<p>接下来，将图像添加到示例中：</p>
+
+<ul>
+  <li>在工程根目录创建一个 <code class="highlighter-rouge">images</code> 文件夹.</li>
+  <li>添加
+ <a href="https://raw.githubusercontent.com/flutter/website/master/examples/layout/lakes/step5/images/lake.jpg"><code class="highlighter-rouge">lake.jpg</code></a>.
+(请注意，wget不能保存此二进制文件。)</li>
+  <li>更新
+<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/pubspec.yaml"><code class="highlighter-rouge">pubspec.yaml</code></a>
+文件以包含 <code class="highlighter-rouge">assets</code> 标签. 这样才会使您的图片在代码中可用。</li>
+</ul>
+
+<hr />
+
+<p><a name="step-1"></a></p>
+<h3 id="第一步-绘制布局图">第一步: 绘制布局图</h3>
+
+<p>第一步是将布局拆分成基本的元素：</p>
+
+<ul>
+  <li>找出行和列.</li>
+  <li>布局包含网格吗?</li>
+  <li>有重叠的元素吗?</li>
+  <li>是否需要选项卡?</li>
+  <li>注意需要对齐、填充和边框的区域.</li>
+</ul>
+
+<p>首先，确定更大的元素。在这个例子中，四个元素排列成一列：一个图像，两个行和一个文本块</p>
+
+<p><img src="images/lakes-diagram.png" alt="diagramming the rows in the lakes screenshot" /></p>
+
+<p>接下来，绘制每一行。第一行称其为标题部分，有三个子项：一列文字，一个星形图标和一个数字。它的第一个子项，列，包含2行文字。
+第一列占用大量空间，所以它必须包装在Expanded widget中。</p>
+
+<p><img src="images/title-section-diagram.png" alt="diagramming the widgets in the Title section" /></p>
+
+<p>第二行称其为按钮部分，也有3个子项：每个子项都是一个包含图标和文本的列。</p>
+
+<p><img src="images/button-section-diagram.png" alt="diagramming the widgets in the button section" /></p>
+
+<p>一旦拆分好布局，最简单的就是采取自下而上的方法来实现它。为了最大限度地减少深度嵌套布局代码的视觉混淆，将一些实现放置在变量和函数中。</p>
+
+<p><a name="step-2"></a></p>
+<h3 id="step-2-实现标题行">Step 2: 实现标题行</h3>
+
+<p>首先，构建标题部分左边栏。将Column（列）放入Expanded中会拉伸该列以使用该行中的所有剩余空闲空间。
+设置crossAxisAlignment属性值为CrossAxisAlignment.start，这会将该列中的子项左对齐。</p>
+
+<p>将第一行文本放入Container中，然后底部添加8像素填充。列中的第二个子项（也是文本）显示为灰色。</p>
+
+<p>标题行中的最后两项是一个红色的星形图标和文字“41”。将整行放在容器中，并沿着每个边缘填充32像素</p>
+
+<p>这是实现标题行的代码。</p>
+
+<aside class="alert alert-info">
+  <p><strong>Note:</strong>
+If you have problems, you can check your code against
+<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/main.dart"><code class="highlighter-rouge">lib/main.dart</code></a>
+on GitHub.</p>
+</aside>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Widget titleSection = new Container(
+      padding: const EdgeInsets.all(32.0),
+      child: new Row(
+        children: [
+          new Expanded(
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                new Container(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: new Text(
+                    &#39;Oeschinen Lake Campground&#39;,
+                    style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                new Text(
+                  &#39;Kandersteg, Switzerland&#39;,
+                  style: new TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          new Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          new Text(&#39;41&#39;),
+        ],
+      ),
+    );
+  //...
+}</code></pre>
+
+<aside class="alert alert-success">
+  <p><i class="fa fa-lightbulb-o"> </i> <strong>提示:</strong>
+将代码粘贴到应用程序中时，缩进可能会变形。您可以通过右键单击，选择 <strong>Reformat with dartfmt</strong> 来在IntelliJ中修复此问题。或者，在命令行中，您可以使用 <a href="https://github.com/dart-lang/dart_style">dartfmt</a>。</p>
+</aside>
+
+<aside class="alert alert-success">
+  <p><i class="fa fa-lightbulb-o"> </i> <strong>提示:</strong>
+为了获得更快的开发体验，请尝试使用Flutter的热重载功能。
+热重载允许您修改代码并查看更改，而无需完全重新启动应用程序。
+IntelliJ的Flutter插件支持热重载，或者您可以从命令行触发。
+有关更多信息，请参阅<a href="(https://flutter.io/using-ide/#hot-reloads-vs-full-application-restarts)">Hot Reloads vs 应用程序重新启动</a>。</p>
+</aside>
+
+<p><a name="step-3"></a></p>
+<h3 id="第3步-实现按钮行">第3步: 实现按钮行</h3>
+
+<p>按钮部分包含3个使用相同布局的列 - 上面一个图标，下面一行文本。该行中的列平均分布行空间，
+文本和图标颜色为主题中的primary color，它在应用程序的build()方法中设置为蓝色：</p>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    return new MaterialApp(
+      title: &#39;Flutter Demo&#39;,
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+
+    //...
+}</code></pre>
+
+<p>由于构建每个列的代码几乎是相同的，因此使用一个嵌套函数，如buildButtonColumn，它会创建一个颜色为primary color，包含一个Icon和Text的 Widget 列。</p>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    Column buildButtonColumn(IconData icon, String label) {
+      Color color = Theme.of(context).primaryColor;
+
+      return new Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          new Icon(icon, color: color),
+          new Container(
+            margin: const EdgeInsets.only(top: 8.0),
+            child: new Text(
+              label,
+              style: new TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.w400,
+                color: color,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+  //...
+}</code></pre>
+
+<p>构建函数将图标直接添加到列（Column）中。将文本放入容器以在文本上方添加填充，将其与图标分开。</p>
+
+<p>通过调用函数并传递<a href="https://docs.flutter.io/flutter/material/Icons-class.html">icon</a>和文本来构建这些列。然后在行的主轴方向通过 <code class="highlighter-rouge">MainAxisAlignment.spaceEvenly</code> 平均的分配每个列占据的行空间。</p>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    Widget buttonSection = new Container(
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          buildButtonColumn(Icons.call, &#39;CALL&#39;),
+          buildButtonColumn(Icons.near_me, &#39;ROUTE&#39;),
+          buildButtonColumn(Icons.share, &#39;SHARE&#39;),
+        ],
+      ),
+    );
+  //...
+}</code></pre>
+
+<p><a name="step-4"></a></p>
+<h3 id="第4步实现文本部分">第4步：实现文本部分</h3>
+
+<p>将文本放入容器中，以便沿每条边添加32像素的填充。<code class="highlighter-rouge">softwrap</code>属性表示文本是否应在软换行符（例如句点或逗号）之间断开。</p>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    Widget textSection = new Container(
+      padding: const EdgeInsets.all(32.0),
+      child: new Text(
+        &#39;&#39;&#39;
+Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situated 1,578 meters above sea level, it is one of the larger Alpine Lakes. A gondola ride from Kandersteg, followed by a half-hour walk through pastures and pine forest, leads you to the lake, which warms to 20 degrees Celsius in the summer. Activities enjoyed here include rowing, and riding the summer toboggan run.
+        &#39;&#39;&#39;,
+        softWrap: true,
+      ),
+    );
+  //...
+}</code></pre>
+
+<p><a name="step-5"></a></p>
+<h3 id="第5步实现图像部分">第5步：实现图像部分</h3>
+
+<p>四列元素中的三个现在已经完成，只剩下图像部分。该图片可以在Creative Commons许可下<a href="https://images.unsplash.com/photo-1471115853179-bb1d604434e0?dpr=1&amp;auto=format&amp;fit=crop&amp;w=767&amp;h=583&amp;q=80&amp;cs=tinysrgb&amp;crop=">在线获得</a>，
+但是它非常大，且下载缓慢。在步骤0中，您已经将该图像包含在项目中并更新了pubspec文件，所以现在可以从代码中直接引用它：</p>
+
+<!-- code/layout/lakes/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>body: new ListView(
+  children: [
+    new Image.asset(
+      &#39;images/lake.jpg&#39;,
+      height: 240.0,
+      fit: BoxFit.cover,
+    ),
+    // ...
+  ],
+)</code></pre>
+
+<p><code class="highlighter-rouge">BoxFit.cover</code>  告诉框架，图像应该尽可能小，但覆盖整个渲染框
+<a name="step-6"></a></p>
+<h3 id="step-6-整合">Step 6: 整合</h3>
+
+<p>在最后一步，你将上面这些组装在一起。这些widget放置到ListView中，而不是列中，因为在小设备上运行应用程序时，ListView会自动滚动。</p>
+
+<!-- skip -->
+<!-- code/layout/lakes/main.dart -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>//...
+body: new ListView(
+  children: [
+    new Image.asset(
+      &#39;images/lake.jpg&#39;,
+      width: 600.0,
+      height: 240.0,
+      fit: BoxFit.cover,
+    ),
+    titleSection,
+    buttonSection,
+    textSection,
+  ],
+),
+//...</code></pre>
+
+<p><strong>Dart 代码:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/main.dart">main.dart</a><br />
+<strong>Image:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/lakes/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/pubspec.yaml">pubspec.yaml</a></p>
+
+<p>结束了！当您热重载应用程序时，就会看到和截图中相同界面。您可以参考 <a href="/tutorials/interactive/">给Flutter APP 添加交互</a>来给您的应用添加交互。</p>
+
+<hr />
+
+<p><a name="approach"></a></p>
+<h2 id="flutter的布局方法">Flutter的布局方法</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么?</b></p>
+
+  <ul>
+    <li>Widgets 是用于构建UI的类.</li>
+    <li>Widgets 用于布局和UI元素.</li>
+    <li>通过简单的widget来构建复杂的widget</li>
+  </ul>
+
+</div>
+
+<p>Flutter布局机制的核心就是widget。在Flutter中，几乎所有东西都是一个widget - 甚至布局模型都是widget。您在Flutter应用中看到的图像、图标和文本都是widget。
+甚至你看不到的东西也是widget，例如行（row）、列（column）以及用来排列、约束和对齐这些可见widget的网格（grid）。</p>
+
+<p>您可以通过构建widget来构建更复杂的widget。例如，下面左边的屏幕截图显示了3个图标，每个图标下有一个标签：</p>
+
+<p><img src="images/lakes-icons.png" style="border:1px solid black" alt="sample layout" />      <img src="images/lakes-icons-visual.png" style="border:1px solid black" alt="sample sample layout with visual debugging turned on" /></p>
+
+<p>第二个屏幕截图显示布局结构，显示一个行包含3列，其中每列包含一个图标和一个标签。</p>
+
+<aside class="alert alert-info">
+  <p><strong>注意:</strong> 本教程中的大多数屏幕截图都是在<code class="highlighter-rouge">debugPaintSizeEnabled</code>为true时显示的，因此您可以看到布局结构。
+有关更多信息，请参阅<a href="https://flutter.io/debugging/#visual-debugging">可视化调试</a>，这是<a href="https://flutter.io/debugging/#visual-debugging">调试 Flutter Apps</a>中的一节。</p>
+</aside>
+
+<p>以下是此UI的widget树示意图：</p>
+
+<p><img src="images/sample-flutter-layout.png" alt="node tree representing the sample layout" /></p>
+
+<p>大部分应该看起来应该像您所期望的，但你可能想了解一下Container（以粉红色显示）。
+Container也是一个widget，允许您自定义其子widget。如果要添加填充，边距，边框或背景色，请使用Container来设置（译者语：只有容器有这些属性）。</p>
+
+<p>在这个例子中，每个Text放置在Container中以添加边距。整个行也被放置在容器中以在行的周围添加填充。</p>
+
+<p>本例UI中的其他部分也可以通过属性来控制。使用其<code class="highlighter-rouge">color</code>属性设置图标的颜色。使用Text的<code class="highlighter-rouge">style</code>属性来设置字体，颜色，粗细等。列和行的属性允许您指定他们的子项如何垂直或水平对齐，以及应该占据多少空间。</p>
+
+<hr />
+
+<p><a name="lay-out-a-widget"></a></p>
+<h2 id="布局一个-widget">布局一个 widget</h2>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>即使应用程序本身也是一个 widget.</li>
+    <li>创建一个widget并将其添加到布局widget中是很简单的.</li>
+    <li>要在设备上显示widget，请将布局widget添加到 app widget中。</li>
+    <li>使用Scaffold是最容易的，它是 Material Components库中的一个widget，它提供了一个默认banner，背景颜色，并且具有添加drawer，snack bar和底部sheet的API。</li>
+    <li>如果您愿意，可以构建仅使用标准widget库中的widget来构建您的应用程序</li>
+  </ul>
+
+</div>
+
+<p>如何在Flutter中布局单个widget？本节介绍如何创建一个简单的widget并将其显示在屏幕上。它还展示了一个简单的Hello World应用程序的完整代码。</p>
+
+<p>在Flutter中，只需几个步骤即可在屏幕上放置文本，图标或图像。</p>
+
+<ol>
+
+<li>
+    <p>选择一个widget来保存该对象。<br />
+根据您想要对齐或约束可见窗口小部件的方式，从各种<a href="/widgets/">布局widget</a>中进行选择，
+因为这些特性通常会传递到所包含的widget中。这个例子使用Center，它可以将内容水平和垂直居中。</p>
+  </li>
+
+<li>
+    <p>创建一个widget来容纳可见对象<br /></p>
+
+    <aside class="alert alert-info">
+      <p><strong>注意:</strong>Flutter应用程序是用<a href="https://www.dartlang.org/">Dart语言</a>编写的。如果您了解Java或类似的面向对象编程语言，Dart会感到非常熟悉。
+如果不了解的话，你可以试试 <a href="https://www.dartlang.org/tools/dartpad">DartPad</a>-一个可以在任何浏览器上使用的交互式Dart playground。
+<a href="https://www.dartlang.org/guides/language">Dart 语言之旅</a>是一篇介绍Dart语言特性的概述。</p>
+    </aside>
+
+    <p>例如，创建一个Text widget:</p>
+
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>new Text(&#39;Hello World&#39;, style: new TextStyle(fontSize: 32.0))</code></pre>
+
+    <p>创建一个 Image widget:</p>
+
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>new Image.asset(&#39;images/myPic.jpg&#39;, fit: BoxFit.cover)</code></pre>
+
+    <p>创建一个 Icon widget:</p>
+
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>new Icon(Icons.star, color: Colors.red[500])</code></pre>
+
+  </li>
+
+<li>
+    <p>将可见widget添加到布局widget.<br />
+所有布局widget都有一个<code class="highlighter-rouge">child</code>属性（例如Center或Container），或者一个 <code class="highlighter-rouge">children</code>属性，如果他们需要一个widget列表（例如Row，Column，ListView或Stack）。</p>
+
+    <p>将Text widget添加到Center widget：</p>
+
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>new Center(
+  child: new Text(&#39;Hello World&#39;, style: new TextStyle(fontSize: 32.0))</code></pre>
+
+  </li>
+
+<li>
+    <p>将布局widget添加到页面.<br />
+   Flutter应用本身就是一个widget，大部分widget都有一个<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget/build.html">build()</a>方法。在应用程序的build方法中创建会在设备上显示的widget。
+   对于Material应用程序，您可以将Center widget直接添加到<code class="highlighter-rouge">body</code>属性中</p>
+
+    <!-- code/layout/hello-world/main.dart -->
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.title),
+      ),
+      body: new Center(
+        child: new Text(&#39;Hello World&#39;, style: new TextStyle(fontSize: 32.0)),
+      ),
+    );
+  }
+}</code></pre>
+
+    <aside class="alert alert-info">
+      <p><strong>Note:</strong>
+在设计用户界面时，您可以使用标准widget库中的widget，也可以使用<a href="https://docs.flutter.io/flutter/material/material-library.html">Material Components</a>中的widget。
+您可以混合使用两个库中的widget，可以自定义现有的widget，也可以构建一组自定义的widget。</p>
+    </aside>
+
+    <p>对于非Material应用程序，您可以将Center widget添加到应用程序的<code class="highlighter-rouge">build()</code>方法中：</p>
+
+    <!-- code/layout/widgets-only/main.dart -->
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>// 这个App没有使用Material组件,  如Scaffold.
+// 一般来说, app没有使用Scaffold的话，会有一个黑色的背景和一个默认为黑色的文本颜色。
+// 这个app，将背景色改为了白色，并且将文本颜色改为了黑色以模仿Material app
+import &#39;package:flutter/material.dart&#39;;
+
+void main() {
+  runApp(new MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      decoration: new BoxDecoration(color: Colors.white),
+      child: new Center(
+        child: new Text(&#39;Hello World&#39;,
+            textDirection: TextDirection.ltr,
+            style: new TextStyle(fontSize: 40.0, color: Colors.black87)),
+      ),
+    );
+  }
+}</code></pre>
+
+    <p>请注意，默认情况下，非Material应用程序不包含AppBar，标题或背景颜色。
+如果您想在非Material应用程序中使用这些功能，您必须自己构建它们。此应用程序将背景颜色更改为白色，将文本更改为深灰色以模仿Material应用程序。</p>
+
+  </li>
+
+</ol>
+
+<p>好了! 当你运行这个应用时，你会看到:</p>
+
+<p><img src="images/hello-world.png" style="border:1px solid black" alt="screenshot of a white background with grey 'Hello World' text." /></p>
+
+<p><strong>Dart 代码</strong> (Material app): <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/hello-world/main.dart">main.dart</a><br />
+<strong>Dart 代码</strong> (仅使用标准Widget的app): <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/widgets-only/main.dart">main.dart</a></p>
+
+<hr />
+
+<p><a name="rows-and-columns"></a></p>
+<h2 id="垂直和水平放置多个widget">垂直和水平放置多个widget</h2>
+
+<p>最常见的布局模式之一是垂直或水平排列widget。您可以使用行(Row)水平排列widget，并使用列（Column）垂直排列widget。</p>
+
+<div class="whats-the-point">
+
+  <p><b> <a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>重点是什么？</b></p>
+
+  <ul>
+    <li>行和列是两种最常用的布局模式。</li>
+    <li>行和列都需要一个子widget列表。</li>
+    <li>子widget本身可以是行、列或其他复杂widget。</li>
+    <li>您可以指定行或列如何在垂直或水平方向上对齐其子项</li>
+    <li>您可以拉伸或限制特定的子widget.</li>
+    <li>您可以指定子widget如何使用行或列的可用空间.</li>
+  </ul>
+
+</div>
+
+<h3 id="contents">Contents</h3>
+
+<ul>
+  <li><a href="#alignment">对齐 widgets</a></li>
+  <li><a href="#sizing">调整 widgets</a></li>
+  <li><a href="#packing">聚集 widgets</a></li>
+  <li><a href="#nesting">嵌套行和列</a></li>
+</ul>
+
+<p>要在Flutter中创建行或列，可以将一个widget列表添加到<a href="https://docs.flutter.io/flutter/widgets/Row-class.html">Row</a> 或<a href="https://docs.flutter.io/flutter/widgets/Column-class.html">Column</a> 中。
+同时，每个孩子本身可以是一个Row或一个Column，依此类推。以下示例显示如何在行或列内嵌套行或列。</p>
+
+<p>此布局按行组织。该行包含两个孩子：左侧的一列和右侧的图片：</p>
+
+<center><img src="images/pavlova-diagram.png" alt="screenshot with callouts showing the row containing two children: a column and an image." /></center>
+<p><br /></p>
+
+<p>左侧的Column widget树嵌套行和列。</p>
+
+<center><img src="images/pavlova-left-column-diagram.png" alt="diagram showing a left column broken down to its sub-rows and sub-columns" /></center>
+<p><br /></p>
+
+<p>您将在<a href="#nesting">嵌套行和列</a>中实现一些Pavlova（图片中的奶油水果蛋白饼）的布局代码</p>
+
+<aside class="alert alert-info">
+  <p><strong>注意:</strong>行和列是水平和垂直布局的基本、低级widget - 这些低级widget允许最大化的自定义。Flutter还提供专门的，更高级别的widget，可能足以满足您的需求。
+例如，您可能更喜欢<a href="https://docs.flutter.io/flutter/material/ListTile-class.html">ListTile</a>而不是Row，<a href="https://docs.flutter.io/flutter/material/ListTile-class.html">ListTile</a>是一个易于使用的小部件，具有前后图标属性以及最多3行文本。您可能更喜欢<a href="https://docs.flutter.io/flutter/widgets/ListView-class.html">ListView</a>而不是列，<a href="https://docs.flutter.io/flutter/widgets/ListView-class.html">ListView</a>是一种列状布局，如果其内容太长而无法适应可用空间，则会自动滚动。
+有关更多信息，请参阅<a href="(#common-layout-widgets)">通用布局widget</a>。</p>
+</aside>
+
+<p><a name="alignment"></a></p>
+<h3 id="对齐-widgets">对齐 widgets</h3>
+
+<p>您可以控制行或列如何使用<code class="highlighter-rouge">mainAxisAlignment</code>和<code class="highlighter-rouge">crossAxisAlignment</code>属性来对齐其子项。
+对于行(Row)来说，主轴是水平方向，横轴垂直方向。对于列（Column）来说，主轴垂直方向，横轴水平方向。</p>
+
+<div class="row"> <div class="col-md-6">
+
+    <p></p>
+    <p><img src="images/row-diagram.png" alt="diagram showing the main axis and cross axis for a row" /></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/column-diagram.png" alt="diagram showing the main axis and cross axis for a column" /></p>
+
+  </div> </div>
+
+<p><a href="https://docs.flutter.io/flutter/rendering/MainAxisAlignment-class.html">MainAxisAlignment</a>
+和<a href="https://docs.flutter.io/flutter/rendering/CrossAxisAlignment-class.html">CrossAxisAlignment</a>
+类提供了很多控制对齐的常量.</p>
+
+<aside class="alert alert-info">
+  <p><strong>注意:</strong> 将图片添加到项目时，需要更新pubspec文件才能访问它们 - 此示例使用<code class="highlighter-rouge">Image.asset</code>显示图像。
+有关更多信息，请参阅此示例的<a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row/pubspec.yaml">pubspec.yaml</a>文件，
+或<a href="/assets-and-images">在Flutter中添加资源和图像</a>。如果您使用的是网上的图片，则不需要执行此操作，使用<code class="highlighter-rouge">Image.network</code>即可。</p>
+</aside>
+
+<p>在以下示例中，3个图像中的每一个都是100像素宽。渲染盒（在这种情况下，整个屏幕）宽度超过300个像素，
+因此设置主轴对齐方式为<code class="highlighter-rouge">spaceEvenly</code>，它会在每个图像之间，之前和之后均匀分配空闲的水平空间。</p>
+
+<div class="row"> <div class="col-md-8">
+
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>appBar: new AppBar(
+  title: new Text(widget.title),
+),
+body: new Center(
+  child: new Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      new Image.asset(&#39;images/pic1.jpg&#39;),</code></pre>
+
+  </div> <div class="col-md-3">
+
+    <center><img src="images/row-spaceevenly-visual.png" style="border:1px solid black" alt="a row showing 3 images spaced evenly in the row" /></center>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row/main.dart">main.dart</a><br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/row/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> </div>
+
+<p>列的工作方式与行相同。以下示例显示了一列，包含3个图片，每个图片高100个像素。
+渲染盒（在这种情况下，整个屏幕）的高度大于300像素，因此设置主轴对齐方式为<code class="highlighter-rouge">spaceEvenly</code>，它会在每个图像之间，上方和下方均匀分配空闲的垂直空间。</p>
+
+<div class="row"> <div class="col-md-8">
+
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>appBar: new AppBar(
+  title: new Text(widget.title),
+),
+body: new Center(
+  child: new Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      new Image.asset(&#39;images/pic1.jpg&#39;),</code></pre>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/column/main.dart">main.dart</a><br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/column/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/column/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-3">
+
+    <p><img src="images/column-visual.png" style="border:1px solid black" alt="a column showing 3 images spaced evenly in the column" /></p>
+
+  </div> </div>
+
+<aside class="alert alert-info">
+  <p><em>*注意:</em>
+如果布局太大而不适合设备，则会在受影响的边缘出现红色条纹。例如，以下截图中的行对于设备的屏幕来说太宽：</p>
+
+  <center><img src="images/layout-too-large.png" style="border:1px solid black" alt="a row that is too wide, showing a red string along the right edge" /></center>
+
+  <p>通过使用Expanded widget，可以将widget的大小设置为适和行或列，这在下面的<a href="#sizing">调整 widgets</a> 部分进行了描述。</p>
+
+</aside>
+
+<p><a name="sizing"></a></p>
+<h3 id="调整-widget">调整 widget</h3>
+
+<p>也许你想要一个widget占据其兄弟widget两倍的空间。您可以将行或列的子项放置在<a href="https://docs.flutter.io/flutter/widgets/Expanded-class.html">Expanded</a>widget中，
+以控制沿着主轴方向的widget大小。Expanded widget具有一个flex属性，它是一个整数，用于确定widget的弹性系数,默认弹性系数是1。</p>
+
+<p>例如，要创建一个由三个widget组成的行，其中中间widget的宽度是其他两个widget的两倍，将中间widget的弹性系数设置为2：</p>
+
+<div class="row"> <div class="col-md-8">
+
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>appBar: new AppBar(
+  title: new Text(widget.title),
+),
+body: new Center(
+  child: new Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      new Expanded(
+        child: new Image.asset(&#39;images/pic1.jpg&#39;),
+      ),
+      new Expanded(
+        flex: 2,
+        child: new Image.asset(&#39;images/pic2.jpg&#39;),
+      ),
+      new Expanded(</code></pre>
+
+  </div> <div class="col-md-3">
+
+    <p><img src="images/row-expanded-visual.png" style="border:1px solid black" alt="a row of 3 images with the middle image twice as wide as the others" /></p>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row-expanded/main.dart">main.dart</a><br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/row-expanded/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row-expanded/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> </div>
+
+<p>要修复上一节中的示例：其中一行有3张图片，行对于其渲染框太宽，并且导致右边出现红色条中的问题，可以使用Expanded widget来包装每个widget。
+默认情况下，每个widget的弹性系数为1，将行的三分之一分配给每个小部件。</p>
+<div class="row"> <div class="col-md-8">
+
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>appBar: new AppBar(
+  title: new Text(widget.title),
+),
+body: new Center(
+  child: new Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      new Expanded(
+        child: new Image.asset(&#39;images/pic1.jpg&#39;),
+      ),
+      new Expanded(
+        child: new Image.asset(&#39;images/pic2.jpg&#39;),
+      ),
+      new Expanded(</code></pre>
+
+  </div> <div class="col-md-3">
+
+    <p><img src="images/row-expanded-2-visual.png" style="border:1px solid black" alt="a row of 3 images that are too wide, but each is constrained to take only 1/3 of the row's available space" /></p>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row-expanded-2/main.dart">main.dart</a><br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/row-expanded-2/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/row-expanded-2/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> </div>
+
+<p><a name="packing"></a></p>
+<h3 id="聚集-widgets">聚集 widgets</h3>
+
+<p>默认情况下，行或列沿着其主轴会尽可能占用尽可能多的空间，但如果要将孩子紧密聚集在一起，可以将mainAxisSize设置为MainAxisSize.min。
+以下示例使用此属性将星形图标聚集在一起（如果不聚集，五张星形图标会分散开）。</p>
+
+<div class="row"> <div class="col-md-8">
+
+    <!-- code/layout/packed/main.dart -->
+    <!-- skip -->
+    <pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    var packedRow = new Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        new Icon(Icons.star, color: Colors.green[500]),
+        new Icon(Icons.star, color: Colors.green[500]),
+        new Icon(Icons.star, color: Colors.green[500]),
+        new Icon(Icons.star, color: Colors.black),
+        new Icon(Icons.star, color: Colors.black),
+      ],
+    );
+
+  // ...
+}</code></pre>
+
+  </div> <div class="col-md-3">
+
+    <p><img src="images/packed.png" style="border:1px solid black" alt="a row of 5 stars, packed together in the middle of the row" /></p>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/packed/main.dart">main.dart</a><br />
+<strong>Icons:</strong> <a href="https://docs.flutter.io/flutter/material/Icons-class.html">Icons class</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/packed/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> </div>
+
+<p><a name="nesting"></a></p>
+<h3 id="嵌套行和列">嵌套行和列</h3>
+
+<p>布局框架允许您根据需要在行和列内部再嵌套行和列。让我们看下面红色边框圈起来部分的布局代码：</p>
+
+<p><img src="images/pavlova-large-annotated.png" style="border:1px solid black" alt="a screenshot of the pavlova app, with the ratings and icon rows outlined in red" /></p>
+
+<p>红色边框部分的布局通过两个行来实现。评级行包含五颗星和评论数量。图标行包含三列图标和文本。</p>
+
+<p>评级行的widget树:</p>
+
+<center><img src="images/widget-tree-pavlova-rating-row.png" alt="a node tree showing the widgets in the ratings row" /></center>
+<p><br /></p>
+
+<p>该<code class="highlighter-rouge">ratings</code>变量创建一个包含5个星形图标和一个文本的行：</p>
+
+<!-- code/layout/pavlova/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    var ratings = new Container(
+      padding: new EdgeInsets.all(20.0),
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          new Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              new Icon(Icons.star, color: Colors.black),
+              new Icon(Icons.star, color: Colors.black),
+              new Icon(Icons.star, color: Colors.black),
+              new Icon(Icons.star, color: Colors.black),
+              new Icon(Icons.star, color: Colors.black),
+            ],
+          ),
+          new Text(
+            &#39;170 Reviews&#39;,
+            style: new TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w800,
+              fontFamily: &#39;Roboto&#39;,
+              letterSpacing: 0.5,
+              fontSize: 20.0,
+            ),
+          ),
+        ],
+      ),
+    );
+    //...
+  }
+}</code></pre>
+
+<aside class="alert alert-success">
+  <p><i class="fa fa-lightbulb-o"> </i> <strong>提示:</strong>
+为了最大限度地减少由嵌套严重的布局代码导致的视觉混淆，可以在变量和函数中实现UI的各个部分。</p>
+</aside>
+
+<p>评级行下方的图标行包含3列; 每个列都包含一个图标和两行文本，您可以在其widget树中看到：</p>
+
+<p><img src="images/widget-tree-pavlova-icon-row.png" alt="a node tree for the widets in the icons row" /></p>
+
+<p>该<code class="highlighter-rouge">iconList</code>变量定义了图标行:</p>
+
+<!-- code/layout/pavlova/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    // ...
+
+    var descTextStyle = new TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.w800,
+      fontFamily: &#39;Roboto&#39;,
+      letterSpacing: 0.5,
+      fontSize: 18.0,
+      height: 2.0,
+    );
+
+    // DefaultTextStyle.merge可以允许您创建一个默认的文本样式，该样式会被其
+    // 所有的子节点继承
+    var iconList = DefaultTextStyle.merge(
+      style: descTextStyle,
+      child: new Container(
+        padding: new EdgeInsets.all(20.0),
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            new Column(
+              children: [
+                new Icon(Icons.kitchen, color: Colors.green[500]),
+                new Text(&#39;PREP:&#39;),
+                new Text(&#39;25 min&#39;),
+              ],
+            ),
+            new Column(
+              children: [
+                new Icon(Icons.timer, color: Colors.green[500]),
+                new Text(&#39;COOK:&#39;),
+                new Text(&#39;1 hr&#39;),
+              ],
+            ),
+            new Column(
+              children: [
+                new Icon(Icons.restaurant, color: Colors.green[500]),
+                new Text(&#39;FEEDS:&#39;),
+                new Text(&#39;4-6&#39;),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+    // ...
+  }
+}</code></pre>
+
+<p>该<code class="highlighter-rouge">leftColumn</code>变量包含评分和图标行，以及描述Pavlova的标题和文字：</p>
+
+<!-- code/layout/pavlova/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    //...
+
+    var leftColumn = new Container(
+      padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+      child: new Column(
+        children: [
+          titleText,
+          subTitle,
+          ratings,
+          iconList,
+        ],
+      ),
+    );
+    //...
+  }
+}</code></pre>
+
+<p>左列放置在容器中以约束其宽度。最后，用整个行（包含左列和图像）放置在一个Card内构建UI：</p>
+
+<p><a name="adding-images"></a>
+Pavlova图片来自 <a href="https://pixabay.com/en/photos/?q=pavlova&amp;image_type=&amp;cat=&amp;min_width=&amp;min_height=">Pixabay</a> ，可以在Creative Commons许可下使用。
+您可以使用Image.network直接从网上下载显示图片，但对于此示例，图像保存到项目中的图像目录中，添加到pubspec文件， 并使用Images.asset。
+有关更多信息，请参阅<a href="/assets-and-images">在Flutter中添加Asserts和图片</a>。</p>
+
+<!-- code/layout/pavlova/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>body: new Center(
+  child: new Container(
+    margin: new EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
+    height: 600.0,
+    child: new Card(
+      child: new Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          new Container(
+            width: 440.0,
+            child: leftColumn,
+          ),
+          mainImage,
+        ],
+      ),
+    ),
+  ),
+),</code></pre>
+
+<div class="row"> <div class="col-md-3">
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/pavlova/main.dart">main.dart</a><br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/pavlova/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/pavlova/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-9">
+
+    <aside class="alert alert-success">
+      <p><i class="fa fa-lightbulb-o"> </i> <strong>提示:</strong>
+ Pavlova示例在广泛的横屏设备（如平板电脑）上运行最佳。如果您在iOS模拟器中运行此示例，
+ 则可以使用<strong>Hardware &gt; Device</strong>菜单选择其他设备。对于这个例子，我们推荐iPad Pro。
+ 您可以使用<strong>Hardware &gt; Rotate</strong>将其方向更改为横向模式 。您还可以使用<strong>Window &gt; Scale</strong>更改模拟器窗口的大小（不更改逻辑像素的数量）</p>
+    </aside>
+
+  </div> </div>
+
+<hr />
+
+<p><a name="common-layout-widgets"></a></p>
+<h2 id="常用布局widgets">常用布局widgets</h2>
+
+<p>Flutter拥有丰富的布局widget，但这里有一些最常用的布局widget。其目的是尽可能快地让您构建应用并运行，而不是让您淹没在整个完整的widget列表中。
+有关其他可用widget的信息，请参阅<a href="https://flutter.io/widgets/">widget概述</a>，或使用<a href="https://docs.flutter.io/">API 参考 docs</a>文档中的搜索框。
+此外，API文档中的widget页面经常会推荐一些可能更适合您需求的类似widget。</p>
+
+<p>以下widget分为两类：<a href="https://docs.flutter.io/flutter/widgets/widgets-library.html">widgets library</a>中的标准widget和<a href="https://docs.flutter.io/flutter/material/material-library.html">Material Components library</a>中的专用widget 。
+任何应用程序都可以使用widgets library中的widget，但只有Material应用程序可以使用Material Components库。</p>
+
+<h3 id="标准-widgets">标准 widgets</h3>
+
+<ul>
+  <li>
+    <dl>
+      <dt><a href="#container">Container</a></dt>
+      <dd>添加 padding, margins, borders, background color,
+或将其他装饰添加到widget.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><a href="#gridview">GridView</a></dt>
+      <dd>将 widgets 排列为可滚动的网格.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><a href="#listview">ListView</a></dt>
+      <dd>将widget排列为可滚动列表</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><a href="#stack">Stack</a></dt>
+      <dd>将widget重叠在另一个widget之上.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h3 id="material-components">Material Components</h3>
+
+<ul>
+  <li>
+    <dl>
+      <dt><a href="#card">Card</a></dt>
+      <dd>将相关内容放到带圆角和投影的盒子中。</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><a href="#listtile">ListTile</a></dt>
+      <dd>将最多3行文字，以及可选的行前和和行尾的图标排成一行</dd>
+    </dl>
+  </li>
+</ul>
+
+<h3 id="container">Container</h3>
+
+<p>许多布局会自由使用容器来使用padding分隔widget，或者添加边框（border）或边距（margin）。您可以通过将整个布局放入容器并更改其背景颜色或图片来更改设备的背景。</p>
+
+<div class="row"> <div class="col-md-6">
+
+    <h4 id="container--">Container 概要 :</h4>
+
+    <ul>
+      <li>添加padding, margins, borders</li>
+      <li>改变背景颜色或图片</li>
+      <li>包含单个子widget，但该子widget可以是Row，Column，甚至是widget树的根</li>
+    </ul>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/margin-padding-border.png" alt="a diagram showing that margins, borders, and padding, that surround content in a container" /></p>
+
+  </div> </div>
+
+<h4 id="container-示例">Container 示例:</h4>
+
+<p>除了下面的例子之外，本教程中的许多示例都使用了Container。
+您还可以在<a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a>中找到更多容器示例。</p>
+
+<div class="row"> <div class="col-md-6">
+
+    <p>该布局中每个图像使用一个Container来添加一个圆形的灰色边框和边距。然后使用容器将列背景颜色更改为浅灰色。</p>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/container/main.dart">main.dart</a>, snippet below<br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/container/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/container/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/container.png" alt="a screenshot showing 2 rows, each containing 2 images; the images have grey rounded borders, and the background is a lighter grey" /></p>
+
+  </div> </div>
+
+<!-- code/layout/container/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+
+    var container = new Container(
+      decoration: new BoxDecoration(
+        color: Colors.black26,
+      ),
+      child: new Column(
+        children: [
+          new Row(
+            children: [
+              new Expanded(
+                child: new Container(
+                  decoration: new BoxDecoration(
+                    border: new Border.all(width: 10.0, color: Colors.black38),
+                    borderRadius:
+                        const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: new Image.asset(&#39;images/pic1.jpg&#39;),
+                ),
+              ),
+              new Expanded(
+                child: new Container(
+                  decoration: new BoxDecoration(
+                    border: new Border.all(width: 10.0, color: Colors.black38),
+                    borderRadius:
+                        const BorderRadius.all(const Radius.circular(8.0)),
+                  ),
+                  margin: const EdgeInsets.all(4.0),
+                  child: new Image.asset(&#39;images/pic2.jpg&#39;),
+                ),
+              ),
+            ],
+          ),
+          // ...
+          // <span class="nocode highlight">See the definition for the second row on GitHub:</span>
+          // <span class="nocode highlight">https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/container/main.dart</span>
+        ],
+      ),
+    );
+    //...
+  }
+}</code></pre>
+
+<hr />
+
+<h3 id="gridview">GridView</h3>
+
+<p>使用<a href="https://docs.flutter.io/flutter/widgets/GridView-class.html">GridView</a>将widget放置为二维列表。
+GridView提供了两个预制list，或者您可以构建自定义网格。当GridView检测到其内容太长而不适合渲染框时，它会自动滚动。</p>
+
+<h4 id="gridview-概览">GridView 概览:</h4>
+
+<ul>
+  <li>在网格中放置widget</li>
+  <li>检测列内容超过渲染框时自动提供滚动</li>
+  <li>构建您自己的自定义grid，或使用一下提供的grid之一:
+    <ul>
+      <li><code class="highlighter-rouge">GridView.count</code> 允许您指定列数</li>
+      <li><code class="highlighter-rouge">GridView.extent</code> 允许您指定项的最大像素宽度</li>
+    </ul>
+  </li>
+</ul>
+
+<aside class="alert alert-info">
+  <p><strong>注意:</strong> 在显示二维列表时，重要的是单元格占用哪一行和哪一列时，
+应该使用<a href="https://docs.flutter.io/flutter/widgets/Table-class.html">Table</a>或 <a href="https://docs.flutter.io/flutter/material/DataTable-class.html">DataTable</a>。</p>
+</aside>
+
+<h4 id="gridview-示例">GridView 示例:</h4>
+
+<div class="row"> <div class="col-md-6">
+
+    <p><img src="images/gridview-extent.png" style="border:1px solid black" alt="a 3-column grid of photos" /></p>
+
+    <p>使用<code class="highlighter-rouge">GridView.extent</code> 创建最大宽度为150像素的网格<br />
+<strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/grid/main.dart">main.dart</a>, snippet below<br />
+<strong>Images:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/grid/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/grid/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/gridview-count-flutter-gallery.png" style="border:1px solid black" alt="a 2 column grid with footers containing titles on a partially translucent background" /></p>
+
+    <p>使用<code class="highlighter-rouge">GridView.count</code> 在纵向模式下创建两个行的grid，并在横向模式下创建3个行的网格。通过为每个GridTile设置<code class="highlighter-rouge">footer</code>属性来创建标题。<br />
+<strong>Dart code:</strong> <a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/grid_list_demo.dart">grid_list_demo.dart</a>
+from the <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter
+Gallery</a></p>
+
+  </div> </div>
+
+<!-- code/layout/grid/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>// The images are saved with names pic1.jpg, pic2.jpg...pic30.jpg.
+// The List.generate constructor allows an easy way to create
+// a list when objects have a predictable naming pattern.
+
+List&lt;Container&gt; _buildGridTileList(int count) {
+
+  return new List&lt;Container&gt;.generate(
+      count,
+      (int index) =&gt;
+          new Container(child: new Image.asset(&#39;images/pic${index+1}.jpg&#39;)));
+}
+
+Widget buildGrid() {
+  return new GridView.extent(
+      maxCrossAxisExtent: 150.0,
+      padding: const EdgeInsets.all(4.0),
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
+      children: _buildGridTileList(30));
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.title),
+      ),
+      body: new Center(
+        child: buildGrid(),
+      ),
+    );
+  }
+}</code></pre>
+
+<hr />
+
+<h3 id="listview">ListView</h3>
+
+<p><a href="https://docs.flutter.io/flutter/widgets/ListView-class.html">ListView</a>是一个类似列的widget，它的内容对于其渲染框太长时会自动提供滚动。</p>
+
+<h4 id="listview-摘要">ListView 摘要:</h4>
+
+<ul>
+  <li>用于组织盒子中列表的特殊Column</li>
+  <li>可以水平或垂直放置</li>
+  <li>检测它的内容超过显示框时提供滚动</li>
+  <li>比Column配置少，但更易于使用并支持滚动</li>
+</ul>
+
+<h4 id="listview-示例">ListView 示例:</h4>
+
+<div class="row"> <div class="col-md-6">
+
+    <p><img src="images/listview.png" style="border:1px solid black" alt="a ListView containing movie theaters and restaurants" /></p>
+
+    <p>使用ListView显示多个ListTile的业务列表。分隔线将剧院与餐厅分开<br /></p>
+
+    <p><strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/listview/main.dart">main.dart</a>, snippet below<br />
+<strong>Icons:</strong> <a href="https://docs.flutter.io/flutter/material/Icons-class.html">Icons class</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/listview/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/listview-flutter-gallery.png" style="border:1px solid black" alt="a ListView containing shades of blue from the Material Design color palette" /></p>
+
+    <p>使用ListView控件来显示<a href="https://material.io/guidelines/style/color.html">Material Design palette</a>中的<a href="https://docs.flutter.io/flutter/material/Colors-class.html">Colors</a><br />
+<strong>Dart code:</strong> <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a>中的
+<a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/colors_demo.dart">colors_demo.dart</a></p>
+
+  </div> </div>
+
+<!-- code/layout/listview/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>List&lt;Widget&gt; list = &lt;Widget&gt;[
+  new ListTile(
+    title: new Text(&#39;CineArts at the Empire&#39;,
+        style: new TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
+    subtitle: new Text(&#39;85 W Portal Ave&#39;),
+    leading: new Icon(
+      Icons.theaters,
+      color: Colors.blue[500],
+    ),
+  ),
+  new ListTile(
+    title: new Text(&#39;The Castro Theater&#39;,
+        style: new TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
+    subtitle: new Text(&#39;429 Castro St&#39;),
+    leading: new Icon(
+      Icons.theaters,
+      color: Colors.blue[500],
+    ),
+  ),
+  // ...
+  // <span class="nocode highlight">See the rest of the column defined on GitHub:</span>
+  // <span class="nocode highlight">https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/listview/main.dart</span>
+];
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      // ...
+      body: new Center(
+        child: new ListView(
+          children: list,
+        ),
+      ),
+    );
+  }
+}</code></pre>
+
+<hr />
+
+<h3 id="stack">Stack</h3>
+
+<p>使用<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html">Stack</a>来组织需要重叠的widget。widget可以完全或部分重叠底部widget。</p>
+
+<h4 id="stack-summary">Stack summary:</h4>
+
+<ul>
+  <li>用于与另一个widget重叠的widget</li>
+  <li>子列表中的第一个widget是base widget; 随后的子widget被覆盖在基础widget的顶部</li>
+  <li>Stack的内容不能滚动</li>
+  <li>您可以选择剪切超过渲染框的子项</li>
+</ul>
+
+<h4 id="stack-示例">Stack 示例:</h4>
+
+<div class="row"> <div class="col-md-6">
+
+    <p><img src="images/stack.png" style="border:1px solid black" alt="a circular avatar containing the label 'Mia B' in the lower right portion of the circle" /></p>
+
+    <p>使用Stack叠加Container（在半透明的黑色背景上显示其文本），放置在Circle Avatar的顶部。Stack使用alignment属性和调整文本偏移。<br />
+<strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/stack/main.dart">main.dart</a>, snippet below<br />
+<strong>Image:</strong> <a href="https://github.com/flutter/website/tree/master/_includes/code/layout/stack/images">images</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/stack/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/stack-flutter-gallery.png" style="border:1px solid black" alt="an image with a grey gradient across the top; on top of the gradient is tools painted in white" /></p>
+
+    <p>使用Stack将gradient叠加到图像的顶部。gradient确保工具栏的图标与图片不同。<br />
+<strong>Dart code:</strong> <a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/contacts_demo.dart">contacts_demo.dart</a></p>
+
+  </div> </div>
+
+<!-- code/layout/stack/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    var stack = new Stack(
+      alignment: const Alignment(0.6, 0.6),
+      children: [
+        new CircleAvatar(
+          backgroundImage: new AssetImage(&#39;images/pic.jpg&#39;),
+          radius: 100.0,
+        ),
+        new Container(
+          decoration: new BoxDecoration(
+            color: Colors.black45,
+          ),
+          child: new Text(
+            &#39;Mia B&#39;,
+            style: new TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+    // ...
+  }
+}</code></pre>
+
+<hr />
+
+<h3 id="card">Card</h3>
+
+<p>Material Components 库中的Card包含相关内容块，可以由大多数类型的widget构成，但通常与ListTile一起使用。Card有一个子项，
+但它可以是支持多个子项的列，行，列表，网格或其他小部件。默认情况下，Card将其大小缩小为0像素。您可以使用<a href="https://docs.flutter.io/flutter/widgets/SizedBox-class.html">SizedBox</a>来限制Card的大小。</p>
+
+<p>在Flutter中，Card具有圆角和阴影，这使它有一个3D效果。更改Card的e<code class="highlighter-rouge">elevation</code>属性允许您控制投影效果。
+例如，将<code class="highlighter-rouge">elevation</code>设置为24.0，将会使Card从视觉上抬离表面并使阴影变得更加分散。
+有关支持的<code class="highlighter-rouge">elevation</code>值的列表，请参见<a href="https://material.io/guidelines/">Material guidelines</a>中的<a href="https://material.io/guidelines/material-design/elevation-shadows.html">Elevation and Shadows</a>。
+<strong>如果指定不支持的值将会完全禁用投影</strong> 。</p>
+
+<h4 id="card-摘要">Card 摘要:</h4>
+
+<ul>
+  <li>实现了一个 <a href="https://material.io/guidelines/components/cards.html">Material Design
+card</a></li>
+  <li>接受单个子项，但该子项可以是Row，Column或其他包含子级列表的widget</li>
+  <li>显示圆角和阴影</li>
+  <li>Card内容不能滚动</li>
+  <li>Material Components 库的一个widget</li>
+</ul>
+
+<h4 id="card-示例">Card 示例:</h4>
+
+<div class="row"> <div class="col-md-6">
+
+    <p><img src="images/card.png" style="border:1px solid black" alt="a Card containing 3 ListTiles" />
+包含3个ListTiles并通过用SizedBox包装进行大小调整的Card。分隔线分隔第一个和第二个ListTiles。<br />
+<strong>Dart code:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/card/main.dart">main.dart</a>, snippet below<br />
+<strong>Icons:</strong> <a href="https://docs.flutter.io/flutter/material/Icons-class.html">Icons class</a><br />
+<strong>Pubspec:</strong> <a href="https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/card/pubspec.yaml">pubspec.yaml</a></p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/card-flutter-gallery.png" style="border:1px solid black" alt="a Card containing an image and text and buttons under the image" /></p>
+
+    <p>包含图像和文字的Card<br />
+<strong>Dart code:</strong> <a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/cards_demo.dart">cards_demo.dart</a>
+from the <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter
+Gallery</a></p>
+
+  </div> </div>
+
+<!-- code/layout/card/main.dart -->
+<!-- skip -->
+<pre class="prettyprint highlighter-rouge highlight lang-dart language-dart"><code>class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    var card = new SizedBox(
+      height: 210.0,
+      child: new Card(
+        child: new Column(
+          children: [
+            new ListTile(
+              title: new Text(&#39;1625 Main Street&#39;,
+                  style: new TextStyle(fontWeight: FontWeight.w500)),
+              subtitle: new Text(&#39;My City, CA 99984&#39;),
+              leading: new Icon(
+                Icons.restaurant_menu,
+                color: Colors.blue[500],
+              ),
+            ),
+            new Divider(),
+            new ListTile(
+              title: new Text(&#39;(408) 555-1212&#39;,
+                  style: new TextStyle(fontWeight: FontWeight.w500)),
+              leading: new Icon(
+                Icons.contact_phone,
+                color: Colors.blue[500],
+              ),
+            ),
+            new ListTile(
+              title: new Text(&#39;costa@example.com&#39;),
+              leading: new Icon(
+                Icons.contact_mail,
+                color: Colors.blue[500],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  //...
+}</code></pre>
+
+<hr />
+
+<h3 id="listtile">ListTile</h3>
+
+<p>ListTile是Material Components库中的一个专门的行级widget，用于创建包含最多3行文本和可选的行前和行尾图标的行。ListTile在Card或ListView中最常用，但也可以在别处使用。</p>
+
+<h4 id="listtile-摘要">ListTile 摘要:</h4>
+
+<ul>
+  <li>包含最多3行文本和可选图标的专用行</li>
+  <li>比起Row不易配置，但更易于使用</li>
+  <li>Material Components 库里的widget</li>
+</ul>
+
+<h4 id="listtile-示例">ListTile 示例:</h4>
+
+<div class="row"> <div class="col-md-6">
+
+    <p><img src="images/card.png" style="border:1px solid black" alt="a Card containing 3 ListTiles" /></p>
+
+    <p>包含3个ListTiles的Card<br />
+<strong>Dart code:</strong> See <a href="#card-examples">Card examples</a>.</p>
+
+  </div> <div class="col-md-6">
+
+    <p><img src="images/listtile-flutter-gallery.png" style="border:1px solid black" alt="3 ListTiles, each containing a pull-down button" /></p>
+
+    <p>使用ListTile列出3个下拉按钮类型。<br />
+<strong>Dart code:</strong> <a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/buttons_demo.dart">buttons_demo.dart</a>
+from the <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter
+Gallery</a></p>
+
+  </div> </div>
+
+<hr />
+
+<p><a name="resources"></a></p>
+<h2 id="资源">资源</h2>
+
+<p>编写布局代码时以下资源可能会有所帮助。</p>
+
+<ul>
+  <li><a href="/widgets">Widget 概述</a><br />
+介绍Flutter中提供的许多widgets。</li>
+  <li><a href="/web-analogs">HTML/CSS在Flutter中的模拟</a><br />
+对于熟悉web开发的人员，本页将HTML / CSS功能映射到Flutter功能。</li>
+  <li><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter
+Gallery</a><br />
+一个Demo应用，展示了许多Material Design widget和其他Flutter功能。</li>
+  <li><a href="https://docs.flutter.io/">Flutter API documentation</a><br />
+所有Flutter库的参考文档。</li>
+  <li><a href="/layout">处理Flutter中的框约束</a><br />
+讨论widgets如何受其渲染框限制。</li>
+  <li><a href="/assets-and-images">在Flutter中添加 Assets 和 Images</a><br />
+说明如何将图像和其他资源添加到应用程序包中。</li>
+  <li><a href="https://medium.com/@mravn/zero-to-one-with-flutter-43b13fd7b354#.z86tsq4ld">从零到一开始 Flutter</a><br />
+一个写他第一个Flutter应用程序的经验。</li>
+</ul>
+
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>

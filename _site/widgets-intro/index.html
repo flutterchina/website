@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter Widget框架概述  - Flutter中文网 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <meta name="description" content="Flutter widget 采用现代响应式框架构建，中心思想是用widget构建你的UI。 Widget描述了他们的视图在给定其当前配置和状态时应该看起来像什么。当widget的状态发生变化时，widget会重新构建UI，Flutter会对比前后变化的不同， 以确定底层渲染树从一个状态转换到下一个状态所需的最小...">
+  <meta name="keywords" content="Flutter框架概述,flutter中文网, flutter教程, Flutter中文网, flutter文档 ">
+  <meta name="baidu-site-verification" content="oeLolPaTVU" />
+  <meta name="sogou_site_verification" content="xhNTjenszq"/>
+  <meta name="baidu_union_verify" content="d98c3b5eb9879153e86969574c39ced9">
+  <link rel="stylesheet" href="/css/lavish-bootstrap.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/gh/google/material-design-icons@3.0.1/iconfont/material-icons.css" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CRoboto:500,400italic,300,400" rel="stylesheet">-->
+  
+  <link rel="canonical" href="https://www.flutterchina.club/widgets-intro/">
+  <script>
+    function onSubmit() {
+        open("http://zhannei.baidu.com/cse/site?cc=flutterchina.club&q=" + $("input[name=q]").val(), "_blank");
+        return false;
+    }
+  </script>
+  
+  <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />
+</head>
+
+
+<body >
+
+<div id="overlay-under-drawer"><!-- for the drawer on narrow screens --></div>
+
+<header class="site-header">
+  <div class="container-fluid header-contents">
+    <div class="row">
+      <div class="col-md-12">
+        <!--<i class="fa fa-bars" id="sidebar-toggle-button" aria-hidden="true" style="display:none"></i>-->
+        <i class="material-icons" id="sidebar-toggle-button" aria-hidden="true" style="display:none; margin-left: -10px">menu</i>
+        <img src= "/images/flutter-mark-square-100.png" alt="Flutter Logo" width="40" height="40" style="vertical-align:middle">
+        <a class="site-title" href="/">Flutter中文网</a>
+
+        <nav class="site-nav">
+          <a href="#" class="menu-icon" style="margin-right: -15px">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="trigger">
+            <a class="page-link" href="/docs/">文档</a>
+            <a class="page-link" href="/opensource.html">开源项目</a>
+            <a class="page-link" href="https://book.flutterchina.club" style="color:blue">《Flutter实战》 <sup style="font-size: 13px; color: red"> 新书</sup></a>
+            <form class="nav-searchbox" style="display: inline-block"   onsubmit='return onSubmit()' >
+              <input type="search"  name="q"  autocomplete="off" placeholder="搜索">
+              <input type="hidden" name="cc" value="flutterchina.club">
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<div class="container-fluid contents">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Sidebar Column -->
+        <div id="side-nav-container" class="col-sm-3">
+            <ul id="mysidebar" class="nav">
+
+  <li class="sidebar-title">起步</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/get-started/install/">1: 安装</a></li>
+      <li><a href="/get-started/editor/">2: 配置编辑器</a></li>
+      <li><a href="/get-started/test-drive/">3: 体验Flutter </a></li>
+      <li><a href="/get-started/codelab/">4: 编写第一个Flutter应用</a></li>
+      <li><a href="/get-started/learn-more/">5: 了解更多</a></li>
+    </ul>
+
+  <li class="sidebar-title">构建用户界面</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/widgets-intro/">Widget 框架总览</a></li>
+      <li><a href="/widgets/">Widget 目录</a></li>
+      <li><a href="/cookbook/">Cookbook</a></li>
+      <li><a href="/catalog/samples/">示例目录</a></li>
+      <li><a href="/tutorials/layout/">构建布局 - 教程</a></li>
+      <li><a href="/tutorials/interactive/">添加交互- 教程</a></li>
+      <li><a href="/web-analogs/">Flutter for Web开发者</a></li>
+      <li><a href="/flutter-for-android/">Flutter for Android 开发者</a></li>
+      <li><a href="/flutter-for-ios/">Flutter for iOS 开发者</a></li>
+      <li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>
+      <!--<li><a href="/flutter-for-react-native/">Flutter for React Native 开发者</a></li>-->
+      <li><a href="/gestures/">手势</a></li>
+      <li><a href="/animations/">动画</a></li>
+      <li><a href="/custom-fonts/">自定义字体</a></li>
+      <li><a href="/layout/">盒约束</a></li>
+      <li><a href="/assets-and-images/">资源和图片</a></li>
+      <li><a href="/text-input/">文本输入</a></li>
+      <li><a href="/routing-and-navigation/">路由和导航</a></li>
+      <li><a href="/tutorials/internationalization">国际化（多语言支持）</a></li>
+    </ul>
+
+  <li class="sidebar-title">使用设备和SDK API</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-packages/">使用packages</a></li>
+      <li><a href="/developing-packages/">开发packages</a></li>
+      <li><a href="/platform-channels/">平台特定的代码</a></li>
+      <li><a href="/reading-writing-files/">文件读写</a></li>
+      <li><a href="/networking/">网络和Http</a></li>
+      <li><a href="/json/">JSON和序列化</a></li>
+    </ul>
+
+  <li class="sidebar-title">开发和工具</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/using-ide/">使用Flutter IDE</a></li>
+      <li><a href="/hot-reload/">使用热重载</a></li>
+      <li><a href="/testing/">测试应用</a></li>
+      <li><a href="/debugging/">调试应用</a></li>
+      <li><a href="/inspector/">检查(Inspect)用户界面</a></li>
+      <li><a href="/android-release/">Android构建发布</a></li>
+      <li><a href="/ios-release/">IOS构建发布</a></li>
+      <li><a href="/upgrading/">升级安装的Flutter</a></li>
+      <li><a href="/formatting/">格式化代码</a></li>
+    </ul>
+
+  <li class="sidebar-title">更多细节</li>
+
+    <ul class="sidebar-items">
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/technical-overview">Flutter框架总览</a></li>
+    </ul>
+  <li class="sidebar-title">站外内容 <sup style="font-size: 13px; color: #000"> 需翻墙</sup></li>
+    <ul class="sidebar-items">
+        <li><a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0">构建漂亮的用户界面 - Codelab</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1B3p0kP6NV_XMOimRV09Ms75ymIjU5gr6GGIX74Om_DE/edit?usp=sharing">Flutter滑动的魔法</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit?usp=sharing">架构图</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dkyY9WCGMi0">框架的分层设计<i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=UUfXWzp0-DU">Flutter的渲染管道 <i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+    </ul>
+
+
+</ul>
+
+        </div>
+
+        
+        
+
+        <!-- Content Column -->
+        
+            <div class="col-sm-8  main-contents">
+                
+
+                <div class="main-contents-body">
+                    <!--<div style="padding: 16px 10px; background:#4097de; border-radius: 3px; margin-bottom: 50px;">-->
+                    <!--<div id="download-padding" style="background: url(/images/gitme/180.png) no-repeat; background-size: contain; color:#fff; ">-->
+                        <!--<a href="/app/gm.html" style="color: #fff">Gitme是用flutter开发的一款github客户端，敬请体验。</a>-->
+                        <!--<a id="download" href="/app/gm.html">去了解</a>-->
+                     <!--</div>-->
+                    <!--</div>-->
+                    <article class="post-content">
+
+  
+  <header class="post-header">
+      <div class="btn-group contribute" role="group">
+         <a href="https://github.com/flutterchina/website/blob/master/widgets-intro.md" class="btn btn-sm">
+            <i class="fa fa-pencil"></i> 编辑本页
+         </a>
+         <a href="https://github.com/flutter/flutter/issues/new?title=Issue from website page Flutter Widget框架概述&body=From URL: https://www.flutterchina.club/widgets-intro.md&labels=dev: docs - website" class="btn btn-sm">
+            <i class="fa fa-github"></i> 提Issue
+        </a>
+     </div>
+   <div>
+    <h1 class="post-title">Flutter Widget框架概述 </h1>
+   </div>
+
+  </header>
+  
+
+  <ul id="markdown-toc">
+  <li><a href="#介绍" id="markdown-toc-介绍">介绍</a></li>
+  <li><a href="#hello-world" id="markdown-toc-hello-world">Hello World</a></li>
+  <li><a href="#基础-widget" id="markdown-toc-基础-widget">基础 Widget</a></li>
+  <li><a href="#使用-material-组件" id="markdown-toc-使用-material-组件">使用 Material 组件</a></li>
+  <li><a href="#处理手势" id="markdown-toc-处理手势">处理手势</a></li>
+  <li><a href="#根据用户输入改变widget" id="markdown-toc-根据用户输入改变widget">根据用户输入改变widget</a></li>
+  <li><a href="#整合所有" id="markdown-toc-整合所有">整合所有</a></li>
+  <li><a href="#响应widget生命周期事件" id="markdown-toc-响应widget生命周期事件">响应widget生命周期事件</a></li>
+  <li><a href="#key" id="markdown-toc-key">Key</a></li>
+  <li><a href="#全局-key" id="markdown-toc-全局-key">全局 Key</a></li>
+</ul>
+
+<h2 id="介绍">介绍</h2>
+
+<p>Flutter Widget采用现代响应式框架构建，这是从 <a href="http://facebook.github.io/react/">React</a> 中获得的灵感，中心思想是用widget构建你的UI。
+Widget描述了他们的视图在给定其当前配置和状态时应该看起来像什么。当widget的状态发生变化时，widget会重新构建UI，Flutter会对比前后变化的不同，
+以确定底层渲染树从一个状态转换到下一个状态所需的最小更改（译者语：类似于React/Vue中虚拟DOM的diff算法）。</p>
+
+<aside id="note" class="alert alert-info">
+  <p><strong>注意:</strong> 如果您想通过代码来深入了解Flutter，请查看
+<a href="/tutorials/layout/">构建Flutter布局</a> 和
+<a href="/tutorials/interactive/">为Flutter App添加交互功能</a>。</p>
+</aside>
+
+<h2 id="hello-world">Hello World</h2>
+
+<p>一个最简单的Flutter应用程序，只需一个widget即可！如下面示例：将一个widget传给<a href="https://docs.flutter.io/flutter/widgets/runApp.html"><code class="highlighter-rouge">runApp</code></a>函数即可：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span>
+    <span class="k">new</span> <span class="n">Center</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span>
+        <span class="s">'Hello, world!'</span><span class="o">,</span>
+        <span class="nl">textDirection:</span> <span class="n">TextDirection</span><span class="o">.</span><span class="na">ltr</span><span class="o">,</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>该<a href="https://docs.flutter.io/flutter/widgets/runApp.html"><code class="highlighter-rouge">runApp</code></a>函数接受给定的<a href="https://docs.flutter.io/flutter/widgets/Widget-class.html"><code class="highlighter-rouge">Widget</code></a>并使其成为widget树的根。
+在此示例中，widget树由两个widget:Center(及其子widget)和Text组成。框架强制根widget覆盖整个屏幕，这意味着文本“Hello, world”会居中显示在屏幕上。文本显示的方向需要在Text实例中指定，当使用MaterialApp时，文本的方向将自动设定，稍后将进行演示。</p>
+
+<p>在编写应用程序时，通常会创建新的widget，这些widget是无状态的<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html"><code class="highlighter-rouge">StatelessWidget</code></a>或者是有状态的<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html"><code class="highlighter-rouge">StatefulWidget</code></a>，
+具体的选择取决于您的widget是否需要管理一些状态。widget的主要工作是实现一个<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget/build.html"><code class="highlighter-rouge">build</code></a>函数，用以构建自身。一个widget通常由一些较低级别widget组成。Flutter框架将依次构建这些widget，直到构建到最底层的子widget时，这些最低层的widget通常为<a href="https://docs.flutter.io/flutter/rendering/RenderObject-class.html"><code class="highlighter-rouge">RenderObject</code></a>，它会计算并描述widget的几何形状。</p>
+
+<h2 id="基础-widget">基础 Widget</h2>
+
+<p>主要文章: <a href="https://flutter.io/widgets/layout">widget概述-布局模型</a></p>
+
+<p>Flutter有一套丰富、强大的基础widget，其中以下是很常用的：</p>
+
+<ul>
+  <li>
+    <p><a href="https://docs.flutter.io/flutter/widgets/Text-class.html"><code class="highlighter-rouge">Text</code></a>：该 widget 可让创建一个带格式的文本。</p>
+  </li>
+  <li>
+    <p><a href="https://docs.flutter.io/flutter/widgets/Row-class.html"><code class="highlighter-rouge">Row</code></a>、
+<a href="https://docs.flutter.io/flutter/widgets/Column-class.html"><code class="highlighter-rouge">Column</code></a>：
+这些具有弹性空间的布局类Widget可让您在水平（Row）和垂直（Column）方向上创建灵活的布局。其设计是基于web开发中的Flexbox布局模型。</p>
+  </li>
+  <li>
+    <p><a href="https://docs.flutter.io/flutter/widgets/Stack-class.html"><code class="highlighter-rouge">Stack</code></a>：
+ 取代线性布局 (译者语：和Android中的LinearLayout相似)，<a href="https://docs.flutter.io/flutter/widgets/Stack-class.html"><code class="highlighter-rouge">Stack</code></a>允许子 widget 堆叠， 你可以使用
+<a href="https://docs.flutter.io/flutter/widgets/Positioned-class.html"><code class="highlighter-rouge">Positioned</code></a>
+来定位他们相对于<code class="highlighter-rouge">Stack</code>的上下左右四条边的位置。Stacks是基于Web开发中的绝度定位（absolute positioning )布局模型设计的。</p>
+  </li>
+  <li>
+    <p><a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><code class="highlighter-rouge">Container</code></a>：
+<a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><code class="highlighter-rouge">Container</code></a>
+可让您创建矩形视觉元素。container 可以装饰为一个<a href="https://docs.flutter.io/flutter/painting/BoxDecoration-class.html"><code class="highlighter-rouge">BoxDecoration</code></a>,
+如 background、一个边框、或者一个阴影。
+<a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><code class="highlighter-rouge">Container</code></a>
+也可以具有边距（margins）、填充(padding)和应用于其大小的约束(constraints)。另外，
+<a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><code class="highlighter-rouge">Container</code></a>可以使用矩阵在三维空间中对其进行变换。</p>
+  </li>
+</ul>
+
+<p>以下是一些简单的Widget，它们可以组合出其它的Widget：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">MyAppBar</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="n">MyAppBar</span><span class="o">({</span><span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">});</span>
+
+  <span class="c1">// Widget子类中的字段往往都会定义为"final"</span>
+
+  <span class="kd">final</span> <span class="n">Widget</span> <span class="n">title</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Container</span><span class="o">(</span>
+      <span class="nl">height:</span> <span class="mf">56.0</span><span class="o">,</span> <span class="c1">// 单位是逻辑上的像素（并非真实的像素，类似于浏览器中的像素）</span>
+      <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">symmetric</span><span class="o">(</span><span class="nl">horizontal:</span> <span class="mf">8.0</span><span class="o">),</span>
+      <span class="nl">decoration:</span> <span class="k">new</span> <span class="n">BoxDecoration</span><span class="o">(</span><span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">blue</span><span class="o">[</span><span class="mi">500</span><span class="o">]),</span>
+      <span class="c1">// Row 是水平方向的线性布局（linear layout）</span>
+      <span class="nl">child:</span> <span class="k">new</span> <span class="n">Row</span><span class="o">(</span>
+        <span class="c1">//列表项的类型是 &lt;Widget&gt;</span>
+        <span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+          <span class="k">new</span> <span class="n">IconButton</span><span class="o">(</span>
+            <span class="nl">icon:</span> <span class="k">new</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">menu</span><span class="o">),</span>
+            <span class="nl">tooltip:</span> <span class="s">'Navigation menu'</span><span class="o">,</span>
+            <span class="nl">onPressed:</span> <span class="kc">null</span><span class="o">,</span> <span class="c1">// null 会禁用 button</span>
+          <span class="o">),</span>
+          <span class="c1">// Expanded expands its child to fill the available space.</span>
+          <span class="k">new</span> <span class="n">Expanded</span><span class="o">(</span>
+            <span class="nl">child:</span> <span class="n">title</span><span class="o">,</span>
+          <span class="o">),</span>
+          <span class="k">new</span> <span class="n">IconButton</span><span class="o">(</span>
+            <span class="nl">icon:</span> <span class="k">new</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">search</span><span class="o">),</span>
+            <span class="nl">tooltip:</span> <span class="s">'Search'</span><span class="o">,</span>
+            <span class="nl">onPressed:</span> <span class="kc">null</span><span class="o">,</span>
+          <span class="o">),</span>
+        <span class="o">],</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">MyScaffold</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Material 是UI呈现的“一张纸”</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Material</span><span class="o">(</span>
+      <span class="c1">// Column is 垂直方向的线性布局.</span>
+      <span class="nl">child:</span> <span class="k">new</span> <span class="n">Column</span><span class="o">(</span>
+        <span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+          <span class="k">new</span> <span class="n">MyAppBar</span><span class="o">(</span>
+            <span class="nl">title:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span>
+              <span class="s">'Example title'</span><span class="o">,</span>
+              <span class="nl">style:</span> <span class="n">Theme</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">primaryTextTheme</span><span class="o">.</span><span class="na">title</span><span class="o">,</span>
+            <span class="o">),</span>
+          <span class="o">),</span>
+          <span class="k">new</span> <span class="n">Expanded</span><span class="o">(</span>
+            <span class="nl">child:</span> <span class="k">new</span> <span class="n">Center</span><span class="o">(</span>
+              <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Hello, world!'</span><span class="o">),</span>
+            <span class="o">),</span>
+          <span class="o">),</span>
+        <span class="o">],</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="k">new</span> <span class="n">MaterialApp</span><span class="o">(</span>
+    <span class="nl">title:</span> <span class="s">'My app'</span><span class="o">,</span> <span class="c1">// used by the OS task switcher</span>
+    <span class="nl">home:</span> <span class="k">new</span> <span class="n">MyScaffold</span><span class="o">(),</span>
+  <span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>请确保在pubspec.yaml文件中，将<code class="highlighter-rouge">flutter</code>的值设置为：<code class="highlighter-rouge">uses-material-design: true</code>。这允许我们可以使用一组预定义<a href="https://design.google.com/icons/">Material icons</a>。</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">my_app</span>
+<span class="na">flutter</span><span class="pi">:</span>
+  <span class="na">uses-material-design</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>为了继承主题数据，widget需要位于<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a>内才能正常显示，
+因此我们使用<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a>来运行该应用。</p>
+
+<p>在<code class="highlighter-rouge">MyAppBar</code>中创建一个<code class="highlighter-rouge">Container</code>，高度为56像素（像素单位独立于设备，为逻辑像素），其左侧和右侧均有8像素的填充。在容器内部，
+<code class="highlighter-rouge">MyAppBar</code>使用<a href="https://docs.flutter.io/flutter/widgets/Row-class.html"><code class="highlighter-rouge">Row</code></a> 布局来排列其子项。
+中间的<code class="highlighter-rouge">title</code> widget被标记为<a href="https://docs.flutter.io/flutter/widgets/Expanded-class.html"><code class="highlighter-rouge">Expanded</code></a>,
+，这意味着它会填充尚未被其他子项占用的的剩余可用空间。Expanded可以拥有多个children，
+然后使用<a href="https://docs.flutter.io/flutter/widgets/Expanded-class.html#flex"><code class="highlighter-rouge">flex</code></a>参数来确定他们占用剩余空间的比例。</p>
+
+<p><code class="highlighter-rouge">MyScaffold</code> 通过一个<code class="highlighter-rouge">Column</code> widget，在垂直方向排列其子项。在<code class="highlighter-rouge">Column</code>的顶部，放置了一个<code class="highlighter-rouge">MyAppBar</code>实例，将一个Text widget作为其标题传递给应用程序栏。将widget作为参数传递给其他widget是一种强大的技术，可以让您创建各种复杂的widget。最后，<code class="highlighter-rouge">MyScaffold</code>使用了一个<code class="highlighter-rouge">Expanded</code>来填充剩余的空间，正中间包含一条message。</p>
+
+<h2 id="使用-material-组件">使用 Material 组件</h2>
+
+<p>主要文章: <a href="/widgets/material">Widgets 总览 - Material 组件</a></p>
+
+<p>Flutter提供了许多widgets，可帮助您构建遵循Material Design的应用程序。Material应用程序以<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a> widget开始，
+该widget在应用程序的根部创建了一些有用的widget，其中包括一个<a href="https://docs.flutter.io/flutter/widgets/Navigator-class.html"><code class="highlighter-rouge">Navigator</code></a>，
+它管理由字符串标识的Widget栈（即页面路由栈）。<a href="https://docs.flutter.io/flutter/widgets/Navigator-class.html"><code class="highlighter-rouge">Navigator</code></a>可以让您的应用程序在页面之间的平滑的过渡。
+是否使用<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><code class="highlighter-rouge">MaterialApp</code></a>完全是可选的，但是使用它是一个很好的做法。</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="k">new</span> <span class="n">MaterialApp</span><span class="o">(</span>
+    <span class="nl">title:</span> <span class="s">'Flutter Tutorial'</span><span class="o">,</span>
+    <span class="nl">home:</span> <span class="k">new</span> <span class="n">TutorialHome</span><span class="o">(),</span>
+  <span class="o">));</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">TutorialHome</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">//Scaffold是Material中主要的布局组件.</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="k">new</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">leading:</span> <span class="k">new</span> <span class="n">IconButton</span><span class="o">(</span>
+          <span class="nl">icon:</span> <span class="k">new</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">menu</span><span class="o">),</span>
+          <span class="nl">tooltip:</span> <span class="s">'Navigation menu'</span><span class="o">,</span>
+          <span class="nl">onPressed:</span> <span class="kc">null</span><span class="o">,</span>
+        <span class="o">),</span>
+        <span class="nl">title:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Example title'</span><span class="o">),</span>
+        <span class="nl">actions:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+          <span class="k">new</span> <span class="n">IconButton</span><span class="o">(</span>
+            <span class="nl">icon:</span> <span class="k">new</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">search</span><span class="o">),</span>
+            <span class="nl">tooltip:</span> <span class="s">'Search'</span><span class="o">,</span>
+            <span class="nl">onPressed:</span> <span class="kc">null</span><span class="o">,</span>
+          <span class="o">),</span>
+        <span class="o">],</span>
+      <span class="o">),</span>
+      <span class="c1">//body占屏幕的大部分</span>
+      <span class="nl">body:</span> <span class="k">new</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Hello, world!'</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="k">new</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">tooltip:</span> <span class="s">'Add'</span><span class="o">,</span> <span class="c1">// used by assistive technologies</span>
+        <span class="nl">child:</span> <span class="k">new</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">add</span><span class="o">),</span>
+        <span class="nl">onPressed:</span> <span class="kc">null</span><span class="o">,</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>现在我们已经从<code class="highlighter-rouge">MyAppBar</code>和<code class="highlighter-rouge">MyScaffold</code>切换到了<a href="https://docs.flutter.io/flutter/material/AppBar-class.html"><code class="highlighter-rouge">AppBar</code></a>和
+<a href="https://docs.flutter.io/flutter/material/Scaffold-class.html"><code class="highlighter-rouge">Scaffold</code></a> widget，
+我们的应用程序现在看起来已经有一些“Material”了！例如，应用栏有一个阴影，标题文本会自动继承正确的样式。我们还添加了一个浮动操作按钮，以便进行相应的操作处理。</p>
+
+<p>请注意，我们再次将widget作为参数传递给其他widget。该 <a href="https://docs.flutter.io/flutter/material/Scaffold-class.html"><code class="highlighter-rouge">Scaffold</code></a> widget
+需要许多不同的widget的作为命名参数，其中的每一个被放置在<a href="https://docs.flutter.io/flutter/material/Scaffold-class.html"><code class="highlighter-rouge">Scaffold</code></a>布局中相应的位置。
+同样，<a href="https://docs.flutter.io/flutter/material/AppBar-class.html"><code class="highlighter-rouge">AppBar</code></a> 中，我们给参数leading、actions、title分别传一个widget。
+这种模式在整个框架中会经常出现，这也可能是您在设计自己的widget时会考虑到一点。</p>
+
+<h2 id="处理手势">处理手势</h2>
+
+<p>主要文章: <a href="/gestures/">Flutter中的手势</a></p>
+
+<p>大多数应用程序包括某种形式与系统的交互。构建交互式应用程序的第一步是检测输入手势。让我们通过创建一个简单的按钮来了解它的工作原理：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyButton</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">GestureDetector</span><span class="o">(</span>
+      <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">'MyButton was tapped!'</span><span class="o">);</span>
+      <span class="o">},</span>
+      <span class="nl">child:</span> <span class="k">new</span> <span class="n">Container</span><span class="o">(</span>
+        <span class="nl">height:</span> <span class="mf">36.0</span><span class="o">,</span>
+        <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="mf">8.0</span><span class="o">),</span>
+        <span class="nl">margin:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">symmetric</span><span class="o">(</span><span class="nl">horizontal:</span> <span class="mf">8.0</span><span class="o">),</span>
+        <span class="nl">decoration:</span> <span class="k">new</span> <span class="n">BoxDecoration</span><span class="o">(</span>
+          <span class="nl">borderRadius:</span> <span class="k">new</span> <span class="n">BorderRadius</span><span class="o">.</span><span class="na">circular</span><span class="o">(</span><span class="mf">5.0</span><span class="o">),</span>
+          <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">lightGreen</span><span class="o">[</span><span class="mi">500</span><span class="o">],</span>
+        <span class="o">),</span>
+        <span class="nl">child:</span> <span class="k">new</span> <span class="n">Center</span><span class="o">(</span>
+          <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Engage'</span><span class="o">),</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>该<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html"><code class="highlighter-rouge">GestureDetector</code></a> widget并不具有显示效果，而是检测由用户做出的手势。
+当用户点击<a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><code class="highlighter-rouge">Container</code></a>时，
+<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html"><code class="highlighter-rouge">GestureDetector</code></a>会调用它的<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html#onTap"><code class="highlighter-rouge">onTap</code></a>回调，
+在回调中，将消息打印到控制台。您可以使用<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html"><code class="highlighter-rouge">GestureDetector</code></a>来检测各种输入手势，包括点击、拖动和缩放。</p>
+
+<p>许多widget都会使用一个<a href="https://docs.flutter.io/flutter/widgets/GestureDetector-class.html"><code class="highlighter-rouge">GestureDetector</code></a>为其他widget提供可选的回调。
+例如，<a href="https://docs.flutter.io/flutter/material/IconButton-class.html"><code class="highlighter-rouge">IconButton</code></a>、
+<a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html"><code class="highlighter-rouge">RaisedButton</code></a>、
+和<a href="https://docs.flutter.io/flutter/material/FloatingActionButton-class.html"><code class="highlighter-rouge">FloatingActionButton</code></a>
+，它们都有一个<a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html#onPressed"><code class="highlighter-rouge">onPressed</code></a>回调，它会在用户点击该widget时被触发。</p>
+
+<h2 id="根据用户输入改变widget">根据用户输入改变widget</h2>
+
+<p>主要文章: <a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html"><code class="highlighter-rouge">StatefulWidget</code></a>, <a href="https://docs.flutter.io/flutter/widgets/State/setState.html"><code class="highlighter-rouge">State.setState</code></a></p>
+
+<p>到目前为止，我们只使用了无状态的widget。无状态widget从它们的父widget接收参数，
+它们被存储在<a href="https://www.dartlang.org/docs/dart-up-and-running/ch02.html#final-and-const"><code class="highlighter-rouge">final</code></a>型的成员变量中。
+当一个widget被要求构建时，它使用这些存储的值作为参数来构建widget。</p>
+
+<p>为了构建更复杂的体验 - 例如，以更有趣的方式对用户输入做出反应 - 应用程序通常会携带一些状态。
+Flutter使用StatefulWidgets来满足这种需求。StatefulWidgets是特殊的widget，它知道如何生成State对象，然后用它来保持状态。
+思考下面这个简单的例子，其中使用了前面提到<a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html"><code class="highlighter-rouge">RaisedButton</code></a>：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Counter</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="c1">// This class is the configuration for the state. It holds the</span>
+  <span class="c1">// values (in this nothing) provided by the parent and used by the build</span>
+  <span class="c1">// method of the State. Fields in a Widget subclass are always marked "final".</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_CounterState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="n">_CounterState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_CounterState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">Counter</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="kt">void</span> <span class="n">_increment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="c1">// This call to setState tells the Flutter framework that</span>
+      <span class="c1">// something has changed in this State, which causes it to rerun</span>
+      <span class="c1">// the build method below so that the display can reflect the</span>
+      <span class="c1">// updated values. If we changed _counter without calling</span>
+      <span class="c1">// setState(), then the build method would not be called again,</span>
+      <span class="c1">// and so nothing would appear to happen.</span>
+      <span class="n">_counter</span><span class="o">++;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// This method is rerun every time setState is called, for instance</span>
+    <span class="c1">// as done by the _increment method above.</span>
+    <span class="c1">// The Flutter framework has been optimized to make rerunning</span>
+    <span class="c1">// build methods fast, so that you can just rebuild anything that</span>
+    <span class="c1">// needs updating rather than having to individually change</span>
+    <span class="c1">// instances of widgets.</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Row</span><span class="o">(</span>
+      <span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+        <span class="k">new</span> <span class="n">RaisedButton</span><span class="o">(</span>
+          <span class="nl">onPressed:</span> <span class="n">_increment</span><span class="o">,</span>
+          <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Increment'</span><span class="o">),</span>
+        <span class="o">),</span>
+        <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Count: </span><span class="si">$_counter</span><span class="s">'</span><span class="o">),</span>
+      <span class="o">],</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>您可能想知道为什么StatefulWidget和State是单独的对象。在Flutter中，这两种类型的对象具有不同的生命周期：
+Widget是临时对象，用于构建当前状态下的应用程序，而State对象在多次调用<a href="https://docs.flutter.io/flutter/widgets/State/build.html"><code class="highlighter-rouge">build()</code></a>之间保持不变，允许它们记住信息(状态)。</p>
+
+<p>上面的例子接受用户点击，并在点击时使<code class="highlighter-rouge">_counter</code>自增，然后直接在其<code class="highlighter-rouge">build</code>方法中使用<code class="highlighter-rouge">_counter</code>值。在更复杂的应用程序中，widget结构层次的不同部分可能有不同的职责；
+例如，一个widget可能呈现一个复杂的用户界面，其目标是收集特定信息（如日期或位置），而另一个widget可能会使用该信息来更改整体的显示。</p>
+
+<p>在Flutter中，事件流是“向上”传递的，而状态流是“向下”传递的（译者语：这类似于React/Vue中父子组件通信的方式：子widget到父widget是通过事件通信，而父到子是通过状态），重定向这一流程的共同父元素是State。让我们看看这个稍微复杂的例子是如何工作的：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">CounterDisplay</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="n">CounterDisplay</span><span class="o">({</span><span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">});</span>
+
+  <span class="kd">final</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Count: </span><span class="si">$count</span><span class="s">'</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">CounterIncrementor</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="n">CounterIncrementor</span><span class="o">({</span><span class="k">this</span><span class="o">.</span><span class="na">onPressed</span><span class="o">});</span>
+
+  <span class="kd">final</span> <span class="n">VoidCallback</span> <span class="n">onPressed</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">RaisedButton</span><span class="o">(</span>
+      <span class="nl">onPressed:</span> <span class="n">onPressed</span><span class="o">,</span>
+      <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Increment'</span><span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Counter</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">_CounterState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="n">_CounterState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_CounterState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">Counter</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="kt">void</span> <span class="n">_increment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="o">++</span><span class="n">_counter</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Row</span><span class="o">(</span><span class="nl">children:</span> <span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;[</span>
+      <span class="k">new</span> <span class="n">CounterIncrementor</span><span class="o">(</span><span class="nl">onPressed:</span> <span class="n">_increment</span><span class="o">),</span>
+      <span class="k">new</span> <span class="n">CounterDisplay</span><span class="o">(</span><span class="nl">count:</span> <span class="n">_counter</span><span class="o">),</span>
+    <span class="o">]);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>注意我们是如何创建了两个新的无状态widget的！我们清晰地分离了 <em>显示</em> 计数器（CounterDisplay）和 <em>更改</em> 计数器（CounterIncrementor）的逻辑。
+尽管最终效果与前一个示例相同，但责任分离允许将复杂性逻辑封装在各个widget中，同时保持父项的简单性。</p>
+
+<h2 id="整合所有">整合所有</h2>
+
+<p>让我们考虑一个更完整的例子，将上面介绍的概念汇集在一起​​。我们假设一个购物应用程序，该应用程序显示出售的各种产品，并维护一个购物车。
+我们先来定义<code class="highlighter-rouge">ShoppingListItem</code>：</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+  <span class="kd">const</span> <span class="n">Product</span><span class="o">({</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">});</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">typedef</span> <span class="kt">void</span> <span class="nf">CartChangedCallback</span><span class="p">(</span><span class="n">Product</span> <span class="n">product</span><span class="o">,</span> <span class="kt">bool</span> <span class="n">inCart</span><span class="o">);</span>
+
+<span class="kd">class</span> <span class="nc">ShoppingListItem</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="n">ShoppingListItem</span><span class="o">({</span><span class="n">Product</span> <span class="n">product</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">inCart</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">onCartChanged</span><span class="o">})</span>
+      <span class="o">:</span> <span class="n">product</span> <span class="o">=</span> <span class="n">product</span><span class="o">,</span>
+        <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="k">new</span> <span class="n">ObjectKey</span><span class="o">(</span><span class="n">product</span><span class="o">));</span>
+
+  <span class="kd">final</span> <span class="n">Product</span> <span class="n">product</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">inCart</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="n">CartChangedCallback</span> <span class="n">onCartChanged</span><span class="o">;</span>
+
+  <span class="n">Color</span> <span class="n">_getColor</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// The theme depends on the BuildContext because different parts of the tree</span>
+    <span class="c1">// can have different themes.  The BuildContext indicates where the build is</span>
+    <span class="c1">// taking place and therefore which theme to use.</span>
+
+    <span class="k">return</span> <span class="n">inCart</span> <span class="o">?</span> <span class="n">Colors</span><span class="o">.</span><span class="na">black54</span> <span class="o">:</span> <span class="n">Theme</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">primaryColor</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">TextStyle</span> <span class="n">_getTextStyle</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">inCart</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">TextStyle</span><span class="o">(</span>
+      <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">black54</span><span class="o">,</span>
+      <span class="nl">decoration:</span> <span class="n">TextDecoration</span><span class="o">.</span><span class="na">lineThrough</span><span class="o">,</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ListTile</span><span class="o">(</span>
+      <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">onCartChanged</span><span class="o">(</span><span class="n">product</span><span class="o">,</span> <span class="o">!</span><span class="n">inCart</span><span class="o">);</span>
+      <span class="o">},</span>
+      <span class="nl">leading:</span> <span class="k">new</span> <span class="n">CircleAvatar</span><span class="o">(</span>
+        <span class="nl">backgroundColor:</span> <span class="n">_getColor</span><span class="o">(</span><span class="n">context</span><span class="o">),</span>
+        <span class="nl">child:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="n">product</span><span class="o">.</span><span class="na">name</span><span class="o">[</span><span class="mi">0</span><span class="o">]),</span>
+      <span class="o">),</span>
+      <span class="nl">title:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="n">product</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="nl">style:</span> <span class="n">_getTextStyle</span><span class="o">(</span><span class="n">context</span><span class="o">)),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>该<code class="highlighter-rouge">ShoppingListItem</code> widget是无状态的。它将其在构造函​​数中接收到的值存储在<code class="highlighter-rouge">final</code>成员变量中，然后在<code class="highlighter-rouge">build</code>函数中使用它们。
+例如，<code class="highlighter-rouge">inCart</code>布尔值表示在两种视觉展示效果之间切换：一个使用当前主题的主色，另一个使用灰色。</p>
+
+<p>当用户点击列表项时，widget不会直接修改其<code class="highlighter-rouge">inCart</code>的值。相反，widget会调用其父widget给它的<code class="highlighter-rouge">onCartChanged</code>回调函数。
+此模式可让您在widget层次结构中存储更高的状态，从而使状态持续更长的时间。在极端情况下，存储传给<a href="https://docs.flutter.io/flutter/widgets/runApp.html"><code class="highlighter-rouge">runApp</code></a>应用程序的widget的状态将在的整个生命周期中持续存在。</p>
+
+<p>当父项收到<code class="highlighter-rouge">onCartChanged</code>回调时，父项将更新其内部状态，这将触发父项使用新<code class="highlighter-rouge">inCart</code>值重建<code class="highlighter-rouge">ShoppingListItem</code>新实例。
+虽然父项<code class="highlighter-rouge">ShoppingListItem</code>在重建时创建了一个新实例，但该操作开销很小，因为Flutter框架会将新构建的widget与先前构建的widget进行比较，并仅将差异部分应用于底层<a href="https://docs.flutter.io/flutter/rendering/RenderObject-class.html"><code class="highlighter-rouge">RenderObject</code></a>。</p>
+
+<p>我们来看看父widget存储可变状态的示例：</p>
+
+<!--
+class Product {
+  const Product({this.name});
+  final String name;
+}
+
+class ShoppingListItem extends StatelessWidget {
+  ShoppingListItem({Product product, bool inCart, Function onCartChanged});
+  @override
+  Widget build(BuildContext context) => null;
+}
+-->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ShoppingList</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="n">ShoppingList</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">products</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span> <span class="n">products</span><span class="o">;</span>
+
+  <span class="c1">// The framework calls createState the first time a widget appears at a given</span>
+  <span class="c1">// location in the tree. If the parent rebuilds and uses the same type of</span>
+  <span class="c1">// widget (with the same key), the framework will re-use the State object</span>
+  <span class="c1">// instead of creating a new State object.</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_ShoppingListState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="n">_ShoppingListState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">_ShoppingListState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">ShoppingList</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">Set</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span> <span class="n">_shoppingCart</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;();</span>
+
+  <span class="kt">void</span> <span class="n">_handleCartChanged</span><span class="o">(</span><span class="n">Product</span> <span class="n">product</span><span class="o">,</span> <span class="kt">bool</span> <span class="n">inCart</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="c1">// When user changes what is in the cart, we need to change _shoppingCart</span>
+      <span class="c1">// inside a setState call to trigger a rebuild. The framework then calls</span>
+      <span class="c1">// build, below, which updates the visual appearance of the app.</span>
+
+      <span class="k">if</span> <span class="o">(</span><span class="n">inCart</span><span class="o">)</span>
+        <span class="n">_shoppingCart</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">product</span><span class="o">);</span>
+      <span class="k">else</span>
+        <span class="n">_shoppingCart</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">product</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="k">new</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="k">new</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Shopping List'</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="k">new</span> <span class="n">ListView</span><span class="o">(</span>
+        <span class="nl">padding:</span> <span class="k">new</span> <span class="n">EdgeInsets</span><span class="o">.</span><span class="na">symmetric</span><span class="o">(</span><span class="nl">vertical:</span> <span class="mf">8.0</span><span class="o">),</span>
+        <span class="nl">children:</span> <span class="n">widget</span><span class="o">.</span><span class="na">products</span><span class="o">.</span><span class="na">map</span><span class="o">((</span><span class="n">Product</span> <span class="n">product</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="k">new</span> <span class="n">ShoppingListItem</span><span class="o">(</span>
+            <span class="nl">product:</span> <span class="n">product</span><span class="o">,</span>
+            <span class="nl">inCart:</span> <span class="n">_shoppingCart</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">product</span><span class="o">),</span>
+            <span class="nl">onCartChanged:</span> <span class="n">_handleCartChanged</span><span class="o">,</span>
+          <span class="o">);</span>
+        <span class="o">}).</span><span class="na">toList</span><span class="o">(),</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">runApp</span><span class="o">(</span><span class="k">new</span> <span class="n">MaterialApp</span><span class="o">(</span>
+    <span class="nl">title:</span> <span class="s">'Shopping App'</span><span class="o">,</span>
+    <span class="nl">home:</span> <span class="k">new</span> <span class="n">ShoppingList</span><span class="o">(</span>
+      <span class="nl">products:</span> <span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;[</span>
+        <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="nl">name:</span> <span class="s">'Eggs'</span><span class="o">),</span>
+        <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="nl">name:</span> <span class="s">'Flour'</span><span class="o">),</span>
+        <span class="k">new</span> <span class="n">Product</span><span class="o">(</span><span class="nl">name:</span> <span class="s">'Chocolate chips'</span><span class="o">),</span>
+      <span class="o">],</span>
+    <span class="o">),</span>
+  <span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">ShoppingLis</code>t类继承自<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html"><code class="highlighter-rouge">StatefulWidget</code></a>，这意味着这个widget可以存储状态。
+当<code class="highlighter-rouge">ShoppingList</code>首次插入到树中时，框架会调用其 <code class="highlighter-rouge">createState</code> 函数以创建一个新的<code class="highlighter-rouge">_ShoppingListState</code>实例来与该树中的相应位置关联（请注意，我们通常命名State子类时带一个下划线，这表示其是私有的）。
+当这个widget的父级重建时，父级将创建一个新的<code class="highlighter-rouge">ShoppingList</code>实例，但是Flutter框架将重用已经在树中的<code class="highlighter-rouge">_ShoppingListState</code>实例，而不是再次调用<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html#createState"><code class="highlighter-rouge">createState</code></a>创建一个新的。</p>
+
+<p>要访问当前<code class="highlighter-rouge">ShoppingList</code>的属性，<code class="highlighter-rouge">_ShoppingListState</code>可以使用它的<code class="highlighter-rouge">widget</code>属性。
+如果父级重建并创建一个新的ShoppingList，那么 <code class="highlighter-rouge">_ShoppingListState</code>也将用新的<code class="highlighter-rouge">widget</code>值重建（译者语：这里原文档有错误，应该是<code class="highlighter-rouge">_ShoppingListState</code>不会重新构建，但其<code class="highlighter-rouge">widget</code>的属性会更新为新构建的widget）。
+如果希望在<code class="highlighter-rouge">widget</code>属性更改时收到通知，则可以覆盖<code class="highlighter-rouge">didUpdateWidget</code>函数，以便将旧的<code class="highlighter-rouge">oldWidget</code>与当前<code class="highlighter-rouge">widget</code>进行比较。</p>
+
+<p>处理<code class="highlighter-rouge">onCartChanged</code>回调时，<code class="highlighter-rouge">_ShoppingListState</code>通过添加或删除产品来改变其内部<code class="highlighter-rouge">_shoppingCart</code>状态。
+为了通知框架它改变了它的内部状态，需要调用<code class="highlighter-rouge">setState</code>。调用<code class="highlighter-rouge">setState</code>将该widget标记为”dirty”(脏的)，并且计划在下次应用程序需要更新屏幕时重新构建它。
+如果在修改widget的内部状态后忘记调用<code class="highlighter-rouge">setState</code>，框架将不知道您的widget是”dirty”(脏的)，并且可能不会调用widget的<code class="highlighter-rouge">build</code>方法，这意味着用户界面可能不会更新以展示新的状态。</p>
+
+<p>通过以这种方式管理状态，您不需要编写用于创建和更新子widget的单独代码。相反，您只需实现可以处理这两种情况的build函数。</p>
+
+<h2 id="响应widget生命周期事件">响应widget生命周期事件</h2>
+
+<p>主要文章: <a href="https://docs.flutter.io/flutter/widgets/State-class.html"><code class="highlighter-rouge">State</code></a></p>
+
+<p>在StatefulWidget调用<code class="highlighter-rouge">createState</code>之后，框架将新的状态对象插入树中，然后调用状态对象的<a href="https://docs.flutter.io/flutter/widgets/State-class.html#initState"><code class="highlighter-rouge">initState</code></a>。
+子类化State可以重写<a href="https://docs.flutter.io/flutter/widgets/State-class.html#initState"><code class="highlighter-rouge">initState</code></a>，以完成仅需要执行一次的工作。
+例如，您可以重写<code class="highlighter-rouge">initState</code>以配置动画或订阅platform services。<code class="highlighter-rouge">initState</code>的实现中需要调用<code class="highlighter-rouge">super.initState</code>。</p>
+
+<p>当一个状态对象不再需要时，框架调用状态对象的<a href="https://docs.flutter.io/flutter/widgets/State-class.html#dispose"><code class="highlighter-rouge">dispose</code></a>。
+您可以覆盖该<a href="https://docs.flutter.io/flutter/widgets/State-class.html#dispose"><code class="highlighter-rouge">dispose</code></a>方法来执行清理工作。例如，您可以覆盖<a href="https://docs.flutter.io/flutter/widgets/State-class.html#dispose"><code class="highlighter-rouge">dispose</code></a>取消定时器或取消订阅platform services。
+<code class="highlighter-rouge">dispose</code>典型的实现是直接调用<a href="https://docs.flutter.io/flutter/widgets/State-class.html#dispose"><code class="highlighter-rouge">super.dispose</code></a>。</p>
+
+<h2 id="key">Key</h2>
+
+<p>主要文章: <a href="https://docs.flutter.io/flutter/foundation/Key-class.html"><code class="highlighter-rouge">Key</code></a>_</p>
+
+<p>您可以使用key来控制框架将在widget重建时与哪些其他widget匹配。默认情况下，框架根据它们的<a href="https://docs.flutter.io/flutter/widgets/Widget-class.html#runtimeType"><code class="highlighter-rouge">runtimeType</code></a>和它们的显示顺序来匹配。
+使用<a href="https://docs.flutter.io/flutter/widgets/Widget-class.html#key"><code class="highlighter-rouge">key</code></a>时，框架要求两个widget具有相同的<a href="https://docs.flutter.io/flutter/widgets/Widget-class.html#key"><code class="highlighter-rouge">key</code></a>和<a href="https://docs.flutter.io/flutter/widgets/Widget-class.html#runtimeType"><code class="highlighter-rouge">runtimeType</code></a>。</p>
+
+<p>Key在构建相同类型widget的多个实例时很有用。例如，<code class="highlighter-rouge">ShoppingList</code>构建足够的<code class="highlighter-rouge">ShoppingListItem</code>实例以填充其可见区域：</p>
+
+<ul>
+  <li>
+    <p>如果没有key，当前构建中的第一个条目将始终与前一个构建中的第一个条目同步，即使在语义上，列表中的第一个条目如果滚动出屏幕，那么它将不会再在窗口中可见。</p>
+  </li>
+  <li>
+    <p>通过给列表中的每个条目分配为“语义” key，无限列表可以更高效，因为框架将同步条目与匹配的语义key并因此具有相似（或相同）的可视外观。
+此外，语义上同步条目意味着在有状态子widget中，保留的状态将附加到相同的语义条目上，而不是附加到相同数字位置上的条目。</p>
+  </li>
+</ul>
+
+<h2 id="全局-key">全局 Key</h2>
+
+<p>主要文章: <a href="https://docs.flutter.io/flutter/widgets/GlobalKey-class.html"><code class="highlighter-rouge">GlobalKey</code></a></p>
+
+<p>您可以使用全局key来唯一标识子widget。全局key在整个widget层次结构中必须是全局唯一的，这与局部key不同，后者只需要在同级中唯一。由于它们是全局唯一的，因此可以使用全局key来检索与widget关联的状态。</p>
+
+</article>
+
+                    
+                      <div style="padding: 20px 0">
+                        <h2>留言</h2>
+                        <div id="comments"></div>
+                      </div>
+                    
+                </div>
+
+            </div>
+
+            
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="logo">
+          <img src= "/images/flutter-mark-square-100.png" width="100" height="100">
+        </div>
+          <p class="site-footer__link-list hidden-xs">
+            <a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a> &bull;
+            <a href="https://twitter.com/flutterio">twitter</a> &bull;
+            <a href="https://github.com/flutter/">github</a> &bull;
+            <a href="/tos">terms</a> &bull;
+            <a href="https://www.google.com/intl/en/policies/privacy/">privacy</a>
+          </p>
+          <p class="footer-links">
+            <a href="/about">关于本站</a>
+            <a href="/about">加入我们</a>
+            <a href="/app/gm.html">Gitme</a>
+            <a href="http://www.dartdoc.cn/">Dart中文网</a>
+            <a href="/about">Flutter中文网开源计划</a>
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">译者博客</a>|
+            <a href="https://juejin.im/user/58211b88a0bb9f0058c25b7f/posts">Github</a>
+          </p>
+          <div>
+            <a href="http://beian.miit.gov.cn/">京ICP备14014371号-3</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!--<script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/sidebar_toggle.js"></script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/tabs.js"></script>
+    
+      <link rel="stylesheet" href="https://www.flutterchina.club/css/gitment.css">
+      <script src="https://www.flutterchina.club/js/comment.js"></script>
+    
+
+</body>
+</html>
